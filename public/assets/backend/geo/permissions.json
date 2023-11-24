@@ -1,0 +1,1773 @@
+[
+    {
+        "id": "1",
+        "name": "report-list",
+        "guard_name": "web",
+        "permissiongroup_id": "1"
+    },
+    {
+        "id": "2",
+        "name": "monitoring-list",
+        "guard_name": "web",
+        "permissiongroup_id": "2"
+    },
+    {
+        "id": "3",
+        "name": "profile-index",
+        "guard_name": "web",
+        "permissiongroup_id": "3"
+    },
+    {
+        "id": "4",
+        "name": "profile-update",
+        "guard_name": "web",
+        "permissiongroup_id": "3"
+    },
+    {
+        "id": "5",
+        "name": "user-list",
+        "guard_name": "web",
+        "permissiongroup_id": "4"
+    },
+    {
+        "id": "6",
+        "name": "user-create",
+        "guard_name": "web",
+        "permissiongroup_id": "4"
+    },
+    {
+        "id": "7",
+        "name": "user-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "4"
+    },
+    {
+        "id": "8",
+        "name": "user-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "4"
+    },
+    {
+        "id": "9",
+        "name": "userdepartment-list",
+        "guard_name": "web",
+        "permissiongroup_id": "5"
+    },
+    {
+        "id": "10",
+        "name": "userdepartment-create",
+        "guard_name": "web",
+        "permissiongroup_id": "5"
+    },
+    {
+        "id": "11",
+        "name": "userdepartment-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "5"
+    },
+    {
+        "id": "12",
+        "name": "userdepartment-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "5"
+    },
+    {
+        "id": "13",
+        "name": "role-list",
+        "guard_name": "web",
+        "permissiongroup_id": "6"
+    },
+    {
+        "id": "14",
+        "name": "role-create",
+        "guard_name": "web",
+        "permissiongroup_id": "6"
+    },
+    {
+        "id": "15",
+        "name": "role-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "6"
+    },
+    {
+        "id": "16",
+        "name": "role-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "6"
+    },
+    {
+        "id": "17",
+        "name": "permission-list",
+        "guard_name": "web",
+        "permissiongroup_id": "7"
+    },
+    {
+        "id": "18",
+        "name": "permission-create",
+        "guard_name": "web",
+        "permissiongroup_id": "7"
+    },
+    {
+        "id": "19",
+        "name": "permission-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "7"
+    },
+    {
+        "id": "20",
+        "name": "permission-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "7"
+    },
+    {
+        "id": "21",
+        "name": "permissiongroup-list",
+        "guard_name": "web",
+        "permissiongroup_id": "8"
+    },
+    {
+        "id": "22",
+        "name": "permissiongroup-create",
+        "guard_name": "web",
+        "permissiongroup_id": "8"
+    },
+    {
+        "id": "23",
+        "name": "permissiongroup-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "8"
+    },
+    {
+        "id": "24",
+        "name": "permissiongroup-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "8"
+    },
+    {
+        "id": "25",
+        "name": "adminsetting-list",
+        "guard_name": "web",
+        "permissiongroup_id": "9"
+    },
+    {
+        "id": "26",
+        "name": "file-manager",
+        "guard_name": "web",
+        "permissiongroup_id": "9"
+    },
+    {
+        "id": "27",
+        "name": "backup-list",
+        "guard_name": "web",
+        "permissiongroup_id": "10"
+    },
+    {
+        "id": "28",
+        "name": "backup-create",
+        "guard_name": "web",
+        "permissiongroup_id": "10"
+    },
+    {
+        "id": "29",
+        "name": "backup-clean",
+        "guard_name": "web",
+        "permissiongroup_id": "10"
+    },
+    {
+        "id": "30",
+        "name": "backup-monitor",
+        "guard_name": "web",
+        "permissiongroup_id": "10"
+    },
+    {
+        "id": "31",
+        "name": "backup-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "10"
+    },
+    {
+        "id": "32",
+        "name": "backup-download",
+        "guard_name": "web",
+        "permissiongroup_id": "10"
+    },
+    {
+        "id": "33",
+        "name": "email-list",
+        "guard_name": "web",
+        "permissiongroup_id": "11"
+    },
+    {
+        "id": "34",
+        "name": "email-create",
+        "guard_name": "web",
+        "permissiongroup_id": "11"
+    },
+    {
+        "id": "35",
+        "name": "email-view",
+        "guard_name": "web",
+        "permissiongroup_id": "11"
+    },
+    {
+        "id": "36",
+        "name": "email-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "11"
+    },
+    {
+        "id": "37",
+        "name": "emailgroup-list",
+        "guard_name": "web",
+        "permissiongroup_id": "12"
+    },
+    {
+        "id": "38",
+        "name": "emailgroup-create",
+        "guard_name": "web",
+        "permissiongroup_id": "12"
+    },
+    {
+        "id": "39",
+        "name": "emailgroup-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "12"
+    },
+    {
+        "id": "40",
+        "name": "emailgroup-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "12"
+    },
+    {
+        "id": "41",
+        "name": "sms-list",
+        "guard_name": "web",
+        "permissiongroup_id": "13"
+    },
+    {
+        "id": "42",
+        "name": "sms-create",
+        "guard_name": "web",
+        "permissiongroup_id": "13"
+    },
+    {
+        "id": "43",
+        "name": "sms-view",
+        "guard_name": "web",
+        "permissiongroup_id": "13"
+    },
+    {
+        "id": "44",
+        "name": "language-list",
+        "guard_name": "web",
+        "permissiongroup_id": "14"
+    },
+    {
+        "id": "45",
+        "name": "language-create",
+        "guard_name": "web",
+        "permissiongroup_id": "14"
+    },
+    {
+        "id": "46",
+        "name": "language-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "14"
+    },
+    {
+        "id": "47",
+        "name": "language-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "14"
+    },
+    {
+        "id": "48",
+        "name": "feedback-list",
+        "guard_name": "web",
+        "permissiongroup_id": "15"
+    },
+    {
+        "id": "49",
+        "name": "feedback-create",
+        "guard_name": "web",
+        "permissiongroup_id": "15"
+    },
+    {
+        "id": "50",
+        "name": "feedback-view",
+        "guard_name": "web",
+        "permissiongroup_id": "15"
+    },
+    {
+        "id": "51",
+        "name": "feedbackcategory-list",
+        "guard_name": "web",
+        "permissiongroup_id": "16"
+    },
+    {
+        "id": "52",
+        "name": "feedbackcategory-create",
+        "guard_name": "web",
+        "permissiongroup_id": "16"
+    },
+    {
+        "id": "53",
+        "name": "feedbackcategory-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "16"
+    },
+    {
+        "id": "54",
+        "name": "feedbackcategory-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "16"
+    },
+    {
+        "id": "55",
+        "name": "upload-list",
+        "guard_name": "web",
+        "permissiongroup_id": "17"
+    },
+    {
+        "id": "56",
+        "name": "upload-create",
+        "guard_name": "web",
+        "permissiongroup_id": "17"
+    },
+    {
+        "id": "57",
+        "name": "upload-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "17"
+    },
+    {
+        "id": "58",
+        "name": "upload-show",
+        "guard_name": "web",
+        "permissiongroup_id": "17"
+    },
+    {
+        "id": "59",
+        "name": "upload-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "17"
+    },
+    {
+        "id": "60",
+        "name": "uploadcategory-list",
+        "guard_name": "web",
+        "permissiongroup_id": "18"
+    },
+    {
+        "id": "61",
+        "name": "uploadcategory-create",
+        "guard_name": "web",
+        "permissiongroup_id": "18"
+    },
+    {
+        "id": "62",
+        "name": "uploadcategory-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "18"
+    },
+    {
+        "id": "63",
+        "name": "uploadcategory-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "18"
+    },
+    {
+        "id": "64",
+        "name": "phase-list",
+        "guard_name": "web",
+        "permissiongroup_id": "19"
+    },
+    {
+        "id": "65",
+        "name": "phase-create",
+        "guard_name": "web",
+        "permissiongroup_id": "19"
+    },
+    {
+        "id": "66",
+        "name": "phase-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "19"
+    },
+    {
+        "id": "67",
+        "name": "phase-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "19"
+    },
+    {
+        "id": "68",
+        "name": "demandletter-list",
+        "guard_name": "web",
+        "permissiongroup_id": "20"
+    },
+    {
+        "id": "69",
+        "name": "demandletter-create",
+        "guard_name": "web",
+        "permissiongroup_id": "20"
+    },
+    {
+        "id": "70",
+        "name": "demandletter-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "20"
+    },
+    {
+        "id": "71",
+        "name": "demandletter-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "20"
+    },
+    {
+        "id": "72",
+        "name": "demandletter-view",
+        "guard_name": "web",
+        "permissiongroup_id": "20"
+    },
+    {
+        "id": "73",
+        "name": "demandletter-change-status",
+        "guard_name": "web",
+        "permissiongroup_id": "20"
+    },
+    {
+        "id": "74",
+        "name": "fundallocation-list",
+        "guard_name": "web",
+        "permissiongroup_id": "21"
+    },
+    {
+        "id": "75",
+        "name": "fundallocation-create",
+        "guard_name": "web",
+        "permissiongroup_id": "21"
+    },
+    {
+        "id": "76",
+        "name": "fundallocation-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "21"
+    },
+    {
+        "id": "77",
+        "name": "fundallocation-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "21"
+    },
+    {
+        "id": "78",
+        "name": "fundallocation-view",
+        "guard_name": "web",
+        "permissiongroup_id": "21"
+    },
+    {
+        "id": "79",
+        "name": "fundallocation-change-status",
+        "guard_name": "web",
+        "permissiongroup_id": "21"
+    },
+    {
+        "id": "80",
+        "name": "refundsallocated-list",
+        "guard_name": "web",
+        "permissiongroup_id": "22"
+    },
+    {
+        "id": "81",
+        "name": "refundsallocated-create",
+        "guard_name": "web",
+        "permissiongroup_id": "22"
+    },
+    {
+        "id": "82",
+        "name": "refundsallocated-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "22"
+    },
+    {
+        "id": "83",
+        "name": "refundsallocated-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "22"
+    },
+    {
+        "id": "84",
+        "name": "refundsallocated-view",
+        "guard_name": "web",
+        "permissiongroup_id": "22"
+    },
+    {
+        "id": "85",
+        "name": "refundsallocated-change-status",
+        "guard_name": "web",
+        "permissiongroup_id": "22"
+    },
+    {
+        "id": "86",
+        "name": "progressreport-list",
+        "guard_name": "web",
+        "permissiongroup_id": "23"
+    },
+    {
+        "id": "87",
+        "name": "progressreport-create",
+        "guard_name": "web",
+        "permissiongroup_id": "23"
+    },
+    {
+        "id": "88",
+        "name": "progressreport-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "23"
+    },
+    {
+        "id": "89",
+        "name": "progressreport-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "23"
+    },
+    {
+        "id": "90",
+        "name": "progressreport-view",
+        "guard_name": "web",
+        "permissiongroup_id": "23"
+    },
+    {
+        "id": "91",
+        "name": "progressreport-change-status",
+        "guard_name": "web",
+        "permissiongroup_id": "23"
+    },
+    {
+        "id": "92",
+        "name": "progressreport-not-added",
+        "guard_name": "web",
+        "permissiongroup_id": "23"
+    },
+    {
+        "id": "93",
+        "name": "completionreport-list",
+        "guard_name": "web",
+        "permissiongroup_id": "24"
+    },
+    {
+        "id": "94",
+        "name": "completionreport-create",
+        "guard_name": "web",
+        "permissiongroup_id": "24"
+    },
+    {
+        "id": "95",
+        "name": "completionreport-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "24"
+    },
+    {
+        "id": "96",
+        "name": "completionreport-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "24"
+    },
+    {
+        "id": "97",
+        "name": "completionreport-view",
+        "guard_name": "web",
+        "permissiongroup_id": "24"
+    },
+    {
+        "id": "98",
+        "name": "completionreport-change-status",
+        "guard_name": "web",
+        "permissiongroup_id": "24"
+    },
+    {
+        "id": "99",
+        "name": "projectprofile-list",
+        "guard_name": "web",
+        "permissiongroup_id": "25"
+    },
+    {
+        "id": "100",
+        "name": "projectprofile-create",
+        "guard_name": "web",
+        "permissiongroup_id": "25"
+    },
+    {
+        "id": "101",
+        "name": "projectprofile-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "25"
+    },
+    {
+        "id": "102",
+        "name": "projectprofile-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "25"
+    },
+    {
+        "id": "103",
+        "name": "projectprofile-view",
+        "guard_name": "web",
+        "permissiongroup_id": "25"
+    },
+    {
+        "id": "104",
+        "name": "projectprofile-change-status",
+        "guard_name": "web",
+        "permissiongroup_id": "25"
+    },
+    {
+        "id": "105",
+        "name": "projectprofiletype-list",
+        "guard_name": "web",
+        "permissiongroup_id": "26"
+    },
+    {
+        "id": "106",
+        "name": "projectprofiletype-create",
+        "guard_name": "web",
+        "permissiongroup_id": "26"
+    },
+    {
+        "id": "107",
+        "name": "projectprofiletype-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "26"
+    },
+    {
+        "id": "108",
+        "name": "projectprofiletype-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "26"
+    },
+    {
+        "id": "109",
+        "name": "projectprofileclass-list",
+        "guard_name": "web",
+        "permissiongroup_id": "27"
+    },
+    {
+        "id": "110",
+        "name": "projectprofileclass-create",
+        "guard_name": "web",
+        "permissiongroup_id": "27"
+    },
+    {
+        "id": "111",
+        "name": "projectprofileclass-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "27"
+    },
+    {
+        "id": "112",
+        "name": "projectprofileclass-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "27"
+    },
+    {
+        "id": "113",
+        "name": "projectprofilecategory-list",
+        "guard_name": "web",
+        "permissiongroup_id": "28"
+    },
+    {
+        "id": "114",
+        "name": "projectprofilecategory-create",
+        "guard_name": "web",
+        "permissiongroup_id": "28"
+    },
+    {
+        "id": "115",
+        "name": "projectprofilecategory-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "28"
+    },
+    {
+        "id": "116",
+        "name": "projectprofilecategory-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "28"
+    },
+    {
+        "id": "117",
+        "name": "projectprofilesubcategory-list",
+        "guard_name": "web",
+        "permissiongroup_id": "29"
+    },
+    {
+        "id": "118",
+        "name": "projectprofilesubcategory-create",
+        "guard_name": "web",
+        "permissiongroup_id": "29"
+    },
+    {
+        "id": "119",
+        "name": "projectprofilesubcategory-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "29"
+    },
+    {
+        "id": "120",
+        "name": "projectprofilesubcategory-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "29"
+    },
+    {
+        "id": "121",
+        "name": "projectbeneficiary-list",
+        "guard_name": "web",
+        "permissiongroup_id": "30"
+    },
+    {
+        "id": "122",
+        "name": "projectbeneficiary-create",
+        "guard_name": "web",
+        "permissiongroup_id": "30"
+    },
+    {
+        "id": "123",
+        "name": "projectbeneficiary-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "30"
+    },
+    {
+        "id": "124",
+        "name": "projectbeneficiary-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "30"
+    },
+    {
+        "id": "125",
+        "name": "projectbeneficiary-remove",
+        "guard_name": "web",
+        "permissiongroup_id": "30"
+    },
+    {
+        "id": "126",
+        "name": "projecttype-list",
+        "guard_name": "web",
+        "permissiongroup_id": "31"
+    },
+    {
+        "id": "127",
+        "name": "projecttype-create",
+        "guard_name": "web",
+        "permissiongroup_id": "31"
+    },
+    {
+        "id": "128",
+        "name": "projecttype-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "31"
+    },
+    {
+        "id": "129",
+        "name": "projecttype-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "31"
+    },
+    {
+        "id": "130",
+        "name": "projecthousetype-list",
+        "guard_name": "web",
+        "permissiongroup_id": "32"
+    },
+    {
+        "id": "131",
+        "name": "projecthousetype-create",
+        "guard_name": "web",
+        "permissiongroup_id": "32"
+    },
+    {
+        "id": "132",
+        "name": "projecthousetype-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "32"
+    },
+    {
+        "id": "133",
+        "name": "projecthousetype-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "32"
+    },
+    {
+        "id": "134",
+        "name": "projectstage-list",
+        "guard_name": "web",
+        "permissiongroup_id": "33"
+    },
+    {
+        "id": "135",
+        "name": "projectstage-create",
+        "guard_name": "web",
+        "permissiongroup_id": "33"
+    },
+    {
+        "id": "136",
+        "name": "projectstage-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "33"
+    },
+    {
+        "id": "137",
+        "name": "projectstage-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "33"
+    },
+    {
+        "id": "138",
+        "name": "projectservice-list",
+        "guard_name": "web",
+        "permissiongroup_id": "34"
+    },
+    {
+        "id": "139",
+        "name": "projectservice-create",
+        "guard_name": "web",
+        "permissiongroup_id": "34"
+    },
+    {
+        "id": "140",
+        "name": "projectservice-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "34"
+    },
+    {
+        "id": "141",
+        "name": "projectservice-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "34"
+    },
+    {
+        "id": "142",
+        "name": "projectform-list",
+        "guard_name": "web",
+        "permissiongroup_id": "35"
+    },
+    {
+        "id": "143",
+        "name": "projectform-create",
+        "guard_name": "web",
+        "permissiongroup_id": "35"
+    },
+    {
+        "id": "144",
+        "name": "projectform-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "35"
+    },
+    {
+        "id": "145",
+        "name": "projectform-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "35"
+    },
+    {
+        "id": "146",
+        "name": "projectformfield-list",
+        "guard_name": "web",
+        "permissiongroup_id": "36"
+    },
+    {
+        "id": "147",
+        "name": "projectformfield-create",
+        "guard_name": "web",
+        "permissiongroup_id": "36"
+    },
+    {
+        "id": "148",
+        "name": "projectformfield-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "36"
+    },
+    {
+        "id": "149",
+        "name": "projectformfield-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "36"
+    },
+    {
+        "id": "150",
+        "name": "projectformfieldtype-list",
+        "guard_name": "web",
+        "permissiongroup_id": "37"
+    },
+    {
+        "id": "151",
+        "name": "projectformfieldtype-create",
+        "guard_name": "web",
+        "permissiongroup_id": "37"
+    },
+    {
+        "id": "152",
+        "name": "projectformfieldtype-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "37"
+    },
+    {
+        "id": "153",
+        "name": "projectformfieldtype-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "37"
+    },
+    {
+        "id": "154",
+        "name": "projectformcategory-list",
+        "guard_name": "web",
+        "permissiongroup_id": "38"
+    },
+    {
+        "id": "155",
+        "name": "projectformcategory-create",
+        "guard_name": "web",
+        "permissiongroup_id": "38"
+    },
+    {
+        "id": "156",
+        "name": "projectformcategory-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "38"
+    },
+    {
+        "id": "157",
+        "name": "projectformcategory-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "38"
+    },
+    {
+        "id": "158",
+        "name": "projectformcategoryorganogram-list",
+        "guard_name": "web",
+        "permissiongroup_id": "39"
+    },
+    {
+        "id": "159",
+        "name": "projectformcategoryorganogram-create",
+        "guard_name": "web",
+        "permissiongroup_id": "39"
+    },
+    {
+        "id": "160",
+        "name": "projectformcategoryorganogram-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "39"
+    },
+    {
+        "id": "161",
+        "name": "projectformcategoryorganogram-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "39"
+    },
+    {
+        "id": "162",
+        "name": "projectformsubcategory-list",
+        "guard_name": "web",
+        "permissiongroup_id": "40"
+    },
+    {
+        "id": "163",
+        "name": "projectformsubcategory-create",
+        "guard_name": "web",
+        "permissiongroup_id": "40"
+    },
+    {
+        "id": "164",
+        "name": "projectformsubcategory-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "40"
+    },
+    {
+        "id": "165",
+        "name": "projectformsubcategory-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "40"
+    },
+    {
+        "id": "166",
+        "name": "projectformfiscalyear-list",
+        "guard_name": "web",
+        "permissiongroup_id": "41"
+    },
+    {
+        "id": "167",
+        "name": "projectformfiscalyear-create",
+        "guard_name": "web",
+        "permissiongroup_id": "41"
+    },
+    {
+        "id": "168",
+        "name": "projectformfiscalyear-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "41"
+    },
+    {
+        "id": "169",
+        "name": "projectformfiscalyear-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "41"
+    },
+    {
+        "id": "170",
+        "name": "fundingorganization-list",
+        "guard_name": "web",
+        "permissiongroup_id": "42"
+    },
+    {
+        "id": "171",
+        "name": "fundingorganization-create",
+        "guard_name": "web",
+        "permissiongroup_id": "42"
+    },
+    {
+        "id": "172",
+        "name": "fundingorganization-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "42"
+    },
+    {
+        "id": "173",
+        "name": "fundingorganization-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "42"
+    },
+    {
+        "id": "174",
+        "name": "occupation-list",
+        "guard_name": "web",
+        "permissiongroup_id": "43"
+    },
+    {
+        "id": "175",
+        "name": "occupation-create",
+        "guard_name": "web",
+        "permissiongroup_id": "43"
+    },
+    {
+        "id": "176",
+        "name": "occupation-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "43"
+    },
+    {
+        "id": "177",
+        "name": "occupation-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "43"
+    },
+    {
+        "id": "178",
+        "name": "occupation-view",
+        "guard_name": "web",
+        "permissiongroup_id": "43"
+    },
+    {
+        "id": "179",
+        "name": "division-list",
+        "guard_name": "web",
+        "permissiongroup_id": "44"
+    },
+    {
+        "id": "180",
+        "name": "division-create",
+        "guard_name": "web",
+        "permissiongroup_id": "44"
+    },
+    {
+        "id": "181",
+        "name": "division-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "44"
+    },
+    {
+        "id": "182",
+        "name": "division-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "44"
+    },
+    {
+        "id": "183",
+        "name": "district-list",
+        "guard_name": "web",
+        "permissiongroup_id": "45"
+    },
+    {
+        "id": "184",
+        "name": "district-create",
+        "guard_name": "web",
+        "permissiongroup_id": "45"
+    },
+    {
+        "id": "185",
+        "name": "district-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "45"
+    },
+    {
+        "id": "186",
+        "name": "district-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "45"
+    },
+    {
+        "id": "187",
+        "name": "subdistrict-list",
+        "guard_name": "web",
+        "permissiongroup_id": "46"
+    },
+    {
+        "id": "188",
+        "name": "subdistrict-create",
+        "guard_name": "web",
+        "permissiongroup_id": "46"
+    },
+    {
+        "id": "189",
+        "name": "subdistrict-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "46"
+    },
+    {
+        "id": "190",
+        "name": "subdistrict-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "46"
+    },
+    {
+        "id": "191",
+        "name": "union-list",
+        "guard_name": "web",
+        "permissiongroup_id": "47"
+    },
+    {
+        "id": "192",
+        "name": "union-create",
+        "guard_name": "web",
+        "permissiongroup_id": "47"
+    },
+    {
+        "id": "193",
+        "name": "union-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "47"
+    },
+    {
+        "id": "194",
+        "name": "union-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "47"
+    },
+    {
+        "id": "195",
+        "name": "beneficiary-list",
+        "guard_name": "web",
+        "permissiongroup_id": "48"
+    },
+    {
+        "id": "196",
+        "name": "beneficiary-create",
+        "guard_name": "web",
+        "permissiongroup_id": "48"
+    },
+    {
+        "id": "197",
+        "name": "beneficiary-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "48"
+    },
+    {
+        "id": "198",
+        "name": "beneficiary-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "48"
+    },
+    {
+        "id": "199",
+        "name": "beneficiary-import",
+        "guard_name": "web",
+        "permissiongroup_id": "48"
+    },
+    {
+        "id": "200",
+        "name": "beneficiary-export",
+        "guard_name": "web",
+        "permissiongroup_id": "48"
+    },
+    {
+        "id": "201",
+        "name": "frontendsetting-list",
+        "guard_name": "web",
+        "permissiongroup_id": "49"
+    },
+    {
+        "id": "202",
+        "name": "herosection-list",
+        "guard_name": "web",
+        "permissiongroup_id": "50"
+    },
+    {
+        "id": "203",
+        "name": "cms-list",
+        "guard_name": "web",
+        "permissiongroup_id": "51"
+    },
+    {
+        "id": "204",
+        "name": "cms-create",
+        "guard_name": "web",
+        "permissiongroup_id": "51"
+    },
+    {
+        "id": "205",
+        "name": "cms-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "51"
+    },
+    {
+        "id": "206",
+        "name": "cms-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "51"
+    },
+    {
+        "id": "207",
+        "name": "cmscategory-list",
+        "guard_name": "web",
+        "permissiongroup_id": "52"
+    },
+    {
+        "id": "208",
+        "name": "cmscategory-create",
+        "guard_name": "web",
+        "permissiongroup_id": "52"
+    },
+    {
+        "id": "209",
+        "name": "cmscategory-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "52"
+    },
+    {
+        "id": "210",
+        "name": "cmscategory-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "52"
+    },
+    {
+        "id": "211",
+        "name": "successstory-list",
+        "guard_name": "web",
+        "permissiongroup_id": "53"
+    },
+    {
+        "id": "212",
+        "name": "successstory-create",
+        "guard_name": "web",
+        "permissiongroup_id": "53"
+    },
+    {
+        "id": "213",
+        "name": "successstory-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "53"
+    },
+    {
+        "id": "214",
+        "name": "successstory-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "53"
+    },
+    {
+        "id": "215",
+        "name": "gallery-list",
+        "guard_name": "web",
+        "permissiongroup_id": "54"
+    },
+    {
+        "id": "216",
+        "name": "gallery-create",
+        "guard_name": "web",
+        "permissiongroup_id": "54"
+    },
+    {
+        "id": "217",
+        "name": "gallery-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "54"
+    },
+    {
+        "id": "218",
+        "name": "gallery-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "54"
+    },
+    {
+        "id": "219",
+        "name": "gallerycategory-list",
+        "guard_name": "web",
+        "permissiongroup_id": "55"
+    },
+    {
+        "id": "220",
+        "name": "gallerycategory-create",
+        "guard_name": "web",
+        "permissiongroup_id": "55"
+    },
+    {
+        "id": "221",
+        "name": "gallerycategory-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "55"
+    },
+    {
+        "id": "222",
+        "name": "gallerycategory-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "55"
+    },
+    {
+        "id": "223",
+        "name": "welcomesection-list",
+        "guard_name": "web",
+        "permissiongroup_id": "56"
+    },
+    {
+        "id": "224",
+        "name": "filemanager-list",
+        "guard_name": "web",
+        "permissiongroup_id": "57"
+    },
+    {
+        "id": "225",
+        "name": "filemanager-create",
+        "guard_name": "web",
+        "permissiongroup_id": "57"
+    },
+    {
+        "id": "226",
+        "name": "filemanager-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "57"
+    },
+    {
+        "id": "227",
+        "name": "filemanager-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "57"
+    },
+    {
+        "id": "228",
+        "name": "event-list",
+        "guard_name": "web",
+        "permissiongroup_id": "58"
+    },
+    {
+        "id": "229",
+        "name": "event-create",
+        "guard_name": "web",
+        "permissiongroup_id": "58"
+    },
+    {
+        "id": "230",
+        "name": "event-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "58"
+    },
+    {
+        "id": "231",
+        "name": "event-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "58"
+    },
+    {
+        "id": "232",
+        "name": "mapdata-list",
+        "guard_name": "web",
+        "permissiongroup_id": "59"
+    },
+    {
+        "id": "233",
+        "name": "mapdata-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "59"
+    },
+    {
+        "id": "234",
+        "name": "guardfile-list",
+        "guard_name": "web",
+        "permissiongroup_id": "60"
+    },
+    {
+        "id": "235",
+        "name": "guardfile-create",
+        "guard_name": "web",
+        "permissiongroup_id": "60"
+    },
+    {
+        "id": "236",
+        "name": "guardfile-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "60"
+    },
+    {
+        "id": "237",
+        "name": "guardfile-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "60"
+    },
+    {
+        "id": "238",
+        "name": "guardfile-view",
+        "guard_name": "web",
+        "permissiongroup_id": "60"
+    },
+    {
+        "id": "239",
+        "name": "guardfilecategory-list",
+        "guard_name": "web",
+        "permissiongroup_id": "61"
+    },
+    {
+        "id": "240",
+        "name": "guardfilecategory-create",
+        "guard_name": "web",
+        "permissiongroup_id": "61"
+    },
+    {
+        "id": "241",
+        "name": "guardfilecategory-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "61"
+    },
+    {
+        "id": "242",
+        "name": "guardfilecategory-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "61"
+    },
+    {
+        "id": "243",
+        "name": "guardfilecategory-view",
+        "guard_name": "web",
+        "permissiongroup_id": "61"
+    },
+    {
+        "id": "244",
+        "name": "documentation-list",
+        "guard_name": "web",
+        "permissiongroup_id": "62"
+    },
+    {
+        "id": "245",
+        "name": "documentation-create",
+        "guard_name": "web",
+        "permissiongroup_id": "62"
+    },
+    {
+        "id": "246",
+        "name": "documentation-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "62"
+    },
+    {
+        "id": "247",
+        "name": "documentation-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "62"
+    },
+    {
+        "id": "248",
+        "name": "documentation-view",
+        "guard_name": "web",
+        "permissiongroup_id": "62"
+    },
+    {
+        "id": "249",
+        "name": "homeinfo-list",
+        "guard_name": "web",
+        "permissiongroup_id": "63"
+    },
+    {
+        "id": "250",
+        "name": "dictum-list",
+        "guard_name": "web",
+        "permissiongroup_id": "64"
+    },
+    {
+        "id": "251",
+        "name": "dictum-create",
+        "guard_name": "web",
+        "permissiongroup_id": "64"
+    },
+    {
+        "id": "252",
+        "name": "dictum-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "64"
+    },
+    {
+        "id": "253",
+        "name": "dictum-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "64"
+    },
+    {
+        "id": "254",
+        "name": "partner-list",
+        "guard_name": "web",
+        "permissiongroup_id": "65"
+    },
+    {
+        "id": "255",
+        "name": "partner-create",
+        "guard_name": "web",
+        "permissiongroup_id": "65"
+    },
+    {
+        "id": "256",
+        "name": "partner-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "65"
+    },
+    {
+        "id": "257",
+        "name": "partner-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "65"
+    },
+    {
+        "id": "258",
+        "name": "slider-list",
+        "guard_name": "web",
+        "permissiongroup_id": "66"
+    },
+    {
+        "id": "259",
+        "name": "slider-create",
+        "guard_name": "web",
+        "permissiongroup_id": "66"
+    },
+    {
+        "id": "260",
+        "name": "slider-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "66"
+    },
+    {
+        "id": "261",
+        "name": "slider-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "66"
+    },
+    {
+        "id": "262",
+        "name": "financialreport-list",
+        "guard_name": "web",
+        "permissiongroup_id": "67"
+    },
+    {
+        "id": "263",
+        "name": "financialreport-create",
+        "guard_name": "web",
+        "permissiongroup_id": "67"
+    },
+    {
+        "id": "264",
+        "name": "financialreport-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "67"
+    },
+    {
+        "id": "265",
+        "name": "financialreport-view",
+        "guard_name": "web",
+        "permissiongroup_id": "67"
+    },
+    {
+        "id": "266",
+        "name": "financialreport-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "67"
+    },
+    {
+        "id": "267",
+        "name": "beneficiary-view",
+        "guard_name": "web",
+        "permissiongroup_id": "48"
+    },
+    {
+        "id": "268",
+        "name": "projectbeneficiary-view",
+        "guard_name": "web",
+        "permissiongroup_id": "30"
+    },
+    {
+        "id": "269",
+        "name": "feedback-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "15"
+    },
+    {
+        "id": "270",
+        "name": "feedback-restore",
+        "guard_name": "web",
+        "permissiongroup_id": "15"
+    },
+
+    {
+        "id": "271",
+        "name": "announcement-list",
+        "guard_name": "web",
+        "permissiongroup_id": "68"
+    },
+    {
+        "id": "272",
+        "name": "announcement-create",
+        "guard_name": "web",
+        "permissiongroup_id": "68"
+    },
+    {
+        "id": "273",
+        "name": "announcement-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "68"
+    },
+    {
+        "id": "274",
+        "name": "announcement-view",
+        "guard_name": "web",
+        "permissiongroup_id": "68"
+    },
+    {
+        "id": "275",
+        "name": "announcement-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "68"
+    },
+    {
+        "id": "276",
+        "name": "news-list",
+        "guard_name": "web",
+        "permissiongroup_id": "70"
+    },
+    {
+        "id": "277",
+        "name": "news-create",
+        "guard_name": "web",
+        "permissiongroup_id": "70"
+    },
+    {
+        "id": "278",
+        "name": "news-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "70"
+    },
+    {
+        "id": "279",
+        "name": "news-view",
+        "guard_name": "web",
+        "permissiongroup_id": "70"
+    },
+    {
+        "id": "280",
+        "name": "news-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "70"
+    },
+    {
+        "id": "281",
+        "name": "publication-list",
+        "guard_name": "web",
+        "permissiongroup_id": "71"
+    },
+    {
+        "id": "282",
+        "name": "publication-create",
+        "guard_name": "web",
+        "permissiongroup_id": "69"
+    },
+    {
+        "id": "283",
+        "name": "publication-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "69"
+    },
+    {
+        "id": "284",
+        "name": "publication-view",
+        "guard_name": "web",
+        "permissiongroup_id": "69"
+    },
+    {
+        "id": "285",
+        "name": "publication-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "69"
+    },
+    {
+        "id": "286",
+        "name": "notice-list",
+        "guard_name": "web",
+        "permissiongroup_id": "71"
+    },
+    {
+        "id": "287",
+        "name": "notice-create",
+        "guard_name": "web",
+        "permissiongroup_id": "71"
+    },
+    {
+        "id": "288",
+        "name": "notice-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "71"
+    },
+    {
+        "id": "289",
+        "name": "notice-view",
+        "guard_name": "web",
+        "permissiongroup_id": "71"
+    },
+    {
+        "id": "290",
+        "name": "notice-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "71"
+    },
+    {
+        "id": "291",
+        "name": "recreatenews-list",
+        "guard_name": "web",
+        "permissiongroup_id": "72"
+    },
+    {
+        "id": "292",
+        "name": "recreatenews-create",
+        "guard_name": "web",
+        "permissiongroup_id": "72"
+    },
+    {
+        "id": "293",
+        "name": "recreatenews-edit",
+        "guard_name": "web",
+        "permissiongroup_id": "72"
+    },
+    {
+        "id": "294",
+        "name": "recreatenews-view",
+        "guard_name": "web",
+        "permissiongroup_id": "72"
+    },
+    {
+        "id": "295",
+        "name": "recreatenews-delete",
+        "guard_name": "web",
+        "permissiongroup_id": "72"
+    }
+]

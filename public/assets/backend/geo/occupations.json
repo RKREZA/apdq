@@ -1,0 +1,32 @@
+[
+    {
+        "id": "1",
+        "code": "grihini",
+        "name": "গৃহিনী",
+        "status": "Active"
+    },
+    {
+        "id": "2",
+        "code": "dinmojur",
+        "name": "দিনমজুর",
+        "status": "Active"
+    },
+    {
+        "id": "3",
+        "code": "riskacalok",
+        "name": "রিস্কাচালক",
+        "status": "Active"
+    },
+    {
+        "id": "4",
+        "code": "vikhuk",
+        "name": "ভিক্ষুক",
+        "status": "Active"
+    },
+    {
+        "id": "5",
+        "code": "driver",
+        "name": "গাড়িচালক",
+        "status": "Active"
+    }
+]

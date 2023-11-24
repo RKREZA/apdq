@@ -1,0 +1,20 @@
+{
+    "Admin": true,
+    "Core": true,
+    "Email": true,
+    "Feedback": true,
+    "Faq": true,
+    "FrontEndManager": true,
+    "Language": true,
+    "Setting": true,
+    "Sms": true,
+    "User": true,
+    "Notification": true,
+    "Announcement": true,
+    "FrontEnd": true,
+    "Transportation": true,
+    "Vehicle": true,
+    "Stoppage": true,
+    "VehicleRoute": true,
+    "Geo": true
+}

@@ -1,0 +1,35 @@
+
+#feedback {
+  position: fixed;
+  right: 0;
+  bottom: 0vh;
+  z-index: 9999;
+}
+
+#feedback .btn {
+  height: 33px !important;
+  width: 33px !important;
+  border-radius: 0;
+}
+
+#feedback .btn .material-icons{
+  vertical-align: middle;
+  /* margin-top: -5px; */
+  /* margin-bottom: -5px; */
+  /* margin-left: -9px; */
+  margin: -9px !important;
+  font-size: 1.1rem;
+  display: inline-block;
+  top: 0;
+}
+
+
+
+#feedback-tab:hover { background-color: rgba(0,0,0,0.4); }
+
+#feedback-form textarea { resize: none; }
+
+
+#feedback .backToTop{
+  display: none;
+}

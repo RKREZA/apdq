@@ -1,0 +1,20 @@
+[
+    {
+        "id": "1",
+        "name": "পরামর্শ",
+        "code": "suggestion",
+        "status": "Active"
+    },
+    {
+        "id": "2",
+        "name": "রিপোর্ট",
+        "code": "report",
+        "status": "Active"
+    },
+    {
+        "id": "3",
+        "name": "সমস্যা",
+        "code": "issues",
+        "status": "Active"
+    }
+]

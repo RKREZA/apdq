@@ -1,0 +1,72 @@
+[
+    {
+      "id": "1",
+      "code": "text",
+      "name": "Text",
+      "type": "text",
+      "status": "Active"
+    },
+    {
+      "id": "2",
+      "code": "select_multiple",
+      "name": "Select Multiple",
+      "type": "select",
+      "status": "Active"
+    },
+    {
+      "id": "3",
+      "code": "number",
+      "name": "Number",
+      "type": "number",
+      "status": "Active"
+    },
+    {
+      "id": "4",
+      "code": "textarea",
+      "name": "Textarea",
+      "type": "textarea",
+      "status": "Active"
+    },
+    {
+      "id": "5",
+      "code": "checkbox",
+      "name": "Checkbox",
+      "type": "checkbox",
+      "status": "Active"
+    },
+    {
+      "id": "6",
+      "code": "radio",
+      "name": "Radio",
+      "type": "radio",
+      "status": "Active"
+    },
+    {
+      "id": "7",
+      "code": "file",
+      "name": "File",
+      "type": "file",
+      "status": "Active"
+    },
+    {
+      "id": "8",
+      "code": "files",
+      "name": "Files",
+      "type": "file",
+      "status": "Active"
+    },
+    {
+      "id": "9",
+      "code": "date",
+      "name": "Date",
+      "type": "date",
+      "status": "Active"
+    },
+    {
+      "id": "10",
+      "code": "select",
+      "name": "Select",
+      "type": "select",
+      "status": "Active"
+    }
+]

@@ -1,0 +1,14 @@
+[
+    {
+      "id": "1",
+      "code": "semi_finished_house_with_two_rooms",
+      "name": "দ্বিকক্ষ বিশিষ্ট সেমি পাকা গৃহ",
+      "status": "Active"
+    },
+    {
+      "id": "2",
+      "code": "charanchal_house",
+      "name": "চরাঞ্চলের গৃহ",
+      "status": "Active"
+    }
+]

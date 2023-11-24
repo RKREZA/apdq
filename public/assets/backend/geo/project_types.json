@@ -1,0 +1,32 @@
+[
+    {
+      "id": "1",
+      "code": "ka_class_single_house_construction",
+      "name": "ক-শ্রেণীর পরিবারের জন্য একক গৃহ নির্মাণ",
+      "status": "Active"
+    },
+    {
+      "id": "2",
+      "code": "kha_class_single_house_construction",
+      "name": "খ-শ্রেণীর পরিবারের জন্য একক গৃহ নির্মাণ",
+      "status": "Inactive"
+    },
+    {
+      "id": "3",
+      "code": "barrack_construction",
+      "name": "ব্যারাক নির্মাণ",
+      "status": "Active"
+    },
+    {
+      "id": "4",
+      "code": "multi_stored_house_construction",
+      "name": "বহুতল ভবন নির্মাণ",
+      "status": "Inactive"
+    },
+    {
+      "id": "5",
+      "code": "barrack_replacement",
+      "name": "ব্যারাক প্রতিস্থাপন",
+      "status": "Active"
+    }
+]

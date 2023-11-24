@@ -1,0 +1,13 @@
+{
+    "name": "FrontEndManager",
+    "alias": "frontendmanager",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\FrontEndManager\\Providers\\FrontEndManagerServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

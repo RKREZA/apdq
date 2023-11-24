@@ -1,0 +1,434 @@
+[
+    {
+        "id": "1",
+        "name": "report",
+        "display_name": "Report",
+        "description": null
+    },
+    {
+        "id": "2",
+        "name": "monitoring",
+        "display_name": "Monitoring",
+        "description": null
+    },
+    {
+        "id": "3",
+        "name": "profile",
+        "display_name": "Profile",
+        "description": null
+    },
+    {
+        "id": "4",
+        "name": "user",
+        "display_name": "User",
+        "description": null
+    },
+    {
+        "id": "5",
+        "name": "userdepartment",
+        "display_name": "User Department",
+        "description": null
+    },
+    {
+        "id": "6",
+        "name": "role",
+        "display_name": "User Role",
+        "description": null
+    },
+    {
+        "id": "7",
+        "name": "permission",
+        "display_name": "Permission",
+        "description": null
+    },
+    {
+        "id": "8",
+        "name": "permissiongroup",
+        "display_name": "Permission Group",
+        "description": null
+    },
+    {
+        "id": "9",
+        "name": "adminsetting",
+        "display_name": "Admin Setting",
+        "description": null
+    },
+    {
+        "id": "10",
+        "name": "backup",
+        "display_name": "Backup",
+        "description": null
+    },
+    {
+        "id": "11",
+        "name": "email",
+        "display_name": "Email",
+        "description": null
+    },
+    {
+        "id": "12",
+        "name": "emailgroup",
+        "display_name": "Email Group",
+        "description": null
+    },
+    {
+        "id": "13",
+        "name": "sms",
+        "display_name": "SMS",
+        "description": null
+    },
+    {
+        "id": "14",
+        "name": "language",
+        "display_name": "Language",
+        "description": null
+    },
+    {
+        "id": "15",
+        "name": "feedback",
+        "display_name": "Feedback",
+        "description": null
+    },
+    {
+        "id": "16",
+        "name": "feedbackcategory",
+        "display_name": "Feedback Category",
+        "description": null
+    },
+    {
+        "id": "17",
+        "name": "upload",
+        "display_name": "Upload",
+        "description": null
+    },
+    {
+        "id": "18",
+        "name": "uploadcategory",
+        "display_name": "Upload Category",
+        "description": null
+    },
+    {
+        "id": "19",
+        "name": "phase",
+        "display_name": "Phase",
+        "description": null
+    },
+    {
+        "id": "20",
+        "name": "demandletter",
+        "display_name": "Demand Letter",
+        "description": null
+    },
+    {
+        "id": "21",
+        "name": "fundallocation",
+        "display_name": "Fund Allocation",
+        "description": null
+    },
+    {
+        "id": "22",
+        "name": "refundsallocated",
+        "display_name": "Refund Allocated",
+        "description": null
+    },
+    {
+        "id": "23",
+        "name": "progressreport",
+        "display_name": "Progress Report",
+        "description": null
+    },
+    {
+        "id": "24",
+        "name": "completionreport",
+        "display_name": "Completion Report",
+        "description": null
+    },
+    {
+        "id": "25",
+        "name": "projectprofile",
+        "display_name": "Project Profile",
+        "description": null
+    },
+    {
+        "id": "26",
+        "name": "projectprofiletype",
+        "display_name": "Project Type",
+        "description": null
+    },
+    {
+        "id": "27",
+        "name": "projectprofileclass",
+        "display_name": "Project Class",
+        "description": null
+    },
+    {
+        "id": "28",
+        "name": "projectprofilecategory",
+        "display_name": "Project Category",
+        "description": null
+    },
+    {
+        "id": "29",
+        "name": "projectprofilesubcategory",
+        "display_name": "Project Sub Category",
+        "description": null
+    },
+    {
+        "id": "30",
+        "name": "projectbeneficiary",
+        "display_name": "Project Beneficiary",
+        "description": null
+    },
+    {
+        "id": "31",
+        "name": "projecttype",
+        "display_name": "Project Type",
+        "description": null
+    },
+    {
+        "id": "32",
+        "name": "projecthousetype",
+        "display_name": "Project House Type",
+        "description": null
+    },
+    {
+        "id": "33",
+        "name": "projectstage",
+        "display_name": "Project Stage",
+        "description": null
+    },
+    {
+        "id": "34",
+        "name": "projectservice",
+        "display_name": "Project Service",
+        "description": null
+    },
+    {
+        "id": "35",
+        "name": "projectform",
+        "display_name": "Project Form",
+        "description": null
+    },
+    {
+        "id": "36",
+        "name": "projectformfield",
+        "display_name": "Project Form Field",
+        "description": null
+    },
+    {
+        "id": "37",
+        "name": "projectformfieldtype",
+        "display_name": "Project Form Field Type",
+        "description": null
+    },
+    {
+        "id": "38",
+        "name": "projectformcategory",
+        "display_name": "Project Form Category",
+        "description": null
+    },
+    {
+        "id": "39",
+        "name": "projectformcategoryorganogram",
+        "display_name": "Project Form Category Organogram",
+        "description": null
+    },
+    {
+        "id": "40",
+        "name": "projectformsubcategory",
+        "display_name": "Project Form Sub Category",
+        "description": null
+    },
+    {
+        "id": "41",
+        "name": "projectformfiscalyear",
+        "display_name": "Project Form Fiscal Year",
+        "description": null
+    },
+    {
+        "id": "42",
+        "name": "fundingorganization",
+        "display_name": "Funding Organization",
+        "description": null
+    },
+    {
+        "id": "43",
+        "name": "occupation",
+        "display_name": "Occupation",
+        "description": null
+    },
+    {
+        "id": "44",
+        "name": "division",
+        "display_name": "Division",
+        "description": null
+    },
+    {
+        "id": "45",
+        "name": "district",
+        "display_name": "District",
+        "description": null
+    },
+    {
+        "id": "46",
+        "name": "subdistrict",
+        "display_name": "Sub District",
+        "description": null
+    },
+    {
+        "id": "47",
+        "name": "union",
+        "display_name": "Union",
+        "description": null
+    },
+    {
+        "id": "48",
+        "name": "beneficiary",
+        "display_name": "Beneficiary",
+        "description": null
+    },
+    {
+        "id": "49",
+        "name": "frontendsetting",
+        "display_name": "Frontend Setting",
+        "description": null
+    },
+    {
+        "id": "50",
+        "name": "herosection",
+        "display_name": "Hero Section",
+        "description": null
+    },
+    {
+        "id": "51",
+        "name": "cms",
+        "display_name": "CMS",
+        "description": null
+    },
+    {
+        "id": "52",
+        "name": "cmscategory",
+        "display_name": "CMS Category",
+        "description": null
+    },
+    {
+        "id": "53",
+        "name": "successstory",
+        "display_name": "Success Story",
+        "description": null
+    },
+    {
+        "id": "54",
+        "name": "gallery",
+        "display_name": "Gallery",
+        "description": null
+    },
+    {
+        "id": "55",
+        "name": "gallerycategory",
+        "display_name": "Galery Category",
+        "description": null
+    },
+    {
+        "id": "56",
+        "name": "welcomesection",
+        "display_name": "Welcome Section",
+        "description": null
+    },
+    {
+        "id": "57",
+        "name": "filemanager",
+        "display_name": "File Manager",
+        "description": null
+    },
+    {
+        "id": "58",
+        "name": "event",
+        "display_name": "Event",
+        "description": null
+    },
+    {
+        "id": "59",
+        "name": "mapdata",
+        "display_name": "Map Data",
+        "description": null
+    },
+    {
+        "id": "60",
+        "name": "guardfile",
+        "display_name": "Guard File",
+        "description": null
+    },
+    {
+        "id": "61",
+        "name": "guardfilecategory",
+        "display_name": "Guard File Category",
+        "description": null
+    },
+    {
+        "id": "62",
+        "name": "documentation",
+        "display_name": "Documentation",
+        "description": null
+    },
+    {
+        "id": "63",
+        "name": "homeinfo",
+        "display_name": "Home Info",
+        "description": null
+    },
+    {
+        "id": "64",
+        "name": "dictum",
+        "display_name": "dictum",
+        "description": null
+    },
+    {
+        "id": "65",
+        "name": "partner",
+        "display_name": "Partner",
+        "description": null
+    },
+    {
+        "id": "66",
+        "name": "slider",
+        "display_name": "Slider",
+        "description": null
+    },
+    {
+        "id": "67",
+        "name": "financialreport",
+        "display_name": "Financial Report",
+        "description": null
+    },
+    {
+        "id": "68",
+        "name": "announcement",
+        "display_name": "Announcement",
+        "description": null
+    },
+    {
+        "id": "69",
+        "name": "publication",
+        "display_name": "Publication",
+        "description": null
+    },
+    {
+        "id": "70",
+        "name": "news",
+        "display_name": "News",
+        "description": null
+    },
+    {
+        "id": "71",
+        "name": "notice",
+        "display_name": "Notice",
+        "description": null
+    },
+    {
+        "id": "72",
+        "name": "recreatenews",
+        "display_name": "Recreate News",
+        "description": null
+    }
+]

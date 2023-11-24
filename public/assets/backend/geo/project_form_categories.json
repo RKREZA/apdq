@@ -1,0 +1,32 @@
+[
+    {
+        "id": "1",
+        "code": "demand_letter",
+        "name": "চাহিদা পত্র",
+        "status": "Active"
+    },
+    {
+        "id": "2",
+        "code": "allocation_of_money",
+        "name": "অর্থ বরাদ্দ",
+        "status": "Active"
+    },
+    {
+        "id": "3",
+        "code": "progress_report",
+        "name": "অগ্রগতি প্রতিবেদন",
+        "status": "Active"
+    },
+    {
+        "id": "4",
+        "code": "completion_report",
+        "name": "সমাপ্তির প্রতিবেদন",
+        "status": "Active"
+    },
+    {
+        "id": "5",
+        "code": "refunds_allocated",
+        "name": "অব্যয়িত অর্থ ফেরত",
+        "status": "Inactive"
+    }
+]

@@ -1,0 +1,514 @@
+[
+    {
+      "id": "1",
+      "division_id": "1",
+      "district_id": "1",
+      "box": "৫০৫৮",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "2",
+      "division_id": "1",
+      "district_id": "2",
+      "box": "১৬৫৯",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "3",
+      "division_id": "1",
+      "district_id": "3",
+      "box": "৫৮৩০",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "4",
+      "division_id": "1",
+      "district_id": "4",
+      "box": "১৮৯০",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "5",
+      "division_id": "1",
+      "district_id": "5",
+      "box": "৩৬৮৮",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "6",
+      "division_id": "1",
+      "district_id": "6",
+      "box": "৪০৮",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "7",
+      "division_id": "1",
+      "district_id": "7",
+      "box": "৩২২৮",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "8",
+      "division_id": "1",
+      "district_id": "8",
+      "box": "৫০৪৩",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "9",
+      "division_id": "1",
+      "district_id": "9",
+      "box": "৩৬৪০",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "10",
+      "division_id": "1",
+      "district_id": "10",
+      "box": "৬২৯৩",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "11",
+      "division_id": "1",
+      "district_id": "11",
+      "box": "৩৩৩০",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "12",
+      "division_id": "2",
+      "district_id": "12",
+      "box": "২৩৪৯",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "13",
+      "division_id": "2",
+      "district_id": "13",
+      "box": "২৯৭৪",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "14",
+      "division_id": "2",
+      "district_id": "14",
+      "box": "৪৪৪৮",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "15",
+      "division_id": "2",
+      "district_id": "15",
+      "box": "৩৯৯৮",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "16",
+      "division_id": "2",
+      "district_id": "16",
+      "box": "৪১৬০",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "17",
+      "division_id": "2",
+      "district_id": "17",
+      "box": "৭৯৮",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "18",
+      "division_id": "2",
+      "district_id": "18",
+      "box": "৪৮১৯",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "19",
+      "division_id": "2",
+      "district_id": "19",
+      "box": "৩৩৬৪",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "20",
+      "division_id": "3",
+      "district_id": "20",
+      "box": "২১৫৩",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "21",
+      "division_id": "3",
+      "district_id": "21",
+      "box": "২৯০৬",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "22",
+      "division_id": "3",
+      "district_id": "22",
+      "box": "৩৯৮",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "23",
+      "division_id": "3",
+      "district_id": "23",
+      "box": "৮২৯",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "24",
+      "division_id": "3",
+      "district_id": "24",
+      "box": "৬৯৫",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "25",
+      "division_id": "3",
+      "district_id": "25",
+      "box": "১২৮৯",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "26",
+      "division_id": "3",
+      "district_id": "26",
+      "box": "৬০১",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "27",
+      "division_id": "3",
+      "district_id": "27",
+      "box": "৩৯৫০",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "28",
+      "division_id": "3",
+      "district_id": "28",
+      "box": "২৭৯৪",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "29",
+      "division_id": "3",
+      "district_id": "29",
+      "box": "১৪৬১",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "30",
+      "division_id": "4",
+      "district_id": "30",
+      "box": "১৮৪২",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "31",
+      "division_id": "4",
+      "district_id": "31",
+      "box": "৬৯৪১",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "32",
+      "division_id": "4",
+      "district_id": "32",
+      "box": "৪৮৬৭",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "33",
+      "division_id": "4",
+      "district_id": "33",
+      "box": "৪৮৩৪",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "34",
+      "division_id": "4",
+      "district_id": "34",
+      "box": "৩৫২৯",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "35",
+      "division_id": "4",
+      "district_id": "35",
+      "box": "২৬০০",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "36",
+      "division_id": "5",
+      "district_id": "36",
+      "box": "৫২৪৯",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "37",
+      "division_id": "5",
+      "district_id": "37",
+      "box": "৩৮৯০",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "38",
+      "division_id": "5",
+      "district_id": "38",
+      "box": "৩০০৯",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "39",
+      "division_id": "5",
+      "district_id": "39",
+      "box": "৭২৪৭",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "40",
+      "division_id": "6",
+      "district_id": "40",
+      "box": "১১৬১",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "41",
+      "division_id": "6",
+      "district_id": "41",
+      "box": "১৮১৭",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "42",
+      "division_id": "6",
+      "district_id": "42",
+      "box": "২৬৬২",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "43",
+      "division_id": "6",
+      "district_id": "43",
+      "box": "১১৯১",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "44",
+      "division_id": "6",
+      "district_id": "44",
+      "box": "৩৩০৪",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "45",
+      "division_id": "6",
+      "district_id": "45",
+      "box": "২২১৩",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "46",
+      "division_id": "6",
+      "district_id": "46",
+      "box": "১৩৪১",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "47",
+      "division_id": "6",
+      "district_id": "47",
+      "box": "২০৩৯",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "48",
+      "division_id": "6",
+      "district_id": "48",
+      "box": "১১৮৭",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "49",
+      "division_id": "6",
+      "district_id": "49",
+      "box": "২৩৩২",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:08"
+    },
+    {
+      "id": "50",
+      "division_id": "6",
+      "district_id": "50",
+      "box": "১০৭০",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:09"
+    },
+    {
+      "id": "51",
+      "division_id": "6",
+      "district_id": "51",
+      "box": "৩৮০৫",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:09"
+    },
+    {
+      "id": "52",
+      "division_id": "6",
+      "district_id": "52",
+      "box": "৫২০৩",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:09"
+    },
+    {
+      "id": "53",
+      "division_id": "7",
+      "district_id": "53",
+      "box": "৪৮৫০",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:09"
+    },
+    {
+      "id": "54",
+      "division_id": "7",
+      "district_id": "54",
+      "box": "১১৯৫১",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:09"
+    },
+    {
+      "id": "55",
+      "division_id": "7",
+      "district_id": "55",
+      "box": "৩৫৫৩",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:09"
+    },
+    {
+      "id": "56",
+      "division_id": "7",
+      "district_id": "56",
+      "box": "৩৮৪৭",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:09"
+    },
+    {
+      "id": "57",
+      "division_id": "7",
+      "district_id": "57",
+      "box": "৬০৮৫",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:09"
+    },
+    {
+      "id": "58",
+      "division_id": "7",
+      "district_id": "58",
+      "box": "৭৩৮৪",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:09"
+    },
+    {
+      "id": "59",
+      "division_id": "7",
+      "district_id": "59",
+      "box": "৪৩৯১",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:09"
+    },
+    {
+      "id": "60",
+      "division_id": "7",
+      "district_id": "60",
+      "box": "৪১৮৮",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:09"
+    },
+    {
+      "id": "61",
+      "division_id": "8",
+      "district_id": "61",
+      "box": "১৩২৮",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:09"
+    },
+    {
+      "id": "62",
+      "division_id": "8",
+      "district_id": "62",
+      "box": "৩২৬০",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:09"
+    },
+    {
+      "id": "63",
+      "division_id": "8",
+      "district_id": "63",
+      "box": "২৭৫৩",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:09"
+    },
+    {
+      "id": "64",
+      "division_id": "8",
+      "district_id": "64",
+      "box": "৩২১৫",
+      "created_at": "2022-12-24 12:05:30",
+      "updated_at": "2023-01-01 22:27:09"
+    }
+]

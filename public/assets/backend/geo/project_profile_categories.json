@@ -1,0 +1,30 @@
+[
+    {
+        "id": "1",
+        "name": "একক ঘর",
+        "code": "single_house_for_ka",
+        "status": "Active",
+        "pp_class_id": "1"
+    },
+    {
+        "id": "2",
+        "name": "বহুতল ভবন",
+        "code": "multistored_building_for_ka",
+        "status": "Inactive",
+        "pp_class_id": "1"
+    },
+    {
+        "id": "3",
+        "name": "ব্যারাক",
+        "code": "barrack_for_ka",
+        "status": "Active",
+        "pp_class_id": "1"
+    },
+    {
+        "id": "4",
+        "name": "একক ঘর",
+        "code": "single_house_for_kha",
+        "status": "Inactive",
+        "pp_class_id": "2"
+    }
+]

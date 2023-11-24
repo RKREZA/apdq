@@ -1,0 +1,14 @@
+[
+    {
+        "id": "1",
+        "name": "একক (একটি ঘর)",
+        "code": "single",
+        "status": "Active"
+    },
+    {
+        "id": "2",
+        "name": "গুচ্ছাকার (একাধিক ঘর)",
+        "code": "multiple",
+        "status": "Active"
+    }
+]

@@ -1,0 +1,14 @@
+[
+    {
+        "id": "1",
+        "name": "‘ক’শ্রেণীর পরিবার",
+        "code": "ka_class",
+        "status": "Active"
+    },
+    {
+        "id": "2",
+        "name": "‘খ’শ্রেণীর পরিবার",
+        "code": "kha_class",
+        "status": "Inactive"
+    }
+]

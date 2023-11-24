@@ -1,0 +1,18 @@
+[
+    {
+      "id": "1",
+      "name": "ফুটার",
+      "code": "footer",
+      "status": "Active",
+      "created_at": "2023-01-09 16:46:11",
+      "updated_at": "2023-01-09 16:46:11"
+    },
+    {
+      "id": "2",
+      "name": "হোম ইনফো",
+      "code": "homeinfo",
+      "status": "Active",
+      "created_at": "2023-01-09 16:46:11",
+      "updated_at": "2023-01-09 16:46:11"
+    }
+]

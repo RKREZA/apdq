@@ -1,0 +1,26 @@
+[
+    {
+        "id": "1",
+        "code": "stage_1",
+        "name": "প্রথম পর্যায়",
+        "status": "Active"
+    },
+    {
+        "id": "2",
+        "code": "stage_2",
+        "name": "দ্বিতীয় পর্যায়",
+        "status": "Active"
+    },
+    {
+        "id": "3",
+        "code": "stage_3",
+        "name": "তৃতীয় পর্যায়",
+        "status": "Active"
+    },
+    {
+        "id": "4",
+        "code": "stage_4",
+        "name": "চতুর্থ পর্যায়",
+        "status": "Active"
+    }
+]

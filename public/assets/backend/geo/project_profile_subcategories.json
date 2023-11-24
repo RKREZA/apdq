@@ -1,0 +1,44 @@
+[
+  {
+    "id": "1",
+    "name": "সেমি পাকা",
+    "code": "semi_paka_for_ka",
+    "status": "Active",
+    "pp_category_id": "1"
+  },
+  {
+    "id": "2",
+    "name": "চরাঞ্চলের বিশেষ ডিজাইনের ঘর",
+    "code": "special_design_house_in_char_area",
+    "status": "Active",
+    "pp_category_id": "1"
+  },
+  {
+    "id": "3",
+    "name": "টং ঘর",
+    "code": "tong_ghor",
+    "status": "Active",
+    "pp_category_id": "1"
+  },
+  {
+    "id": "4",
+    "name": "পার্বত্য অঞ্চলে বিশেষ ডিজাইনের ঘর",
+    "code": "special_design_house_in_hill_area",
+    "status": "Active",
+    "pp_category_id": "1"
+  },
+  {
+    "id": "5",
+    "name": "সেমি পাকা",
+    "code": "semi_paka_for_kha",
+    "status": "Active",
+    "pp_category_id": "4"
+  },
+  {
+    "id": "6",
+    "name": "ছি,আই শিট",
+    "code": "ca_sheet",
+    "status": "Active",
+    "pp_category_id": "4"
+  }
+]

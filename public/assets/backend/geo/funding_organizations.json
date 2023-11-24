@@ -1,0 +1,20 @@
+[
+    {
+      "id": "1",
+      "code": "ashrayan2",
+      "name": "আশ্রয়ণ-২ প্রকল্প",
+      "status": "Active"
+    },
+    {
+      "id": "2",
+      "code": "ministry_of_disaster_management_relief",
+      "name": "দুর্যোগ ব্যবস্থাপনা ও ত্রাণ মন্ত্রণালয়",
+      "status": "Active"
+    },
+    {
+      "id": "3",
+      "code": "ministry_of_land",
+      "name": "ভূমি মন্ত্রণালয়",
+      "status": "Active"
+    }
+]
