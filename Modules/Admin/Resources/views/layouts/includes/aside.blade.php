@@ -28,6 +28,43 @@
                 {{-- <hr class="horizontal light"> --}}
             @endcan
 
+
+
+            @if (Gate::check('post-list') || Gate::check('postcategory-list'))
+                <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#blog" class="nav-link fw-normal {{ request()->is('admin/blog/*') ? 'active' : '' }}" aria-controls="blog" role="button" aria-expanded="{{ request()->is('admin/blog/*') ? 'true' : 'false' }}">
+                        <img src="{{ asset('assets/backend/img/icons/optimized/blog-white.png') }}" class="asideicon" alt="">
+                        <span class="nav-link-text">{{ __('blog::blog.blog') }}</span>
+                    </a>
+                    <div class="collapse {{ request()->is('admin/blog/*') ? 'show' : '' }}" id="blog">
+                        <ul class="nav ">
+
+                            @can('post-list')
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->is('admin/blog/post/*') ? 'active' : '' }}"
+                                        href="{{ route('admin.posts.index') }}">
+                                        <span class="sidenav-mini-icon"> - </span>
+                                        <span class="sidenav-normal"> {{ __('blog::blog.post.names') }} </span>
+                                    </a>
+                                </li>
+                            @endcan
+
+                            @can('postcategory-list')
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->is('admin/blog/category/*') ? 'active' : '' }}"
+                                        href="{{ route('admin.postcategories.index') }}">
+                                        <span class="sidenav-mini-icon"> - </span>
+                                        <span class="sidenav-normal"> {{ __('blog::blog.category.names') }} </span>
+                                    </a>
+                                </li>
+                            @endcan
+
+                        </ul>
+                    </div>
+                </li>
+                {{-- <hr class="horizontal light"> --}}
+            @endif
+
             {{-- <hr class="horizontal light"> --}}
 
             @if (Gate::check('user-list') || Gate::check('permissiongroup-list') || Gate::check('role-list') || Gate::check('permission-list'))

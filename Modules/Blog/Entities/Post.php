@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Video\Entities;
+namespace Modules\Blog\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,32 +11,22 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Video extends Model
+class Post extends Model
 {
     use HasFactory,Notifiable, Loggable, SoftDeletes;
     use HasSlug;
 
-    protected $table = 'videos';
+    protected $table = 'posts';
 
     protected $fillable = [
         'title',
         'description',
-        'embed_html',
-        'thumbnail_url',
-        'external_id',
         'tag',
         'category_id',
         'status',
         'seo_title',
         'seo_description',
         'seo_keyword',
-        'like',
-        'love',
-        'haha',
-        'wow',
-        'sad',
-        'angry',
-        'dislike',
 
     ];
 
@@ -50,9 +40,14 @@ class Video extends Model
             ->saveSlugsTo('slug');
     }
 
+    public function files()
+    {
+        return $this->belongsToMany('Modules\Core\Entities\File')->withPivot('file_id','post_id');
+    }
+
     public function category()
     {
-        return $this->belongsTo('Modules\Video\Entities\VideoCategory');
+        return $this->belongsTo('Modules\Blog\Entities\PostCategory');
     }
 
 }

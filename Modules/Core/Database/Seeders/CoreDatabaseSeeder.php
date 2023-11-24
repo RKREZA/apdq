@@ -24,5 +24,6 @@ class CoreDatabaseSeeder extends Seeder
         $this->call(FrontendSettingTableSeeder::class);
         $this->call(FaqCategoryTableSeeder::class);
         $this->call(VideoCategoryTableSeeder::class);
+        $this->call(PostCategoryTableSeeder::class);
     }
 }

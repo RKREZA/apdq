@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVideosTable extends Migration
+class CreatePostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,29 +13,17 @@ class CreateVideosTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('videos')) {
-            Schema::create('videos', function (Blueprint $table) {
+        if (!Schema::hasTable('posts')) {
+            Schema::create('posts', function (Blueprint $table) {
                 $table->id();
                 $table->string('title');
                 $table->string('slug')->unique();
                 $table->text('description');
                 $table->text('tag');
 
-                $table->text('embed_html');
-                $table->string('thumbnail_url');
-                $table->string('external_id');
-
                 $table->string('seo_title')->nullable();
                 $table->text('seo_description')->nullable();
                 $table->text('seo_keyword')->nullable();
-
-                $table->integer('like')->nullable()->default(0);
-                $table->integer('love')->nullable()->default(0);
-                $table->integer('haha')->nullable()->default(0);
-                $table->integer('wow')->nullable()->default(0);
-                $table->integer('sad')->nullable()->default(0);
-                $table->integer('angry')->nullable()->default(0);
-                $table->integer('dislike')->nullable()->default(0);
 
                 $table->bigInteger('category_id')->unsigned()->nullable();
                 $table->foreign('category_id')->references('id')->on('video_categories')->onDelete('set null');
@@ -53,6 +41,6 @@ class CreateVideosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('videos');
+        Schema::dropIfExists('posts');
     }
 }

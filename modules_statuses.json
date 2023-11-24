@@ -12,5 +12,6 @@
     "Notification": true,
     "Announcement": true,
     "FrontEnd": true,
-    "Video": true
+    "Video": true,
+    "Blog": true
 }

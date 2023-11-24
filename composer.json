@@ -32,6 +32,7 @@
         "pusher/pusher-php-server": "^7.0",
         "spatie/laravel-backup": "^8.1",
         "spatie/laravel-permission": "^5.1",
+        "spatie/laravel-sluggable": "^3.5",
         "timehunter/laravel-google-recaptcha-v3": "~2.5",
         "yajra/laravel-datatables": "9.0"
     },

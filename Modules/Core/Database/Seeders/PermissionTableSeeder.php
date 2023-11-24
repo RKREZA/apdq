@@ -504,5 +504,51 @@ class PermissionTableSeeder extends Seeder
             ]);
         //Video Category End
 
+        //Post
+            $group = PermissionGroup::create([
+                'name' => 'post',
+                'display_name' => 'Post',
+            ]);
+            Permission::create([
+                'name' => 'post-list',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'post-create',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'post-edit',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'post-delete',
+                'permissiongroup_id' => $group->id,
+            ]);
+        //Post End
+
+        //Post Category
+            $group = PermissionGroup::create([
+                'name' => 'postcategory',
+                'display_name' => 'Post Category',
+            ]);
+            Permission::create([
+                'name' => 'postcategory-list',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'postcategory-create',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'postcategory-edit',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'postcategory-delete',
+                'permissiongroup_id' => $group->id,
+            ]);
+        //Post Category End
+
     }
 }
