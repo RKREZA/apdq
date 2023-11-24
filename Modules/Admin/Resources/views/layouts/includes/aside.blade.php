@@ -18,6 +18,16 @@
                 </a>
             </li>
 
+            @can('video-list')
+                <li class="nav-item ">
+                    <a class="nav-link  {{ request()->is('admin/video/*') ? 'active' : '' }}" href="{{ route('admin.videos.index') }}">
+                        <img src="{{ asset('assets/backend/img/icons/optimized/video-white.png') }}" class="asideicon" alt="">
+                        <span class="sidenav-normal"> {{ __('video::video.video.name') }} </span>
+                    </a>
+                </li>
+                {{-- <hr class="horizontal light"> --}}
+            @endcan
+
             {{-- <hr class="horizontal light"> --}}
 
             @if (Gate::check('user-list') || Gate::check('permissiongroup-list') || Gate::check('role-list') || Gate::check('permission-list'))

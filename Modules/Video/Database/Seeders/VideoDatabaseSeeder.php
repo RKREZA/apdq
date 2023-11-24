@@ -1,11 +1,11 @@
 <?php
 
-namespace Modules\Faq\Database\Seeders;
+namespace Modules\Video\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
-class FaqDatabaseSeeder extends Seeder
+class VideoDatabaseSeeder extends Seeder
 {
     /**
      * Run the database seeds.

@@ -1,21 +1,21 @@
 <?php
 
-namespace Modules\Faq\DataTables;
+namespace Modules\Video\DataTables;
 
-use Modules\Faq\Entities\Faq;
-use Yajra\DataTables\Html\Button;
-use Yajra\DataTables\Html\Column;
+use Modules\Video\Entities\Video;
+use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Illuminate\Support\Facades\Gate;
 use Modules\Core\Helpers\CoreHelper;
-use Modules\Faq\Entities\FaqCategory;
 use Yajra\DataTables\EloquentDataTable;
+use Yajra\DataTables\Html\Builder as HtmlBuilder;
+use Yajra\DataTables\Html\Button;
+use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
-use Yajra\DataTables\Html\Builder as HtmlBuilder;
-use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Modules\Video\Entities\VideoCategory;
 
-class FaqCategoryDataTable extends DataTable
+class VideoTrashesDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -27,45 +27,36 @@ class FaqCategoryDataTable extends DataTable
     {
         $data = CoreHelper::filter_data(request(), $query);
 
-        return (new EloquentDataTable($data))
+        return (new EloquentDataTable($data->onlyTrashed()))
             ->addIndexColumn()
             ->addColumn('checkbox', function($row){
                 $checkbox = '<input type="checkbox" class="sub_chk" data-id="'.$row->id.'">';
                 return $checkbox;
             })
             ->addColumn('action', function($row){
-                if (Gate::check('faqcategory-edit')) {
-                    $edit = '<a href="'.route('admin.faqcategories.edit', $row->id).'" class="btn btn-sm btn-success mb-0 px-2" title="'.__('core::core.form.edit-button').'" data-toggle="tooltip">
-                                    <i class="material-icons text-sm">edit</i>
-                            </a>';
+                if (Gate::check('video-delete')) {
+                    $restore = '<button class="restore btn btn-sm btn-secondary mb-0 px-2" data-id="'.$row->id.'" data-action="'.route('admin.videos.restore').'" title="'.__('core::core.form.restore-button').'" data-toggle="tooltip">
+                                    <i class="material-icons text-sm">restore</i>
+                                </button>';
                 }else{
-                    $edit = '';
+                    $restore = '';
                 }
 
-                if (Gate::check('faqcategory-delete')) {
-                    $delete = '<button class="remove btn btn-sm btn-danger mb-0 px-2" data-id="'.$row->id.'" data-action="'.route('admin.faqcategories.trash').'" title="'.__('core::core.form.trash-button').'" data-toggle="tooltip">
-                                    <i class="material-icons text-sm">delete</i>
+                if (Gate::check('video-delete')) {
+                    $delete = '<button class="force_destroy btn btn-sm btn-danger mb-0 px-2" data-id="'.$row->id.'" data-action="'.route('admin.videos.force_destroy').'" title="'.__('core::core.form.delete-button').'" data-toggle="tooltip">
+                                    <i class="material-icons text-sm">delete_forever</i>
                                 </button>';
                 }else{
                     $delete = '';
                 }
 
-                $action = $edit.' '.$delete;
+                $action = $restore.' '.$delete;
                 return $action;
             })
 
-            ->addColumn('status', function($row){
-
-                if ($row->status == "Active") {
-                    $current_status = 'Checked';
-                }else{
-                    $current_status = '';
-                }
-
-                $status = "<input type='checkbox' id='status_$row->id' id='user-$row->id' class='check' onclick='changeStatus(event.target, $row->id);' " .$current_status. ">
-                        <label for='status_$row->id' class='checktoggle'>checkbox</label>";
-
-                return $status;
+            ->addColumn('description', function($row){
+                $description = substr(strip_tags($row->description), 0, 100);
+                return mb_convert_encoding($description, 'UTF-8', 'UTF-8');
             })
 
             ->setRowId('id')
@@ -75,10 +66,10 @@ class FaqCategoryDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\FaqCategory $model
+     * @param \App\Video $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(FaqCategory $model): QueryBuilder
+    public function query(Video $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -91,7 +82,7 @@ class FaqCategoryDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('faqs-table')
+                    ->setTableId('videos-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')
@@ -138,6 +129,6 @@ class FaqCategoryDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'faqcategories_' . date('YmdHis');
+        return 'videos_' . date('YmdHis');
     }
 }

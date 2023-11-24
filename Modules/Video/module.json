@@ -1,11 +1,11 @@
 {
-    "name": "Faq",
-    "alias": "faq",
+    "name": "Video",
+    "alias": "video",
     "description": "",
     "keywords": [],
     "priority": 0,
     "providers": [
-        "Modules\\Faq\\Providers\\FaqServiceProvider"
+        "Modules\\Video\\Providers\\VideoServiceProvider"
     ],
     "aliases": {},
     "files": [],

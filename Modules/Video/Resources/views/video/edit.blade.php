@@ -1,7 +1,7 @@
 @extends('admin::layouts.main')
 
 @section('page_title')
-    {{ __('core::core.create.title', ['name' => __('faq::faq.faq.name')]) }}
+    {{ __('core::core.edit.title', ['name' => __('video::video.video.name')]) }}
 @endsection
 
 @push('css')
@@ -13,11 +13,11 @@
 @section('container')
 
     @include('core::layouts.sticky_page_header', [
-        'include_back_url'          => route('admin.faqs.index'),
-        'include_header'            => __('core::core.create.title', ['name' => __('faq::faq.faq.name')]),
+        'include_back_url'          => route('admin.videos.index'),
+        'include_header'            => __('core::core.edit.title', ['name' => __('video::video.video.name')]),
         'include_breadcrumbs'       => [
             route('dashboard')          => __('admin::auth.dashboard'),
-            route('admin.faqs.index')  => __('faq::faq.faq.name'),
+            route('admin.videos.index')  => __('video::video.video.name'),
         ],
     ])
 
@@ -26,24 +26,25 @@
             <div class="row">
 
                 <div class="col-md-12">
-                    <form id="faq_create_form" action="{{ route('admin.faqs.store') }}" method="POST" role="form" autocomplete="off">
+                    <form id="video_edit_form" action="{{ route('admin.videos.update', $video->id) }}" method="POST" role="form" autocomplete="off">
                         @csrf()
-                        @include('faq::faq.form')
-                        <input type="text" name="files" id="files" hidden>
+                        @include('video::video.form')
                         <button type="submit" class="create-button btn btn-dark btn-rounded">
-                            <img src="{{ asset('assets/backend/img/icons/optimized/save.png') }}" class="pageicon" alt="">
-                            {{ __('core::core.save') }}
+                            <img src="{{ asset('assets/backend/img/icons/optimized/update.png') }}" class="pageicon" alt="">
+                            {{ __('core::core.update') }}
                         </button>
                     </form>
                 </div>
             </div>
         </div>
+
     </div>
 
 @endsection
 
 
 @push('js')
+
     <script>
 
         // Summernote
@@ -60,25 +61,25 @@
         ];
 
         // Validation
-        var validation_id               = "#faq_create_form";
+        var validation_id               = "#video_edit_form";
         var errorElement                = "em";
         var rules                       = {
-            title: {
+            name: {
                 required: true,
             },
-            description: {
+            slug: {
                 required: true
             },
 
         };
         var messages                    = {
-            title: {
+            name: {
                 required: "{{ __('core::core.form.validation.required') }}",
             },
-            description: {
+            slug: {
                 required: "{{ __('core::core.form.validation.required') }}",
             },
         };
-
     </script>
+
 @endpush

@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "alaouy/youtube": "^2.2",
         "alexusmai/laravel-file-manager": "^3.0",
         "arcanedev/log-viewer": "~9.0",
         "codebuglab/laravel-tmdb": "^0.0.5@beta",

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFaqCategoriesTable extends Migration
+class CreateVideoCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateFaqCategoriesTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('faq_categories')) {
-            Schema::create('faq_categories', function (Blueprint $table) {
+        if (!Schema::hasTable('video_categories')) {
+            Schema::create('video_categories', function (Blueprint $table) {
                 $table->id();
                 $table->string('name');
                 $table->string('code')->unique();
@@ -32,6 +32,6 @@ class CreateFaqCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('faq_categories');
+        Schema::dropIfExists('video_categories');
     }
 }

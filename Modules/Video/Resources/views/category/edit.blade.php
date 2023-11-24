@@ -1,7 +1,7 @@
 @extends('admin::layouts.main')
 
 @section('page_title')
-{{ __('core::core.edit.title', ['name' => __('faq::faq.category.name')]) }}
+{{ __('core::core.edit.title', ['name' => __('video::video.category.name')]) }}
 @endsection
 
 @push('css')
@@ -10,30 +10,30 @@
 
 @section('container')
 
-    <form id="faq_category_edit_form" action="{{ route('admin.faqcategories.update', $faqcategory->id) }}" method="POST" role="form" autocomplete="off">
+    <form id="video_category_edit_form" action="{{ route('admin.videocategories.update', $videocategory->id) }}" method="POST" role="form" autocomplete="off">
         @csrf()
 
         @include('core::layouts.sticky_page_header', [
-            'include_back_url'      => route('admin.faqcategories.index'),
+            'include_back_url'      => route('admin.videocategories.index'),
             // 'include_button'       => [
             //     '1'       => [
-            //         'url'                   => route('admin.faqcategories.create'),
-            //         'text'                  => __('core::core.add_new',['name' => __('faq::faq.category.name')]),
+            //         'url'                   => route('admin.videocategories.create'),
+            //         'text'                  => __('core::core.add_new',['name' => __('video::video.category.name')]),
             //         'img'                   => asset('assets/backend/img/icons/optimized/add.png'),
-            //         'permission'            => 'faqcategory-list',
+            //         'permission'            => 'videocategory-list',
             //     ],
             // ],
-            'include_header'        => __('core::core.edit.title', ['name' => __('faq::faq.category.name')]),
+            'include_header'        => __('core::core.edit.title', ['name' => __('video::video.category.name')]),
             'include_breadcrumbs'   => [
                 route('dashboard')      => __('admin::auth.dashboard'),
-                route('admin.faqs.index')   => __('faq::faq.faq.name'),
-                route('admin.faqcategories.index')      => __('faq::faq.category.name'),
+                route('admin.videos.index')   => __('video::video.video.name'),
+                route('admin.videocategories.index')      => __('video::video.category.name'),
             ],
             // 'include_trashes'       => [
-            //     'url'                   => route('admin.faqcategories.trashes'),
+            //     'url'                   => route('admin.videocategories.trashes'),
             //     'text'                  => __('core::core.form.trash'),
             //     'img'                   => asset('assets/backend/img/icons/optimized/trash-white.png'),
-            //     'permission'            => 'faqcategory-trash',
+            //     'permission'            => 'videocategory-trash',
             // ],
         ])
 
@@ -44,26 +44,26 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="input-group input-group-outline my-2 is-filled @if(old('name')) is-valid @endif @error('name') is-invalid @enderror">
-                            <label class="form-label"><span class="required">{{ __('faq::faq.category.form.name') }}</span></label>
-                            <input type="text" name="name" class="form-control" value="{{ $faqcategory->name }}">
+                            <label class="form-label"><span class="required">{{ __('video::video.category.form.name') }}</span></label>
+                            <input type="text" name="name" class="form-control" value="{{ $videocategory->name }}">
                             @error('name')
-                                <em class="error invalid-faq" style="display: inline-block;">{{ $message }}</em>
+                                <em class="error invalid-video" style="display: inline-block;">{{ $message }}</em>
                             @enderror
                         </div>
                     </div>
 
                     <div class="col-md-12">
                         <div class="input-group input-group-outline my-2 is-filled @if(old('code')) is-valid @endif @error('code') is-invalid @enderror">
-                            <label class="form-label"><span class="required">{{ __('faq::faq.category.form.code') }}</span></label>
-                            <input type="text" name="code" class="form-control" value="{{ $faqcategory->code }}">
+                            <label class="form-label"><span class="required">{{ __('video::video.category.form.code') }}</span></label>
+                            <input type="text" name="code" class="form-control" value="{{ $videocategory->code }}">
                             @error('code')
-                                <em class="error invalid-faq" style="display: inline-block;">{{ $message }}</em>
+                                <em class="error invalid-video" style="display: inline-block;">{{ $message }}</em>
                             @enderror
                         </div>
                     </div>
 
                     <div class="col-md-12">
-                        @can('faqcategory-create')
+                        @can('videocategory-create')
                             <button type="submit" class="update-button btn btn-dark btn-rounded mt-1 my-0 border-2 float-end" id="">
                                 <img src="{{ asset('assets/backend/img/icons/optimized/update.png') }}" class="pageicon" alt="">
                                 {{ __('core::core.update') }}
@@ -85,7 +85,7 @@
 
 <script>
 // Validation
-var validation_id               = "#faq_category_edit_form";
+var validation_id               = "#video_category_edit_form";
         var errorElement                = "em";
         var rules                       = {
             name: {

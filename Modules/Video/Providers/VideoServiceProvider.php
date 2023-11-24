@@ -1,21 +1,21 @@
 <?php
 
-namespace Modules\Faq\Providers;
+namespace Modules\Video\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 
-class FaqServiceProvider extends ServiceProvider
+class VideoServiceProvider extends ServiceProvider
 {
     /**
      * @var string $moduleName
      */
-    protected $moduleName = 'Faq';
+    protected $moduleName = 'Video';
 
     /**
      * @var string $moduleNameLower
      */
-    protected $moduleNameLower = 'faq';
+    protected $moduleNameLower = 'video';
 
     /**
      * Boot the application events.

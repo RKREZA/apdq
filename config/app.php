@@ -210,7 +210,8 @@ return [
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Jorenvh\Share\Providers\ShareServiceProvider::class,
-        TimeHunter\LaravelGoogleReCaptchaV3\Providers\GoogleReCaptchaV3ServiceProvider::class
+        TimeHunter\LaravelGoogleReCaptchaV3\Providers\GoogleReCaptchaV3ServiceProvider::class,
+        Alaouy\Youtube\YoutubeServiceProvider::class
 
     ],
 
@@ -273,7 +274,8 @@ return [
 
         'CoreHelper'    =>Modules\Core\Helpers\CoreHelper::class,
 
-        'GoogleReCaptchaV3'=> TimeHunter\LaravelGoogleReCaptchaV3\Facades\GoogleReCaptchaV3::class
+        'GoogleReCaptchaV3'=> TimeHunter\LaravelGoogleReCaptchaV3\Facades\GoogleReCaptchaV3::class,
+        'Youtube' => Alaouy\Youtube\Facades\Youtube::class
     ],
 
 ];

@@ -1,10 +1,10 @@
 {
-    "name": "nwidart/faq",
+    "name": "nwidart/video",
     "description": "",
     "authors": [
         {
-            "name": "Nicolas Widart",
-            "email": "n.widart@gmail.com"
+            "name": "Md Rezaul Karim",
+            "email": "rkreza24@gmail.com"
         }
     ],
     "extra": {
@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Modules\\Faq\\": ""
+            "Modules\\Video\\": ""
         }
     }
 }

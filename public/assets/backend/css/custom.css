@@ -210,6 +210,10 @@ body{
     font-weight: normal !important;
 }
 
+/* .yt-core-attributed-string--white-space-pre-wrap {
+    white-space: pre-wrap;
+} */
+
 @media(max-width: 767px) {
     .boxicon{
         width: 40px;

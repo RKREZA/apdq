@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'faq'  => [
+    'video'  => [
         'name' => 'FAQ',
 
         'form' => [

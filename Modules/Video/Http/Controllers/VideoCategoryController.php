@@ -1,50 +1,50 @@
 <?php
 
-namespace Modules\Faq\Http\Controllers;
+namespace Modules\Video\Http\Controllers;
 
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
-use Modules\Faq\DataTables\FaqCategoryDataTable;
-use Modules\Faq\DataTables\FaqCategoryTrashesDataTable;
-use Modules\Faq\Entities\FaqCategory;
+use Modules\Video\DataTables\VideoCategoryDataTable;
+use Modules\Video\DataTables\VideoCategoryTrashesDataTable;
+use Modules\Video\Entities\VideoCategory;
 use Spatie\Permission\Models\Permission;
 use Yajra\DataTables\Facades\DataTables;
 
-class FaqCategoryController extends Controller
+class VideoCategoryController extends Controller
 {
 
     function __construct()
 	{
 		$this->middleware('auth');
-		$this->middleware('permission:faqcategory-list', ['only' => ['index']]);
-		$this->middleware('permission:faqcategory-create', ['only' => ['create','store']]);
-		$this->middleware('permission:faqcategory-edit', ['only' => ['edit','update']]);
-		$this->middleware('permission:faqcategory-delete', ['only' => ['destroy']]);
+		$this->middleware('permission:videocategory-list', ['only' => ['index']]);
+		$this->middleware('permission:videocategory-create', ['only' => ['create','store']]);
+		$this->middleware('permission:videocategory-edit', ['only' => ['edit','update']]);
+		$this->middleware('permission:videocategory-delete', ['only' => ['destroy']]);
 	}
 
-    public function index(FaqCategoryDataTable $dataTable)
+    public function index(VideoCategoryDataTable $dataTable)
     {
-        return $dataTable->render('faq::category.index');
+        return $dataTable->render('video::category.index');
     }
 
-    public function trashes(FaqCategoryTrashesDataTable $dataTable)
+    public function trashes(VideoCategoryTrashesDataTable $dataTable)
     {
-        return $dataTable->render('faq::category.trashes');
+        return $dataTable->render('video::category.trashes');
     }
 
     public function create()
     {
-        $faqcategory = Permission::get();
-        return view('faq::category.create', compact('faqcategory'));
+        $videocategory = Permission::get();
+        return view('video::category.create', compact('videocategory'));
     }
 
     public function store(Request $request)
 	{
         $rules = [
-            'code' 					=> 'required|unique:faq_categories,code',
+            'code' 					=> 'required|unique:video_categories,code',
 			'name' 			        => 'required|string',
         ];
 
@@ -57,36 +57,36 @@ class FaqCategoryController extends Controller
         $validate = $this->validate($request, $rules, $messages);
 
 		try {
-			$role = FaqCategory::create([
+			$role = VideoCategory::create([
                 'name' => $request->input('name'),
                 'code' => $request->input('code')
             ]);
 
 			$success_msg = __('core::core.message.success.store');
-			return redirect()->route('admin.faqcategories.index')->with('success',$success_msg);
+			return redirect()->route('admin.videocategories.index')->with('success',$success_msg);
 
 		} catch (Exception $e) {
 			$error_msg = __('core::core.message.error');
-			return redirect()->route('admin.faqcategories.index')->with('error',$error_msg);
+			return redirect()->route('admin.videocategories.index')->with('error',$error_msg);
 		}
 	}
 
     public function show($id)
     {
-        return view('faq::category.show');
+        return view('video::category.show');
     }
 
     public function edit($id)
     {
-        $faqcategory = FaqCategory::find($id);
-        return view('faq::category.edit', compact('faqcategory'));
+        $videocategory = VideoCategory::find($id);
+        return view('video::category.edit', compact('videocategory'));
     }
 
     public function update(Request $request, $id)
 	{
 		$rules = [
             'name' 			=> 'required',
-            'code'          => 'required|unique:faq_categories,code,'.$id,
+            'code'          => 'required|unique:video_categories,code,'.$id,
         ];
         $messages = [
             'name.required'    		=> __('core::core.form.validation.required'),
@@ -96,15 +96,15 @@ class FaqCategoryController extends Controller
 
         $this->validate($request, $rules, $messages);
 		$input = $request->all();
-		$faqcategory = FaqCategory::find($id);
+		$videocategory = VideoCategory::find($id);
 		try {
-			$faqcategory->update($input);
+			$videocategory->update($input);
 			$success_msg = __('core::core.message.success.update');
-			return redirect()->route('admin.faqcategories.index')->with('success',$success_msg);
+			return redirect()->route('admin.videocategories.index')->with('success',$success_msg);
 
 		} catch (Exception $e) {
 			$error_msg = __('core::core.message.error');
-			return redirect()->route('admin.faqcategories.index')->with('error',$error_msg);
+			return redirect()->route('admin.videocategories.index')->with('error',$error_msg);
 		}
 
 	}
@@ -114,7 +114,7 @@ class FaqCategoryController extends Controller
 	{
         DB::beginTransaction();
         try {
-		    FaqCategory::find($request->id)->update(['status' => $request->status]);
+		    VideoCategory::find($request->id)->update(['status' => $request->status]);
         } catch (Exception $e) {
             DB::rollBack();
             $error_msg  = __('core::core.message.error');
@@ -132,7 +132,7 @@ class FaqCategoryController extends Controller
 
 		$id                 = request()->input('id');
 		try {
-            FaqCategory::find($id)->delete();
+            VideoCategory::find($id)->delete();
         } catch (Exception $e) {
             DB::rollBack();
             $error_msg  = __('core::core.message.error');
@@ -151,7 +151,7 @@ class FaqCategoryController extends Controller
         DB::beginTransaction();
         foreach($ids as $id){
             try {
-                FaqCategory::find($id)->delete();
+                VideoCategory::find($id)->delete();
             } catch (Exception $e) {
                 DB::rollBack();
                 $error_msg = __('core::core.message.error');
@@ -170,11 +170,11 @@ class FaqCategoryController extends Controller
 		$id                 = request()->input('id');
 
 		try {
-            $faq = FaqCategory::find($id);
-            if ($faq) {
-                $faq->forceDelete();
+            $video = VideoCategory::find($id);
+            if ($video) {
+                $video->forceDelete();
             }else{
-                FaqCategory::onlyTrashed()->find($id)->forceDelete();
+                VideoCategory::onlyTrashed()->find($id)->forceDelete();
             }
         } catch (Exception $e) {
             DB::rollBack();
@@ -195,11 +195,11 @@ class FaqCategoryController extends Controller
         DB::beginTransaction();
         foreach($ids as $id){
             try {
-                $faq = FaqCategory::find($id);
-                if ($faq) {
-                    $faq->forceDelete();
+                $video = VideoCategory::find($id);
+                if ($video) {
+                    $video->forceDelete();
                 }else{
-                    FaqCategory::onlyTrashed()->find($id)->forceDelete();
+                    VideoCategory::onlyTrashed()->find($id)->forceDelete();
                 }
             } catch (Exception $e) {
                 DB::rollBack();
@@ -219,7 +219,7 @@ class FaqCategoryController extends Controller
 		$id                 = request()->input('id');
 
 		try {
-            FaqCategory::onlyTrashed()->find($id)->restore();
+            VideoCategory::onlyTrashed()->find($id)->restore();
         } catch (Exception $e) {
             DB::rollBack();
             $error_msg  = __('core::core.message.error');
@@ -240,7 +240,7 @@ class FaqCategoryController extends Controller
 
 		try {
             foreach ($ids as $id) {
-                FaqCategory::onlyTrashed()->find($id)->restore();
+                VideoCategory::onlyTrashed()->find($id)->restore();
             }
         } catch (Exception $e) {
             DB::rollBack();

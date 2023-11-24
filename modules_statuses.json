@@ -12,9 +12,5 @@
     "Notification": true,
     "Announcement": true,
     "FrontEnd": true,
-    "Transportation": true,
-    "Vehicle": true,
-    "Stoppage": true,
-    "VehicleRoute": true,
-    "Geo": true
+    "Video": true
 }
