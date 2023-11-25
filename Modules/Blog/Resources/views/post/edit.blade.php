@@ -79,19 +79,31 @@
         var validation_id               = "#post_edit_form";
         var errorElement                = "em";
         var rules                       = {
-            name: {
+            title: {
                 required: true,
             },
-            slug: {
+            description: {
                 required: true
             },
+            category_id: {
+                required: true
+            },
+            tag: {
+                required: true
+            }
 
         };
         var messages                    = {
-            name: {
+            title: {
                 required: "{{ __('core::core.form.validation.required') }}",
             },
-            slug: {
+            description: {
+                required: "{{ __('core::core.form.validation.required') }}",
+            },
+            category_id: {
+                required: "{{ __('core::core.form.validation.required') }}",
+            },
+            tag: {
                 required: "{{ __('core::core.form.validation.required') }}",
             },
         };

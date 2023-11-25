@@ -59,6 +59,9 @@ class VideoTrashesDataTable extends DataTable
                 return mb_convert_encoding($description, 'UTF-8', 'UTF-8');
             })
 
+            ->editColumn('created_at', '{{date("jS M Y", strtotime($created_at))}}')
+	        ->editColumn('updated_at', '{{date("jS M Y", strtotime($updated_at))}}')
+
             ->setRowId('id')
             ->rawColumns(['action','checkbox','status']);
     }

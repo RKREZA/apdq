@@ -550,5 +550,97 @@ class PermissionTableSeeder extends Seeder
             ]);
         //Post Category End
 
+        //Live
+            $group = PermissionGroup::create([
+                'name' => 'live',
+                'display_name' => 'Live',
+            ]);
+            Permission::create([
+                'name' => 'live-list',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'live-create',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'live-edit',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'live-delete',
+                'permissiongroup_id' => $group->id,
+            ]);
+        //Live End
+
+        //Subscription
+            $group = PermissionGroup::create([
+                'name' => 'subscription',
+                'display_name' => 'Subscription',
+            ]);
+            Permission::create([
+                'name' => 'subscription-list',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'subscription-create',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'subscription-edit',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'subscription-delete',
+                'permissiongroup_id' => $group->id,
+            ]);
+        //Subscription End
+
+        //Newsletter
+            $group = PermissionGroup::create([
+                'name' => 'newsletter',
+                'display_name' => 'Newsletter',
+            ]);
+            Permission::create([
+                'name' => 'newsletter-list',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'newsletter-create',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'newsletter-edit',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'newsletter-delete',
+                'permissiongroup_id' => $group->id,
+            ]);
+        //Newsletter End
+
+        //Payment Gateway
+            $group = PermissionGroup::create([
+                'name' => 'paymentgateway',
+                'display_name' => 'Payment Gateway',
+            ]);
+            Permission::create([
+                'name' => 'paymentgateway-list',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'paymentgateway-create',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'paymentgateway-edit',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'paymentgateway-delete',
+                'permissiongroup_id' => $group->id,
+            ]);
+        //Newsletter End
+
     }
 }

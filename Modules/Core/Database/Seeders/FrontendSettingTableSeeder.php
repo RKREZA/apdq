@@ -16,19 +16,19 @@ class FrontendSettingTableSeeder extends Seeder
     public function run()
     {
         FrontendSetting::create([
-            "title"             => "আশ্রয়ণ-২ প্রকল্প",
-            "description"       => "আশ্রয়ণ-২ প্রকল্প প্রধানমন্ত্রীর কার্যালয়",
+            "title"             => "APDQ",
+            "description"       => "",
             "logo_light"        => "",
             "logo_dark"         => "",
             "favicon"           => "",
             "meta_image"        => "",
-            "meta_title"        => "আশ্রয়ণ-২ প্রকল্প",
-            "meta_description"  => "আশ্রয়ণ-২ প্রকল্প প্রধানমন্ত্রীর কার্যালয়",
-            "meta_keywords"     => "আশ্রয়ণ-২ প্রকল্প",
-            "social_title"      => "আশ্রয়ণ-২ প্রকল্প",
-            "social_description"=> "আশ্রয়ণ-২ প্রকল্প প্রধানমন্ত্রীর কার্যালয়",
+            "meta_title"        => "",
+            "meta_description"  => "",
+            "meta_keywords"     => "",
+            "social_title"      => "",
+            "social_description"=> "",
             "preloader_status"  => "Active",
-            "copyright"         => "© ২০২৩ আশ্রয়ণ-২ প্রকল্প | প্রধানমন্ত্রীর কার্যালয়",
+            "copyright"         => "© 2023",
             "hit"               => "0"
         ]);
     }

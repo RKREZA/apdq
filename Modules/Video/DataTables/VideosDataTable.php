@@ -59,13 +59,13 @@ class VideosDataTable extends DataTable
             ->addColumn('title', function($row){
                 $title = substr(strip_tags($row->title), 0, 30)."...";
                 return mb_convert_encoding($title, 'UTF-8', 'UTF-8');
-            })     
+            })
 
             ->addColumn('description', function($row){
                 $description = substr(strip_tags($row->description), 0, 50)."...";
                 return mb_convert_encoding($description, 'UTF-8', 'UTF-8');
-            })      
-            
+            })
+
             ->addColumn('category_id', function($row){
                 $category = VideoCategory::find($row->category_id);
                 if (empty($category)) {
@@ -88,27 +88,20 @@ class VideosDataTable extends DataTable
                 return $status;
             })
 
-            ->addColumn('thumbnail_url', function($row){
-
-                $thumbnail = "<img=\"$row->thumbnail_url\">";
-
-                return $thumbnail;
-            })
-
             ->addColumn('thumbnail_url', function ($row) {
                 if (!empty($row->thumbnail_url)) {
                     // Check if the URL is already absolute
                     $isAbsoluteUrl = filter_var($row->thumbnail_url, FILTER_VALIDATE_URL) !== false;
-            
+
                     $thumbnail_url = '<img src="' . ($isAbsoluteUrl ? $row->thumbnail_url : '/' . $row->thumbnail_url) . '" class="img-fluid img-thumbnail" style="width: 50px; height:50px">';
                 } else {
                     $thumbnail_url = '<img src="/assets/backend/img/no-image.png" class="rounded-circle img-fluid img-thumbnail" style="width: 50px; height:50px">';
                 }
-            
+
                 return $thumbnail_url;
             })
 
-            
+
 
             ->addColumn('reaction', function($row){
                 $reaction="<span style=\"width:50px; display:inline-block;\">Like</span><span class=\"badge badge-sm badge-dark\" style=\"position: relative;top: -2px;\">$row->like</span><br>";
@@ -121,6 +114,9 @@ class VideosDataTable extends DataTable
 
                 return $reaction;
             })
+
+            ->editColumn('created_at', '{{date("jS M Y", strtotime($created_at))}}')
+	        ->editColumn('updated_at', '{{date("jS M Y", strtotime($updated_at))}}')
 
             ->setRowId('id')
             ->rawColumns(['reaction','thumbnail_url','action','checkbox','status']);

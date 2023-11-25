@@ -28,6 +28,36 @@
                 {{-- <hr class="horizontal light"> --}}
             @endcan
 
+            @can('live-list')
+                <li class="nav-item ">
+                    <a class="nav-link  {{ request()->is('admin/live/*') ? 'active' : '' }}" href="{{ route('admin.lives.index') }}">
+                        <img src="{{ asset('assets/backend/img/icons/optimized/live-white.png') }}" class="asideicon" alt="">
+                        <span class="sidenav-normal"> {{ __('live::live.live.name') }} </span>
+                    </a>
+                </li>
+                {{-- <hr class="horizontal light"> --}}
+            @endcan
+
+            @can('subscription-list')
+                <li class="nav-item ">
+                    <a class="nav-link  {{ request()->is('admin/subscription/*') ? 'active' : '' }}" href="{{ route('admin.subscriptions.index') }}">
+                        <img src="{{ asset('assets/backend/img/icons/optimized/subscription-white.png') }}" class="asideicon" alt="">
+                        <span class="sidenav-normal"> {{ __('subscription::subscription.subscription.name') }} </span>
+                    </a>
+                </li>
+                {{-- <hr class="horizontal light"> --}}
+            @endcan
+
+            @can('newsletter-list')
+                <li class="nav-item ">
+                    <a class="nav-link  {{ request()->is('admin/newsletter/*') ? 'active' : '' }}" href="{{ route('admin.newsletters.index') }}">
+                        <img src="{{ asset('assets/backend/img/icons/optimized/email-white.png') }}" class="asideicon" alt="">
+                        <span class="sidenav-normal"> {{ __('newsletter::newsletter.newsletter.name') }} </span>
+                    </a>
+                </li>
+                {{-- <hr class="horizontal light"> --}}
+            @endcan
+
 
 
             @if (Gate::check('post-list') || Gate::check('postcategory-list'))
@@ -64,6 +94,16 @@
                 </li>
                 {{-- <hr class="horizontal light"> --}}
             @endif
+
+            @can('paymentgateway-list')
+                <li class="nav-item ">
+                    <a class="nav-link  {{ request()->is('admin/paymentgateway/*') ? 'active' : '' }}" href="{{ route('admin.paymentgateways.index') }}">
+                        <img src="{{ asset('assets/backend/img/icons/optimized/paymentgateway-white.png') }}" class="asideicon" alt="">
+                        <span class="sidenav-normal"> {{ __('paymentgateway::paymentgateway.paymentgateway.name') }} </span>
+                    </a>
+                </li>
+                {{-- <hr class="horizontal light"> --}}
+            @endcan
 
             {{-- <hr class="horizontal light"> --}}
 

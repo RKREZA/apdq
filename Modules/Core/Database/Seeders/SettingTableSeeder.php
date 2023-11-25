@@ -17,8 +17,8 @@ class SettingTableSeeder extends Seeder
     public function run()
     {
         Setting::create([
-            "title" => "Buzzgari",
-            "description" => "Buzzgari",
+            "title" => "APDQ",
+            "description" => "",
             "logo_dark" => null,
             "logo_light" => null,
             "favicon" => "/assets/backend/img/favicon.webp",

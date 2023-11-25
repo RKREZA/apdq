@@ -1,7 +1,7 @@
 @extends('admin::layouts.main')
 
 @section('page_title')
-    {{ config('app.name', 'BUZZGARI') }} | {{ __('admin::dashboard.title') }}
+    {{ __('admin::dashboard.title') }}
 @endsection
 
 @push('css')

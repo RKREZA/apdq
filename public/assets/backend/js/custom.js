@@ -24,25 +24,26 @@ $(".sidebar_event").on('click', function () {
 });
 
 // Set Mode (Light/Dark)
-
 $("#mode").on('click', function () {
     var that = this;
     var switchValue = $(this).prop("checked");
 
     if(switchValue == true){
         $("body").addClass("dark-version");
-        $("#web").attr("src", "/assets/backend/img/icons/optimized/web-white.png");
+        $("#web").attr("src", "/assets/backend/img/icons/optimized/monitor-white.png");
         $("#translate").attr("src", "/assets/backend/img/icons/optimized/translate-white.png");
         $("#notification").attr("src", "/assets/backend/img/icons/optimized/notification-white.png");
         $("#user").attr("src", "/assets/backend/img/icons/optimized/user-white.png");
         $("#feedback-icon").attr("src", "/assets/backend/img/icons/optimized/feedback-white.png");
+        $("#nav").attr("src", "/assets/backend/img/icons/optimized/nav-white.png");
     }else{
         $("body").removeClass("dark-version");
-        $("#web").attr("src", "/assets/backend/img/icons/optimized/web.png");
+        $("#web").attr("src", "/assets/backend/img/icons/optimized/monitor.png");
         $("#translate").attr("src", "/assets/backend/img/icons/optimized/translate.png");
         $("#notification").attr("src", "/assets/backend/img/icons/optimized/notification.png");
         $("#user").attr("src", "/assets/backend/img/icons/optimized/user.png");
         $("#feedback-icon").attr("src", "/assets/backend/img/icons/optimized/feedback.png");
+        $("#nav").attr("src", "/assets/backend/img/icons/optimized/nav.png");
     }
 
     $.ajax({
@@ -51,18 +52,20 @@ $("#mode").on('click', function () {
         success: function (result) {
             if (result == 'light') {
                 $("body").removeClass("dark-version");
-                $("#web").attr("src", "/assets/backend/img/icons/optimized/web.png");
+                $("#web").attr("src", "/assets/backend/img/icons/optimized/monitor.png");
                 $("#translate").attr("src", "/assets/backend/img/icons/optimized/translate.png");
                 $("#notification").attr("src", "/assets/backend/img/icons/optimized/notification.png");
                 $("#user").attr("src", "/assets/backend/img/icons/optimized/user.png");
                 $("#feedback-icon").attr("src", "/assets/backend/img/icons/optimized/feedback.png");
+                $("#nav").attr("src", "/assets/backend/img/icons/optimized/nav.png");
             } else if (result == 'dark') {
                 $("body").addClass("dark-version");
-                $("#web").attr("src", "/assets/backend/img/icons/optimized/web-white.png");
+                $("#web").attr("src", "/assets/backend/img/icons/optimized/monitor-white.png");
                 $("#translate").attr("src", "/assets/backend/img/icons/optimized/translate-white.png");
                 $("#notification").attr("src", "/assets/backend/img/icons/optimized/notification-white.png");
                 $("#user").attr("src", "/assets/backend/img/icons/optimized/user-white.png");
                 $("#feedback-icon").attr("src", "/assets/backend/img/icons/optimized/feedback-white.png");
+                $("#nav").attr("src", "/assets/backend/img/icons/optimized/nav-white.png");
             }
         }
     });

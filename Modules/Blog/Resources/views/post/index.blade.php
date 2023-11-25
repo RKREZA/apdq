@@ -60,6 +60,7 @@
                                 'description'       => __('blog::blog.post.form.description'),
                                 'category_id'       => __('blog::blog.post.form.category_id'),
                                 'status'            => __('core::core.form.status'),
+                                'created_at'        => __('core::core.form.created_at'),
                                 'action'            => __('core::core.form.action'),
                             ],
                         ])

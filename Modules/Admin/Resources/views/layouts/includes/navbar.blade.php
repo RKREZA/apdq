@@ -5,7 +5,12 @@
         <div class="collapse navbar-collapse" id="navbar">
             <div class="sidenav-toggler sidenav-toggler-inner sidebar_event" id="sidebar">
                 <a href="javascript:;" class="nav-link" data-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="Open/Close">
-                    <img src="{{ asset('assets/backend/img/icons/optimized/nav.png') }}" class="icon" alt="">
+
+                    @if (Session::get('mode') == 'dark')
+                        <img src="{{ asset('assets/backend/img/icons/optimized/nav-white.png') }}" class="icon" id="nav" alt="">
+                    @else
+                        <img src="{{ asset('assets/backend/img/icons/optimized/nav.png') }}" class="icon" id="nav" alt="">
+                    @endif
 
                 </a>
             </div>
@@ -28,25 +33,31 @@
 
             <ul class="navbar-nav justify-content-end w-100">
 
-                <li class="nav-item d-none d-xl-block">
+                <li class="nav-item d-xl-block" data-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Change Mode">
                     <input type='checkbox' id='mode' data-class="bg-transparent"onclick="darkMode(this); sidebarType(this);" @if (Session::get('mode') == 'dark') checked="true" @endif>
                     <label for='mode' class="nav-link"></label>
                 </li>
 
-                <li class="nav-item d-none d-md-block">
-                    <a href="/" class="nav-link" target="_blank" data-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Website">
+                <li class="nav-item d-md-block">
+                    <a href="/" class="nav-link" target="_blank" data-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Front End">
                         @if (Session::get('mode') == 'dark')
-                            <img src="{{ asset('assets/backend/img/icons/optimized/web-white.png') }}" class="icon" id="web" alt="">
+                            <img src="{{ asset('assets/backend/img/icons/optimized/monitor-white.png') }}" class="icon" id="web" alt="">
                         @else
-                            <img src="{{ asset('assets/backend/img/icons/optimized/web.png') }}" class="icon" id="web" alt="">
+                            <img src="{{ asset('assets/backend/img/icons/optimized/monitor.png') }}" class="icon" id="web" alt="">
                         @endif
                     </a>
                 </li>
 
-                <li class="nav-item d-none d-md-block">
+                <li class="nav-item d-md-block">
                     <a href="#" class="nav-link" type="button" data-toggle="tooltip" data-bs-toggle="modal" data-bs-target="#feedbackForm" data-bs-placement="bottom"
                         title="" data-bs-original-title="{{ __('admin::auth.feedback.index') }}">
-                        <img src="{{ asset('assets/backend/img/icons/optimized/feedback.png') }}" class="icon" id="feedback-icon">
+
+
+                        @if (Session::get('mode') == 'dark')
+                            <img src="{{ asset('assets/backend/img/icons/optimized/feedback-white.png') }}" class="icon" id="feedback-icon">
+                        @else
+                            <img src="{{ asset('assets/backend/img/icons/optimized/feedback.png') }}" class="icon" id="feedback-icon">
+                        @endif
                     </a>
                 </li>
 

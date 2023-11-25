@@ -9,7 +9,7 @@
 
     <style>
         .img-thumbnail {
-            height: 200px;
+            height: auto;
             width: 100%;
         }
 
@@ -251,7 +251,7 @@
                             </div>
 
                             <div class="form-group">
-                                <button class="edit-button btn btn-dark btn-md float-end mt-4 mb-0 w-100 btn-rounded"><i class="material-icons text-sm me-2">sync</i>{{ __('frontendmanager::frontendmanager.frontendsetting.form.update_info_button') }}</button>
+                                <button class="edit-button btn btn-dark btn-md float-end mt-4 mb-0 btn-rounded"><i class="material-icons text-sm me-2">sync</i>{{ __('frontendmanager::frontendmanager.frontendsetting.form.update_info_button') }}</button>
                             </div>
                         </div>
 
@@ -267,7 +267,7 @@
                 </div>
 
                 <div class="card-body" id="profile">
-                    <div class="row justify-content-center align-items-center">
+                    <div class="row align-items-center">
 
                         <div class="col-4 position-relative">
                             <div class="form-group">
@@ -376,7 +376,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <button class="edit-button btn btn-dark btn-md float-end mt-4 mb-0 w-100 btn-rounded"><i class="material-icons text-sm me-2">sync</i>{{ __('frontendmanager::frontendmanager.frontendsetting.form.update_meta_button') }}</button>
+                                    <button class="edit-button btn btn-dark btn-md float-end mt-4 mb-0 btn-rounded"><i class="material-icons text-sm me-2">sync</i>{{ __('frontendmanager::frontendmanager.frontendsetting.form.update_meta_button') }}</button>
                                 </div>
                             </form>
                         </div>
@@ -403,7 +403,7 @@
                             </div>
 
                             <div class="form-group">
-                                <button class="edit-button btn btn-dark btn-md float-end mt-4 mb-0 w-100 btn-rounded"><i class="material-icons text-sm me-2">sync</i>{{ __('frontendmanager::frontendmanager.frontendsetting.form.update_preloader_button') }}</button>
+                                <button class="edit-button btn btn-dark btn-md float-end mt-4 mb-0 btn-rounded"><i class="material-icons text-sm me-2">sync</i>{{ __('frontendmanager::frontendmanager.frontendsetting.form.update_preloader_button') }}</button>
                             </div>
                         </div>
 
@@ -430,7 +430,7 @@
                             </div>
 
                             <div class="form-group">
-                                <button class="edit-button btn btn-dark btn-md float-end mt-4 mb-0 w-100 btn-rounded"><i class="material-icons text-sm me-2">sync</i>{{ __('frontendmanager::frontendmanager.frontendsetting.form.update_copyright_button') }}</button>
+                                <button class="edit-button btn btn-dark btn-md float-end mt-4 mb-0 btn-rounded"><i class="material-icons text-sm me-2">sync</i>{{ __('frontendmanager::frontendmanager.frontendsetting.form.update_copyright_button') }}</button>
                             </div>
                         </div>
 

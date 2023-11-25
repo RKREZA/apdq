@@ -13,5 +13,9 @@
     "Announcement": true,
     "FrontEnd": true,
     "Video": true,
-    "Blog": true
+    "Blog": true,
+    "Live": true,
+    "Subscription": true,
+    "Newsletter": true,
+    "PaymentGateway": true
 }
