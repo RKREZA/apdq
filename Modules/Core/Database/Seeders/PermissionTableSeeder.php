@@ -640,7 +640,76 @@ class PermissionTableSeeder extends Seeder
                 'name' => 'paymentgateway-delete',
                 'permissiongroup_id' => $group->id,
             ]);
-        //Newsletter End
+        //Payment End
+
+        //Transaction
+            $group = PermissionGroup::create([
+                'name' => 'transaction',
+                'display_name' => 'Transaction',
+            ]);
+            Permission::create([
+                'name' => 'transaction-list',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'transaction-create',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'transaction-edit',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'transaction-delete',
+                'permissiongroup_id' => $group->id,
+            ]);
+        //Transaction End
+
+        //Page
+            $group = PermissionGroup::create([
+                'name' => 'page',
+                'display_name' => 'Page',
+            ]);
+            Permission::create([
+                'name' => 'page-list',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'page-create',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'page-edit',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'page-delete',
+                'permissiongroup_id' => $group->id,
+            ]);
+        //Page End
+
+        //Page Category
+            $group = PermissionGroup::create([
+                'name' => 'pagecategory',
+                'display_name' => 'Page Category',
+            ]);
+            Permission::create([
+                'name' => 'pagecategory-list',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'pagecategory-create',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'pagecategory-edit',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'pagecategory-delete',
+                'permissiongroup_id' => $group->id,
+            ]);
+        //Page Category End
 
     }
 }

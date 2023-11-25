@@ -6,7 +6,8 @@
         </a>
     </div>
 
-            <hr class="horizontal light">
+    <hr class="horizontal light">
+
     <div class="collapse navbar-collapse w-auto h-auto"
         id="sidenav-collapse-main">
         <ul class="navbar-nav pb-5">
@@ -58,8 +59,6 @@
                 {{-- <hr class="horizontal light"> --}}
             @endcan
 
-
-
             @if (Gate::check('post-list') || Gate::check('postcategory-list'))
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#blog" class="nav-link fw-normal {{ request()->is('admin/blog/*') ? 'active' : '' }}" aria-controls="blog" role="button" aria-expanded="{{ request()->is('admin/blog/*') ? 'true' : 'false' }}">
@@ -100,6 +99,16 @@
                     <a class="nav-link  {{ request()->is('admin/paymentgateway/*') ? 'active' : '' }}" href="{{ route('admin.paymentgateways.index') }}">
                         <img src="{{ asset('assets/backend/img/icons/optimized/paymentgateway-white.png') }}" class="asideicon" alt="">
                         <span class="sidenav-normal"> {{ __('paymentgateway::paymentgateway.paymentgateway.name') }} </span>
+                    </a>
+                </li>
+                {{-- <hr class="horizontal light"> --}}
+            @endcan
+
+            @can('transaction-list')
+                <li class="nav-item ">
+                    <a class="nav-link  {{ request()->is('admin/transaction/*') ? 'active' : '' }}" href="{{ route('admin.transactions.index') }}">
+                        <img src="{{ asset('assets/backend/img/icons/optimized/transaction-white.png') }}" class="asideicon" alt="">
+                        <span class="sidenav-normal"> {{ __('transaction::transaction.transaction.name') }} </span>
                     </a>
                 </li>
                 {{-- <hr class="horizontal light"> --}}
@@ -149,6 +158,40 @@
                     </div>
                 </li>
                 {{-- <hr class="horizontal light"> --}}
+            @endif
+
+            @if (Gate::check('page-list') || Gate::check('pagecategory-list'))
+                <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#cms" class="nav-link fw-normal {{ request()->is('admin/cms/*') ? 'active' : '' }}" aria-controls="cms" role="button" aria-expanded="{{ request()->is('admin/cms/*') ? 'true' : 'false' }}">
+                        <img src="{{ asset('assets/backend/img/icons/optimized/cms-white.png') }}" class="asideicon" alt="">
+                        <span class="nav-link-text">{{ __('cms::cms.cms') }}</span>
+                    </a>
+                    <div class="collapse {{ request()->is('admin/cms/*') ? 'show' : '' }}" id="cms">
+                        <ul class="nav ">
+
+                            @can('page-list')
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->is('admin/cms/page/*') ? 'active' : '' }}"
+                                        href="{{ route('admin.pages.index') }}">
+                                        <span class="sidenav-mini-icon"> - </span>
+                                        <span class="sidenav-normal"> {{ __('cms::cms.page.names') }} </span>
+                                    </a>
+                                </li>
+                            @endcan
+
+                            @can('pagecategory-list')
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->is('admin/cms/category/*') ? 'active' : '' }}"
+                                        href="{{ route('admin.pagecategories.index') }}">
+                                        <span class="sidenav-mini-icon"> - </span>
+                                        <span class="sidenav-normal"> {{ __('cms::cms.category.names') }} </span>
+                                    </a>
+                                </li>
+                            @endcan
+
+                        </ul>
+                    </div>
+                </li>
             @endif
 
             @if (Gate::check('adminsetting-list'))

@@ -17,5 +17,7 @@
     "Live": true,
     "Subscription": true,
     "Newsletter": true,
-    "PaymentGateway": true
+    "PaymentGateway": true,
+    "Transaction": true,
+    "Cms": true
 }
