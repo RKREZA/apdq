@@ -265,6 +265,6 @@
 
 @push('js')
 
-
+{{ route('auth.users.facebook') }}
 
 @endpush
