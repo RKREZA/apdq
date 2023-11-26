@@ -1383,20 +1383,20 @@ ul#links_muanu {
     justify-content: center;
 }
 .preloader .preloader_image{
-    width: 180px;
-    margin-top:-5rem;
+    width: 100px;
+    margin-top:0rem;
 }
 .loader{
     position: absolute;
     left: 50%;
-    margin-top: -1rem;
+    margin-top: 8rem;
     transform: translate(-50%, -50%);
     height: 2px;
     width: 178px;
-    background-color: #000000;
+    background-color: #fff;
 }
 .loading{
-    background-color: #fdde09;
+    background-color: #1c449d;
     width: 50px;
     height: 2px;
     animation: animation 3s infinite;
