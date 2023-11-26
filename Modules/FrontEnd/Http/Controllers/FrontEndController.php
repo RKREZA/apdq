@@ -19,7 +19,7 @@ class FrontEndController extends Controller
     {
         $frontend_setting   = FrontendSetting::first();
 
-        return view('frontend::frontend.home');
+        return view('frontend::frontend.home', compact('frontend_setting'));
     }
 
 }

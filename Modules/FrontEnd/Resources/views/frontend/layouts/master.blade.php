@@ -32,12 +32,7 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 
     <style>
-        @if (Session::get('locale') === 'en')
-            .mainmenu a{
-                padding: 17px 18px !important;
-                font-size: 13px !important;
-            }
-        @endif
+        
     </style>
 
     @stack('css')
@@ -47,7 +42,6 @@
 <body>
     <div class="main-wrapper">
         @include('frontend::frontend.layouts.preloader')
-        @include('frontend::frontend.layouts.city')
         @include('frontend::frontend.layouts.header')
         @yield('content')
         @include('frontend::frontend.layouts.footer')

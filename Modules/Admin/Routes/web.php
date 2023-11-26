@@ -34,6 +34,13 @@ Route::post('verify/captcha', function (\Illuminate\Http\Request $request) {
 
 
 
+
+
+		
+Route::get('auth/facebook', 		'LoginController@facebookRedirect')->name('auth.users.facebook');
+Route::get('auth/facebook/callback', 'LoginController@loginWithFacebook')->name('auth.users.facebook.callback');
+
+
 Route::group(['middleware'=>'language'],function (){
 	Route::prefix('admin')->group(function () {
 		// Auth
@@ -42,11 +49,6 @@ Route::group(['middleware'=>'language'],function (){
 		Route::get('/logout', 		    'LoginController@logout')->name('admin.logout');
 		Route::get('/forgot-password', 	'ForgotPasswordController@forgot_password')->middleware('guest')->name('admin.password.request');
 		Route::post('/forgot-password', 'ForgotPasswordController@forgot_password_go')->middleware('guest')->name('admin.password.email');
-
-
-		
-		Route::get('auth/facebook', 		'LoginController@facebookRedirect')->name('auth.users.facebook');
-		Route::get('auth/facebook/callback', 'LoginController@loginWithFacebook')->name('auth.users.facebook.callback');
 
 
 
