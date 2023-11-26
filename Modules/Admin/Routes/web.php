@@ -38,7 +38,7 @@ Route::get('auth/facebook/callback', 'LoginController@loginWithFacebook')->name(
 
 
 Route::group(['middleware'=>'language'],function (){
-	Route::prefix('admin')->group(function () {
+	Route::prefix('auth')->group(function () {
 		// Auth
 		Route::get('/login', 		    'LoginController@login')->name('admin.login');
 		Route::post('/login', 	        'LoginController@login_go')->name('admin.login.go');

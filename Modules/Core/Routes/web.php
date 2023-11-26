@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware'=>'language'],function (){
-	Route::prefix('admin')->group(function () {
+	Route::prefix('auth')->group(function () {
 		// Route::group(['middleware' => ['auth']], function() {
             // files
             Route::prefix('file')->group(function () {

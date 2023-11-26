@@ -21,7 +21,7 @@
 
             @can('video-list')
                 <li class="nav-item ">
-                    <a class="nav-link  {{ request()->is('admin/video/*') ? 'active' : '' }}" href="{{ route('admin.videos.index') }}">
+                    <a class="nav-link  {{ request()->is('auth/video/*') ? 'active' : '' }}" href="{{ route('admin.videos.index') }}">
                         <img src="{{ asset('assets/backend/img/icons/optimized/video-white.png') }}" class="asideicon" alt="">
                         <span class="sidenav-normal"> {{ __('video::video.video.name') }} </span>
                     </a>
@@ -31,7 +31,7 @@
 
             @can('live-list')
                 <li class="nav-item ">
-                    <a class="nav-link  {{ request()->is('admin/live/*') ? 'active' : '' }}" href="{{ route('admin.lives.index') }}">
+                    <a class="nav-link  {{ request()->is('auth/live/*') ? 'active' : '' }}" href="{{ route('admin.lives.index') }}">
                         <img src="{{ asset('assets/backend/img/icons/optimized/live-white.png') }}" class="asideicon" alt="">
                         <span class="sidenav-normal"> {{ __('live::live.live.name') }} </span>
                     </a>
@@ -41,7 +41,7 @@
 
             @can('subscription-list')
                 <li class="nav-item ">
-                    <a class="nav-link  {{ request()->is('admin/subscription/*') ? 'active' : '' }}" href="{{ route('admin.subscriptions.index') }}">
+                    <a class="nav-link  {{ request()->is('auth/subscription/*') ? 'active' : '' }}" href="{{ route('admin.subscriptions.index') }}">
                         <img src="{{ asset('assets/backend/img/icons/optimized/subscription-white.png') }}" class="asideicon" alt="">
                         <span class="sidenav-normal"> {{ __('subscription::subscription.subscription.name') }} </span>
                     </a>
@@ -51,7 +51,7 @@
 
             @can('newsletter-list')
                 <li class="nav-item ">
-                    <a class="nav-link  {{ request()->is('admin/newsletter/*') ? 'active' : '' }}" href="{{ route('admin.newsletters.index') }}">
+                    <a class="nav-link  {{ request()->is('auth/newsletter/*') ? 'active' : '' }}" href="{{ route('admin.newsletters.index') }}">
                         <img src="{{ asset('assets/backend/img/icons/optimized/email-white.png') }}" class="asideicon" alt="">
                         <span class="sidenav-normal"> {{ __('newsletter::newsletter.newsletter.name') }} </span>
                     </a>
@@ -61,16 +61,16 @@
 
             @if (Gate::check('post-list') || Gate::check('postcategory-list'))
                 <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#blog" class="nav-link fw-normal {{ request()->is('admin/blog/*') ? 'active' : '' }}" aria-controls="blog" role="button" aria-expanded="{{ request()->is('admin/blog/*') ? 'true' : 'false' }}">
+                    <a data-bs-toggle="collapse" href="#blog" class="nav-link fw-normal {{ request()->is('auth/blog/*') ? 'active' : '' }}" aria-controls="blog" role="button" aria-expanded="{{ request()->is('auth/blog/*') ? 'true' : 'false' }}">
                         <img src="{{ asset('assets/backend/img/icons/optimized/blog-white.png') }}" class="asideicon" alt="">
                         <span class="nav-link-text">{{ __('blog::blog.blog') }}</span>
                     </a>
-                    <div class="collapse {{ request()->is('admin/blog/*') ? 'show' : '' }}" id="blog">
+                    <div class="collapse {{ request()->is('auth/blog/*') ? 'show' : '' }}" id="blog">
                         <ul class="nav ">
 
                             @can('post-list')
                                 <li class="nav-item">
-                                    <a class="nav-link {{ request()->is('admin/blog/post/*') ? 'active' : '' }}"
+                                    <a class="nav-link {{ request()->is('auth/blog/post/*') ? 'active' : '' }}"
                                         href="{{ route('admin.posts.index') }}">
                                         <span class="sidenav-mini-icon"> - </span>
                                         <span class="sidenav-normal"> {{ __('blog::blog.post.names') }} </span>
@@ -80,7 +80,7 @@
 
                             @can('postcategory-list')
                                 <li class="nav-item">
-                                    <a class="nav-link {{ request()->is('admin/blog/category/*') ? 'active' : '' }}"
+                                    <a class="nav-link {{ request()->is('auth/blog/category/*') ? 'active' : '' }}"
                                         href="{{ route('admin.postcategories.index') }}">
                                         <span class="sidenav-mini-icon"> - </span>
                                         <span class="sidenav-normal"> {{ __('blog::blog.category.names') }} </span>
@@ -96,7 +96,7 @@
 
             @can('paymentgateway-list')
                 <li class="nav-item ">
-                    <a class="nav-link  {{ request()->is('admin/paymentgateway/*') ? 'active' : '' }}" href="{{ route('admin.paymentgateways.index') }}">
+                    <a class="nav-link  {{ request()->is('auth/paymentgateway/*') ? 'active' : '' }}" href="{{ route('admin.paymentgateways.index') }}">
                         <img src="{{ asset('assets/backend/img/icons/optimized/paymentgateway-white.png') }}" class="asideicon" alt="">
                         <span class="sidenav-normal"> {{ __('paymentgateway::paymentgateway.paymentgateway.name') }} </span>
                     </a>
@@ -106,7 +106,7 @@
 
             @can('transaction-list')
                 <li class="nav-item ">
-                    <a class="nav-link  {{ request()->is('admin/transaction/*') ? 'active' : '' }}" href="{{ route('admin.transactions.index') }}">
+                    <a class="nav-link  {{ request()->is('auth/transaction/*') ? 'active' : '' }}" href="{{ route('admin.transactions.index') }}">
                         <img src="{{ asset('assets/backend/img/icons/optimized/transaction-white.png') }}" class="asideicon" alt="">
                         <span class="sidenav-normal"> {{ __('transaction::transaction.transaction.name') }} </span>
                     </a>
@@ -118,16 +118,16 @@
 
             @if (Gate::check('user-list') || Gate::check('permissiongroup-list') || Gate::check('role-list') || Gate::check('permission-list'))
                 <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#usermanagement" class="nav-link fw-normal {{ request()->is('admin/um/*') ? 'active' : '' }}" aria-controls="usermanagement" role="button" aria-expanded="{{ request()->is('admin/um/*') ? 'true' : 'false' }}">
+                    <a data-bs-toggle="collapse" href="#usermanagement" class="nav-link fw-normal {{ request()->is('auth/um/*') ? 'active' : '' }}" aria-controls="usermanagement" role="button" aria-expanded="{{ request()->is('auth/um/*') ? 'true' : 'false' }}">
                         <img src="{{ asset('assets/backend/img/icons/optimized/usermanagement-white.png') }}" class="asideicon" alt="">
                         <span class="nav-link-text">{{ __('user::user.user') }}</span>
                     </a>
-                    <div class="collapse {{ request()->is('admin/um/*') ? 'show' : '' }}" id="usermanagement">
+                    <div class="collapse {{ request()->is('auth/um/*') ? 'show' : '' }}" id="usermanagement">
                         <ul class="nav ">
 
                             @can('user-list')
                                 <li class="nav-item">
-                                    <a class="nav-link {{ request()->is('admin/um/users/*') ? 'active' : '' }}"
+                                    <a class="nav-link {{ request()->is('auth/um/users/*') ? 'active' : '' }}"
                                         href="{{ route('admin.users.index') }}">
                                         <span class="sidenav-mini-icon"> - </span>
                                         <span class="sidenav-normal"> {{ __('user::user.names') }} </span>
@@ -137,7 +137,7 @@
 
                             @can('role-list')
                                 <li class="nav-item">
-                                    <a class="nav-link {{ request()->is('admin/um/roles/*') ? 'active' : '' }}"
+                                    <a class="nav-link {{ request()->is('auth/um/roles/*') ? 'active' : '' }}"
                                         href="{{ route('admin.roles.index') }}">
                                         <span class="sidenav-mini-icon"> - </span>
                                         <span class="sidenav-normal"> {{ __('user::role.names') }} </span>
@@ -147,7 +147,7 @@
 
                             @can('permission-list')
                                 <li class="nav-item">
-                                    <a class="nav-link {{ request()->is('admin/um/permissions/*') ? 'active' : '' }}" href="{{ route('admin.permissions.index') }}">
+                                    <a class="nav-link {{ request()->is('auth/um/permissions/*') ? 'active' : '' }}" href="{{ route('admin.permissions.index') }}">
                                         <span class="sidenav-mini-icon"> - </span>
                                         <span class="sidenav-normal"> {{ __('user::permission.names') }} </span>
                                     </a>
@@ -162,16 +162,16 @@
 
             @if (Gate::check('page-list') || Gate::check('pagecategory-list'))
                 <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#cms" class="nav-link fw-normal {{ request()->is('admin/cms/*') ? 'active' : '' }}" aria-controls="cms" role="button" aria-expanded="{{ request()->is('admin/cms/*') ? 'true' : 'false' }}">
+                    <a data-bs-toggle="collapse" href="#cms" class="nav-link fw-normal {{ request()->is('auth/cms/*') ? 'active' : '' }}" aria-controls="cms" role="button" aria-expanded="{{ request()->is('auth/cms/*') ? 'true' : 'false' }}">
                         <img src="{{ asset('assets/backend/img/icons/optimized/cms-white.png') }}" class="asideicon" alt="">
                         <span class="nav-link-text">{{ __('cms::cms.cms') }}</span>
                     </a>
-                    <div class="collapse {{ request()->is('admin/cms/*') ? 'show' : '' }}" id="cms">
+                    <div class="collapse {{ request()->is('auth/cms/*') ? 'show' : '' }}" id="cms">
                         <ul class="nav ">
 
                             @can('page-list')
                                 <li class="nav-item">
-                                    <a class="nav-link {{ request()->is('admin/cms/page/*') ? 'active' : '' }}"
+                                    <a class="nav-link {{ request()->is('auth/cms/page/*') ? 'active' : '' }}"
                                         href="{{ route('admin.pages.index') }}">
                                         <span class="sidenav-mini-icon"> - </span>
                                         <span class="sidenav-normal"> {{ __('cms::cms.page.names') }} </span>
@@ -181,7 +181,7 @@
 
                             @can('pagecategory-list')
                                 <li class="nav-item">
-                                    <a class="nav-link {{ request()->is('admin/cms/category/*') ? 'active' : '' }}"
+                                    <a class="nav-link {{ request()->is('auth/cms/category/*') ? 'active' : '' }}"
                                         href="{{ route('admin.pagecategories.index') }}">
                                         <span class="sidenav-mini-icon"> - </span>
                                         <span class="sidenav-normal"> {{ __('cms::cms.category.names') }} </span>
@@ -196,49 +196,49 @@
 
             @if (Gate::check('adminsetting-list'))
                 <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#componentsExamples" class="nav-link fw-normal {{ request()->is('admin/setting/*') ? 'active' : '' }}" aria-controls="componentsExamples" role="button" aria-expanded=" {{ request()->is('admin/setting/*') ? 'true' : 'false' }}">
+                    <a data-bs-toggle="collapse" href="#componentsExamples" class="nav-link fw-normal {{ request()->is('auth/setting/*') ? 'active' : '' }}" aria-controls="componentsExamples" role="button" aria-expanded=" {{ request()->is('auth/setting/*') ? 'true' : 'false' }}">
                         <img src="{{ asset('assets/backend/img/icons/optimized/adminsetting-white.png') }}" class="asideicon" alt="">
                         <span class="nav-link-text">{{ __('setting::setting.adminsetting.index') }}</span>
                     </a>
-                    <div class="collapse  {{ request()->is('admin/setting/*') ? 'show' : '' }}" id="componentsExamples">
+                    <div class="collapse  {{ request()->is('auth/setting/*') ? 'show' : '' }}" id="componentsExamples">
                         <ul class="nav ">
                             <li class="nav-item ">
-                                <a class="nav-link  {{ request()->is('admin/setting/adminsetting/*') ? 'active' : '' }}" href="{{ route('admin.setting.adminsettings.index') }}">
+                                <a class="nav-link  {{ request()->is('auth/setting/adminsetting/*') ? 'active' : '' }}" href="{{ route('admin.setting.adminsettings.index') }}">
                                     <span class="sidenav-mini-icon"> - </span>
                                     <span class="sidenav-normal"> {{ __('setting::setting.adminsetting.index') }} </span>
                                 </a>
                             </li>
 
                             {{-- <li class="nav-item ">
-                                <a class="nav-link  {{ request()->is('admin/setting/sms/index*') ? 'active' : '' }}" href="{{ route('admin.setting.smssettings.index') }}">
+                                <a class="nav-link  {{ request()->is('auth/setting/sms/index*') ? 'active' : '' }}" href="{{ route('admin.setting.smssettings.index') }}">
                                     <span class="sidenav-mini-icon"> - </span>
                                     <span class="sidenav-normal"> {{ __('setting::sms.index.title') }} </span>
                                 </a>
                             </li> --}}
 
                             <li class="nav-item ">
-                                <a class="nav-link  {{ request()->is('admin/setting/smtp/index*') ? 'active' : '' }}" href="{{ route('admin.setting.smtpsettings.index') }}">
+                                <a class="nav-link  {{ request()->is('auth/setting/smtp/index*') ? 'active' : '' }}" href="{{ route('admin.setting.smtpsettings.index') }}">
                                     <span class="sidenav-mini-icon"> - </span>
                                     <span class="sidenav-normal"> {{ __('setting::smtp.index.title') }} </span>
                                 </a>
                             </li>
 
                             <li class="nav-item ">
-                                <a class="nav-link  {{ request()->is('admin/setting/language/*') ? 'active' : '' }}" href="{{ route('admin.setting.languages.index') }}">
+                                <a class="nav-link  {{ request()->is('auth/setting/language/*') ? 'active' : '' }}" href="{{ route('admin.setting.languages.index') }}">
                                     <span class="sidenav-mini-icon"> - </span>
                                     <span class="sidenav-normal"> {{ __('language::language.name') }} </span>
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link  {{ request()->is('admin/setting/media/*') ? 'active' : '' }}" href="{{ route('admin.media.index') }}">
+                                <a class="nav-link  {{ request()->is('auth/setting/media/*') ? 'active' : '' }}" href="{{ route('admin.media.index') }}">
                                     <span class="sidenav-mini-icon"> - </span>
                                     <span class="nav-link-text">{{ __('setting::setting.media_manager.name') }}</span>
                                 </a>
                             </li>
 
                             <li class="nav-item ">
-                                <a class="nav-link  {{ request()->is('admin/setting/backup/*') ? 'active' : '' }}" href="{{ route('admin.setting.backup.index') }}">
+                                <a class="nav-link  {{ request()->is('auth/setting/backup/*') ? 'active' : '' }}" href="{{ route('admin.setting.backup.index') }}">
                                     <span class="sidenav-mini-icon"> - </span>
                                     <span class="sidenav-normal"> {{ __('setting::setting.backup.name') }} </span>
                                 </a>
@@ -266,17 +266,17 @@
 
             @if (Gate::check('frontendsetting-list'))
                 <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#frontendmanager" class="nav-link fw-normal {{ request()->is('admin/frontendmanager/*') ? 'active' : '' }}"
-                        aria-controls="frontendmanager" role="button" aria-expanded=" {{ request()->is('admin/frontendmanager/*') ? 'true' : 'false' }}">
+                    <a data-bs-toggle="collapse" href="#frontendmanager" class="nav-link fw-normal {{ request()->is('auth/frontendmanager/*') ? 'active' : '' }}"
+                        aria-controls="frontendmanager" role="button" aria-expanded=" {{ request()->is('auth/frontendmanager/*') ? 'true' : 'false' }}">
                         <img src="{{ asset('assets/backend/img/icons/optimized/frontend-white.png') }}" class="asideicon" alt="">
                         <span class="nav-link-text">{{ __('frontendmanager::frontendmanager.frontend_manager') }}</span>
                     </a>
-                    <div class="collapse  {{ request()->is('admin/frontendmanager/*') ? 'show' : '' }}" id="frontendmanager">
+                    <div class="collapse  {{ request()->is('auth/frontendmanager/*') ? 'show' : '' }}" id="frontendmanager">
                         <ul class="nav ">
 
                             @can('frontendsetting-list')
                                 <li class="nav-item ">
-                                    <a class="nav-link  {{ request()->is('admin/frontendmanager/frontendsetting/*') ? 'active' : '' }}" href="{{ route('admin.frontendmanager.frontendsettings.index') }}">
+                                    <a class="nav-link  {{ request()->is('auth/frontendmanager/frontendsetting/*') ? 'active' : '' }}" href="{{ route('admin.frontendmanager.frontendsettings.index') }}">
                                         <span class="sidenav-mini-icon"> - </span>
                                         <span class="sidenav-normal"> {{ __('frontendmanager::frontendmanager.index.title') }} </span>
                                     </a>
@@ -291,7 +291,7 @@
 
             @can('feedback-list')
                 <li class="nav-item ">
-                    <a class="nav-link  {{ request()->is('admin/feedback/*') ? 'active' : '' }}" href="{{ route('admin.feedbacks.index') }}">
+                    <a class="nav-link  {{ request()->is('auth/feedback/*') ? 'active' : '' }}" href="{{ route('admin.feedbacks.index') }}">
                         <img src="{{ asset('assets/backend/img/icons/optimized/feedback-white.png') }}" class="asideicon" alt="">
                         <span class="sidenav-normal"> {{ __('feedback::feedback.feedback.name') }} </span>
                     </a>
@@ -301,7 +301,7 @@
 
             @can('faq-list')
                 <li class="nav-item ">
-                    <a class="nav-link  {{ request()->is('admin/faq/*') ? 'active' : '' }}" href="{{ route('admin.faqs.index') }}">
+                    <a class="nav-link  {{ request()->is('auth/faq/*') ? 'active' : '' }}" href="{{ route('admin.faqs.index') }}">
                         <img src="{{ asset('assets/backend/img/icons/optimized/faq-white.png') }}" class="asideicon" alt="">
                         <span class="sidenav-normal"> {{ __('faq::faq.faq.name') }} </span>
                     </a>
@@ -311,7 +311,7 @@
 
             @can('announcement-list')
                 <li class="nav-item ">
-                    <a class="nav-link  {{ request()->is('admin/announcement/*') ? 'active' : '' }}" href="{{ route('admin.announcements.index') }}">
+                    <a class="nav-link  {{ request()->is('auth/announcement/*') ? 'active' : '' }}" href="{{ route('admin.announcements.index') }}">
                         <img src="{{ asset('assets/backend/img/icons/optimized/announcement-white.png') }}" class="asideicon" alt="">
                         <span class="sidenav-normal"> {{ __('announcement::announcement.name') }} </span>
                     </a>

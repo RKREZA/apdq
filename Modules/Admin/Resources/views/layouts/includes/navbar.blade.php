@@ -18,8 +18,8 @@
             {{-- <ul class="navbar-nav justify-content-start w-60">
 
                 <li class="nav-item">
-                    <a href="{{ route('dashboard') }}" class="nav-link {{ request()->is('admin/dashboard*') ? 'bg-gradient-dark text-white' : '' }}" data-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="{{ __('admin::dashboard.title') }}">
-                        @if (request()->is('admin/dashboard*'))
+                    <a href="{{ route('dashboard') }}" class="nav-link {{ request()->is('auth/dashboard*') ? 'bg-gradient-dark text-white' : '' }}" data-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="{{ __('admin::dashboard.title') }}">
+                        @if (request()->is('auth/dashboard*'))
                             <img src="{{ asset('assets/backend/img/icons/optimized/dashboard-color.png') }}" class="icon" alt="">
                         @else
                             <img src="{{ asset('assets/backend/img/icons/optimized/dashboard.png') }}" class="icon" alt="">
@@ -66,13 +66,13 @@
 
                 <li class="nav-item dropdown">
 
-                    <a href="javascript:;" class="nav-link {{ request()->is('admin/profile*') ? 'bg-gradient-dark text-white' : '' }}" id="dropdownMenuButton"
+                    <a href="javascript:;" class="nav-link {{ request()->is('auth/profile*') ? 'bg-gradient-dark text-white' : '' }}" id="dropdownMenuButton"
                         data-bs-toggle="dropdown" aria-expanded="false" data-toggle="tooltip" data-bs-placement="left" title="" data-bs-original-title="{{ __('admin::auth.profile.index') }}">
 
                         @if (count(auth()->user()->files)>0)
                             <img src="/@if(count(auth()->user()->files)>0){{ auth()->user()->files[0]->path }}@endif" alt="" style="height: 25px;width: 25px;margin-top: -3px;border-radius: 20px;">
                         @else
-                            @if (request()->is('admin/profile*') || Session::get('mode') == 'dark')
+                            @if (request()->is('auth/profile*') || Session::get('mode') == 'dark')
                                 <img src="{{ asset('assets/backend/img/icons/optimized/user-white.png') }}" class="icon" id="user" alt="">
                             @else
                                 <img src="{{ asset('assets/backend/img/icons/optimized/user.png') }}" class="icon" id="user" alt="">

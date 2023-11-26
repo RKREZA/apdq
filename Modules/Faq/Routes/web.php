@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\Language;
 
 Route::group(['middleware'=>'language'],function (){
-	Route::prefix('admin')->group(function () {
+	Route::prefix('auth')->group(function () {
 
 		Route::group(['middleware' => ['auth']], function() {
 
