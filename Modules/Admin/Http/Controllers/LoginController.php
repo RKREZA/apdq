@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Session;
 use Modules\FrontEndManager\Entities\FrontendSetting;
 use Modules\Setting\Entities\Setting;
 use TimeHunter\LaravelGoogleReCaptchaV3\Validations\GoogleReCaptchaV3ValidationRule;
+use Socialite;
 
 class LoginController extends Controller
 {
