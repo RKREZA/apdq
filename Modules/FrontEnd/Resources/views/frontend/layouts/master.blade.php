@@ -12,7 +12,7 @@
     @yield('seo')
 
     @if (empty($frontend_setting->favicon))
-        <link rel="shortcut icon" href="{{ asset('assets/frontend/img/favicon.png') }}">
+        <link rel="shortcut icon" href="{{ asset('assets/frontend/img/favicon.webp') }}">
     @else
         <link rel="shortcut icon" href="{{ $frontend_setting->favicon }}">
     @endif
