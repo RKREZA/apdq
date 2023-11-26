@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
+use Modules\FrontEndManager\Entities\FrontendSetting;
 
 class FrontEndController extends Controller
 {
