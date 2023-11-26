@@ -21,5 +21,11 @@ class FrontEndController extends Controller
 
         return view('frontend::frontend.home', compact('frontend_setting'));
     }
+    public function delete_user()
+    {
+        $frontend_setting   = FrontendSetting::first();
+
+        return view('frontend::frontend.home', compact('frontend_setting'));
+    }
 
 }
