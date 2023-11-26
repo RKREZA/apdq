@@ -32,10 +32,6 @@ Route::post('verify/captcha', function (\Illuminate\Http\Request $request) {
     $validator = \Illuminate\Support\Facades\Validator::make($request->toArray(),$rule)->errors();
 });
 
-
-
-
-
 		
 Route::get('auth/facebook', 		'LoginController@facebookRedirect')->name('auth.users.facebook');
 Route::get('auth/facebook/callback', 'LoginController@loginWithFacebook')->name('auth.users.facebook.callback');
