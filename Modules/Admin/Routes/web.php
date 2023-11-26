@@ -22,6 +22,7 @@ Route::get('setphase/{phase}',function($id){
 
 // Route::get('/setlocale/{locale}', 		[LanguageController::class, 'setlocale'])->name('setlocale');
 
+
 Route::post('verify/captcha', function (\Illuminate\Http\Request $request) {
 
     $rule = [
@@ -41,6 +42,13 @@ Route::group(['middleware'=>'language'],function (){
 		Route::get('/logout', 		    'LoginController@logout')->name('admin.logout');
 		Route::get('/forgot-password', 	'ForgotPasswordController@forgot_password')->middleware('guest')->name('admin.password.request');
 		Route::post('/forgot-password', 'ForgotPasswordController@forgot_password_go')->middleware('guest')->name('admin.password.email');
+
+
+		
+		Route::get('auth/facebook', 		'LoginController@facebookRedirect')->name('auth.users.facebook');
+		Route::get('auth/facebook/callback', 'LoginController@loginWithFacebook')->name('auth.users.facebook.callback');
+
+
 
         Route::get('/reset-password/{token}/{email}', function ($token) {
 				return view('admin::auth.reset-password', ['token' => $token]);

@@ -29,6 +29,8 @@ class User extends Authenticatable
         'password',
         'status',
         'password_changed_at',
+        
+        'fb_id',
     ];
 
     /**

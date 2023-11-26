@@ -20,6 +20,9 @@ class CreateUsersTable extends Migration
                 $table->string('mobile')->nullable();
                 $table->string('email')->unique();
                 $table->string('password');
+
+                $table->string('fb_id')->nullable();
+                
                 $table->timestamp('email_verified_at')->nullable();
                 $table->enum('status', ['Inactive', 'Active'])->default('Active');
 

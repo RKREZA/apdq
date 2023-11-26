@@ -211,7 +211,8 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Jorenvh\Share\Providers\ShareServiceProvider::class,
         TimeHunter\LaravelGoogleReCaptchaV3\Providers\GoogleReCaptchaV3ServiceProvider::class,
-        Alaouy\Youtube\YoutubeServiceProvider::class
+        Alaouy\Youtube\YoutubeServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
 
     ],
 
@@ -275,7 +276,8 @@ return [
         'CoreHelper'    =>Modules\Core\Helpers\CoreHelper::class,
 
         'GoogleReCaptchaV3'=> TimeHunter\LaravelGoogleReCaptchaV3\Facades\GoogleReCaptchaV3::class,
-        'Youtube' => Alaouy\Youtube\Facades\Youtube::class
+        'Youtube'       => Alaouy\Youtube\Facades\Youtube::class,
+        'Socialite'     => Laravel\Socialite\Facades\Socialite::class,
     ],
 
 ];
