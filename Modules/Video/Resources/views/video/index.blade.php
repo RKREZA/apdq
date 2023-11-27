@@ -23,12 +23,12 @@
                 'img'                   => asset('assets/backend/img/icons/optimized/add.png'),
                 'permission'            => 'video-list',
             ],
-            '2'       => [
-                'url'                   => route('admin.videocategories.index'),
-                'text'                  =>__('video::video.category.name'),
-                'img'                   => asset('assets/backend/img/icons/optimized/list.png'),
-                'permission'            => 'videocategory-list',
-            ],
+            // '2'       => [
+            //     'url'                   => route('admin.videocategories.index'),
+            //     'text'                  =>__('video::video.category.name'),
+            //     'img'                   => asset('assets/backend/img/icons/optimized/list.png'),
+            //     'permission'            => 'videocategory-list',
+            // ],
         ],
         'include_header'        => __('video::video.video.name'),
         'include_breadcrumbs'   => [

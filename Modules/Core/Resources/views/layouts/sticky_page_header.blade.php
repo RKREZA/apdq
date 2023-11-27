@@ -7,13 +7,14 @@
                         <div class="col-md-1 col-2">
                             @if(isset($include_back_url) && !empty($include_back_url))
                                 <a href="{{ $include_back_url }}" class="go_back" title="{{ __('core::core.go_back') }}" data-toggle="tooltip" data-bs-placement="right">
-                                    <img src="{{ asset('assets/backend/img/icons/optimized/back.png') }}" class="pageicon_sm" alt="">
+                                    {{-- <img src="{{ asset('assets/backend/img/icons/optimized/back.png') }}" class="pageicon_sm" alt=""> --}}
+                                    <i class="fi fi-ss-angle-left"></i>
                                 </a>
                             @endif
                         </div>
                         <div class="col px-3 py-2">
                             <div class="row">
-                                <div class="col-12 col-md-5">
+                                <div class="col-6 col-md-5">
                                     @isset($include_breadcrumbs)
 
                                         <nav aria-label="breadcrumb" class="d-none d-md-block">
@@ -37,16 +38,18 @@
                                     </h6>
                                 </div>
 
-                                <div class="col-12 col-md-7">
+                                <div class="col-6 col-md-7">
                                    <div class="">
                                         @if(isset($include_button) && !empty($include_button))
                                             @foreach ($include_button as $button)
                                                 @can($button['permission'])
                                                     @if (isset($button['data-bs-target']))
                                                         <button data-bs-toggle="modal"  data-bs-target="{{ $button['data-bs-target'] }}" class="create-button btn btn-outline-dark btn-rounded mt-1 ms-1 my-0 float-end">
-                                                            @isset($button['img'])
+                                                            {{-- @isset($button['img'])
                                                                 <img src="{{ $button['img'] }}" class="pageicon" alt="">
-                                                            @endisset
+                                                            @endisset --}}
+
+                                                            <i class="fi fi-ss-add"></i>
 
                                                             @isset($button['text'])
                                                                 {{ $button['text'] }}
@@ -55,9 +58,11 @@
                                                     @else
                                                         @if (isset($button['target']))
                                                             <a href="@isset($button['url']) {{ $button['url'] }} @endisset" target="{{ $button['target'] }}" class="create-button btn btn-outline-dark btn-rounded mt-1 ms-1 my-0 float-end">
-                                                                @isset($button['img'])
+                                                                {{-- @isset($button['img'])
                                                                     <img src="{{ $button['img'] }}" class="pageicon" alt="">
-                                                                @endisset
+                                                                @endisset --}}
+
+                                                                <i class="fi fi-ss-add"></i>
 
                                                                 @isset($button['text'])
                                                                     {{ $button['text'] }}
@@ -66,9 +71,10 @@
 
                                                         @else
                                                             <a href="@isset($button['url']) {{ $button['url'] }} @endisset" class="create-button btn btn-outline-dark btn-rounded mt-1 ms-1 my-0 float-end">
-                                                                @isset($button['img'])
+                                                                {{-- @isset($button['img'])
                                                                     <img src="{{ $button['img'] }}" class="pageicon" alt="">
-                                                                @endisset
+                                                                @endisset --}}
+                                                                <i class="fi fi-ss-add"></i>
 
                                                                 @isset($button['text'])
                                                                     {{ $button['text'] }}
@@ -89,9 +95,10 @@
                             @can($include_trashes['permission'])
                                 <div class="col-md-1 col-2">
                                     <a href="@isset($include_trashes['url']) {{ $include_trashes['url'] }} @endisset" title="@isset($include_trashes['text']){{ $include_trashes['text'] }}@endisset" data-toggle="tooltip" class="trash_button">
-                                        @isset($include_trashes['img'])
+                                        {{-- @isset($include_trashes['img'])
                                             <img src="{{ asset('assets/backend/img/icons/optimized/trash.png') }}" class="pageicon" alt="">
-                                        @endisset
+                                        @endisset --}}
+                                        <i class="fi fi-ss-trash"></i>
                                     </a>
                                 </div>
                             @endcan

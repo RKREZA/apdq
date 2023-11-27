@@ -14,10 +14,15 @@ use Modules\Video\DataTables\VideosDataTable;
 use Modules\Video\DataTables\VideoTrashesDataTable;
 use Youtube;
 use Alaouy\Youtube\Rules\ValidYoutubeVideo;
+use App\Services\RumbleApiService;
+
+use GuzzleHttp\Client;
 
 class VideoController extends Controller
 {
-    function __construct()
+    private $rumbleApiService;
+
+    function __construct(RumbleApiService $rumbleApiService)
 	{
 		$this->middleware('auth');
 		$this->middleware('permission:video-list', ['only' => ['index']]);
@@ -25,6 +30,8 @@ class VideoController extends Controller
 		$this->middleware('permission:video-edit', ['only' => ['edit','update']]);
 		$this->middleware('permission:video-view', ['only' => ['view']]);
 		$this->middleware('permission:video-delete', ['only' => ['destroy']]);
+
+        $this->rumbleApiService = $rumbleApiService;
 	}
 
     public function index(VideosDataTable $dataTable)
@@ -285,13 +292,17 @@ class VideoController extends Controller
 
 
 
-    
+
 
     public function fetch_youtube_data_from_link(Request $request)
 	{
 
+        // $rules = [
+        //     'youtube_link' => ['bail', 'required', new ValidYoutubeVideo]
+        // ];
+
         $rules = [
-            'youtube_link' => ['bail', 'required', new ValidYoutubeVideo]
+            'youtube_link' => ['bail', 'required']
         ];
 
         $messages = [
@@ -299,6 +310,38 @@ class VideoController extends Controller
         ];
 
         $validate = $this->validate($request, $rules, $messages);
+
+
+
+
+
+        // $videoLink = $request->youtube_link; // Pass the video link as a parameter
+
+        // // dd($videoLink);
+
+        // $client = new Client();
+        // $response = $client->request('GET', $videoLink);
+        // $json = json_decode($response->getBody()->getContents());
+        // dd($response);
+        // $result =  response()->json([
+        //     'id' => $json->id,
+        //     'link' => $json->link,
+        //     'own' => $json->own,
+        //     'plays' => $json->plays,
+        //     'thumb' => $json->thumb,
+        //     'title' => $json->title,
+        // ]);
+        // dd($result);
+
+
+
+
+
+
+
+
+
+
 
         if (!$validate) {
             $error_msg  = __('core::core.message.error');
@@ -324,7 +367,7 @@ class VideoController extends Controller
             return $video;
         }
 
-    
+
     }
 
 
@@ -333,7 +376,7 @@ class VideoController extends Controller
     public function convertTimestamps($description, $videoId) {
         // Regular expression to match YouTube timestamps
         $pattern = '/(\d{1,2}:\d{1,2}\s?[apAPmM]*)/';
-        
+
         // Replace timestamps with clickable links
         $descriptionWithLinks = preg_replace_callback($pattern, function ($matches) use ($videoId) {
             // Convert matched timestamp to seconds

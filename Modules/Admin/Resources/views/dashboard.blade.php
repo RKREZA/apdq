@@ -22,95 +22,96 @@
         @endforeach
     @endif
 
-    <div class="row">
+    <div class="row my-5">
+
         <div class="col-md-3 mb-2">
             <a href="{{ route('admin.videos.index') }}">
-                <div class="card">
-                    <div class="card-body text-center p-4">
-                        <img src="{{ asset('assets/backend/img/icons/optimized/video-black.png') }}" class="dashboard-icon mt-2" alt="">
-                        <h4 class="h5 mt-2 p-0"> {{ __('video::video.video.name') }}</h4>
+                <div class="card rounded-3">
+                    <div class="card-header border-0 p-3 pt-2">
+                        <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
+                            <i class="fi fi-ss-play-alt"></i>
+                        </div>
+
+                        <div class="text-end pt-1">
+                            <p class="text-sm mb-0 text-capitalize">Total Videos</p>
+                            <h4 class="mb-0">{{ $videos }}</h4>
+                        </div>
+                    </div>
+                    <hr class="horizontal my-0 dark">
+
+                    <div class="card-footer border-0 p-3">
+                        <h6 class="mb-0">{{ __('video::video.video.name') }}</h6>
                     </div>
                 </div>
             </a>
         </div>
-        
+
         <div class="col-md-3 mb-2">
-            <a href="{{ route('admin.lives.index') }}">
-                <div class="card">
-                    <div class="card-body text-center p-4">
-                        <img src="{{ asset('assets/backend/img/icons/optimized/live-black.png') }}" class="dashboard-icon mt-2" alt="">
-                        <h4 class="h5 mt-2 p-0"> {{ __('live::live.live.name') }}</h4>
+            <a href="{{ route('admin.videos.index') }}">
+                <div class="card rounded-3">
+                    <div class="card-header border-0 p-3 pt-2">
+                        <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
+                            <i class="fi fi-ss-money-check-edit"></i>
+                        </div>
+
+                        <div class="text-end pt-1">
+                            <p class="text-sm mb-0 text-capitalize">Total Subscription</p>
+                            <h4 class="mb-0">{{ $subscriptions }}</h4>
+                        </div>
+                    </div>
+                    <hr class="horizontal my-0 dark">
+
+                    <div class="card-footer border-0 p-3">
+                        <h6 class="mb-0">{{ __('subscription::subscription.subscription.name') }}</h6>
                     </div>
                 </div>
             </a>
         </div>
-        
+
         <div class="col-md-3 mb-2">
-            <a href="{{ route('admin.subscriptions.index') }}">
-                <div class="card">
-                    <div class="card-body text-center p-4">
-                        <img src="{{ asset('assets/backend/img/icons/optimized/subscription-black.png') }}" class="dashboard-icon mt-2" alt="">
-                        <h4 class="h5 mt-2 p-0"> {{ __('subscription::subscription.subscription.name') }}</h4>
+            <a href="{{ route('admin.videos.index') }}">
+                <div class="card rounded-3">
+                    <div class="card-header border-0 p-3 pt-2">
+                        <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
+                            <i class="fi fi-ss-envelope-download"></i>
+                        </div>
+
+                        <div class="text-end pt-1">
+                            <p class="text-sm mb-0 text-capitalize">Total Emails</p>
+                            <h4 class="mb-0">{{ $newsletters }}</h4>
+                        </div>
+                    </div>
+                    <hr class="horizontal my-0 dark">
+
+                    <div class="card-footer border-0 p-3">
+                        <h6 class="mb-0">{{ __('newsletter::newsletter.newsletter.name') }}</h6>
                     </div>
                 </div>
             </a>
         </div>
-        
+
         <div class="col-md-3 mb-2">
-            <a href="{{ route('admin.newsletters.index') }}">
-                <div class="card">
-                    <div class="card-body text-center p-4">
-                        <img src="{{ asset('assets/backend/img/icons/optimized/email-black.png') }}" class="dashboard-icon mt-2" alt="">
-                        <h4 class="h5 mt-2 p-0"> {{ __('newsletter::newsletter.newsletter.name') }}</h4>
+            <a href="{{ route('admin.videos.index') }}">
+                <div class="card rounded-3">
+                    <div class="card-header border-0 p-3 pt-2">
+                        <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
+                            <i class="fi fi-ss-message-dollar"></i>
+                        </div>
+
+                        <div class="text-end pt-1">
+                            <p class="text-sm mb-0 text-capitalize">Total Amount</p>
+                            <h4 class="mb-0">{{ $transactions }}</h4>
+                        </div>
+                    </div>
+                    <hr class="horizontal my-0 dark">
+
+                    <div class="card-footer border-0 p-3">
+                        <h6 class="mb-0">{{ __('transaction::transaction.transaction.name') }}</h6>
                     </div>
                 </div>
             </a>
         </div>
-        
-        <div class="col-md-3 mb-2">
-            <a href="{{ route('admin.posts.index') }}">
-                <div class="card">
-                    <div class="card-body text-center p-4">
-                        <img src="{{ asset('assets/backend/img/icons/optimized/blog-black.png') }}" class="dashboard-icon mt-2" alt="">
-                        <h4 class="h5 mt-2 p-0"> {{ __('blog::blog.post.name') }}</h4>
-                    </div>
-                </div>
-            </a>
-        </div>
-        
-        <div class="col-md-3 mb-2">
-            <a href="{{ route('admin.paymentgateways.index') }}">
-                <div class="card">
-                    <div class="card-body text-center p-4">
-                        <img src="{{ asset('assets/backend/img/icons/optimized/paymentgateway-black.png') }}" class="dashboard-icon mt-2" alt="">
-                        <h4 class="h5 mt-2 p-0"> {{ __('paymentgateway::paymentgateway.paymentgateway.name') }}</h4>
-                    </div>
-                </div>
-            </a>
-        </div>
-        
-        <div class="col-md-3 mb-2">
-            <a href="{{ route('admin.transactions.index') }}">
-                <div class="card">
-                    <div class="card-body text-center p-4">
-                        <img src="{{ asset('assets/backend/img/icons/optimized/transaction-black.png') }}" class="dashboard-icon mt-2" alt="">
-                        <h4 class="h5 mt-2 p-0"> {{ __('transaction::transaction.transaction.name') }}</h4>
-                    </div>
-                </div>
-            </a>
-        </div>
-        
-        <div class="col-md-3 mb-2">
-            <a href="{{ route('admin.users.index') }}">
-                <div class="card">
-                    <div class="card-body text-center p-4">
-                        <img src="{{ asset('assets/backend/img/icons/optimized/user-black.png') }}" class="dashboard-icon mt-2" alt="">
-                        <h4 class="h5 mt-2 p-0"> {{ __('user::user.user') }}</h4>
-                    </div>
-                </div>
-            </a>
-        </div>
-        
+
     </div>
 
 

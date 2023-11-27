@@ -31,6 +31,11 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-solid-straight/css/uicons-solid-straight.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+
+
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <link href="{{ asset('assets/fonts/font.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/backend/css/flatpickr.min.css') }}" rel="stylesheet">
@@ -47,7 +52,7 @@
 
 </head>
 
-<body class="bg-gray-200 @if (Session::get('sidebar') == 'pin') g-sidenav-pinned @elseif(Session::get('sidebar') == 'unpin') g-sidenav-hidden @else g-sidenav-hidden @endif
+<body class="bg-gray-300 @if (Session::get('sidebar') == 'pin') g-sidenav-pinned @elseif(Session::get('sidebar') == 'unpin') g-sidenav-hidden @else g-sidenav-hidden @endif
 
     @if (Session::get('mode') == 'light')
 
@@ -59,9 +64,9 @@
     @include('admin::layouts.includes.preloader')
     @include('admin::layouts.includes.aside')
 
-    <main class="main-content g-sidenav-show position-relative max-height-vh-100 h-100 @if (Session::get('sidebar') == 'pin') g-sidenav-pinned @elseif(Session::get('sidebar') == 'unpin') g-sidenav-hidden @else g-sidenav-hidden @endif">
+    <main class="main-content g-sidenav-show position-relative max-height-vh-100 h-100 rounded-3 @if (Session::get('sidebar') == 'pin') g-sidenav-pinned @elseif(Session::get('sidebar') == 'unpin') g-sidenav-hidden @else g-sidenav-hidden @endif">
         @include('admin::layouts.includes.navbar')
-        <div class="container-fluid py-2 px-3 content">
+        <div class="container-fluid p-0 my-3 content">
             @yield('container')
             @include('admin::layouts.includes.footer')
         </div>

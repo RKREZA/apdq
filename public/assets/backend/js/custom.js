@@ -10,7 +10,7 @@ $(".sidebar_event").on('click', function () {
 
     $.ajax({
         type: "GET",
-        url: '/admin/set_sidebar',
+        url: '/auth/set_sidebar',
         success: function (result) {
             // if (result == 'pin') {
             //     $('body').removeClass("g-sidenav-hidden");
@@ -25,51 +25,37 @@ $(".sidebar_event").on('click', function () {
 
 // Set Mode (Light/Dark)
 $("#mode").on('click', function () {
-    var that = this;
-    var switchValue = $(this).prop("checked");
+    var switchValue = $("#mode_value").prop("checked");
 
-    if(switchValue == true){
+    if (switchValue) {
         $("body").addClass("dark-version");
-        $("#web").attr("src", "/assets/backend/img/icons/optimized/monitor-white.png");
-        $("#translate").attr("src", "/assets/backend/img/icons/optimized/translate-white.png");
-        $("#notification").attr("src", "/assets/backend/img/icons/optimized/notification-white.png");
-        $("#user").attr("src", "/assets/backend/img/icons/optimized/user-white.png");
-        $("#feedback-icon").attr("src", "/assets/backend/img/icons/optimized/feedback-white.png");
-        $("#nav").attr("src", "/assets/backend/img/icons/optimized/nav-white.png");
-    }else{
+        $("#mode i").removeClass("fi-ss-brightness").addClass("fi-ss-moon-stars");
+    } else {
         $("body").removeClass("dark-version");
-        $("#web").attr("src", "/assets/backend/img/icons/optimized/monitor.png");
-        $("#translate").attr("src", "/assets/backend/img/icons/optimized/translate.png");
-        $("#notification").attr("src", "/assets/backend/img/icons/optimized/notification.png");
-        $("#user").attr("src", "/assets/backend/img/icons/optimized/user.png");
-        $("#feedback-icon").attr("src", "/assets/backend/img/icons/optimized/feedback.png");
-        $("#nav").attr("src", "/assets/backend/img/icons/optimized/nav.png");
+        $("#mode i").removeClass("fi-ss-moon-stars").addClass("fi-ss-brightness");
     }
 
+    // Make an AJAX request to update the mode on the server
     $.ajax({
         type: "GET",
-        url: '/admin/set_mode',
+        url: '/auth/set_mode',
         success: function (result) {
-            if (result == 'light') {
+            // Handle the server response and update the body class and checkbox accordingly
+            if (result === 'light') {
                 $("body").removeClass("dark-version");
-                $("#web").attr("src", "/assets/backend/img/icons/optimized/monitor.png");
-                $("#translate").attr("src", "/assets/backend/img/icons/optimized/translate.png");
-                $("#notification").attr("src", "/assets/backend/img/icons/optimized/notification.png");
-                $("#user").attr("src", "/assets/backend/img/icons/optimized/user.png");
-                $("#feedback-icon").attr("src", "/assets/backend/img/icons/optimized/feedback.png");
-                $("#nav").attr("src", "/assets/backend/img/icons/optimized/nav.png");
-            } else if (result == 'dark') {
+                $("#mode_value").prop("checked", false);
+            } else if (result === 'dark') {
                 $("body").addClass("dark-version");
-                $("#web").attr("src", "/assets/backend/img/icons/optimized/monitor-white.png");
-                $("#translate").attr("src", "/assets/backend/img/icons/optimized/translate-white.png");
-                $("#notification").attr("src", "/assets/backend/img/icons/optimized/notification-white.png");
-                $("#user").attr("src", "/assets/backend/img/icons/optimized/user-white.png");
-                $("#feedback-icon").attr("src", "/assets/backend/img/icons/optimized/feedback-white.png");
-                $("#nav").attr("src", "/assets/backend/img/icons/optimized/nav-white.png");
+                $("#mode_value").prop("checked", true);
             }
+        },
+        error: function (error) {
+            // Handle errors if necessary
+            console.error('Error:', error);
         }
     });
 });
+
 
 // Preloader
 $(".preloader").fadeOut(100);

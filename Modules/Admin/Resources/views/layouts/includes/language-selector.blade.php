@@ -2,13 +2,15 @@
     $languages = \Modules\Language\Entities\Language::get();
 @endphp
 <li class="nav-item dropdown">
-    <a href="javascript:;" class="nav-link" id="dropdownMenuButton"
+    <a href="javascript:;" class="nav-link change-language" id="dropdownMenuButton"
         data-bs-toggle="dropdown" aria-expanded="false" data-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Change Language">
-        @if (Session::get('mode') == 'dark')
+        {{-- @if (Session::get('mode') == 'dark')
             <img src="{{ asset('assets/backend/img/icons/optimized/translate-white.png') }}" class="icon" id="translate" alt="">
         @else
             <img src="{{ asset('assets/backend/img/icons/optimized/translate.png') }}" class="icon" id="translate" alt="">
-        @endif
+        @endif --}}
+
+        <i class="fi fi-ss-language"></i>
 
         <span class="language-text" style="">
             @foreach ($languages as $language)
