@@ -113,7 +113,7 @@ class LoginController extends Controller
     public function logout(Request $request) {
         Auth::logout();
         // Session::forget('user_2fa');
-        return redirect('admin/login');
+        return redirect('auth/login');
     }
 
 
@@ -122,7 +122,7 @@ class LoginController extends Controller
 
 
 
-    
+
 
     public function facebookRedirect()
     {
@@ -131,10 +131,10 @@ class LoginController extends Controller
     public function loginWithFacebook()
     {
         try {
-    
+
             $user = Socialite::driver('facebook')->user();
             $isUser = User::where('fb_id', $user->id)->first();
-     
+
             if($isUser){
                 Auth::login($isUser);
                 return redirect('/dashboard');
@@ -145,11 +145,11 @@ class LoginController extends Controller
                     'fb_id' => $user->id,
                     'password' => encrypt('admin@123')
                 ]);
-    
+
                 Auth::login($createUser);
                 return redirect('/dashboard');
             }
-    
+
         } catch (Exception $exception) {
             dd($exception->getMessage());
         }
@@ -158,5 +158,5 @@ class LoginController extends Controller
 
 
 
-    
+
 }
