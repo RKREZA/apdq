@@ -40,7 +40,7 @@
 
 </head>
 
-<body class="bg-gray-200">
+<body class="bg-gray-300" style="background: url('/assets/backend/img/login-background.webp')">
 
 
     @include('admin::layouts.includes.preloader')

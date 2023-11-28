@@ -25,7 +25,7 @@
             </span>
             <div class="container my-auto">
                 <div class="row">
-                    <div class="col-lg-5 col-md-8 col-12 mx-auto">
+                    <div class="col-lg-4 col-md-8 col-12 mx-auto">
 
                         <div class="card z-index-0 fadeIn3 fadeInBottom">
                             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">

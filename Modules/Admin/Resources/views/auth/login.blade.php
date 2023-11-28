@@ -23,13 +23,14 @@
 @endpush
 
 @section('container')
+
     <main class="main-content mt-0">
         <section>
             <div class="page-header min-vh-100">
                 <div class="container my-auto">
                     <div class="row justify-content-center">
-                        <div class="col-md-5 my-4">
-                            <div class="card p-3" style="border-top: 3px solid #000; border-bottom: 3px solid #000;">
+                        <div class="col-md-4 my-4">
+                            <div class="card p-3" style="">
                                 <div class="row text-center px-4" style="">
                                     <div class="col-12">
                                         <img src="{{ asset('assets/backend/img/logo.webp') }}" style="" class="logo">
@@ -74,7 +75,7 @@
 
 
                                         {{-- @include('admin::layouts.includes.captcha') --}}
-                                        
+
                                         {!!  GoogleReCaptchaV3::renderField('login_id','login_action') !!}
 
                                         <div class="text-center">
@@ -109,7 +110,7 @@
 
     </main>
 
-    
+
 @endsection
 
 @push('js')
