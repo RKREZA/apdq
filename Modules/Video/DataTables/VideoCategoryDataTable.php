@@ -72,7 +72,7 @@ class VideoCategoryDataTable extends DataTable
 	        ->editColumn('updated_at', '{{date("jS M Y", strtotime($updated_at))}}')
 
             ->setRowId('id')
-            ->rawColumns(['action','checkbox','status']);
+            ->rawColumns(['icon','action','checkbox','status']);
     }
 
     /**

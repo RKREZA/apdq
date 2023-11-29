@@ -63,6 +63,26 @@
                     </div>
 
                     <div class="col-md-12">
+                        <div class="input-group input-group-outline my-2 is-filled @if(old('icon')) is-valid @endif @error('icon') is-invalid @enderror">
+                            <label class="form-label"><span class="required">{{ __('video::video.category.form.icon') }}</span></label>
+                            <input type="text" name="icon" class="form-control" value="{{ old('icon') }}">
+                            @error('icon')
+                                <em class="error invalid-video" style="display: inline-block;">{{ $message }}</em>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="input-group input-group-outline my-2 is-filled @if(old('description')) is-valid @endif @error('description') is-invalid @enderror">
+                            <label class="form-label"><span class="required">{{ __('video::video.category.form.description') }}</span></label>
+                            <textarea name="description" class="form-control" row="4">{{ old('description') }}</textarea>
+                            @error('description')
+                                <em class="error invalid-video" style="display: inline-block;">{{ $message }}</em>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
                         @can('videocategory-create')
                             <button type="submit" class="create-button btn btn-dark btn-rounded mt-1 my-0 border-2 float-end" id="">
                                 <img src="{{ asset('assets/backend/img/icons/optimized/save.png') }}" class="pageicon" alt="">

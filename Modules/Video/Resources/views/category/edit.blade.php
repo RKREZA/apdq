@@ -55,8 +55,28 @@
                     <div class="col-md-12">
                         <div class="input-group input-group-outline my-2 is-filled @if(old('code')) is-valid @endif @error('code') is-invalid @enderror">
                             <label class="form-label"><span class="required">{{ __('video::video.category.form.code') }}</span></label>
-                            <input type="text" name="code" class="form-control" value="{{ $videocategory->code }}">
+                            <input type="text" name="code" disabled class="form-control" value="{{ $videocategory->code }}">
                             @error('code')
+                                <em class="error invalid-video" style="display: inline-block;">{{ $message }}</em>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="input-group input-group-outline my-2 is-filled @if(old('icon')) is-valid @endif @error('icon') is-invalid @enderror">
+                            <label class="form-label"><span class="required">{{ __('video::video.category.form.icon') }}</span></label>
+                            <input type="text" name="icon" class="form-control" value="{{ $videocategory->icon }}">
+                            @error('icon')
+                                <em class="error invalid-video" style="display: inline-block;">{{ $message }}</em>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="input-group input-group-outline my-2 is-filled @if(old('description')) is-valid @endif @error('description') is-invalid @enderror">
+                            <label class="form-label"><span class="required">{{ __('video::video.category.form.description') }}</span></label>
+                            <textarea name="description" class="form-control" row="4">{{ $videocategory->description }}</textarea>
+                            @error('description')
                                 <em class="error invalid-video" style="display: inline-block;">{{ $message }}</em>
                             @enderror
                         </div>

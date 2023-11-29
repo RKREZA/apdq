@@ -27,6 +27,8 @@ return [
         'list' => 'Video Category List',
 
         'form' => [
+            'icon' => 'Icon',
+            'description' => 'Description',
             'code' => 'Code',
             'name' => 'Name',
         ],

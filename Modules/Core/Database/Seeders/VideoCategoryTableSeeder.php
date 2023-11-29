@@ -16,26 +16,29 @@ class VideoCategoryTableSeeder extends Seeder
     public function run()
     {
         VideoCategory::create([
-            'name'  => 'Blogue',
-            'code'  => 'Blogue',
-        ]);
-        VideoCategory::create([
-            'name'  => 'Commissions',
-            'code'  => 'Commissions',
-        ]);
-        VideoCategory::create([
             'name'  => 'Entrevues',
-            'code'  => 'Entrevues',
+            'code'  => 'entrevues',
+            'icon'  => '<i class="fi fi-ss-podium-star"></i>',
+            'description' => 'Des entretiens instructifs avec des leaders, experts et personnalités influentes.'
         ]);
         VideoCategory::create([
             'name'  => 'Points de presse',
-            'code'  => 'Points de presse',
+            'code'  => 'points-de-presse',
+            'icon'  => '<i class="fi fi-ss-memo-pad"></i>',
+            'description' => 'Nouvelles mises à jour et annonces officielles décryptées.'
+        ]);
+        VideoCategory::create([
+            'name'  => 'PPériode de questions',
+            'code'  => 'ppériode-de-questions',
+            'icon'  => '<i class="fi fi-ss-shield-interrogation"></i>',
+            'description' => 'Perspectives issues des séances de questions-réponses avec des acteurs clés'
         ]);
         VideoCategory::create([
             'name'  => 'Projets de loi',
-            'code'  => 'Projets de loi',
+            'code'  => 'projets-de-loi',
+            'icon'  => '<i class="fi fi-ss-gavel"></i>',
+            'description' => 'Exploration des initiatives législatives proposées et leurs implications.'
         ]);
 
-        
     }
 }

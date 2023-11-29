@@ -39,7 +39,7 @@
 
     <div class="col-md-8">
         <div class="row">
-            
+
             <div class="col-md-12">
                 <div class="input-group input-group-outline mt-3 is-filled @error('category_id') is-invalid @enderror is-filled">
                     <label class="form-label" for="category_id"><span class="required">{{ __('video::video.video.form.category_id') }}</span></label>
@@ -64,7 +64,7 @@
                     @enderror
                 </div>
             </div>
-        
+
             <div class="col-md-12">
                 <div class="input-group input-group-outline mt-3 is-filled @error('description') is-invalid @enderror">
                     <label class="form-label"><span class="required">{{ __('video::video.video.form.description') }}</span></label>
@@ -74,7 +74,7 @@
                     @enderror
                 </div>
             </div>
-        
+
             <div class="col-md-12">
                 <div class="input-group input-group-outline my-3 is-filled @error('tag') is-invalid @enderror">
                     <label class="form-label"><span class="required">{{ __('video::video.video.form.tag') }}</span></label>
@@ -97,7 +97,7 @@
                         @enderror
                     </div>
                 </div>
-            
+
                 <div class="col-md-12">
                     <div class="input-group input-group-outline mt-3 is-filled @error('seo_description') is-invalid @enderror">
                         <label class="form-label">{{ __('video::video.video.form.seo_description') }}</label>
@@ -107,7 +107,7 @@
                         @enderror
                     </div>
                 </div>
-            
+
                 <div class="col-md-12 mb-3">
                     <div class="input-group input-group-outline mt-3 is-filled @error('seo_keyword') is-invalid @enderror">
                         <label class="form-label">{{ __('video::video.video.form.seo_keyword') }}</label>
@@ -130,7 +130,15 @@
         </div>
     </div>
     <div class="col-md-4">
+        <p><b>Thumbnail</b></p>
         <img id="thumbnail_url" src="@if(isset($video)){{ $video->thumbnail_url }}@else{{ old('thumbnail_url') }}@endif" class="thumbnail w-100" onerror="this.onerror=null;this.src='{{ asset('assets/backend/img/no-image.png') }}';">
+
+        <div class="thumbnail mt-4" id="embed_html_container">
+            <p><b>Video</b></p>
+            <div id="embed_html_inside">
+                <img id="thumbnail_url" src="" class="thumbnail w-100" onerror="this.onerror=null;this.src='{{ asset('assets/backend/img/no-video.png') }}';">
+            </div>
+        </div>
     </div>
 </div>
 
@@ -153,7 +161,8 @@
                 $("#title").val(result.title);
                 $("#description").summernote('code',result.description);
                 $("#thumbnail_url").attr('src', result.thumbnail_url);
-                
+
+                $("#embed_html_inside").html(result.embed_html);
                 $("#embed_html").val(result.embed_html);
                 $("#thumbnail_url_val").val(result.thumbnail_url);
                 $("#external_id").val(result.external_id);

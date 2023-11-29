@@ -12,6 +12,6 @@ class VideoCategory extends Model
 {
     use HasFactory, Notifiable, Loggable, SoftDeletes;
 
-    protected $fillable = ['code', 'name', 'status'];
+    protected $fillable = ['code', 'name', 'icon', 'description', 'status'];
 
 }

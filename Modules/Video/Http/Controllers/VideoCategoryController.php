@@ -46,6 +46,8 @@ class VideoCategoryController extends Controller
         $rules = [
             'code' 					=> 'required|unique:video_categories,code',
 			'name' 			        => 'required|string',
+			'icon' 			        => 'nullable|string',
+			'description' 			=> 'nullable|string',
         ];
 
         $messages = [
@@ -59,7 +61,9 @@ class VideoCategoryController extends Controller
 		try {
 			$role = VideoCategory::create([
                 'name' => $request->input('name'),
-                'code' => $request->input('code')
+                'code' => $request->input('code'),
+                'icon' => $request->input('icon'),
+                'description' => $request->input('description')
             ]);
 
 			$success_msg = __('core::core.message.success.store');
@@ -85,8 +89,10 @@ class VideoCategoryController extends Controller
     public function update(Request $request, $id)
 	{
 		$rules = [
-            'name' 			=> 'required',
-            'code'          => 'required|unique:video_categories,code,'.$id,
+            'name' 			        => 'required',
+            'code'                  => 'required|unique:video_categories,code,'.$id,
+			'icon' 			        => 'nullable|string',
+			'description' 			=> 'nullable|string',
         ];
         $messages = [
             'name.required'    		=> __('core::core.form.validation.required'),

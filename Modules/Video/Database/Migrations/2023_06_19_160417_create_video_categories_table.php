@@ -18,6 +18,8 @@ class CreateVideoCategoriesTable extends Migration
                 $table->id();
                 $table->string('name');
                 $table->string('code')->unique();
+                $table->string('icon');
+                $table->text('description');
                 $table->enum('status', ['Inactive', 'Active'])->default('Active');
                 $table->timestamps();
                 $table->softDeletes();

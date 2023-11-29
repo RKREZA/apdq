@@ -1218,6 +1218,9 @@ language-text{
     margin-bottom: 2px !important;
 }
 
+#embed_html_container iframe{
+    width: 100%;
+}
 
 
 @media(max-width: 991px) {

@@ -23,12 +23,12 @@
                 'img'                   => asset('assets/backend/img/icons/optimized/add.png'),
                 'permission'            => 'post-list',
             ],
-            '2'       => [
-                'url'                   => route('admin.postcategories.index'),
-                'text'                  =>__('blog::blog.category.name'),
-                'img'                   => asset('assets/backend/img/icons/optimized/list.png'),
-                'permission'            => 'postcategory-list',
-            ],
+            // '2'       => [
+            //     'url'                   => route('admin.postcategories.index'),
+            //     'text'                  =>__('blog::blog.category.name'),
+            //     'img'                   => asset('assets/backend/img/icons/optimized/list.png'),
+            //     'permission'            => 'postcategory-list',
+            // ],
         ],
         'include_header'        => __('blog::blog.post.name'),
         'include_breadcrumbs'   => [

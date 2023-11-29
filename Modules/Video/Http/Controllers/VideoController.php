@@ -14,15 +14,13 @@ use Modules\Video\DataTables\VideosDataTable;
 use Modules\Video\DataTables\VideoTrashesDataTable;
 use Youtube;
 use Alaouy\Youtube\Rules\ValidYoutubeVideo;
-use App\Services\RumbleApiService;
 
 use GuzzleHttp\Client;
 
 class VideoController extends Controller
 {
-    private $rumbleApiService;
 
-    function __construct(RumbleApiService $rumbleApiService)
+    function __construct()
 	{
 		$this->middleware('auth');
 		$this->middleware('permission:video-list', ['only' => ['index']]);
@@ -30,8 +28,6 @@ class VideoController extends Controller
 		$this->middleware('permission:video-edit', ['only' => ['edit','update']]);
 		$this->middleware('permission:video-view', ['only' => ['view']]);
 		$this->middleware('permission:video-delete', ['only' => ['destroy']]);
-
-        $this->rumbleApiService = $rumbleApiService;
 	}
 
     public function index(VideosDataTable $dataTable)
@@ -311,38 +307,6 @@ class VideoController extends Controller
 
         $validate = $this->validate($request, $rules, $messages);
 
-
-
-
-
-        // $videoLink = $request->youtube_link; // Pass the video link as a parameter
-
-        // // dd($videoLink);
-
-        // $client = new Client();
-        // $response = $client->request('GET', $videoLink);
-        // $json = json_decode($response->getBody()->getContents());
-        // dd($response);
-        // $result =  response()->json([
-        //     'id' => $json->id,
-        //     'link' => $json->link,
-        //     'own' => $json->own,
-        //     'plays' => $json->plays,
-        //     'thumb' => $json->thumb,
-        //     'title' => $json->title,
-        // ]);
-        // dd($result);
-
-
-
-
-
-
-
-
-
-
-
         if (!$validate) {
             $error_msg  = __('core::core.message.error');
             return response()->json(['error'=>$error_msg]);
@@ -358,11 +322,11 @@ class VideoController extends Controller
             $cleanDescription = strip_tags($videoDescription, '<br><a><strong><em><ul><ol><li>');
 
             // dd($fetch);
-            $video['title'] = $fetch->snippet->title;
-            $video['description'] = nl2br($this->convertTimestamps($cleanDescription, $fetch->id));
+            $video['title']         = $fetch->snippet->title;
+            $video['description']   = nl2br($this->convertTimestamps($cleanDescription, $fetch->id));
             $video['thumbnail_url'] = $fetch->snippet->thumbnails->high->url;
-            $video['embed_html'] = $fetch->player->embedHtml;
-            $video['external_id'] = $fetch->id;
+            $video['embed_html']    = $fetch->player->embedHtml;
+            $video['external_id']   = $fetch->id;
 
             return $video;
         }
