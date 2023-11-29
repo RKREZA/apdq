@@ -22,7 +22,7 @@
         @endforeach
     @endif
 
-    <div class="row my-5">
+    <div class="row my-5" style="margin-top: 33px !important;">
 
         <div class="col-md-3 mb-2">
             <a href="{{ route('admin.videos.index') }}">
