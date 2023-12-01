@@ -13,8 +13,8 @@
 @section('container')
     @if (isset($announcements) && count($announcements)>0)
         @foreach ($announcements as $announcement)
-            <div class="custom_alert">
-                <div class="alert alert-{{ strtolower($announcement->type) }}alert-dismissible fade show" role="alert">
+            <div class="custom_alert border-3">
+                <div class="alert alert-{{ strtolower($announcement->type) }} alert-dismissible fade show" role="alert">
                     {!! $announcement->description !!}
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>

@@ -10,6 +10,7 @@
   height: 33px !important;
   width: 33px !important;
   border-radius: 0;
+  font-size: 14px;
 }
 
 #feedback .btn .material-icons{

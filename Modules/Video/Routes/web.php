@@ -14,7 +14,8 @@ Route::group(['middleware'=>'language'],function (){
 				Route::prefix('video')->group(function () {
 					Route::get('/trashes', 			    'VideoController@trashes')->name('admin.videos.trashes');
 					Route::get('/index', 			    'VideoController@index')->name('admin.videos.index');
-					Route::get('/create', 			    'VideoController@create')->name('admin.videos.create');
+					Route::get('/create/youtube', 	    'VideoController@create_youtube')->name('admin.videos.youtube.create');
+					Route::get('/create/manual', 	    'VideoController@create_manual')->name('admin.videos.manual.create');
 					Route::post('/store', 			    'VideoController@store')->name('admin.videos.store');
 					Route::get('/edit/{id}', 		    'VideoController@edit')->name('admin.videos.edit');
 					Route::post('/update/{id}', 	    'VideoController@update')->name('admin.videos.update');
@@ -26,7 +27,7 @@ Route::group(['middleware'=>'language'],function (){
 					Route::post('/restore',             'VideoController@restore')->name('admin.videos.restore');
 					Route::post('/restore/all',         'VideoController@restore_all')->name('admin.videos.restore_all');
 
-					
+
 					Route::post('/fetch_youtube_data_from_link',         'VideoController@fetch_youtube_data_from_link')->name('admin.videos.fetch_youtube_data_from_link');
 				});
 

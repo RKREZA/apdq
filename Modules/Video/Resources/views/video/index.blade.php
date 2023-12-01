@@ -18,8 +18,14 @@
         'include_back_url'      => route('dashboard'),
         'include_button'       => [
             '1'       => [
-                'url'                   => route('admin.videos.create'),
-                'text'                  => '',
+                'url'                   => route('admin.videos.youtube.create'),
+                'text'                  => 'Youtube',
+                'img'                   => asset('assets/backend/img/icons/optimized/add.png'),
+                'permission'            => 'video-list',
+            ],
+            '2'       => [
+                'url'                   => route('admin.videos.manual.create'),
+                'text'                  => 'Manual',
                 'img'                   => asset('assets/backend/img/icons/optimized/add.png'),
                 'permission'            => 'video-list',
             ],

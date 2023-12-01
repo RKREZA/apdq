@@ -39,10 +39,16 @@ class VideoController extends Controller
         return $dataTable->render('video::video.trashes');
     }
 
-    public function create()
+    public function create_youtube()
     {
         $videocategories = VideoCategory::get();
-        return view('video::video.create', compact('videocategories'));
+        return view('video::video.youtube.create', compact('videocategories'));
+    }
+
+    public function create_manual()
+    {
+        $videocategories = VideoCategory::get();
+        return view('video::video.manual.create', compact('videocategories'));
     }
 
     public function store(Request $request)
@@ -53,8 +59,8 @@ class VideoController extends Controller
 			'tag' 			            => 'required|string',
 			'category_id' 			    => 'required',
 			'embed_html' 			    => 'required|string',
-			'thumbnail_url' 			=> 'required|string',
-			'external_id' 			    => 'required|string',
+			'thumbnail_url' 			=> 'nullable|string',
+			'external_id' 			    => 'nullable|string',
 			'seo_title' 			    => 'nullable|string',
 			'seo_description' 		    => 'nullable|string',
 			'seo_keyword' 			    => 'nullable|string'
@@ -75,10 +81,18 @@ class VideoController extends Controller
 
         $validate = $this->validate($request, $rules, $messages);
         // dd($request->all());
-		try {
+
+        if ($request->input('external_id') == '') {
+            $video_type = 'manual';
+        } else {
+            $video_type = 'youtube';
+        }
+
+		// try {
 			Video::create([
-                'title'         => $request->input('title'),
-                'category_id'   => $request->input('category_id'),
+                'video_type'    => $video_type,
+                'title'         => mb_convert_encoding($request->input('title'), 'UTF-8'),
+                'category_id'   => mb_convert_encoding($request->input('category_id'), 'UTF-8'),
                 'description'   => $request->input('description'),
                 'tag'           => $request->input('tag'),
                 'category_id'   => $request->input('category_id'),
@@ -93,10 +107,10 @@ class VideoController extends Controller
 			$success_msg = __('core::core.message.success.store');
 			return redirect()->route('admin.videos.index')->with('success',$success_msg);
 
-		} catch (Exception $e) {
-			$error_msg = __('core::core.message.error');
-			return redirect()->route('admin.videos.index')->with('error',$error_msg);
-		}
+		// } catch (Exception $e) {
+		// 	$error_msg = __('core::core.message.error');
+		// 	return redirect()->route('admin.videos.index')->with('error',$error_msg);
+		// }
     }
 
     public function edit($id)

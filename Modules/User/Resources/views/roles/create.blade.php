@@ -31,9 +31,8 @@
 
                     @include('user::roles.form')
 
-                    <button type="submit"
-                        class="create-button btn btn-dark btn-rounded mt-1 my-0 float-end">
-                        <img src="{{ asset('assets/backend/img/icons/optimized/save.png') }}" class="pageicon" alt="">
+                    <button type="submit" class="create-button btn btn-dark btn-rounded mt-1 my-0 float-end">
+                        <i class="fi fi-ss-disk"></i>
                         {{ __('core::core.save') }}
                     </button>
                 </form>

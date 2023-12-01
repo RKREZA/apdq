@@ -579,6 +579,7 @@ body > .preloader {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    line-height: 0;
 }
 .go_back:hover{
     background-color: #eff1f4;
@@ -1115,6 +1116,7 @@ language-text{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    line-height: 0;
 }
 
 .dark-version .trash_button{
@@ -1173,6 +1175,7 @@ language-text{
 }
 .custom_alert .alert-success, .custom_alert .alert-warning, .custom_alert .alert-danger, .custom_alert .alert-info p{
     padding-bottom: 1px;
+    border-radius: 7px;
 }
 #custom_checkbox .checkbox-tools + label {
     display: flex;
@@ -1207,11 +1210,24 @@ language-text{
 
 
 .create-button {
-    padding: 10px 15px 6px 15px;
+    padding: 8px 15px 8px 15px;
 }
 
 .create-button i{
     font-size: 1.2em;
+    position: relative;
+    top: 2px;
+}
+
+
+
+.edit-button {
+    padding: 10px 15px 7px 15px;
+}
+
+.edit-button i{
+    position: relative;
+    top: 1px;
 }
 
 .content .position-sticky {

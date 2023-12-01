@@ -1,6 +1,6 @@
 <div class="position-sticky top-0 mb-0 border-radius-xl z-index-sticky">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 p-0">
             <div class="card">
                 <div class="card-body p-0">
                     <div class="row">

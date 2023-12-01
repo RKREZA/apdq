@@ -23,7 +23,8 @@ $setting = \Modules\Setting\Entities\Setting::find(1);
                     <button class="btn bg-gradient-dark border-radius-lg p-2 mt-n4 mt-md-0" type="button"
                         data-bs-toggle="tooltip" data-bs-placement="left" title=""
                         data-bs-original-title="{{ __('admin::auth.back_to_top') }}">
-                        <img src="{{ asset('assets/backend/img/icons/optimized/back_to_top-white.png') }}" style="height: 20px;">
+                        {{-- <img src="{{ asset('assets/backend/img/icons/optimized/back_to_top-white.png') }}" style="height: 20px;"> --}}
+                        <i class="fi fi-ss-angle-up"></i>
                     </button>
                 </div>
             @endif

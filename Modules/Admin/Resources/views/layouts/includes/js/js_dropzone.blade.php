@@ -30,6 +30,9 @@
                 }
                 file.previewElement.id = id;
                 $(".create-button").attr('disabled',false);
+
+                // Trigger the change event on page load to initiate the Ajax request
+                $('#files').trigger('change');
             },
 
             removedfile: function(file) {
@@ -52,6 +55,10 @@
                             var str = $('#files').val().replace(id, '');
                         }
                         $('#files').val(str);
+
+                        // Trigger the change event on page load to initiate the Ajax request
+                        $('#files').trigger('change');
+
                         @include('admin::layouts.includes.js.json_response')
                     },
                 });

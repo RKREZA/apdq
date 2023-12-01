@@ -82,4 +82,23 @@ class FileController extends Controller
         return response()->json(['success'=> $success_msg]);
     }
 
+    /**
+     * Get the specified resource from storage.
+     * @param int $id
+     * @return Renderable
+     */
+    public function fetch(Request $request)
+    {
+        $file = File::find($request->id);
+        if ($file) {
+            $url = '/'.$file->path;
+        }else{
+            $url = "/assets/backend/img/no-image.png";
+        }
+
+        return response()->json([
+            'url' => $url
+        ]);
+    }
+
 }

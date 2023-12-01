@@ -18,6 +18,8 @@ return [
             'seo_description' => 'SEO Description',
             'seo_keyword' => 'SEO Keyword',
             'reaction' => 'Reactions',
+            'video_type' => 'Video Type',
+            'select_video_type' => 'Select Video Type'
         ],
 
     ],

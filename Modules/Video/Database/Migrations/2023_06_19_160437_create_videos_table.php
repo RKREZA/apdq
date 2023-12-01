@@ -16,14 +16,15 @@ class CreateVideosTable extends Migration
         if (!Schema::hasTable('videos')) {
             Schema::create('videos', function (Blueprint $table) {
                 $table->id();
+                $table->enum('video_type', ['youtube', 'manual'])->default('manual');
                 $table->string('title');
                 $table->string('slug')->unique();
-                $table->text('description');
-                $table->text('tag');
+                $table->text('description')->nullable();
+                $table->text('tag')->nullable();
 
-                $table->text('embed_html');
-                $table->string('thumbnail_url');
-                $table->string('external_id');
+                $table->text('embed_html')->nullable();
+                $table->string('thumbnail_url')->nullable();
+                $table->string('external_id')->nullable();
 
                 $table->string('seo_title')->nullable();
                 $table->text('seo_description')->nullable();

@@ -108,7 +108,7 @@
                                                     {{-- <label class="form-label"><span class="@if(isset($user)) @else required @endif">{{ __('user::user.form.password') }}</span></label> --}}
                                                     <input type="text" name="name" class="form-control password_hide_show" id="name" value="{{ $user->name }}">
                                                     <button type="submit" style="height: 36px;" class="input-group-text password_hide_show">
-                                                        <i class="material-icons">save</i>
+                                                        <i class="fi fi-ss-disk"></i>
                                                     </button>
                                                     @error('name')
                                                         <em class="error invalid-feedback" style="display: inline-block;">{{ $message }}</em>
@@ -149,7 +149,7 @@
                                                     {{-- <label class="form-label"><span class="@if(isset($user)) @else required @endif">{{ __('user::user.form.password') }}</span></label> --}}
                                                     <input type="text" name="mobile" class="form-control password_hide_show" id="mobile" value="{{ $user->mobile }}">
                                                     <button type="submit" style="height: 36px;" class="input-group-text password_hide_show">
-                                                        <i class="material-icons">save</i>
+                                                        <i class="fi fi-ss-disk"></i>
                                                     </button>
                                                     @error('mobile')
                                                         <em class="error invalid-feedback" style="display: inline-block;">{{ $message }}</em>

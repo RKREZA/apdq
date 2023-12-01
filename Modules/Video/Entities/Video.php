@@ -19,6 +19,7 @@ class Video extends Model
     protected $table = 'videos';
 
     protected $fillable = [
+        'video_type',
         'title',
         'description',
         'embed_html',

@@ -30,7 +30,7 @@
                         @csrf()
                         @include('live::live.form')
                         <button type="submit" class="create-button btn btn-dark btn-rounded">
-                            <img src="{{ asset('assets/backend/img/icons/optimized/update.png') }}" class="pageicon" alt="">
+                            <i class="fi fi-ss-disk"></i>
                             {{ __('core::core.update') }}
                         </button>
                     </form>

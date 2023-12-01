@@ -85,7 +85,7 @@
                     <div class="col-md-12">
                         @can('videocategory-create')
                             <button type="submit" class="update-button btn btn-dark btn-rounded mt-1 my-0 border-2 float-end" id="">
-                                <img src="{{ asset('assets/backend/img/icons/optimized/update.png') }}" class="pageicon" alt="">
+                                <i class="fi fi-ss-disk"></i>
                                 {{ __('core::core.update') }}
                             </button>
                         @endcan
