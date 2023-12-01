@@ -43,7 +43,7 @@
 
                                 <div class="card-body py-0">
 
-                                    <form action="{{ route('admin.signup.go') }}" method="POST" role="form" class="text-start" id="login" autocomplete="on">
+                                    <form action="{{ route('admin.signup.go') }}" method="POST" role="form" class="text-start" id="signup" autocomplete="on">
                                         @csrf
 
                                         <div class="input-group input-group-outline my-3 is-filled @error('name') is-invalid @enderror">
@@ -78,6 +78,17 @@
 
                                             @error('password')
                                                 <em class="error invalid-feedback" style="display: inline-block;">{{ $message }}</em>
+                                            @enderror
+                                        </div>
+
+                                        <div class="input-group input-group-outline my-2 is-filled @error('password_confirmation') is-invalid @enderror">
+                                            <label class="form-label"><span class="required">{{ __('user::user.form.password_confirmation') }}</span></label>
+                                            <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" data-rule-password="true" data-rule-equalTo="#password" placeholder="******">
+                                            <span style="height: 36px;" class="input-group-text password_hide_show" id="password_hide_show_confirmation">
+                                                <i class="material-icons" id="password_hide_show_confirmation_icon">visibility_off</i>
+                                            </span>
+                                            @error('password_confirmation')
+                                                <em class="error invalid-password_confirmation" style="display: inline-block;">{{ $message }}</em>
                                             @enderror
                                         </div>
 
@@ -133,7 +144,7 @@
     <script>
 
         // Validation
-        var validation_id               = "#login";
+        var validation_id               = "#signup";
         var errorElement                = "em";
         var rules                       = {
             email: {
@@ -147,14 +158,22 @@
                 required: true
             },
             password: {
-                required: true
+                required: true,
+                minlength: 6
+            },
+            password_confirmation: {
+                required: true,
+                minlength: 6,
             },
             captcha: {
                 required: true
             },
             i_agree: {
                 required: true
-            }
+            },
+            password_confirmation: {
+                required: "{{ __('core::core.form.validation.required') }}",
+            },
 
         };
         var messages                    = {
@@ -178,6 +197,9 @@
             i_agree: {
                 required: "{{ __('admin::auth.form.validation.i_agree.required') }}",
             },
+            password_confirmation: {
+                required: "{{ __('core::core.form.validation.required') }}",
+            },
         };
 
     </script>
@@ -185,16 +207,27 @@
     <script>
         $(document).ready(function() {
 
-            $('#password_hide_show').on('click', function() {
-                var passInput = $("#password");
-                if (passInput.attr('type') === 'password') {
-                    passInput.attr('type', 'text');
-                    $('#password_hide_show_icon').html('visibility');
-                } else {
-                    passInput.attr('type', 'password');
-                    $('#password_hide_show_icon').html('visibility_off');
-                }
-            });
+        $('#password_hide_show').on('click', function() {
+            var passInput = $("#password");
+            if (passInput.attr('type') === 'password') {
+                passInput.attr('type', 'text');
+                $('#password_hide_show_icon').html('visibility');
+            } else {
+                passInput.attr('type', 'password');
+                $('#password_hide_show_icon').html('visibility_off');
+            }
+        });
+
+        $('#password_hide_show_confirmation').on('click', function() {
+            var passInput = $("#password_confirmation");
+            if (passInput.attr('type') === 'password') {
+                passInput.attr('type', 'text');
+                $('#password_hide_show_confirmation_icon').html('visibility');
+            } else {
+                passInput.attr('type', 'password');
+                $('#password_hide_show_confirmation_icon').html('visibility_off');
+            }
+        });
         });
     </script>
 

@@ -68,7 +68,7 @@ class SignupController extends Controller
             'name'                  => 'required',
             'mobile'                => 'required|unique:users,mobile',
             'email'                 => 'required|email|unique:users,email',
-            'password'              => 'required',
+			'password' 		        => 'required|same:password_confirmation',
             'remember'              => 'nullable',
             'g-recaptcha-response'  => [new GoogleReCaptchaV3ValidationRule('login_action')]
         ];
@@ -81,6 +81,7 @@ class SignupController extends Controller
             'email.email'                   => __('admin::auth.form.validation.email.email'),
             'email.unique'                  => __('admin::auth.form.validation.email.unique'),
             'password.required'             => __('admin::auth.form.validation.password.required'),
+            'password.same'    		        => __('core::core.form.validation.same'),
             'g-recaptcha-response.captcha'  => __('admin::auth.form.validation.captcha.captcha'),
         ];
 
