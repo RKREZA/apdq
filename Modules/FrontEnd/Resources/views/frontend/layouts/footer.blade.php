@@ -9,6 +9,11 @@
                         <li><a target="_blank" href="https://facebook.com/APDQavecDominick/"><img src="{{ asset('assets/frontend/img/youtube.png') }}" alt=""></a></li>
                         <li><a target="_blank" href="https://www.youtube.com/c/Actualit%C3%A9PolitiqueDuQu%C3%A9bec"><img src="{{ asset('assets/frontend/img/facebook.png') }}" alt=""></a></li>
                         <li><a target="_blank" href="https://twitter.com/PolitiqueQuebec"><img src="{{ asset('assets/frontend/img/twitter.png') }}" alt=""></a></li>
+                        <li><a target="_blank" href="https://rumble.com/c/APDQ"><img src="{{ asset('assets/frontend/img/rumble.webp') }}" alt=""></a></li>
+                        <li><a target="_blank" href="https://odysee.com/@Actualitepolitiqueduquebec:0"><img src="{{ asset('assets/frontend/img/odysee.png') }}" alt=""></a></li>
+                        <li><a target="_blank" href="https://www.tiktok.com/@dominickapdq"><img src="{{ asset('assets/frontend/img/tiktok.png') }}" alt=""></a></li>
+                        <li><a target="_blank" href="https://www.instagram.com/actualite_politique_du_quebec/"><img src="{{ asset('assets/frontend/img/instagram.png') }}" alt=""></a></li>
+                        <li><a target="_blank" href="https://www.threads.net/@actualite_politique_du_quebec"><img src="{{ asset('assets/frontend/img/threads.png') }}" alt=""></a></li>
                     </ul>
                 </div>
             </div>

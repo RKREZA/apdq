@@ -380,13 +380,13 @@ nav.navbar {
 #footer .social-link ul li{
     list-style: none;
     display: inline-block;
-    margin: 7px;
+    margin: 6px;
 }
 #footer .social-link ul li a{
     font-size: 14px;
 }
 #footer .social-link ul li img{
-    height: 30px;
+    height: 28px;
 }
 
 
@@ -443,3 +443,41 @@ nav.navbar {
   }
 
 /* End Scrollbar */
+
+
+
+
+
+/* Video Page */
+
+.video_page_header{
+    /* background-image: url('/assets/frontend/img/video.webp'); */
+    background-size: 100%;
+    height: 50vh;
+    width: 100%;
+    overflow: hidden;
+    background-color: #000;
+    margin-top: -100px;
+    position: relative;
+}
+
+.video_page_header img{
+    opacity: 0.5;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+}
+
+.video_page_header .content {
+    position: relative;
+    top: calc(50vh - 150px);
+    text-align: center;
+}
+
+.video_page_header .content h1{
+    color: #fff;
+}
+
+/* End Video Page */

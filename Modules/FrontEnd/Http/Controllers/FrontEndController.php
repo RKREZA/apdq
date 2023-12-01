@@ -27,6 +27,29 @@ class FrontEndController extends Controller
 
         return view('frontend::frontend.home', compact('frontend_setting','video_categories','videos','posts'));
     }
+
+    public function about()
+    {
+        $frontend_setting   = FrontendSetting::first();
+        return view('frontend::frontend.about', compact('frontend_setting'));
+    }
+
+    public function video()
+    {
+        $frontend_setting   = FrontendSetting::first();
+        $video_categories   = VideoCategory::where('status','Active')->get();
+        $videos             = Video::where('status','Active')->paginate(20);
+
+        return view('frontend::frontend.video', compact('frontend_setting','video_categories','videos'));
+    }
+
+
+
+
+
+
+
+
     public function delete_user()
     {
         $frontend_setting   = FrontendSetting::first();

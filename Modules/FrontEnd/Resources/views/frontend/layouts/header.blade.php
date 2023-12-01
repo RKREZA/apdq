@@ -16,10 +16,13 @@
                     <a class="nav-link" aria-current="page" href="/">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">À propos</a>
+                    <a class="nav-link" aria-current="page" href="{{ route('frontend.about') }}">À propos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Vidéos</a>
+                    <a class="nav-link" aria-current="page" href="{{ route('frontend.video') }}">Vidéos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="#">En direct</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="#">Blog</a>
@@ -29,7 +32,11 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="btn btn-lg btn-outline-white ms-4" aria-current="page" href="{{ route('admin.login') }}">Login</a>
+                    <a class="btn btn-lg btn-outline-white ms-3" aria-current="page" href="#">Donation </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="btn btn-lg btn-outline-white ms-3" aria-current="page" href="{{ route('admin.login') }}">Login</a>
                 </li>
                 {{-- <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="#">Période de questions</a>
