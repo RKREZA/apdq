@@ -28,6 +28,11 @@ return [
     'back_to_login'             => 'Go back to the sign in page',
     'back_to_home'              => 'Go back to the home page',
 
+
+    'signup_title'              => 'Sign up',
+    'signup_button'             => 'Create account',
+    'create_new_account'        => 'Create new account!',
+
     'dashboard'                 => 'Dashboard',
     'alert'                     => 'Alert',
     'see_all'                   => 'See all',
@@ -50,6 +55,8 @@ return [
     'back_to_top'               => 'Go upstairs',
 
     'form'                      => [
+        'name'                      => 'Name',
+        'mobile'                    => 'Mobile',
         'email'                     => 'Email',
         'password'                  => 'Password',
         'captcha'                   => 'Captcha',
@@ -57,11 +64,20 @@ return [
         'new_password'              => 'New Password',
         'confirm_password'          => 'Confirmed password',
         'remember'                  => 'Remember me',
+        'i_agree'                   => 'I Agree',
         'show_password'             => 'Show password',
         'validation'                => [
+            'name'                     => [
+                'required'                  => 'Input your name!',
+            ],
+            'mobile'                     => [
+                'required'                  => 'Input your mobile number!',
+                'unique'                  => 'Already exists!',
+            ],
             'email'                     => [
                 'required'                  => 'Input your email!',
                 'email'                     => 'Enter your correct email!',
+                'unique'                  => 'Already exists!',
             ],
             'captcha'            => [
                 'required'          => 'Captcha!',
@@ -72,6 +88,9 @@ return [
             ],
             'message' => [
                 'required' => 'Write your message!',
+            ],
+            'i_agree' => [
+                'required' => 'I agree required!',
             ],
         ],
     ],
@@ -158,6 +177,7 @@ return [
     'message'=> [
         'password_reset' => 'We have e-mailed your password reset link!',
         'cheng_pass' => 'Your password has been changed!',
+        'signup_success' => 'Account created successfully!',
     ],
 
 

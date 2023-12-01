@@ -41,7 +41,7 @@ $setting = \Modules\Setting\Entities\Setting::find(1);
         <div class="modal-content card">
             <div class="modal-header">
                 <h5 class="modal-title font-weight-normal" id="feedbackFormLabel">
-                    <img src="{{ asset('assets/backend/img/icons/optimized/feedback.png') }}" class="pageicon" alt="">
+                    <i class="fi fi-ss-hands-heart"></i>
                     {{ __('feedback::feedback.feedback.name') }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                 </button>
@@ -109,7 +109,7 @@ $setting = \Modules\Setting\Entities\Setting::find(1);
 
                 <div class="modal-footer">
                     <button class="btn btn-dark btn-rounded pull-right" type="submit">
-                        <img src="{{ asset('assets/backend/img/icons/optimized/send-white.png') }}" class="pageicon" alt="">
+                        <i class="fi fi-ss-paper-plane-top"></i>
                         {{ __('core::core.send') }}
                     </button>
                 </div>

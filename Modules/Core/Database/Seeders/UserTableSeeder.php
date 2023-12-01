@@ -18,6 +18,7 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
+        // Admin
         $permissions        = Permission::pluck('id','id')->all();
         $role               = Role::create(['name' => 'Admin', 'guard_name' => 'web']);
         $role->syncPermissions($permissions);
@@ -26,6 +27,25 @@ class UserTableSeeder extends Seeder
             'name'          => 'Admin',
             'email'         => 'admin@mail.com',
             'mobile'        => '01740483311',
+            'password'      => bcrypt('abc123'),
+        ]);
+        $user->assignRole([$role->id]);
+
+
+
+        // Customer
+        $permissions        = Permission::pluck('id','id')->all();
+        $permissions        = [
+            1 => 1,
+            2 => 2
+        ];
+        $role               = Role::create(['name' => 'User', 'guard_name' => 'web']);
+        $role->syncPermissions($permissions);
+
+        $user               = User::create([
+            'name'          => 'User',
+            'email'         => 'user@mail.com',
+            'mobile'        => '01740483312',
             'password'      => bcrypt('abc123'),
         ]);
         $user->assignRole([$role->id]);

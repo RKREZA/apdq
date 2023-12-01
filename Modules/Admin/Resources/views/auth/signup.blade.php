@@ -2,7 +2,7 @@
 @extends('admin::layouts.guest')
 
 @section('page_title')
-    {{ __('admin::auth.signin_title') }}
+    {{ __('admin::auth.signup_title') }}
 @endsection
 
 @push('css')
@@ -38,20 +38,35 @@
                                 </div>
 
                                 <div class="card-header text-center bg-transparent py-0 mt-3 border-0">
-                                    <h4 class="font-weight-bolder text-center m-0">{{ __('admin::auth.signin_title') }}</h4>
+                                    <h4 class="font-weight-bolder text-center m-0">{{ __('admin::auth.signup_title') }}</h4>
                                 </div>
 
                                 <div class="card-body py-0">
 
-                                    <form action="{{ route('admin.login.go') }}" method="POST" role="form" class="text-start" id="login" autocomplete="on">
+                                    <form action="{{ route('admin.signup.go') }}" method="POST" role="form" class="text-start" id="login" autocomplete="on">
                                         @csrf
+
+                                        <div class="input-group input-group-outline my-3 is-filled @error('name') is-invalid @enderror">
+                                            <label class="form-label"><span class="required">{{ __('admin::auth.form.name') }}</span></label>
+                                            <input type="text" name="name" class="form-control" value="{{ old('name') }}" placeholder="example@mail.com">
+                                            @error('name')
+                                                <em class="error invalid-feedback" style="display: inline-block;">{{ $message }}</em>
+                                            @enderror
+                                        </div>
+
+                                        <div class="input-group input-group-outline my-3 is-filled @error('mobile') is-invalid @enderror">
+                                            <label class="form-label"><span class="required">{{ __('admin::auth.form.mobile') }}</span></label>
+                                            <input type="number" name="mobile" class="form-control" value="{{ old('mobile') }}" placeholder="">
+                                            @error('mobile')
+                                                <em class="error invalid-feedback" style="display: inline-block;">{{ $message }}</em>
+                                            @enderror
+                                        </div>
 
                                         <div class="input-group input-group-outline my-3 is-filled @error('email') is-invalid @enderror">
                                             <label class="form-label"><span class="required">{{ __('admin::auth.form.email') }}</span></label>
                                             <input type="email" name="email" class="form-control" value="{{ old('email') }}" placeholder="example@mail.com">
                                             @error('email')
-                                                <em class="error invalid-feedback"
-                                                    style="display: inline-block;">{{ $message }}</em>
+                                                <em class="error invalid-feedback" style="display: inline-block;">{{ $message }}</em>
                                             @enderror
                                         </div>
                                         <div class="input-group input-group-outline mb-2 is-filled @error('password') is-invalid @enderror">
@@ -66,11 +81,9 @@
                                             @enderror
                                         </div>
 
-                                        <div class="col-sm-6">
-                                            <div class="form-check form-switch d-flex align-items-center mb-3">
-                                                <input class="form-check-input" type="checkbox" name="remember" id="remember">
-                                                <label class="form-check-label mb-0 ms-3" for="remember">{{ __('admin::auth.form.remember') }}</label>
-                                            </div>
+                                        <div class="col-sm-12 form-check mb-3">
+                                                <input class="form-check-input" type="checkbox" name="i_agree" id="i_agree" required>
+                                                <label class="form-check-label ms-2" for="i_agree">{{ __('admin::auth.form.i_agree') }} <a href="#" target="_blank">{{ $page->title }}</a></label>
                                         </div>
 
 
@@ -80,7 +93,7 @@
 
                                         <div class="text-center">
                                             <button type="submit" class="create-button btn btn-dark w-100 mb-2" id="submit">
-                                                {{ __('admin::auth.signin_button') }}
+                                                {{ __('admin::auth.signup_button') }}
                                             </button>
                                         </div>
 
@@ -96,7 +109,7 @@
 
                                 <div class="card-footer my-0 p-0">
                                     <p class="mt-2 mb-0 text-sm text-center">
-                                        <a href="{{ route('admin.password.request') }}" class="text-start text-dark text-gradient font-weight-bold">{{ __('admin::auth.forgot_password') }}</a> |
+                                        {{-- <a href="{{ route('admin.login') }}" class="text-start text-dark text-gradient font-weight-bold">{{ __('admin::auth.signin_title') }}</a> | --}}
                                         <a href="/" class="text-end text-warning text-gradient font-weight-bold">{{ __('admin::auth.back_to_home') }}</a>
                                     </p>
 
@@ -104,7 +117,7 @@
                             </div>
                         </div>
                         <div class="col-md-12 text-center">
-                            <a href="{{ route('admin.signup') }}" class="text-end text-danger text-gradient font-weight-bold">{{ __('admin::auth.create_new_account') }}</a>
+                            <a href="{{ route('admin.login') }}!" class="text-end text-danger text-gradient font-weight-bold">{{ __('admin::auth.signin_title') }}</a>
                         </div>
                     </div>
                 </div>
@@ -127,10 +140,19 @@
                 required: true,
                 email: true
             },
+            name: {
+                required: true
+            },
+            mobile: {
+                required: true
+            },
             password: {
                 required: true
             },
             captcha: {
+                required: true
+            },
+            i_agree: {
                 required: true
             }
 
@@ -143,9 +165,18 @@
             password: {
                 required: "{{ __('admin::auth.form.validation.password.required') }}",
             },
+            name: {
+                required: "{{ __('admin::auth.form.validation.name.required') }}",
+            },
+            mobile: {
+                required: "{{ __('admin::auth.form.validation.mobile.required') }}",
+            },
             captcha: {
                 required: "{{ __('admin::auth.form.validation.captcha.required') }}",
                 captcha: "{{ __('admin::auth.form.validation.captcha.captcha') }}",
+            },
+            i_agree: {
+                required: "{{ __('admin::auth.form.validation.i_agree.required') }}",
             },
         };
 

@@ -32,7 +32,7 @@ Route::post('verify/captcha', function (\Illuminate\Http\Request $request) {
     $validator = \Illuminate\Support\Facades\Validator::make($request->toArray(),$rule)->errors();
 });
 
-		
+
 Route::get('auth/facebook', 		'LoginController@facebookRedirect')->name('auth.users.facebook');
 Route::get('auth/facebook/callback', 'LoginController@loginWithFacebook')->name('auth.users.facebook.callback');
 
@@ -45,6 +45,9 @@ Route::group(['middleware'=>'language'],function (){
 		Route::get('/logout', 		    'LoginController@logout')->name('admin.logout');
 		Route::get('/forgot-password', 	'ForgotPasswordController@forgot_password')->middleware('guest')->name('admin.password.request');
 		Route::post('/forgot-password', 'ForgotPasswordController@forgot_password_go')->middleware('guest')->name('admin.password.email');
+
+		Route::get('/signup', 		    'SignupController@signup')->name('admin.signup');
+		Route::post('/signup', 	        'SignupController@signup_go')->name('admin.signup.go');
 
 
 
