@@ -196,6 +196,8 @@ return [
             'trash'                 => 'Successfully sent to trash!',
             'destroy'               => 'Successfully deleted parmanently!',
             'restore'               => 'Successfully restored!',
+            'subscribe'             => 'Successfully subscribed!',
+            'sent'                  => 'Successfully sent!'
         ],
         'error'                     => 'Something went wrong!',
         'update_profile'            => 'Your profile is not updated. Please contact with project office',

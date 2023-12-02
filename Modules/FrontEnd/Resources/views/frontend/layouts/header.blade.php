@@ -13,26 +13,26 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/">Accueil</a>
+                    <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" aria-current="page" href="/">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ route('frontend.about') }}">À propos</a>
+                    <a class="nav-link {{ request()->is('a-propos') ? 'active' : '' }}" aria-current="page" href="{{ route('frontend.about') }}">À propos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ route('frontend.video') }}">Vidéos</a>
+                    <a class="nav-link {{ request()->is('video') ? 'active' : '' }}" aria-current="page" href="{{ route('frontend.video') }}">Vidéos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">En direct</a>
+                    <a class="nav-link {{ request()->is('live') ? 'active' : '' }}" aria-current="page" href="{{ route('frontend.live') }}">En direct</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Blog</a>
+                    <a class="nav-link {{ request()->is('blog') ? 'active' : '' }}" aria-current="page" href="{{ route('frontend.blog') }}">Blog</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Contact</a>
+                    <a class="nav-link {{ request()->is('contact') ? 'active' : '' }}" aria-current="page" href="{{ route('frontend.contact') }}">Contact</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="btn btn-lg btn-outline-white ms-3" aria-current="page" href="#">Donation </a>
+                    <a class="btn btn-lg btn-outline-white ms-3  {{ request()->is('donation') ? 'active' : '' }}" aria-current="page" href="{{ route('frontend.donation') }}">Donation </a>
                 </li>
 
                 <li class="nav-item">

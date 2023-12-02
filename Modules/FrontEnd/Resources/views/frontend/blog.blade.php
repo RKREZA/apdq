@@ -1,14 +1,14 @@
 @extends('frontend::frontend.layouts.master')
 
 @section('title')
-Vidéo
+Blog
 @endsection
 @section('seo')
-    <meta name="title" content="Vidéo">
+    <meta name="title" content="Blog">
     <meta name="description" content="{{ $frontend_setting->meta_description }}">
     <meta name="keywords" content="{{ $frontend_setting->meta_keywords }}">
 
-    <meta property="og:title" content="Vidéo" />
+    <meta property="og:title" content="Blog" />
     <meta property="og:description" content="{{ $frontend_setting->social_description }}" />
     <meta property="og:image" content="{{ $frontend_setting->logo_dark }}" />
 @endsection
@@ -22,17 +22,15 @@ Vidéo
 @section('content')
 
 <section id="page_header" class="video_page_header">
-    <img src="/assets/frontend/img/video.webp" alt="">
+    <img src="/assets/frontend/img/blog.webp" alt="">
     <div class="content">
-        <h1>Vidéos</h1>
+        <h1>Blog</h1>
     </div>
 </section>
 
-<section id="video" class="py-5">
+<div id="blog" class="py-5">
     <div class="container py-4">
         <div class="row">
-
-
             <div class="col-md-4" id="filter">
                 <div class="card">
                     <div class="card-header bg-white">
@@ -43,7 +41,7 @@ Vidéo
                             <div class="col-md-12">
                                 <h6>Category</h6>
                                 <ul>
-                                    @foreach($video_categories as $category)
+                                    @foreach($post_categories as $category)
                                     <li>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="category" id="category_input{{ $category->id }}" value="{{ $category->id }}" @if(request()->cat_id == $category->id) checked @endif>
@@ -63,24 +61,35 @@ Vidéo
 
             <div class="col-md-8">
                 <div class="row">
-                    @foreach ($videos as $video)
+
+                    @foreach ($posts as $post)
 
                         <div class="col-md-4 mb-4">
                             <div class="card border-0">
                                 <div class="card-body p-0">
+
                                     <a href="" class="">
-                                        <div class="image-container" style="background-image:url({{ $video->thumbnail_url }});">
-                                            {{-- <img src="{{ $video->thumbnail_url }}" onerror="this.onerror=null;this.src='{{ asset('assets/frontend/img/no-video.png') }}';" alt=""> --}}
-                                        </div>
+                                        @if (!empty($post->files[0]['path']))
+                                            <div class="image-container" style="background-image:url({{ $post->files[0]['path'] }});">
+
+                                            </div>
+                                        @else
+                                            <div class="image-container" style="background-image:url(assets/frontend/img/no-image.png);">
+
+                                            </div>
+                                        @endif
+
+
                                     </a>
-                                    <div class="video-content p-3">
-                                        <h6><a href="#" class="link-dark">{{ $video->title }}</a></h6>
+
+                                    <div class="post-content p-3">
+                                        <h6><a href="#" class="link-dark">{{ $post->title }}</a></h6>
                                         <div class="row sub-content">
                                             <div class="col-6">
-                                                <small><a href="" class="text-muted"><i class="fi fi-ss-clipboard-list-check"></i> {{ $video->category->name }}</a></small>
+                                                <small><a href="" class=""><i class="fi fi-ss-clipboard-list-check"></i> {{ $post->category->name }}</a></small>
                                             </div>
-                                            <div class="col-6 text-end text-muted">
-                                                <small><i class="fi fi-ss-calendar-clock"></i> {{ date('d/m/Y', strtotime($video->created_at)) }}</small>
+                                            <div class="col-6 text-end">
+                                                <small><i class="fi fi-ss-calendar-clock"></i> {{ date('d/m/Y', strtotime($post->created_at)) }}</small>
                                             </div>
                                         </div>
                                     </div>
@@ -89,19 +98,18 @@ Vidéo
                         </div>
 
                     @endforeach
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        {{ $posts->links('pagination::bootstrap-5') }}
+                    </div>
                 </div>
             </div>
-
         </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                {{ $videos->links('pagination::bootstrap-5') }}
-            </div>
-        </div>
-
     </div>
-</section>
+</div>
 <hr class="horizontal dark">
 
 @endsection

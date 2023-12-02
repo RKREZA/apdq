@@ -14,28 +14,12 @@ use Spatie\Sluggable\SlugOptions;
 class Newsletter extends Model
 {
     use HasFactory,Notifiable, Loggable, SoftDeletes;
-    use HasSlug;
 
     protected $table = 'newsletters';
 
     protected $fillable = [
-        'title',
-        'description',
-        'status',
-        'seo_title',
-        'seo_description',
-        'seo_keyword',
+        'email',
 
     ];
-
-    /**
-     * Get the options for generating the slug.
-     */
-    public function getSlugOptions() : SlugOptions
-    {
-        return SlugOptions::create()
-            ->generateSlugsFrom('title')
-            ->saveSlugsTo('slug');
-    }
 
 }
