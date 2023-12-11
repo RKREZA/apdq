@@ -1,7 +1,7 @@
 <table class="data_table table table-bordered table-hover table-center mb-0" id="table">
     <thead>
         <tr>
-            @if (isset($include_trash_all_url) && $include_trash_all_url != null)
+            @if (isset($include_trash_all_url) && $include_trash_all_url != null && isset($include_delete_all_permission) && Gate::check($include_delete_all_permission))
                 <th class="massActionWrapper" style="width: 30px;">
                     <div class="btn-group">
                         <input type="checkbox" id="master_chk">

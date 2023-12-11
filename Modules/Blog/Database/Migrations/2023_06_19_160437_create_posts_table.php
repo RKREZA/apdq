@@ -26,7 +26,7 @@ class CreatePostsTable extends Migration
                 $table->text('seo_keyword')->nullable();
 
                 $table->bigInteger('category_id')->unsigned()->nullable();
-                $table->foreign('category_id')->references('id')->on('video_categories')->onDelete('set null');
+                $table->foreign('category_id')->references('id')->on('post_categories')->onDelete('set null');
                 $table->enum('status', ['Inactive', 'Active'])->default('Active');
                 $table->timestamps();
                 $table->softDeletes();

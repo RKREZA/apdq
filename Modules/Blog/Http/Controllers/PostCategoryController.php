@@ -174,7 +174,7 @@ class PostCategoryController extends Controller
             if ($post) {
                 $post->forceDelete();
             }else{
-                postCategory::onlyTrashed()->find($id)->forceDelete();
+                PostCategory::onlyTrashed()->find($id)->forceDelete();
             }
         } catch (Exception $e) {
             DB::rollBack();

@@ -4,7 +4,7 @@
             @csrf
             <div class="dz-message" data-dz-message>
                 <i class="material-icons" style="font-size: 60px;">cloud_upload</i>
-                <h6 class="m-0">{{ __('core::core.form.photo') }}</h6>
+                <h6 class="m-0">@if(isset($file_upload_name)) {{ $file_upload_name }} @else {{ __('core::core.form.photo') }}@endif</h6>
                 <p class="text-xs mt-2">
                     {{ __('core::core.form.supported_format', [ 'formats' => $file_upload_format]) }} <br>
                     {{ __('core::core.form.supported_size', [ 'size' => $file_upload_size]) }}
@@ -20,13 +20,13 @@
                 <table class="table table-bordered table-sm">
                     @foreach ($model->files as $file)
                         <tr>
-                            <td class="w-5">
+                            <td class="w-10 text-center">
                                 @if ($file->type == 'png' || $file->type == 'jpg' || $file->type == 'gif' || $file->type == 'JPG')
-                                    <img src="/{{ $file->path }}" style="height:25px;" alt="">
+                                    <i class="fi fi-ss-picture"></i>
                                 @elseif($file->type == 'pdf')
-                                    <img src="{{ asset('assets/backend/img/icons/optimized/pdf.png') }}" style="height:25px;" alt="">
+                                    <i class="fi fi-ss-file-pdf"></i>
                                 @else
-                                    <i class="material-icons">attachment</i>
+                                    <i class="fi fi-ss-clip"></i>
                                 @endif
                             </td>
                             <td><a href="/{{ $file->path }}" title="{{ $file->name }}" target="_blank">{{ Str::substr($file->name, 0, 20) }}</a></td>

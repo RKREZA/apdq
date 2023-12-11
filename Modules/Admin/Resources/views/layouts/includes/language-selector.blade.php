@@ -1,5 +1,5 @@
 @php
-    $languages = \Modules\Language\Entities\Language::get();
+    $languages = \Modules\Language\Entities\Language::where('status','Active')->get();
 @endphp
 <li class="nav-item dropdown">
     <a href="javascript:;" class="nav-link change-language" id="dropdownMenuButton"
