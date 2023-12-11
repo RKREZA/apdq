@@ -17,25 +17,25 @@ class PostCategoryTableSeeder extends Seeder
     {
         PostCategory::create([
             'name'  => 'Blogue',
-            'code'  => 'Blogue',
+            'code'  => 'blogue',
         ]);
         PostCategory::create([
             'name'  => 'Commissions',
-            'code'  => 'Commissions',
+            'code'  => 'commissions',
         ]);
         PostCategory::create([
             'name'  => 'Entrevues',
-            'code'  => 'Entrevues',
+            'code'  => 'entrevues',
         ]);
         PostCategory::create([
             'name'  => 'Points de presse',
-            'code'  => 'Points de presse',
+            'code'  => 'points-de-presse',
         ]);
         PostCategory::create([
             'name'  => 'Projets de loi',
-            'code'  => 'Projets de loi',
+            'code'  => 'projets-de-loi',
         ]);
 
-        
+
     }
 }

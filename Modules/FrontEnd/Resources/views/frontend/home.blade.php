@@ -15,10 +15,6 @@
 
 @push('css')
     <style>
-        .animated-section {
-            /* opacity: 0; */
-            animation-duration: 1.5s;
-        }
 
     </style>
 @endpush
@@ -30,9 +26,9 @@
         <div class="item">
             <img src="{{ asset('assets/frontend/img/slider.webp') }}" class="overlay" alt="">
         </div>
-        <div class="item">
+        {{-- <div class="item">
             <img src="{{ asset('assets/frontend/img/slider2.webp') }}" class="overlay" alt="">
-        </div>
+        </div> --}}
     </div>
 
     <div class="container">
@@ -40,10 +36,10 @@
             <div class="col-md-6">
                 <div class="slider-content">
                     <div class="text">
-                        <div class="line-1 animated-section animate__fadeInLeft">Actualité Politique Du Québec</div>
-                        <div class="line-2 animated-section animate__fadeInRight">Pour un <span class="text-style-1">autre son</span> <br>de cloche!</div>
-                        <p class="animated-section animate__fadeIn">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis hic illum voluptatum odio distinctio, corrupti ratione neque facilis ad, magni at debitis ipsa ex! Obcaecati illo voluptas ratione incidunt qui.</p>
-                        <a href="#" class="btn btn-lg btn-outline-accent mt-3 animate__bounceIn">En savoir plus</a>
+                        <div class="line-1 wow fadeInLeft" data-wow-duration="1s">Actualité Politique Du Québec</div>
+                        <div class="line-2 wow fadeInRight" data-wow-duration="1s">Pour un <span class="text-style-1">autre son</span> <br>de cloche!</div>
+                        <p class="wow fadeInLeft">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis hic illum voluptatum odio distinctio, corrupti ratione neque facilis ad, magni at debitis ipsa ex! Obcaecati illo voluptas ratione incidunt qui.</p>
+                        <a href="#" class="btn btn-lg btn-outline-accent mt-3 wow bounceInUp">En savoir plus</a>
                     </div>
                 </div>
             </div>
@@ -56,11 +52,11 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <ul>
-                    <li class="" style="font-family: 'Play', sans-serif; font-size: 18px;">Abonnez-vous sur vos plateformes préférées</li>
-                    <li class="animated-section animate__rubberBand"><a target="_blank" href="https://facebook.com/APDQavecDominick/"><img src="{{ asset('assets/frontend/img/youtube.png') }}" alt=""></a></li>
-                    <li class="animated-section animate__rubberBand"><a target="_blank" href="https://www.youtube.com/c/Actualit%C3%A9PolitiqueDuQu%C3%A9bec"><img src="{{ asset('assets/frontend/img/facebook.png') }}" alt=""></a></li>
-                    <li class="animated-section animate__rubberBand"><a target="_blank" href="https://rumble.com/c/APDQ"><img src="{{ asset('assets/frontend/img/rumble.webp') }}" alt=""></a></li>
-                    <li class="animated-section animate__rubberBand"><a target="_blank" href="https://odysee.com/$/invite/@Actualitepolitiqueduquebec:0"><img src="{{ asset('assets/frontend/img/odysee.png') }}" alt=""></a></li>
+                    <li class="wow fadeInLeft" data-wow-duration="1s"><span target="_blank" style="font-family: 'Play', sans-serif; font-size: 18px;">Abonnez-vous sur vos plateformes préférées</span></li>
+                    <li class="wow fadeInUp" data-wow-duration="1s"><a target="_blank" href="https://facebook.com/APDQavecDominick/"><img src="{{ asset('assets/frontend/img/youtube.png') }}" alt=""></a></li>
+                    <li class="wow fadeInUp" data-wow-duration="1s"><a target="_blank" href="https://www.youtube.com/c/Actualit%C3%A9PolitiqueDuQu%C3%A9bec"><img src="{{ asset('assets/frontend/img/facebook.png') }}" alt=""></a></li>
+                    <li class="wow fadeInUp" data-wow-duration="1s"><a target="_blank" href="https://rumble.com/c/APDQ"><img src="{{ asset('assets/frontend/img/rumble.webp') }}" alt=""></a></li>
+                    <li class="wow fadeInUp" data-wow-duration="1s"><a target="_blank" href="https://odysee.com/$/invite/@Actualitepolitiqueduquebec:0"><img src="{{ asset('assets/frontend/img/odysee.png') }}" alt=""></a></li>
                 </ul>
             </div>
         </div>
@@ -70,10 +66,10 @@
 <section id="about" class="mb-5">
     <div class="container pt-4 pb-5">
         <div class="row justify-content-center align-items-center">
-            <div class="col-md-4 animated-section animate__fadeInLeft">
+            <div class="col-md-4 wow fadeInLeft">
                 <img class="about_img" src="{{ asset('assets/frontend/img/person.webp') }}" alt="">
             </div>
-            <div class="col-md-4 animated-section animate__fadeInRight">
+            <div class="col-md-4 wow fadeInRight">
                 <h1>À Propos</h1>
                 <p>Je m'appelle Dominick Jasmin et j'ai créer ce site pour donner mon opinion et mes observations sur la politique canadienne et québécoise, avec un brin d'humour</p>
                 <a href="#" class="btn btn-md btn-outline-accent mt-3">En savoir plus</a>
@@ -92,7 +88,7 @@
         </div>
         <div class="row">
             @foreach ($video_categories as $video_category)
-                <div class="col-md-3 animated-section animate__zoomIn">
+                <a href="{{ route('frontend.video') }}?code={{ $video_category->code }}" class="col-md-3 mt-3 wow bounceInDown">
                     <div class="card">
                         <div class="card-body text-center">
                             {!! $video_category->icon !!}
@@ -100,7 +96,7 @@
                             <p class="small">{{ $video_category->description }}</p>
                         </div>
                     </div>
-                </div>
+                </a>
             @endforeach
         </div>
     </div>
@@ -118,7 +114,7 @@
 
             @foreach ($videos as $video)
 
-                <div class="col-md-3 mb-4 animated-section animate__fadeInLeft">
+                <div class="col-md-3 mb-4 wow bounceInUp">
                     <div class="card border-0">
                         <div class="card-body p-0">
                             <a href="" class="">
@@ -145,7 +141,7 @@
 
         </div>
 
-        <div class="row animated-section animate__fadeInUp">
+        <div class="row animated-section wow bounceInDown">
             <div class="col-md-12 text-center">
                 <a href="#" class="btn btn-md btn-outline-accent mt-5">En savoir plus</a>
             </div>
@@ -165,7 +161,7 @@
 
             @foreach ($posts as $post)
 
-                <div class="col-md-3 mb-4 animated-section animate__fadeInRight">
+                <div class="col-md-3 mb-4 wow bounceInDown">
                     <div class="card border-0">
                         <div class="card-body p-0">
 
@@ -202,7 +198,7 @@
 
         </div>
 
-        <div class="row animated-section animate__fadeInUp">
+        <div class="row wow bounceInUp">
             <div class="col-md-12 text-center">
                 <a href="#" class="btn btn-md btn-outline-accent mt-5">En savoir plus</a>
             </div>
@@ -213,7 +209,7 @@
 <section id="newsletter" class="py-5">
     <div class="container py-4">
         <div class="row justify-content-center align-items-center">
-            <div class="col-md-4 text-center animated-section animate__fadeInLeft">
+            <div class="col-md-4 mb-3 text-center wow bounceInLeft">
                 <h1>S'abonner</h1>
                 <h5>Vers notre newsletter</h5>
                 <form action="{{ route('frontend.newsletter') }}" method="post" class="mt-4" id="newsletterForm">
@@ -222,14 +218,13 @@
                     <button type="submit" class="btn btn-lg btn-default newsletter-button mt-3 w-100">S'abonner</button>
                 </form>
             </div>
-            <div class="col-md-4 animated-section animate__fadeInRight">
+            <div class="col-md-4 wow bounceInRight">
                 <img class="newsletter-img" src="{{ asset('assets/frontend/img/person3.webp') }}" alt="">
             </div>
         </div>
     </div>
 </section>
 
-<hr class="horizontal dark">
 
 @endsection
 
@@ -271,23 +266,6 @@
                         swal(xhr.responseJSON.error);
                     }
                 });
-            });
-        });
-    </script>
-
-    <script>
-        $(document).ready(function () {
-            $('.animated-section').waypoint(function() {
-                // Trigger the Animate.css animation only for the current section
-                $(this.element).addClass('animate__animated').removeClass('opacity-0');
-            }, {
-                offset: '50%', // Adjust the offset as needed
-                handler: function(direction) {
-                    // Reset the animation when scrolling up (optional)
-                    if (direction === 'up') {
-                        $(this.element).removeClass('animate__animated').addClass('opacity-0');
-                    }
-                }
             });
         });
     </script>

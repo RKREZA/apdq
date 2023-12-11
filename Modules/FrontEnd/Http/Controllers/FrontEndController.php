@@ -16,6 +16,9 @@ use Modules\Video\Entities\VideoCategory;
 use Modules\Video\Entities\Video;
 use Modules\Blog\Entities\PostCategory;
 use Modules\Blog\Entities\Post;
+use Modules\Blog\Entities\PostComment;
+use Modules\Cms\Entities\PageCategory;
+use Modules\Cms\Entities\Page;
 use Modules\Live\Entities\Live;
 use Modules\Newsletter\Entities\Newsletter;
 use Illuminate\Support\Facades\Validator;
@@ -24,6 +27,11 @@ use Illuminate\Support\Facades\Mail;
 
 class FrontEndController extends Controller
 {
+    function __construct()
+	{
+        $frontend_setting   = FrontendSetting::first();
+	}
+
     public function home()
     {
         $frontend_setting   = FrontendSetting::first();
@@ -44,10 +52,10 @@ class FrontEndController extends Controller
     {
         $frontend_setting   = FrontendSetting::first();
         $video_categories    = VideoCategory::where('status','Active')->get();
-        if(isset(request()->cat_id) && !empty(request()->cat_id)){
+        if(isset(request()->code) && !empty(request()->code)){
             $videos              = Video::where('status','Active')
                                         ->whereHas('category', function ($query) {
-                                            $query->where('id', request()->cat_id);
+                                            $query->where('code', request()->code);
                                         })
                                         ->paginate(20);
         }else{
@@ -57,14 +65,40 @@ class FrontEndController extends Controller
         return view('frontend::frontend.video', compact('frontend_setting','video_categories','videos'));
     }
 
+    public function video_single($slug)
+    {
+        $frontend_setting   = FrontendSetting::first();
+        $video_categories    = VideoCategory::where('status','Active')->get();
+        $video               = Video::where('slug',$slug)->first();
+        $recent_videos       = Video::where('status', 'Active')->orderBy('id','DESC')->limit(4)->get();
+
+        $share_component = \Share::page(
+            route('frontend.video.single', $video->slug),
+            $video->title,
+            ['target' => '_parent']
+        )
+        ->facebook()
+        ->twitter()
+        ->linkedin()
+        ->telegram()
+        ->whatsapp();
+
+        if($video){
+            return view('frontend::frontend.video_single', compact('frontend_setting','video_categories','video','recent_videos','share_component'));
+        }else{
+            return abort(404);
+        }
+
+    }
+
     public function blog()
     {
         $frontend_setting   = FrontendSetting::first();
         $post_categories    = PostCategory::where('status','Active')->get();
-        if(isset(request()->cat_id) && !empty(request()->cat_id)){
+        if(isset(request()->code) && !empty(request()->code)){
             $posts              = Post::where('status','Active')
                                         ->whereHas('category', function ($query) {
-                                            $query->where('id', request()->cat_id);
+                                            $query->where('id', request()->code);
                                         })
                                         ->paginate(20);
         }else{
@@ -74,12 +108,65 @@ class FrontEndController extends Controller
         return view('frontend::frontend.blog', compact('frontend_setting','post_categories','posts'));
     }
 
+    public function blog_single($slug)
+    {
+        $frontend_setting   = FrontendSetting::first();
+        $post_categories    = PostCategory::where('status','Active')->get();
+        $post               = Post::where('slug',$slug)->first();
+        $recent_posts       = Post::where('status', 'Active')->orderBy('id','DESC')->limit(5)->get();
+        $post_comments      = PostComment::where('post_id', $post->id)->get();
+
+        $share_component = \Share::page(
+            route('frontend.blog.single', $post->slug),
+            $post->title,
+            ['target' => '_parent']
+        )
+        ->facebook()
+        ->twitter()
+        ->linkedin()
+        ->telegram()
+        ->whatsapp();
+
+        if($post){
+            return view('frontend::frontend.blog_single', compact('frontend_setting','post_categories','post','recent_posts','post_comments','share_component'));
+        }else{
+            return abort(404);
+        }
+    }
+
+    public function blog_comment_store(Request $request)
+    {
+        $request->validate([
+            'body'=>'required',
+        ]);
+        $input = $request->all();
+        $input['user_id'] = auth()->user()->id;
+
+        try {
+            PostComment::create($input);
+            return redirect()->back();
+			// $success_msg            = __('core::core.message.success.store');
+            // return response()->json(['success'=>$success_msg], 200);
+
+		} catch (Exception $e) {
+			// $error_msg              = __('core::core.message.error');
+            // return response()->json(['error'=>$error_msg]);
+            return redirect()->back();
+		}
+    }
+
     public function live()
     {
         $frontend_setting   = FrontendSetting::first();
         $live               = Live::where('status','Active')->first();
 
         return view('frontend::frontend.live', compact('frontend_setting','live'));
+    }
+
+    public function donation()
+    {
+        $frontend_setting   = FrontendSetting::first();
+        return view('frontend::frontend.donation', compact('frontend_setting'));
     }
 
     public function contact()
@@ -136,7 +223,18 @@ class FrontEndController extends Controller
         return view('frontend::frontend.doantion', compact('frontend_setting'));
     }
 
+    public function page_single($slug)
+    {
+        $frontend_setting   = FrontendSetting::first();
+        $page_categories    = PageCategory::where('status','Active')->get();
+        $page               = Page::where('slug',$slug)->first();
 
+        if($page){
+            return view('frontend::frontend.page_single', compact('frontend_setting','page_categories','page'));
+        }else{
+            return abort(404);
+        }
+    }
 
     public function newsletter(Request $request) {
         $rules = [

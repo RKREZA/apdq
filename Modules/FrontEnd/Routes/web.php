@@ -12,6 +12,7 @@ Route::group(['middleware'=>'language'],function (){
 
     Route::get('/blog', 		            'FrontEndController@blog')->name('frontend.blog');
     Route::get('/blog/{slug}', 		        'FrontEndController@blog_single')->name('frontend.blog.single');
+    Route::post('/blog/comment/store', 		'FrontEndController@blog_comment_store')->name('frontend.blog.comments.store');
 
 
     Route::get('/live', 		            'FrontEndController@live')->name('frontend.live');
@@ -19,7 +20,8 @@ Route::group(['middleware'=>'language'],function (){
     Route::get('/contact', 		            'FrontEndController@contact')->name('frontend.contact');
     Route::post('/contact/go', 		        'FrontEndController@contact_go')->name('frontend.contact_go');
 
-    Route::get('/donation', 		         'FrontEndController@donation')->name('frontend.donation');
+    Route::get('/donation', 		        'FrontEndController@donation')->name('frontend.donation');
+    Route::get('/page/{slug}', 		        'FrontEndController@page_single')->name('frontend.page.single');
 
 
     Route::get('/delete-user', 	            'FrontEndController@delete_user')->name('frontend.delete_user');

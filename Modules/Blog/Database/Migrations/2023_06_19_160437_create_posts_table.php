@@ -32,6 +32,23 @@ class CreatePostsTable extends Migration
                 $table->softDeletes();
             });
         }
+
+        if (!Schema::hasTable('post_comments')) {
+            Schema::create('post_comments', function (Blueprint $table) {
+                $table->increments('id');
+
+                $table->bigInteger('user_id')->unsigned()->nullable();
+                $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+
+                $table->bigInteger('post_id')->unsigned()->nullable();
+                $table->foreign('post_id')->references('id')->on('posts')->onDelete('set null');
+
+                $table->integer('parent_id')->unsigned()->nullable();
+                $table->text('body');
+                $table->timestamps();
+                $table->softDeletes();
+            });
+        }
     }
 
     /**
@@ -42,5 +59,6 @@ class CreatePostsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('posts');
+        Schema::dropIfExists('post_comments');
     }
 }

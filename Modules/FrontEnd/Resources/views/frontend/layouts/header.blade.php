@@ -19,24 +19,24 @@
                     <a class="nav-link {{ request()->is('a-propos') ? 'active' : '' }}" aria-current="page" href="{{ route('frontend.about') }}">À propos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('video') ? 'active' : '' }}" aria-current="page" href="{{ route('frontend.video') }}">Vidéos</a>
+                    <a class="nav-link {{ request()->is('video*') ? 'active' : '' }}" aria-current="page" href="{{ route('frontend.video') }}">Vidéos</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('live') ? 'active' : '' }}" aria-current="page" href="{{ route('frontend.live') }}">En direct</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('blog') ? 'active' : '' }}" aria-current="page" href="{{ route('frontend.blog') }}">Blog</a>
+                    <a class="nav-link {{ request()->is('blog*') ? 'active' : '' }}" aria-current="page" href="{{ route('frontend.blog') }}">Blog</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('contact') ? 'active' : '' }}" aria-current="page" href="{{ route('frontend.contact') }}">Contact</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="btn btn-lg btn-outline-white ms-3  {{ request()->is('donation') ? 'active' : '' }}" aria-current="page" href="{{ route('frontend.donation') }}">Donation </a>
+                    <a class="nav-link {{ request()->is('donation') ? 'active' : '' }}" aria-current="page" href="{{ route('frontend.donation') }}">Donation </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="btn btn-lg btn-outline-white ms-3" aria-current="page" href="{{ route('admin.login') }}">Login</a>
+                    <a class="nav-link btn btn-lg btn-outline-white ms-3" aria-current="page" href="{{ route('admin.login') }}">Login</a>
                 </li>
                 {{-- <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="#">Période de questions</a>

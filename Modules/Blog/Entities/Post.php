@@ -50,4 +50,9 @@ class Post extends Model
         return $this->belongsTo('Modules\Blog\Entities\PostCategory');
     }
 
+    public function comments()
+    {
+        return $this->hasMany('Modules\Blog\Entities\PostComment')->whereNull('parent_id');
+    }
+
 }

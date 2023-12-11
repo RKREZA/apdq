@@ -46,8 +46,8 @@ Vidéo
                                     @foreach($video_categories as $category)
                                     <li>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="category" id="category_input{{ $category->id }}" value="{{ $category->id }}" @if(request()->cat_id == $category->id) checked @endif>
-                                            <label class="form-check-label" for="category_input{{ $category->id }}">
+                                            <input class="form-check-input" type="radio" name="category" id="category_input{{ $category->code }}" value="{{ $category->code }}" @if(request()->code == $category->code) checked @endif>
+                                            <label class="form-check-label" for="category_input{{ $category->code }}">
                                                 {{ $category->name }}
                                             </label>
                                           </div>
@@ -68,13 +68,13 @@ Vidéo
                         <div class="col-md-4 mb-4">
                             <div class="card border-0">
                                 <div class="card-body p-0">
-                                    <a href="" class="">
+                                    <a href="{{ route('frontend.video.single', $video->slug) }}" class="">
                                         <div class="image-container" style="background-image:url({{ $video->thumbnail_url }});">
                                             {{-- <img src="{{ $video->thumbnail_url }}" onerror="this.onerror=null;this.src='{{ asset('assets/frontend/img/no-video.png') }}';" alt=""> --}}
                                         </div>
                                     </a>
                                     <div class="video-content p-3">
-                                        <h6><a href="#" class="link-dark">{{ $video->title }}</a></h6>
+                                        <h6><a href="{{ route('frontend.video.single', $video->slug) }}" class="link-dark">{{ $video->title }}</a></h6>
                                         <div class="row sub-content">
                                             <div class="col-6">
                                                 <small><a href="" class="text-muted"><i class="fi fi-ss-clipboard-list-check"></i> {{ $video->category->name }}</a></small>
@@ -111,8 +111,8 @@ Vidéo
 <script>
     $(document).ready(function() {
         $('input[type=radio][name=category]').on('change', function() {
-            var selectedCategoryId = $('input[type=radio][name=category]:checked').val();
-            window.location.href = `{{ route('frontend.blog') }}?cat_id=` + selectedCategoryId;
+            var selectedCategoryCode = $('input[type=radio][name=category]:checked').val();
+            window.location.href = `{{ route('frontend.video') }}?code=` + selectedCategoryCode;
         });
     });
   </script>

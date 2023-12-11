@@ -75,6 +75,7 @@ hr.horizontal.dark {
     color: #fff;
     border-radius: 50px;
     font-size: 1em;
+    padding: 7px 25px !important;
 }
 
 .btn-outline-white:hover{
@@ -334,7 +335,7 @@ nav.navbar {
 
 
 #video .card{
-    border-radius: 0px;
+    border-radius: 10px;
     overflow: hidden;
 }
 #video img{
@@ -478,7 +479,7 @@ section#blog{
     list-style: none;
 }
 #footer .footer-link ul li a{
-    font-size: 12px;
+    font-size: 14px;
     color: #000;
 }
 #footer .footer-link ul li img{
@@ -554,6 +555,17 @@ section#blog{
 
 .video_page_header .content h1{
     color: #fff;
+    text-transform: uppercase;
+}
+
+.video_page_header .content h2{
+    color: #fff;
+}
+
+.video_page_header .content h6{
+    color: #16decd !important;
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
 /* End Video Page */
@@ -562,7 +574,7 @@ section#blog{
 /* Contact Page */
 
 #contact_page .left_image{
-    width: 200px;
+    width: 250px;
 }
 
 #contact-form-container{

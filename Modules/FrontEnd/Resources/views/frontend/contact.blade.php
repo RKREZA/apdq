@@ -22,7 +22,7 @@ Contact
 @section('content')
 
 <section id="page_header" class="video_page_header">
-    <img src="/assets/frontend/img/about.webp" alt="">
+    <img src="/assets/frontend/img/contact.webp" alt="">
     <div class="content">
         <h1>Contact</h1>
     </div>
@@ -39,7 +39,7 @@ Contact
         <hr class="horizontal dark">
 
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <div class="row align-items-center p-4" id="contact-form-container">
                     <div class="col-md-6 p-4 text-center">
                         <img src="{{ asset('assets/frontend/img/contact_icon.png') }}" class="m-4 left_image" alt="">
@@ -76,9 +76,6 @@ Contact
                 </div>
             </div>
         </div>
-
-
-        <hr class="horizontal dark">
 
     </div>
 </section>

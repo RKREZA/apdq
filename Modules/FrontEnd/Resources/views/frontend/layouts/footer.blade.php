@@ -1,5 +1,8 @@
 <section id="footer" class="mt-5">
     <div class="container">
+
+        <hr class="horizontal dark">
+
         <div class="row align-items-center">
             <div class="col-md-4 px-4">
                 <img src="{{ asset('assets/frontend/img/logo.webp') }}" class="footer-logo" alt="">
@@ -23,7 +26,7 @@
                     <h5>Catégories de vidéos</h3>
                     <ul>
                         @foreach (\Modules\Video\Entities\VideoCategory::where('status','Active')->get() as $category)
-                            <li><a href="#">{{ $category->name }}</a></li>
+                            <li><a href="{{ route('frontend.video') }}?code={{ $category->code }}">{{ $category->name }}</a></li>
                         @endforeach
                     </ul>
                 </div>
@@ -34,7 +37,7 @@
                     <h5>Links</h5>
                     <ul>
                         @foreach (\Modules\Cms\Entities\Page::where('status','Active')->get() as $page)
-                            <li><a href="#">{{ $page->title }}</a></li>
+                            <li><a href="{{ route('frontend.page.single', $page->slug) }}">{{ $page->title }}</a></li>
                         @endforeach
                     </ul>
                 </div>
@@ -42,7 +45,9 @@
 
         </div>
 
-        <div class="row mt-5">
+        <hr class="horizontal dark">
+
+        <div class="row mt-3    ">
             <div class="col-md-6 px-4 py-3">
                 <p class="small">Tous Droits Réservés © APDQ</p>
             </div>
