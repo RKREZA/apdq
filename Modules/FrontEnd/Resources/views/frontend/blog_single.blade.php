@@ -16,6 +16,9 @@
 @push('css')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <style>
+        #blog_page{
+            background: #fafafa;
+        }
         .embed_code iframe{
             width: 100%;
             height: auto;
@@ -89,7 +92,7 @@
     </div>
 </section>
 
-<section id="blog" class="py-5">
+<section id="blog_page" class="py-5">
     <div class="container py-4">
         <div class="row">
 

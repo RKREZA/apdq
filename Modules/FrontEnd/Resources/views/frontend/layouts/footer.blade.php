@@ -1,7 +1,7 @@
-<section id="footer" class="mt-5">
+<section id="footer" class="">
     <div class="container">
 
-        <hr class="horizontal dark">
+        <hr class="horizontal dark mt-0 mb-5">
 
         <div class="row align-items-center">
             <div class="col-md-4 px-4">
@@ -23,7 +23,7 @@
 
             <div class="col-md-4 px-4">
                 <div class="footer-link">
-                    <h5>Catégories de vidéos</h3>
+                    <h5 class="fw-bold">Catégories de vidéos</h3>
                     <ul>
                         @foreach (\Modules\Video\Entities\VideoCategory::where('status','Active')->get() as $category)
                             <li><a href="{{ route('frontend.video') }}?code={{ $category->code }}">{{ $category->name }}</a></li>
@@ -34,11 +34,13 @@
 
             <div class="col-md-4 px-4">
                 <div class="footer-link">
-                    <h5>Links</h5>
+                    <h5 class="fw-bold">Links</h5>
                     <ul>
                         @foreach (\Modules\Cms\Entities\Page::where('status','Active')->get() as $page)
                             <li><a href="{{ route('frontend.page.single', $page->slug) }}">{{ $page->title }}</a></li>
                         @endforeach
+                        <li><a href="{{ route('frontend.about') }}">À propos</a></li>
+                        <li><a href="{{ route('frontend.contact') }}">Contact</a></li>
                     </ul>
                 </div>
             </div>

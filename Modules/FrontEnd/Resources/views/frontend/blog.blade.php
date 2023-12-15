@@ -15,7 +15,57 @@ Blog
 
 @push('css')
     <style>
+#blog_page{
+    /* background-image: linear-gradient(90deg, #03e2cd 0%, #6254fc 90%); */
+    background-color: #fafafa;
+}
+#blog_page .image-container{
+    background-size: cover;
+    height: 170px;
+    background-position: center;
+    border-radius: 10px;
+}
 
+#blog_page .container{
+    z-index: 2;
+    position: relative;
+}
+
+#blog_page img{
+    width: 100%;
+}
+
+#blog_page .card{
+    min-height: 210px;
+    border-radius: 20px;
+    border: 0;
+    transition: all .5s;
+    z-index: 2;
+    box-shadow: 0px 7px 27px -27px #000;
+}
+
+#blog_page .card:hover{
+    box-shadow: none;
+}
+
+#blog_page .post-content h6{
+    max-height: 40px;
+    overflow: hidden;
+}
+
+#blog_page .sub-content small, #blog_page .sub-content small a{
+    font-size: 11px;
+    color: #9e9e9e;
+}
+
+#blog_page #filter .card{
+    border: 1px solid #ccc;
+    box-shadow: none;
+}
+
+#blog_page #filter .card .card-header{
+    border-radius: 20px 20px 0 0;
+}
     </style>
 @endpush
 
@@ -28,7 +78,7 @@ Blog
     </div>
 </section>
 
-<div id="blog" class="py-5">
+<div id="blog_page" class="py-5">
     <div class="container py-4">
         <div class="row">
             <div class="col-md-4" id="filter">
@@ -110,7 +160,6 @@ Blog
         </div>
     </div>
 </div>
-<hr class="horizontal dark">
 
 @endsection
 

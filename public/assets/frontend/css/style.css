@@ -122,6 +122,21 @@ hr.horizontal.dark {
     font-weight: bold;
 }
 
+.overlay {
+    content: "";
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+
+    background-color: #f7f7f7cf;
+    background-image: radial-gradient(at bottom center, #FFFFFFCC 0%, var(--e-global-color-text) 100%);
+    opacity: 1;
+    transition: background 0.3s, border-radius 0.3s, opacity 0.3s;
+    z-index: 1;
+}
+
 
 
 /* Navbar */
@@ -130,10 +145,26 @@ nav.navbar {
     z-index: 2;
 }
 
+.navbar-toggler{
+    border: 1px solid #fff;
+}
+.navbar-toggler-custom-icon{
+    color: #fff;
+}
+
+.fi-ss-menu-burger:before {
+    line-height: 1.4 !important;
+}
+
 .nav-link{
     color: #fff;
     padding-left: 10px;
     padding-right: 10px;
+}
+
+.nav-link i{
+    position: relative;
+    top: 3px;
 }
 .nav-link:focus, .nav-link:hover {
     color: #03e2cd;
@@ -168,6 +199,82 @@ nav.navbar {
     font-weight: 400;
 }
 
+#search {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: #000000f2;
+
+    -webkit-transition: all 0.25s ease-in-out;
+    -moz-transition: all 0.25s ease-in-out;
+    -o-transition: all 0.25s ease-in-out;
+    -ms-transition: all 0.25s ease-in-out;
+    transition: all 0.25s ease-in-out;
+
+    -webkit-transform: translate(0px, -100%) scale(0, 0);
+    -moz-transform: translate(0px, -100%) scale(0, 0);
+    -o-transform: translate(0px, -100%) scale(0, 0);
+    -ms-transform: translate(0px, -100%) scale(0, 0);
+    transform: translate(0px, -100%) scale(0, 0);
+
+    opacity: 0;
+    z-index: 999999999;
+}
+
+#search.open {
+    -webkit-transform: translate(0px, 0px) scale(1, 1);
+    -moz-transform: translate(0px, 0px) scale(1, 1);
+    -o-transform: translate(0px, 0px) scale(1, 1);
+    -ms-transform: translate(0px, 0px) scale(1, 1);
+    transform: translate(0px, 0px) scale(1, 1);
+    opacity: 1;
+}
+#search h3 {
+    position: absolute;
+    top: 25%;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+}
+#search input[type="search"] {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    color: rgb(255, 255, 255);
+    background: rgba(0, 0, 0, 0);
+    font-size: 60px;
+    font-weight: 300;
+    text-align: center;
+    border: 0px;
+    margin: 0px auto;
+    margin-top: -51px;
+    padding-left: 30px;
+    padding-right: 30px;
+    outline: none;
+}
+#search .btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100px;
+    max-width: 200px;
+    margin-top: 61px;
+    margin-left: -45px;
+}
+#search .close {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    color: #fff;
+    background-color: #888;
+    border-color: #ccc;
+    opacity: 1;
+    padding: 10px 17px;
+    font-size: 27px;
+}
+
 /* Navbar end */
 
 
@@ -180,7 +287,7 @@ nav.navbar {
 #slider .item img{
     width: 100%;
     height: 100vh;
-    opacity: .5;
+    opacity: .4;
 }
 
 #slider .slider-content{
@@ -258,6 +365,10 @@ nav.navbar {
 
 /* About */
 
+#about{
+
+}
+
 #about .about_img{
     width: 100%;
     border-radius: 30px;
@@ -272,6 +383,13 @@ nav.navbar {
 #category{
     /* background-image: linear-gradient(90deg, #03e2cd 0%, #6254fc 90%); */
     background-color: #fafafa;
+    background-image: url('/assets/frontend/img/pattern_2.png');
+    position: relative;
+}
+
+#category .container{
+    z-index: 2;
+    position: relative;
 }
 
 #category .card{
@@ -279,10 +397,12 @@ nav.navbar {
     border-radius: 20px;
     border: 0;
     transition: all .5s;
+    z-index: 2;
+    box-shadow: 0px 7px 27px -27px #000;
 }
 
 #category .card:hover{
-    box-shadow: 0px 7px 27px -27px #000;
+    box-shadow: none;
 }
 
 #category .card i{
@@ -368,7 +488,9 @@ nav.navbar {
 
 section#blog{
     /* background-image: linear-gradient(90deg, #03e2cd 0%, #6254fc 90%); */
-    background-color: #f5f5f5;
+    background-color: #fafafa;
+    background-image: url('/assets/frontend/img/pattern_2.png');
+    position: relative;
 }
 #blog .image-container{
     background-size: cover;
@@ -377,17 +499,29 @@ section#blog{
     border-radius: 10px;
 }
 
+#blog .container{
+    z-index: 2;
+    position: relative;
+}
+
 #blog img{
     width: 100%;
 }
 
-
 #blog .card{
-    border-radius: 10px;
-    overflow: hidden;
+    min-height: 210px;
+    border-radius: 20px;
+    border: 0;
+    transition: all .5s;
+    z-index: 2;
+    box-shadow: 0px 7px 27px -27px #000;
 }
 
-#blog .blog-content h6{
+#blog .card:hover{
+    box-shadow: none;
+}
+
+#blog .post-content h6{
     max-height: 40px;
     overflow: hidden;
 }
@@ -416,7 +550,7 @@ section#blog{
 #newsletter .newsletter-input{
     padding: 17px 25px;
     border-radius: 50px;
-    border: 1px solid #000;
+    border: 1px solid #ccc;
 }
 
 #newsletter .newsletter-button{
@@ -429,7 +563,34 @@ section#blog{
 /* End Newsletter */
 
 
+/* Donation */
+#donation{
+    background-color: #fafafa;
+    background-image: url('/assets/frontend/img/pattern_2.png');
+    position: relative;
+}
 
+#donation .container{
+    z-index: 2;
+    position: relative;
+}
+#donation .donation_img{
+    width: 130px;
+}
+#donation .row .card{
+    border: 0;
+    border-radius: 20px;
+    box-shadow: 0px 7px 27px -27px #000;
+}
+
+#donation .card:hover{
+    box-shadow: none;
+}
+#donation .row .card p{
+    font-size: 14px;
+}
+
+/* End Donation */
 
 
 /* Footer */
@@ -441,8 +602,8 @@ section#blog{
 }
 
 #footer .col-md-4:nth-child(2) {
-    border-left: 1px solid #ADB0B4;
-    border-right: 1px solid #ADB0B4;
+    border-left: 1px solid #e1e1e1;
+    border-right: 1px solid #e1e1e1;
 }
 
 #footer .footer-logo{
@@ -539,7 +700,7 @@ section#blog{
 }
 
 .video_page_header img{
-    opacity: 0.5;
+    opacity: 0.4;
     position: absolute;
     left: 0;
     top: 0;
@@ -582,3 +743,50 @@ section#blog{
 }
 
 /* End Contact Page */
+
+
+
+
+
+
+
+
+
+
+
+/* Small screens (mobile phones) */
+@media only screen and (max-width: 600px) {
+    nav.navbar{
+        background-color: #000 !important;
+    }
+
+    .navbar-collapse {
+        padding: 30px;
+    }
+
+    #search input[type="search"] {
+        top: 40%;
+        font-size: 30px;
+    }
+    #search .btn {
+        margin-top: 0px;
+    }
+
+    .video_page_header img {
+        min-height: 466px;
+    }
+}
+
+/* Medium screens (tablets) */
+@media only screen and (min-width: 601px) and (max-width: 992px) {
+    /* Styles for medium screens go here */
+}
+
+/* Large screens (desktops) */
+@media only screen and (min-width: 993px) {
+    /* Styles for large screens go here */
+}
+
+
+
+

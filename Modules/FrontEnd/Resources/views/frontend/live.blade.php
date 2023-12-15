@@ -22,7 +22,7 @@ En direct
 @section('content')
 
 <section id="page_header" class="video_page_header">
-    <img src="/assets/frontend/img/about.webp" alt="">
+    <img src="/assets/frontend/img/live.webp" alt="">
     <div class="content">
         <h1>En direct</h1>
     </div>

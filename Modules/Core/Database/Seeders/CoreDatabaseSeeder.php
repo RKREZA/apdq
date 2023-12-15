@@ -29,5 +29,6 @@ class CoreDatabaseSeeder extends Seeder
         $this->call(PostTableSeeder::class);
         $this->call(PaymentGatewayTableSeeder::class);
         $this->call(PageTableSeeder::class);
+        $this->call(SubscriptionTableSeeder::class);
     }
 }

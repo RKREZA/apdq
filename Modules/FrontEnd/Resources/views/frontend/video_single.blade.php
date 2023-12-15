@@ -16,6 +16,41 @@
 @push('css')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <style>
+        #video_page{
+            background: #fafafa;
+        }
+        #video_page .image-container {
+            background-size: cover;
+            height: 170px;
+            background-position: center;
+            border-radius: 10px;
+        }
+        #video_page .image-container::before {
+            content: "";
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-image: url(/assets/frontend/img/play.png);
+            background-size: cover;
+            background-position: center;
+            opacity: 1;
+            transition: opacity 0.3s ease-in-out;
+            width: 75px;
+            height: 75px;
+        }
+        #video_page .video-content h6 {
+            max-height: 40px;
+            overflow: hidden;
+        }
+        #video_page .video-content .sub-content {
+            max-height: 30px;
+            overflow: hidden;
+        }
+        #video_page .sub-content small, #video_page .sub-content small a {
+            font-size: 11px;
+            color: #9e9e9e;
+        }
         .embed_code iframe{
             width: 100%;
             height: auto;
@@ -46,6 +81,22 @@
             color: #fff;
             background-color: #0dcaf0;
         }
+
+        .emoji{
+            font-size: 40px;
+            line-height: 35px;
+        }
+        .emoji button{
+            border: 0;
+            background-color: transparent;
+        }
+        .emoji button:hover{
+            color: #0dcaf0;
+        }
+
+        .fi-active{
+            color: #0dcaf0;
+        }
     </style>
 @endpush
 
@@ -65,7 +116,7 @@
     </div>
 </section>
 
-<section id="video" class="py-5">
+<section id="video_page" class="py-5">
     <div class="container py-4">
         <div class="row">
 
@@ -73,13 +124,13 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
-                            <div class="col">
+                            <div class="col my-2">
                                 <span class="text-info"><i class="fi fi-ss-calendar-clock"></i> {{ date("jS M Y", strtotime($video->created_at)) }}</span>
                                 &nbsp;&nbsp;
                                 <a href="{{ route('frontend.video') }}?code={{ $video->category->code }}" class="text-info"><i class="fi fi-ss-notebook"></i> {{ $video->category->name }}</a>
 
                             </div>
-                            <div class="col">
+                            <div class="col text-end my-2">
                                 <span class="text-end">
                                     {!! $share_component !!}
                                 </span>
@@ -109,6 +160,64 @@
             </div>
 
             <div class="col-md-12 mt-5">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col text-center emoji my-2">
+                                <button class="reaction-button w-100" data-video-id="{{ $video->id }}" data-reaction-type="like">
+                                    <i class="fi fi-rs-social-network"></i>
+                                    <input type="hidden" class="previous_value" value="{{ $video->like }}">
+                                </button>
+                                <div class="badge badge-sm bg-info w-100 mt-2">{{ $video->like }}</div>
+                            </div>
+                            <div class="col text-center emoji my-2">
+                                <button class="reaction-button w-100" data-video-id="{{ $video->id }}" data-reaction-type="love">
+                                    <i class="fi fi-rs-heart"></i>
+                                    <input type="hidden" class="previous_value" value="{{ $video->love }}">
+                                </button>
+                                <div class="badge badge-sm bg-info w-100 mt-2">{{ $video->love }}</div>
+                            </div>
+                            <div class="col text-center emoji my-2">
+                                <button class="reaction-button w-100" data-video-id="{{ $video->id }}" data-reaction-type="haha">
+                                    <i class="fi fi-rs-surprise"></i>
+                                    <input type="hidden" class="previous_value" value="{{ $video->haha }}">
+                                </button>
+                                <div class="badge badge-sm bg-info w-100 mt-2">{{ $video->haha }}</div>
+                            </div>
+                            <div class="col text-center emoji my-2">
+                                <button class="reaction-button w-100" data-video-id="{{ $video->id }}" data-reaction-type="wow">
+                                    <i class="fi fi-rs-surprise"></i>
+                                    <input type="hidden" class="previous_value" value="{{ $video->wow }}">
+                                </button>
+                                <div class="badge badge-sm bg-info w-100 mt-2">{{ $video->wow }}</div>
+                            </div>
+                            <div class="col text-center emoji my-2">
+                                <button class="reaction-button w-100" data-video-id="{{ $video->id }}" data-reaction-type="sad">
+                                    <i class="fi fi-rs-sad"></i>
+                                    <input type="hidden" class="previous_value" value="{{ $video->sad }}">
+                                </button>
+                                <div class="badge badge-sm bg-info w-100 mt-2">{{ $video->sad }}</div>
+                            </div>
+                            <div class="col text-center emoji my-2">
+                                <button class="reaction-button w-100" data-video-id="{{ $video->id }}" data-reaction-type="angry">
+                                    <i class="fi fi-rs-angry"></i>
+                                    <input type="hidden" class="previous_value" value="{{ $video->angry }}">
+                                </button>
+                                <div class="badge badge-sm bg-info w-100 mt-2">{{ $video->angry }}</div>
+                            </div>
+                            <div class="col text-center emoji my-2">
+                                <button class="reaction-button w-100" data-video-id="{{ $video->id }}" data-reaction-type="dislike">
+                                    <i class="fi fi-rs-hand"></i>
+                                    <input type="hidden" class="previous_value" value="{{ $video->dislike }}">
+                                </button>
+                                <div class="badge badge-sm bg-info w-100 mt-2">{{ $video->dislike }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 mt-5">
 
                 <div class="row mt-5">
 
@@ -129,7 +238,7 @@
                                     <h6><a href="{{ route('frontend.video.single', $recent_video->slug) }}" class="link-dark">{{ $recent_video->title }}</a></h6>
                                     <div class="row sub-content">
                                         <div class="col-6">
-                                            <small><a href="" class="text-muted"><i class="fi fi-ss-clipboard-list-check"></i> {{ $recent_video->category->name }}</a></small>
+                                            <small><a href="{{ route('frontend.video') }}?code={{ $video->category->code }}" class="text-muted"><i class="fi fi-ss-clipboard-list-check"></i> {{ $recent_video->category->name }}</a></small>
                                         </div>
                                         <div class="col-6 text-end text-muted">
                                             <small><i class="fi fi-ss-calendar-clock"></i> {{ date('d/m/Y', strtotime($recent_video->created_at)) }}</small>
@@ -147,10 +256,53 @@
     </div>
 </section>
 
+
+
 @endsection
 
 
 @push('js')
 
 <script src="{{ asset('js/share.js') }}"></script>
+
+<script>
+    $(document).ready(function() {
+        $('.reaction-button').click(function() {
+            var button = $(this);
+            var badge = button.next('.badge');
+            // var previousValue = parseInt(button.next('.previous_value').val());
+            var videoId = button.data('video-id');
+            var reactionType = button.data('reaction-type');
+
+            var previousValue = parseInt(button.closest('.emoji').find('.previous_value').val());
+
+
+            $.ajax({
+                url: `{{ route('frontend.video.react') }}`,
+                type: 'POST',
+                data: {
+                    video_id: videoId,
+                    reaction_type: reactionType,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    if (response.success) {
+                        button.find('.fi').addClass('fi-active');
+
+                        // Increment the numeric value and update the UI
+                        var newValue = previousValue+1;
+                        badge.html(newValue);
+                        button.next('.previous_value').val(previousValue + 1);
+                    } else {
+                        console.error('Failed to submit reaction');
+                    }
+                },
+                error: function(error) {
+                    console.error('AJAX request failed', error);
+                }
+            });
+        });
+    });
+</script>
+
 @endpush

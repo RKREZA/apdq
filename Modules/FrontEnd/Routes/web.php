@@ -9,13 +9,18 @@ Route::group(['middleware'=>'language'],function (){
 
     Route::get('/video', 		            'FrontEndController@video')->name('frontend.video');
     Route::get('/video/{slug}', 		    'FrontEndController@video_single')->name('frontend.video.single');
+    Route::post('/video/react',             'FrontEndController@react')->name('frontend.video.react');
+
 
     Route::get('/blog', 		            'FrontEndController@blog')->name('frontend.blog');
     Route::get('/blog/{slug}', 		        'FrontEndController@blog_single')->name('frontend.blog.single');
     Route::post('/blog/comment/store', 		'FrontEndController@blog_comment_store')->name('frontend.blog.comments.store');
 
+    Route::get('/search', 		            'FrontEndController@search')->name('frontend.search');
 
     Route::get('/live', 		            'FrontEndController@live')->name('frontend.live');
+
+    Route::get('/subscription', 		    'FrontEndController@subscription')->name('frontend.subscription');
 
     Route::get('/contact', 		            'FrontEndController@contact')->name('frontend.contact');
     Route::post('/contact/go', 		        'FrontEndController@contact_go')->name('frontend.contact_go');

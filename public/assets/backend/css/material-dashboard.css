@@ -4255,8 +4255,13 @@ fieldset:disabled .btn {
     border: 0;
 }
 
+.dark-version .dropdown-menu{
+    background: #232a41;
+}
+
 .dark-version .dropdown-item {
     color: #e7e8eb;
+    background: #232a41;
 }
 .dark-version .dropdown-item:hover,
 .dark-version .dropdown-item:focus {

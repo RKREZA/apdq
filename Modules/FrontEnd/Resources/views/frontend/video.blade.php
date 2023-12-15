@@ -15,7 +15,71 @@ Vidéo
 
 @push('css')
     <style>
+        #video_page{
+            background: #fafafa;
+        }
+        #video_page .image-container {
+            background-size: cover;
+            height: 170px;
+            background-position: center;
+            border-radius: 10px;
+        }
+        #video_page .image-container::before {
+            content: "";
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-image: url(/assets/frontend/img/play.png);
+            background-size: cover;
+            background-position: center;
+            opacity: 1;
+            transition: opacity 0.3s ease-in-out;
+            width: 75px;
+            height: 75px;
+        }
+        #video_page .video-content h6 {
+            max-height: 40px;
+            overflow: hidden;
+        }
+        #video_page .video-content .sub-content {
+            max-height: 30px;
+            overflow: hidden;
+        }
+        #video_page .sub-content small, #video_page .sub-content small a {
+            font-size: 11px;
+            color: #9e9e9e;
+        }
+        .embed_code iframe{
+            width: 100%;
+            height: auto;
+            min-height: 60vh;
+        }
+        .recent_post ul{
+            list-style-type: none;
+            padding-left: 0;
+        }
 
+        div#social-links {
+            margin: 0 auto;
+        }
+        div#social-links ul {
+            padding-left: 0;
+        }
+        div#social-links ul li {
+            display: inline-block;
+        }
+        div#social-links ul li a {
+            padding: 10px 13px;
+            margin: 3px;
+            font-size: 20px;
+            color: #0dcaf0;
+            background-color: #fff;
+        }
+        div#social-links ul li a:hover {
+            color: #fff;
+            background-color: #0dcaf0;
+        }
     </style>
 @endpush
 
@@ -28,7 +92,7 @@ Vidéo
     </div>
 </section>
 
-<section id="video" class="py-5">
+<section id="video_page" class="py-5">
     <div class="container py-4">
         <div class="row">
 
@@ -67,7 +131,7 @@ Vidéo
 
                         <div class="col-md-4 mb-4">
                             <div class="card border-0">
-                                <div class="card-body p-0">
+                                <div class="card-body p-0 bg-white">
                                     <a href="{{ route('frontend.video.single', $video->slug) }}" class="">
                                         <div class="image-container" style="background-image:url({{ $video->thumbnail_url }});">
                                             {{-- <img src="{{ $video->thumbnail_url }}" onerror="this.onerror=null;this.src='{{ asset('assets/frontend/img/no-video.png') }}';" alt=""> --}}
@@ -102,7 +166,6 @@ Vidéo
 
     </div>
 </section>
-<hr class="horizontal dark">
 
 @endsection
 

@@ -49,7 +49,7 @@ Contact
                             @csrf
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
-                                <input type="email" class="form-control border-radius-round" id="name" name="name" required>
+                                <input type="name" class="form-control border-radius-round" id="name" name="name" required>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">

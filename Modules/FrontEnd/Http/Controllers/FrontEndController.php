@@ -20,6 +20,7 @@ use Modules\Blog\Entities\PostComment;
 use Modules\Cms\Entities\PageCategory;
 use Modules\Cms\Entities\Page;
 use Modules\Live\Entities\Live;
+use Modules\Subscription\Entities\Subscription;
 use Modules\Newsletter\Entities\Newsletter;
 use Illuminate\Support\Facades\Validator;
 use App\Mail\SendMail;
@@ -91,6 +92,16 @@ class FrontEndController extends Controller
 
     }
 
+    public function react(Request $request)
+    {
+        $video = Video::find($request->video_id);
+        $reactionType = $request->input('reaction_type'); // Assuming you pass 'like', 'love', etc. as 'reaction_type'
+        $video->$reactionType++;
+        $video->save();
+
+        return response()->json(['success' => true,'video'=>$video]);
+    }
+
     public function blog()
     {
         $frontend_setting   = FrontendSetting::first();
@@ -155,12 +166,43 @@ class FrontEndController extends Controller
 		}
     }
 
+    public function search(Request $request)
+    {
+        $frontend_setting   = FrontendSetting::first();
+
+        $video_categories       = VideoCategory::where('status','Active')->get();
+        $videos                 = Video::where('status','Active')
+                                        ->where('title','like',"%$request->keyword%")
+                                        ->orWhere('seo_title','like',"%$request->keyword%")
+                                        ->orWhere('seo_keyword','like',"%$request->keyword%")
+                                        ->orWhere('seo_description','like',"%$request->keyword%")
+                                        ->paginate(20);
+
+        $post_categories        = PostCategory::where('status','Active')->get();
+        $posts                  = Post::where('status','Active')
+                                        ->where('title','like',"%$request->keyword%")
+                                        ->orWhere('seo_title','like',"%$request->keyword%")
+                                        ->orWhere('seo_keyword','like',"%$request->keyword%")
+                                        ->orWhere('seo_description','like',"%$request->keyword%")
+                                        ->paginate(20);
+
+        return view('frontend::frontend.search', compact('frontend_setting','video_categories','videos','post_categories','posts'));
+    }
+
     public function live()
     {
         $frontend_setting   = FrontendSetting::first();
         $live               = Live::where('status','Active')->first();
 
         return view('frontend::frontend.live', compact('frontend_setting','live'));
+    }
+
+    public function subscription()
+    {
+        $frontend_setting       = FrontendSetting::first();
+        $subscriptions           = Subscription::where('status','Active')->get();
+
+        return view('frontend::frontend.subscription', compact('frontend_setting','subscriptions'));
     }
 
     public function donation()
