@@ -20,8 +20,8 @@
             '1'       => [
                 'url'                   => route('admin.newsletters.create'),
                 'text'                  => '',
-                'img'                   => asset('assets/backend/img/icons/optimized/add.png'),
-                'permission'            => 'newsletter-list',
+                'icon'                  => '<i class="fi fi-ss-add"></i>',
+                'permission'            => 'newsletter-create',
             ],
         ],
         'include_header'        => __('newsletter::newsletter.newsletter.name'),
@@ -31,14 +31,13 @@
         'include_trashes'       => [
             'url'                   => route('admin.newsletters.trashes'),
             'text'                  => __('core::core.form.trash'),
-            'img'                   => asset('assets/backend/img/icons/optimized/trash-white.png'),
             'permission'            => 'newsletter-delete',
         ],
     ])
 
     <div class="row">
 
-        <div class="col-md-12">
+        <div class="col-md-12 px-md-0">
             <div class="card">
                 <div class="card-body">
 
@@ -49,7 +48,6 @@
                             'include_delete_all_permission'     => 'newsletter-delete',
                             'include_index_table_data_route'    => route('admin.newsletters.index'),
                             'include_table_rows'                => [
-                                // 'thumbnail_url'     => __('newsletter::newsletter.newsletter.form.thumbnail_url'),
                                 'email'             => __('newsletter::newsletter.newsletter.form.email'),
                                 'created_at'        => __('core::core.form.created_at'),
                                 'action'            => __('core::core.form.action'),

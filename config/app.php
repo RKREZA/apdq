@@ -213,6 +213,7 @@ return [
         TimeHunter\LaravelGoogleReCaptchaV3\Providers\GoogleReCaptchaV3ServiceProvider::class,
         Alaouy\Youtube\YoutubeServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        Srmklive\PayPal\Providers\PayPalServiceProvider::class,
 
     ],
 
@@ -278,6 +279,7 @@ return [
         'GoogleReCaptchaV3'=> TimeHunter\LaravelGoogleReCaptchaV3\Facades\GoogleReCaptchaV3::class,
         'Youtube'       => Alaouy\Youtube\Facades\Youtube::class,
         'Socialite'     => Laravel\Socialite\Facades\Socialite::class,
+        'PayPal'        => Srmklive\PayPal\Facades\PayPal::class
     ],
 
 ];

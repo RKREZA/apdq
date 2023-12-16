@@ -18,7 +18,7 @@
             '1'       => [
                 'url'                   => route('admin.setting.languages.create'),
                 'text'                  => '',
-                'img'                   => asset('assets/backend/img/icons/optimized/add.png'),
+                'icon'                  => '<i class="fi fi-ss-add"></i>',
                 'permission'            => 'language-create',
             ]
         ],
@@ -30,14 +30,13 @@
         'include_trashes'       => [
             'url'                   => route('admin.setting.languages.trashes'),
             'text'                  => __('core::core.form.trash'),
-            'img'                   => asset('assets/backend/img/icons/optimized/trash-white.png'),
             'permission'            => 'language-delete',
         ],
     ])
 
     <div class="row">
 
-        <div class="col-md-12">
+        <div class="col-md-12 px-md-0">
             <div class="card">
 
                 <div class="card-body">

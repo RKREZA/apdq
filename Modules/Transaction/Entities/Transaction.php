@@ -21,7 +21,24 @@ class Transaction extends Model
         'subscription_id',
         'user_id',
         'paymentgateway_id',
+        'data',
         'status'
     ];
+    
+
+    public function subscription()
+    {
+        return $this->belongsTo('Modules\Subscription\Entities\Subscription');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('Modules\User\Entities\User');
+    }
+
+    public function paymentgateway()
+    {
+        return $this->belongsTo('Modules\Paymentgateway\Entities\Paymentgateway');
+    }
 
 }

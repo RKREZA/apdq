@@ -20,13 +20,13 @@
             '1'       => [
                 'url'                   => route('admin.faqs.create'),
                 'text'                  => '',
-                'img'                   => asset('assets/backend/img/icons/optimized/add.png'),
-                'permission'            => 'faq-list',
+                'icon'                  => '<i class="fi fi-ss-add"></i>',
+                'permission'            => 'faq-create',
             ],
             '2'       => [
                 'url'                   => route('admin.faqcategories.index'),
                 'text'                  =>__('faq::faq.category.name'),
-                'img'                   => asset('assets/backend/img/icons/optimized/list.png'),
+                'icon'                  => '<i class="fi fi-ss-clipboard-list-check"></i>',
                 'permission'            => 'faqcategory-list',
             ],
         ],
@@ -37,14 +37,13 @@
         'include_trashes'       => [
             'url'                   => route('admin.faqs.trashes'),
             'text'                  => __('core::core.form.trash'),
-            'img'                   => asset('assets/backend/img/icons/optimized/trash-white.png'),
             'permission'            => 'faq-delete',
         ],
     ])
 
     <div class="row">
 
-        <div class="col-md-12">
+        <div class="col-md-12 px-md-0">
             <div class="card">
                 <div class="card-body">
 
@@ -56,7 +55,6 @@
                             'include_index_table_data_route'    => route('admin.faqs.index'),
                             'include_table_rows'                => [
                                 'title'          => __('faq::faq.faq.form.title'),
-                                'description'    => __('faq::faq.faq.form.description'),
                                 'category_id'   => __('faq::faq.faq.form.category_id'),
                                 'status'        => __('core::core.form.status'),
                                 'action'        => __('core::core.form.action'),

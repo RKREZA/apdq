@@ -55,13 +55,12 @@
 
 @section('container')
     <div class="row mb-5">
-        <div class="col-lg-3">
+        <div class="col-lg-3 ps-md-0">
             <div class="card position-sticky top-1">
                 <ul class="nav flex-column bg-white border-radius-lg p-3">
                     <li class="nav-item">
                         <a class="nav-link text-dark d-flex" data-scroll="" href="#profile">
-                            <i class="material-icons text-lg me-2">person</i>
-                            <span class="text-sm">{{ __('admin::profile.tab.profile') }}</span>
+                            <i class="fi fi-ss-user"></i> <span class="text-sm ms-2">{{ __('admin::profile.tab.profile') }}</span>
                         </a>
                     </li>
                     {{-- <li class="nav-item pt-2">
@@ -72,20 +71,27 @@
                     </li> --}}
                     <li class="nav-item pt-2">
                         <a class="nav-link text-dark d-flex" data-scroll="" href="#change_password">
-                            <i class="material-icons text-lg me-2">lock</i>
-                            <span class="text-sm">{{ __('admin::profile.tab.change_password') }}</span>
+                            <i class="fi fi-ss-lock"></i> <span class="text-sm ms-2">{{ __('admin::profile.tab.change_password') }}</span>
                         </a>
                     </li>
+                    @if (auth()->user()->hasRole('User'))
+                    <li class="nav-item pt-2">
+                        <a class="nav-link text-dark d-flex" data-scroll="" href="#current_subscription">
+                            <i class="fi fi-ss-money-check-edit"></i>
+                            <span class="text-sm ms-2">{{ __('admin::profile.tab.current_subscription') }}</span>
+                        </a>
+                    </li>
+                    @endif
 
                 </ul>
             </div>
         </div>
-        <div class="col-lg-9 mt-lg-0 mt-4">
+        <div class="col-lg-9 mt-lg-0 mt-4 pe-md-0">
             <!-- Card Profile -->
 
             <div class="card" id="profile">
                 <div class="card-header">
-                    <h5 class="m-0"><i class="material-icons text-lg">person</i> {{ __('admin::profile.tab.profile') }}</h5>
+                    <h5 class="m-0"><i class="fi fi-ss-user"></i> {{ __('admin::profile.tab.profile') }}</h5>
                 </div>
                 <div class="card-body">
                     <div class="row justify-content-left align-items-center">
@@ -199,7 +205,7 @@
             <!-- Card Change Password -->
             <div class="card mt-2" id="change_password">
                 <div class="card-header">
-                    <h5 class="m-0"><i class="material-icons text-lg">lock</i> {{ __('admin::profile.tab.change_password') }}</h5>
+                    <h5 class="m-0"><i class="fi fi-ss-lock"></i> {{ __('admin::profile.tab.change_password') }}</h5>
                 </div>
                 <form action="{{ route('admin.profile.password.update') }}" method="post" id="update_password">
                     @csrf
@@ -249,6 +255,39 @@
                     </div>
                 </form>
             </div>
+
+            @if (auth()->user()->hasRole('User'))
+            <!-- Subscription -->
+            <div class="card mt-2" id="current_subscription">
+                <div class="card-header">
+                    <h5 class="m-0"><i class="fi fi-ss-money-check-edit"></i> {{ __('admin::profile.tab.current_subscription') }}</h5>
+                </div>
+
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-md-6 pb-4">
+
+                            @if (auth()->user()->subscriptionStatus() == 'expired')
+                                <b>{{ __('admin::profile.form.subscription_expired') }}</b>
+                                <a href="{{ route('frontend.subscription') }}" class="btn btn-warning" target="_blank">{{ __('core::core.form.buy_now') }}</a>
+                            @elseif (str_starts_with(auth()->user()->subscriptionStatus(), 'expires_in_'))
+                                <b>{{ __('admin::profile.form.subscription_expires_in', ['days' => substr(auth()->user()->subscriptionStatus(), 11)]) }}</b>
+                            @else
+                                <b>{{ __('admin::profile.form.no_subscription') }}</b>
+                                <a href="{{ route('frontend.subscription') }}" class="btn btn-warning" target="_blank">{{ __('core::core.form.buy_now') }}</a>
+                            @endif
+
+                        </div>
+                        <div class="col-md-6">
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            @endif
+
         </div>
     </div>
 @endsection

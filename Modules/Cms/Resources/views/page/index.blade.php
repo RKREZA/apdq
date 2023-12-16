@@ -20,13 +20,13 @@
             '1'       => [
                 'url'                   => route('admin.pages.create'),
                 'text'                  => '',
-                'img'                   => asset('assets/backend/img/icons/optimized/add.png'),
-                'permission'            => 'page-list',
+                'icon'                  => '<i class="fi fi-ss-add"></i>',
+                'permission'            => 'page-create',
             ],
             '2'       => [
                 'url'                   => route('admin.pagecategories.index'),
                 'text'                  =>__('cms::cms.category.name'),
-                'img'                   => asset('assets/backend/img/icons/optimized/list.png'),
+                'icon'                  => '<i class="fi fi-ss-clipboard-list-check"></i>',
                 'permission'            => 'pagecategory-list',
             ],
         ],
@@ -37,14 +37,13 @@
         'include_trashes'       => [
             'url'                   => route('admin.pages.trashes'),
             'text'                  => __('core::core.form.trash'),
-            'img'                   => asset('assets/backend/img/icons/optimized/trash-white.png'),
             'permission'            => 'page-delete',
         ],
     ])
 
     <div class="row">
 
-        <div class="col-md-12">
+        <div class="col-md-12 px-md-0">
             <div class="card">
                 <div class="card-body">
 
@@ -55,9 +54,7 @@
                             'include_delete_all_permission'     => 'page-delete',
                             'include_index_table_data_route'    => route('admin.pages.index'),
                             'include_table_rows'                => [
-                                'photo'             => __('core::core.form.photo'),
                                 'title'             => __('cms::cms.page.form.title'),
-                                'description'       => __('cms::cms.page.form.description'),
                                 'category_id'       => __('cms::cms.page.form.category_id'),
                                 'status'            => __('core::core.form.status'),
                                 'created_at'        => __('core::core.form.created_at'),

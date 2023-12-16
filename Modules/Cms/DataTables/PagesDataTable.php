@@ -67,7 +67,7 @@ class PagesDataTable extends DataTable
             })
 
             ->addColumn('title', function($row){
-                $title = substr(strip_tags($row->title), 0, 30)."...";
+                $title = wordwrap($row->title, 100, "<br>\n", true);
                 return mb_convert_encoding($title, 'UTF-8', 'UTF-8');
             })
 
@@ -109,7 +109,7 @@ class PagesDataTable extends DataTable
 	        ->editColumn('updated_at', '{{date("jS M Y", strtotime($updated_at))}}')
 
             ->setRowId('id')
-            ->rawColumns(['photo','action','checkbox','status']);
+            ->rawColumns(['title','photo','action','checkbox','status']);
     }
 
     /**

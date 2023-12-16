@@ -20,13 +20,13 @@
             '1'       => [
                 'url'                   => route('admin.videos.youtube.create'),
                 'text'                  => 'Youtube',
-                'img'                   => asset('assets/backend/img/icons/optimized/add.png'),
+                'icon'                  => '<i class="fi fi-ss-add"></i>',
                 'permission'            => 'video-list',
             ],
             '2'       => [
                 'url'                   => route('admin.videos.manual.create'),
                 'text'                  => 'Manual',
-                'img'                   => asset('assets/backend/img/icons/optimized/add.png'),
+                'icon'                  => '<i class="fi fi-ss-add"></i>',
                 'permission'            => 'video-list',
             ],
             // '2'       => [
@@ -43,14 +43,13 @@
         'include_trashes'       => [
             'url'                   => route('admin.videos.trashes'),
             'text'                  => __('core::core.form.trash'),
-            'img'                   => asset('assets/backend/img/icons/optimized/trash-white.png'),
             'permission'            => 'video-delete',
         ],
     ])
 
     <div class="row">
 
-        <div class="col-md-12">
+        <div class="col-md-12 px-md-0">
             <div class="card">
                 <div class="card-body">
 
@@ -63,9 +62,8 @@
                             'include_table_rows'                => [
                                 'thumbnail_url'     => __('video::video.video.form.thumbnail_url'),
                                 'title'             => __('video::video.video.form.title'),
-                                'description'       => __('video::video.video.form.description'),
-                                'reaction'          => __('video::video.video.form.reaction'),
                                 'category_id'       => __('video::video.video.form.category_id'),
+                                'reaction'          => __('video::video.video.form.reaction'),
                                 'status'            => __('core::core.form.status'),
                                 'action'            => __('core::core.form.action'),
                             ],

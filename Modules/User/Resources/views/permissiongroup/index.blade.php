@@ -17,7 +17,7 @@
             '1'       => [
                 'url'                   => route('admin.permissiongroups.create'),
                 'text'                  => '',
-                'img'                   => asset('assets/backend/img/icons/optimized/add.png'),
+                'icon'                  => '<i class="fi fi-ss-add"></i>',
                 'permission'            => 'permissiongroup-create',
             ],
         ],
@@ -29,7 +29,7 @@
 
     <div class="row">
 
-        <div class="col-md-12">
+        <div class="col-md-12 px-md-0">
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">

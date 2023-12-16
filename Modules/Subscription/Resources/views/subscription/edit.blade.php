@@ -67,9 +67,6 @@
             title: {
                 required: true,
             },
-            description: {
-                required: true
-            },
             duration: {
                 required: true
             },
@@ -77,6 +74,9 @@
                 required: true
             },
             price: {
+                required: true
+            },
+            trial_days: {
                 required: true
             },
 
@@ -85,9 +85,6 @@
             title: {
                 required: "{{ __('core::core.form.validation.required') }}",
             },
-            description: {
-                required: "{{ __('core::core.form.validation.required') }}",
-            },
             duration: {
                 required: "{{ __('core::core.form.validation.required') }}",
             },
@@ -95,6 +92,9 @@
                 required: "{{ __('core::core.form.validation.required') }}",
             },
             price: {
+                required: "{{ __('core::core.form.validation.required') }}",
+            },
+            trial_days: {
                 required: "{{ __('core::core.form.validation.required') }}",
             },
         };

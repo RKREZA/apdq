@@ -17,19 +17,18 @@
             '1'       => [
                 'url'                   => route('admin.users.create'),
                 'text'                  => '',
-                'img'                   => asset('assets/backend/img/icons/optimized/add.png'),
+                'icon'                  => '<i class="fi fi-ss-add"></i>',
                 'permission'            => 'user-create',
             ],
         ],
         'include_header'        => __('user::user.names'),
         'include_breadcrumbs'   => [
-            route('dashboard')      => __('admin::auth.dashboard'),
+            route('dashboard')          => __('admin::auth.dashboard'),
         ],
         'include_trashes'       => [
-            'url'                   => route('admin.users.trashes'),
-            'text'                  => __('core::core.form.trash'),
-            'img'                   => asset('assets/backend/img/icons/optimized/trash-white.png'),
-            'permission'            => 'user-delete',
+            'url'                       => route('admin.users.trashes'),
+            'text'                      => __('core::core.form.trash'),
+            'permission'                => 'user-delete',
         ],
     ])
 
@@ -45,7 +44,7 @@
 
     <div class="row">
 
-        <div class="col-md-12">
+        <div class="col-md-12 px-md-0">
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">

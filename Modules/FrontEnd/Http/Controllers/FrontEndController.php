@@ -21,6 +21,7 @@ use Modules\Cms\Entities\PageCategory;
 use Modules\Cms\Entities\Page;
 use Modules\Live\Entities\Live;
 use Modules\Subscription\Entities\Subscription;
+use Modules\PaymentGateway\Entities\PaymentGateway;
 use Modules\Newsletter\Entities\Newsletter;
 use Illuminate\Support\Facades\Validator;
 use App\Mail\SendMail;
@@ -203,6 +204,19 @@ class FrontEndController extends Controller
         $subscriptions           = Subscription::where('status','Active')->get();
 
         return view('frontend::frontend.subscription', compact('frontend_setting','subscriptions'));
+    }
+
+    public function checkout(Request $request)
+    {
+        $frontend_setting       = FrontendSetting::first();
+        $payment_gateways       = PaymentGateway::where('status','Active')->get();
+        $subscription           = Subscription::find($request->subscription_id);
+
+        if(!$subscription){
+            abort('404');
+        }
+
+        return view('frontend::frontend.checkout', compact('frontend_setting','subscription','payment_gateways'));
     }
 
     public function donation()

@@ -16,17 +16,17 @@ class LanguageTableSeeder extends Seeder
     public function run()
     {
         Language::create([
-            'code' => 'bn',
-            'name' => 'বাংলা',
+            'code' => 'fr-CA',
+            'name' => 'French (Canada)',
             'status' => 'Active',
-            'default' => 'Inactive',
+            'default' => 'Active',
         ]);
 
         Language::create([
             'code' => 'en',
             'name' => 'English',
             'status' => 'Active',
-            'default' => 'Active',
+            'default' => 'Inactive',
         ]);
     }
 }

@@ -30,7 +30,7 @@
 
                     @include('user::roles.form')
 
-                    <button type="submit" class="edit-button btn btn-dark btn-rounded mt-1 my-0 float-end">
+                    <button type="submit" class="edit-button btn btn-dark btn-rounded mt-1 my-">
                         <i class="fi fi-ss-disk"></i>
                         {{ __('core::core.update') }}
                     </button>

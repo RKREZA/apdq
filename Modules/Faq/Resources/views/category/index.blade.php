@@ -20,8 +20,8 @@
             '1'       => [
                 'url'                   => route('admin.faqcategories.create'),
                 'text'                  => '',
-                'img'                   => asset('assets/backend/img/icons/optimized/add.png'),
-                'permission'            => 'faqcategory-list',
+                'icon'                  => '<i class="fi fi-ss-add"></i>',
+                'permission'            => 'faqcategory-create',
             ],
         ],
         'include_header'        => __('faq::faq.category.name'),
@@ -32,14 +32,13 @@
         'include_trashes'       => [
             'url'                   => route('admin.faqcategories.trashes'),
             'text'                  => __('core::core.form.trash'),
-            'img'                   => asset('assets/backend/img/icons/optimized/trash-white.png'),
             'permission'            => 'faqcategory-delete',
         ],
     ])
 
     <div class="row">
 
-        <div class="col-md-12">
+        <div class="col-md-12 px-md-0">
             <div class="card">
                 <div class="card-body">
 

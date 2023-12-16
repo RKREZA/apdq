@@ -20,7 +20,7 @@
             '1'       => [
                 'url'                   => route('admin.feedbackcategories.index'),
                 'text'                  => __('feedback::feedback.category.name'),
-                'img'                   => asset('assets/backend/img/icons/optimized/list.png'),
+                'icon'                  => '<i class="fi fi-ss-clipboard-list-check"></i>',
                 'permission'            => 'feedbackcategory-list',
             ],
         ],
@@ -38,7 +38,7 @@
 
     <div class="row">
 
-        <div class="col-md-12">
+        <div class="col-md-12 px-md-0">
             <div class="card">
                 <div class="card-body">
 

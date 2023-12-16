@@ -75,6 +75,7 @@ Blog
     <img src="/assets/frontend/img/blog.webp" alt="">
     <div class="content">
         <h1>Blog</h1>
+        <h6>Perspectives avec une Touche d'Humour : Le Blog Politique</h6>
     </div>
 </section>
 

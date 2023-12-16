@@ -165,42 +165,16 @@
 
 @section('container')
 
-    <div class="mb-2 shadow-blur border-radius-xl z-index-sticky">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-body py-3 px-4">
-                        <div class="row">
-                            <div class="col-md-8">
-
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-                                        <li class="breadcrumb-item text-xs"><a class="opacity-5 text-dark"
-                                                href="{{ route('dashboard') }}">{{ __('admin::auth.dashboard') }}</a></li>
-                                        <li class="breadcrumb-item text-xs text-dark active" aria-current="page">{{ __('setting::setting.adminsetting.index') }}
-                                        </li>
-                                    </ol>
-                                </nav>
-
-                                <h6 class="font-weight-bolder mb-0">
-                                    {{ __('setting::setting.adminsetting.index') }}
-                                </h6>
-
-                            </div>
-
-                            <div class="col-md-4">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
+    @include('core::layouts.sticky_page_header', [
+        'include_back_url'      => route('dashboard'),
+        'include_header'        => __('setting::setting.adminsetting.index'),
+        'include_breadcrumbs'   => [
+            route('dashboard')      => __('admin::auth.dashboard'),
+        ]
+    ])
 
     <div class="row mb-5">
-        <div class="col-lg-3">
+        <div class="col-lg-3 ps-md-0">
             <div class="card position-sticky top-2">
                 <ul class="nav flex-column bg-white border-radius-lg p-3">
 
@@ -260,7 +234,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-lg-9 mt-lg-0 mt-4">
+        <div class="col-lg-9 mt-lg-0 mt-4 pe-md-0">
 
             <!-- Site Info -->
             <div class="card mb-2" id="site-info">

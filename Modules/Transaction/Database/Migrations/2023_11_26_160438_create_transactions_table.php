@@ -20,6 +20,7 @@ class CreateTransactionsTable extends Migration
                 $table->string('email');
                 $table->string('payment_amount');
                 $table->string('transaction_id');
+                $table->text('data')->nullable();
 
                 $table->bigInteger('subscription_id')->unsigned()->nullable();
                 $table->foreign('subscription_id')->references('id')->on('transactions')->onDelete('set null');
@@ -30,7 +31,7 @@ class CreateTransactionsTable extends Migration
                 $table->bigInteger('paymentgateway_id')->unsigned()->nullable();
                 $table->foreign('paymentgateway_id')->references('id')->on('paymentgateways')->onDelete('set null');
 
-                $table->enum('status', ['Unpaid', 'Paid'])->default('Paid');
+                $table->enum('status', ['Unpaid', 'Paid'])->default('Unpaid');
                 $table->timestamps();
                 $table->softDeletes();
             });

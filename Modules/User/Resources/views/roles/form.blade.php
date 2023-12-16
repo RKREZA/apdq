@@ -1,7 +1,7 @@
 <div class="col-md-12">
     <div class="input-group input-group-outline my-3 is-filled @error('name') is-invalid @enderror">
         <label class="form-label"><span class="required">{{ __('user::role.form.name') }}</span></label>
-        <input type="text" name="name" class="form-control" value="@if(isset($role)){{ $role->name }}@else{{ old('name') }}@endif">
+        <input type="text" class="form-control disabled" disabled value="@if(isset($role)){{ $role->name }}@else{{ old('name') }}@endif">
         @error('name')
             <em class="error" style="display: inline-block;">{{ $message }}</em>
         @enderror
@@ -17,7 +17,7 @@
                     <th>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" id="permissiongroup_{{ $permissiongroup->id }}">
-                            <label class="custom-control-label m-0" for="permissiongroup_{{ $permissiongroup->id }}"><h6 class="m-0 p-0">{{ ucwords($permissiongroup->display_name) }}</h6></label>
+                            <label class="custom-control-label" for="permissiongroup_{{ $permissiongroup->id }}"><h6 class="m-0 p-0">{{ ucwords($permissiongroup->display_name) }}</h6></label>
                         </div>
                     </th>
                     @php
@@ -27,7 +27,7 @@
                         <td>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="permission[]" value="{{ $permission->id }}" id="permission_{{ $permission->id }}" @if (isset($rolePermissions) && in_array($permission->id, $rolePermissions)) checked @endif>
-                                <label class="custom-control-label m-0" for="permission_{{ $permission->id }}">{{ ucfirst(str_replace('-',' ',$permission->name)) }}</label>
+                                <label class="custom-control-label" for="permission_{{ $permission->id }}">{{ ucfirst(str_replace('-',' ',$permission->name)) }}</label>
                             </div>
 
                             @push('js')

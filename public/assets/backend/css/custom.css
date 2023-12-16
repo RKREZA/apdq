@@ -1211,12 +1211,25 @@ language-text{
 
 .create-button {
     padding: 8px 15px 8px 15px;
+    border: 0;
+    background-color: #2045a8 !important;
+    opacity: 1 !important;
+    box-shadow: none !important;
+    color: #ffffff !important;
 }
 
 .create-button i{
     font-size: 1.2em;
     position: relative;
     top: 2px;
+}
+
+.create-button:hover {
+    background-color: #ffffff !important;
+    opacity: 1 !important;
+    box-shadow: none !important;
+    color: #2045a8 !important;
+    border: 1px solid #2045a8;
 }
 
 
@@ -1231,7 +1244,7 @@ language-text{
 }
 
 .content .position-sticky {
-    margin-bottom: 2px !important;
+    margin-bottom: 4px !important;
 }
 
 #embed_html_container iframe{

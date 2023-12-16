@@ -20,8 +20,8 @@
             '1'       => [
                 'url'                   => route('admin.lives.create'),
                 'text'                  => '',
-                'img'                   => asset('assets/backend/img/icons/optimized/add.png'),
-                'permission'            => 'live-list',
+                'icon'                  => '<i class="fi fi-ss-add"></i>',
+                'permission'            => 'live-create',
             ],
         ],
         'include_header'        => __('live::live.live.name'),
@@ -31,14 +31,13 @@
         'include_trashes'       => [
             'url'                   => route('admin.lives.trashes'),
             'text'                  => __('core::core.form.trash'),
-            'img'                   => asset('assets/backend/img/icons/optimized/trash-white.png'),
             'permission'            => 'live-delete',
         ],
     ])
 
     <div class="row">
 
-        <div class="col-md-12">
+        <div class="col-md-12 px-md-0">
             <div class="card">
                 <div class="card-body">
 
@@ -51,7 +50,6 @@
                             'include_table_rows'                => [
                                 'thumbnail_url'     => __('live::live.live.form.thumbnail_url'),
                                 'title'             => __('live::live.live.form.title'),
-                                'description'       => __('live::live.live.form.description'),
                                 'status'            => __('core::core.form.status'),
                                 'created_at'        => __('core::core.form.created_at'),
                                 'action'            => __('core::core.form.action'),

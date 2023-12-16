@@ -45,7 +45,10 @@ class SubscriptionController extends Controller
         // dd($request->all());
         $rules = [
             'title' 					=> 'required',
-			'description' 			    => 'required|string',
+			'option_ad_free' 			=> 'nullable|string',
+			'option_live_content' 		=> 'nullable|string',
+			'option_premium_content' 	=> 'nullable|string',
+			'trial_days' 			    => 'nullable|string',
 			'duration' 			        => 'required|string',
 			'duration_type' 			=> 'required|string',
 			'price' 			        => 'required|string',
@@ -55,28 +58,49 @@ class SubscriptionController extends Controller
         ];
 
         $messages = [
-            'title.required'    		=> __('core::core.form.validation.required'),
-            'description.required'      => __('core::core.form.validation.required'),
-            'duration.required'         => __('core::core.form.validation.required'),
-            'duration_type.required'    => __('core::core.form.validation.required'),
-            'price.required'            => __('core::core.form.validation.required'),
-            'seo_title.required'        => __('core::core.form.validation.required'),
-            'seo_description.required'  => __('core::core.form.validation.required'),
-            'seo_keyword.required'      => __('core::core.form.validation.required'),
+            'title.required'    		        => __('core::core.form.validation.required'),
+            'trial_days.required'               => __('core::core.form.validation.required'),
+            'duration.required'                 => __('core::core.form.validation.required'),
+            'duration_type.required'            => __('core::core.form.validation.required'),
+            'price.required'                    => __('core::core.form.validation.required'),
+            'seo_title.required'                => __('core::core.form.validation.required'),
+            'seo_description.required'          => __('core::core.form.validation.required'),
+            'seo_keyword.required'              => __('core::core.form.validation.required'),
         ];
 
         $validate = $this->validate($request, $rules, $messages);
-        // dd($request->all());
+
+        $input = $request->only([
+            'title',
+            'option_ad_free',
+            'option_live_content',
+            'option_premium_content',
+            'trial_days',
+            'duration',
+            'duration_type',
+            'price',
+            'seo_title',
+            'seo_description',
+            'seo_keyword',
+        ]);
+
+        $input['option_ad_free'] = isset($input['option_ad_free']) && $input['option_ad_free'] == 'on' ? 'Active' : 'Inactive';
+        $input['option_live_content'] = isset($input['option_live_content']) && $input['option_live_content'] == 'on' ? 'Active' : 'Inactive';
+        $input['option_premium_content'] = isset($input['option_premium_content']) && $input['option_premium_content'] == 'on' ? 'Active' : 'Inactive';
+
 		try {
 			Subscription::create([
-                'title'         => $request->input('title'),
-                'description'   => $request->input('description'),
-                'duration'      => $request->input('duration'),
-                'duration_type' => $request->input('duration_type'),
-                'price'         => $request->input('price'),
-                'seo_title'     => $request->input('seo_title'),
-                'seo_description'=> $request->input('seo_description'),
-                'seo_keyword'   => $request->input('seo_keyword')
+                'title'                     => $request->title,
+                'option_ad_free'            => $request->option_ad_free,
+                'option_live_content'       => $request->option_live_content,
+                'option_premium_content'    => $request->option_premium_content,
+                'trial_days'                => $request->trial_days,
+                'duration'                  => $request->duration,
+                'duration_type'             => $request->duration_type,
+                'price'                     => $request->price,
+                'seo_title'                 => $request->seo_title,
+                'seo_description'           => $request->seo_description,
+                'seo_keyword'               => $request->seo_keyword
             ]);
 
 			$success_msg = __('core::core.message.success.store');
@@ -98,7 +122,10 @@ class SubscriptionController extends Controller
     {
         $rules = [
             'title' 					=> 'required',
-			'description' 			    => 'required|string',
+			'option_ad_free' 			=> 'nullable|string',
+			'option_live_content' 		=> 'nullable|string',
+			'option_premium_content' 	=> 'nullable|string',
+			'trial_days' 			    => 'nullable|string',
 			'duration' 			        => 'required|string',
 			'duration_type' 			=> 'required|string',
 			'price' 			        => 'required|string',
@@ -108,23 +135,39 @@ class SubscriptionController extends Controller
         ];
 
         $messages = [
-            'title.required'    		=> __('core::core.form.validation.required'),
-            'description.required'      => __('core::core.form.validation.required'),
-            'duration.required'         => __('core::core.form.validation.required'),
-            'duration_type.required'    => __('core::core.form.validation.required'),
-            'price.required'            => __('core::core.form.validation.required'),
-            'seo_title.required'        => __('core::core.form.validation.required'),
-            'seo_description.required'  => __('core::core.form.validation.required'),
-            'seo_keyword.required'      => __('core::core.form.validation.required'),
+            'title.required'    		        => __('core::core.form.validation.required'),
+            'trial_days.required'               => __('core::core.form.validation.required'),
+            'duration.required'                 => __('core::core.form.validation.required'),
+            'duration_type.required'            => __('core::core.form.validation.required'),
+            'price.required'                    => __('core::core.form.validation.required'),
+            'seo_title.required'                => __('core::core.form.validation.required'),
+            'seo_description.required'          => __('core::core.form.validation.required'),
+            'seo_keyword.required'              => __('core::core.form.validation.required'),
         ];
 
         $validate = $this->validate($request, $rules, $messages);
 
+        $input = $request->only([
+            'title',
+            'option_ad_free',
+            'option_live_content',
+            'option_premium_content',
+            'trial_days',
+            'duration',
+            'duration_type',
+            'price',
+            'seo_title',
+            'seo_description',
+            'seo_keyword',
+        ]);
+
+        $input['option_ad_free'] = isset($input['option_ad_free']) && $input['option_ad_free'] == 'on' ? 'Active' : 'Inactive';
+        $input['option_live_content'] = isset($input['option_live_content']) && $input['option_live_content'] == 'on' ? 'Active' : 'Inactive';
+        $input['option_premium_content'] = isset($input['option_premium_content']) && $input['option_premium_content'] == 'on' ? 'Active' : 'Inactive';
 
         DB::beginTransaction();
 		try {
-            $input       = $request->all();
-            $subscription         = Subscription::find($id);
+            $subscription           = Subscription::find($id);
 			$subscription->update($input);
 
 		} catch (Exception $e) {

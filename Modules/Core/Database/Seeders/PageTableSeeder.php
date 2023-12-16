@@ -17,8 +17,8 @@ class PageTableSeeder extends Seeder
     public function run()
     {
         $category = PageCategory::create([
-            'name'          => 'Footer',
-            'code'          => 'footer',
+            'name'          => 'General',
+            'code'          => 'general',
         ]);
         Page::create([
             'title'         => 'Termes et conditions',

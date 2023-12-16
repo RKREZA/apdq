@@ -11,7 +11,7 @@
 
 @section('container')
     <div class="row">
-        <div class="col-12">
+        <div class="col-12 px-md-0">
 
 
             <div class="card">

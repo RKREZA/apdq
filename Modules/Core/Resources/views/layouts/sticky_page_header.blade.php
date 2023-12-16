@@ -45,11 +45,8 @@
                                                 @can($button['permission'])
                                                     @if (isset($button['data-bs-target']))
                                                         <button data-bs-toggle="modal"  data-bs-target="{{ $button['data-bs-target'] }}" class="create-button btn btn-outline-dark btn-rounded mt-1 ms-1 my-0 float-end">
-                                                            {{-- @isset($button['img'])
-                                                                <img src="{{ $button['img'] }}" class="pageicon" alt="">
-                                                            @endisset --}}
-
-                                                            <i class="fi fi-ss-add"></i>
+                                                            
+                                                            {!! $button['icon'] !!}
 
                                                             @isset($button['text'])
                                                                 {{ $button['text'] }}
@@ -58,29 +55,22 @@
                                                     @else
                                                         @if (isset($button['target']))
                                                             <a href="@isset($button['url']) {{ $button['url'] }} @endisset" target="{{ $button['target'] }}" class="create-button btn btn-outline-dark btn-rounded mt-1 ms-1 my-0 float-end">
-                                                                {{-- @isset($button['img'])
-                                                                    <img src="{{ $button['img'] }}" class="pageicon" alt="">
-                                                                @endisset --}}
-
-                                                                <i class="fi fi-ss-add"></i>
+                                                                
+                                                                {!! $button['icon'] !!}
 
                                                                 @isset($button['text'])
                                                                     {{ $button['text'] }}
                                                                 @endisset
                                                             </a>
-
                                                         @else
                                                             <a href="@isset($button['url']) {{ $button['url'] }} @endisset" class="create-button btn btn-outline-dark btn-rounded mt-1 ms-1 my-0 float-end">
-                                                                {{-- @isset($button['img'])
-                                                                    <img src="{{ $button['img'] }}" class="pageicon" alt="">
-                                                                @endisset --}}
-                                                                <i class="fi fi-ss-add"></i>
+                                                                
+                                                                {!! $button['icon'] !!}
 
                                                                 @isset($button['text'])
                                                                     {{ $button['text'] }}
                                                                 @endisset
                                                             </a>
-
                                                         @endif
                                                     @endif
                                                 @endcan

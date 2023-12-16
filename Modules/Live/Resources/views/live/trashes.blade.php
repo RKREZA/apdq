@@ -25,7 +25,7 @@
 
     <div class="row">
 
-        <div class="col-md-12">
+        <div class="col-md-12 px-md-0">
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
@@ -35,7 +35,6 @@
                                 'include_index_table_data_route'    => route('admin.lives.trashes'),
                                 'include_table_rows'                => [
                                     'title'         => __('live::live.live.form.title'),
-                                    'description'   => __('live::live.live.form.description'),
                                     'status'        => __('core::core.form.status'),
                                     'action'        => __('core::core.form.action'),
                                 ],

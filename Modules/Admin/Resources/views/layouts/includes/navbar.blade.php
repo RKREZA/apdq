@@ -41,7 +41,7 @@
                 </li> --}}
 
                 <li class="nav-item d-md-block">
-                    <a href="#" class="nav-link" id='mode' data-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Change Mode">
+                    <a href="#" class="nav-link" id='mode' data-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="{{ __('core::core.form.change-mode') }}">
                         <input type='checkbox' style="display: none;" id='mode_value' data-class="bg-transparent"onclick="darkMode(this); sidebarType(this);" @if (Session::get('mode') == 'dark') checked="true" @endif>
                         @if (Session::get('mode') == 'dark')
                             <i class="fi fi-ss-brightness"></i>
@@ -52,28 +52,13 @@
                 </li>
 
                 <li class="nav-item d-md-block">
-                    <a href="/" class="nav-link" target="_blank" data-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Front End">
-                        {{-- @if (Session::get('mode') == 'dark')
-                            <img src="{{ asset('assets/backend/img/icons/optimized/monitor-white.png') }}" class="icon" id="web" alt="">
-                        @else
-                            <img src="{{ asset('assets/backend/img/icons/optimized/monitor.png') }}" class="icon" id="web" alt="">
-                        @endif --}}
-
+                    <a href="/" class="nav-link" target="_blank" data-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="{{ __('core::core.form.frontend') }}">
                         <i class="fi fi-ss-screen"></i>
                     </a>
                 </li>
 
                 <li class="nav-item d-md-block">
-                    <a href="#" class="nav-link" type="button" data-toggle="tooltip" data-bs-toggle="modal" data-bs-target="#feedbackForm" data-bs-placement="bottom"
-                        title="" data-bs-original-title="{{ __('admin::auth.feedback.index') }}">
-
-
-                        {{-- @if (Session::get('mode') == 'dark')
-                            <img src="{{ asset('assets/backend/img/icons/optimized/feedback-white.png') }}" class="icon" id="feedback-icon">
-                        @else
-                            <img src="{{ asset('assets/backend/img/icons/optimized/feedback.png') }}" class="icon" id="feedback-icon">
-                        @endif --}}
-
+                    <a href="#" class="nav-link" type="button" data-toggle="tooltip" data-bs-toggle="modal" data-bs-target="#feedbackForm" data-bs-placement="bottom" title="" data-bs-original-title="{{ __('admin::auth.feedback.index') }}">
                         <i class="fi fi-ss-hands-heart"></i>
                     </a>
                 </li>

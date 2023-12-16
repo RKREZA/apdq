@@ -50,20 +50,8 @@
                 </div>
             </div>
 
-            <div class="col-md-12">
-                <div class="input-group input-group-outline mt-3 is-filled @error('description') is-invalid @enderror">
-                    <label class="form-label"><span class="required">{{ __('subscription::subscription.subscription.form.description') }}</span></label>
-                    <textarea rows="6" id="description" name="description" class="form-control tiny">@if(isset($subscription)){{ $subscription->description }}@else{{ old('description') }}@endif</textarea>
-                    @error('description')
-                        <em class="error invalid-subscription" style="display: inline-block;">{{ $message }}</em>
-                    @enderror
-                </div>
-            </div>
-
-
-
-            <div class="col-md-12 mt-3">
-                <div class="row">
+            <div class="col-md-12 mt-3 p-0">
+                <div class="row m-0">
                     <div class="col-md-4">
                         <div class="input-group input-group-outline mt-3 is-filled @error('duration') is-invalid @enderror">
                             <label class="form-label"><span class="required">{{ __('subscription::subscription.subscription.form.duration') }}</span></label>
@@ -78,9 +66,9 @@
                         <div class="input-group input-group-outline mt-3 is-filled @error('duration_type') is-invalid @enderror">
                             <label class="form-label"><span class="required">{{ __('subscription::subscription.subscription.form.duration_type') }}</span></label>
                             <select name="duration_type" id="duration_type" class="form-control">
-                                <option value="Day(s)" @if(isset($subscription) && $subscriotion->duration_type=="Day(s)") selected @endif>Day(s)</option>
-                                <option value="Month(s) @if(isset($subscription) && $subscriotion->duration_type=="Month(s)") selected @endif">Month(s)</option>
-                                <option value="Year(s) @if(isset($subscription) && $subscriotion->duration_type=="Year(s)") selected @endif">Year(s)</option>
+                                <option value="Day(s)" @if(isset($subscription) && $subscription->duration_type=="Day(s)") selected @endif>Day(s)</option>
+                                <option value="Month(s) @if(isset($subscription) && $subscription->duration_type=="Month(s)") selected @endif">Month(s)</option>
+                                <option value="Year(s) @if(isset($subscription) && $subscription->duration_type=="Year(s)") selected @endif">Year(s)</option>
                             </select>
                             @error('duration_type')
                                 <em class="error invalid-subscription" style="display: inline-block;">{{ $message }}</em>
@@ -89,10 +77,10 @@
                     </div>
 
                     <div class="col-md-4">
-                        <div class="input-group input-group-outline mt-3 is-filled @error('price') is-invalid @enderror">
-                            <label class="form-label"><span class="required">{{ __('subscription::subscription.subscription.form.price') }}</span></label>
-                            <input type="number" name="price" id="price" class="form-control" value="@if(isset($subscription)){{ $subscription->price }}@else{{ old('price') }}@endif">
-                            @error('price')
+                        <div class="input-group input-group-outline mt-3 is-filled @error('trial_days') is-invalid @enderror">
+                            <label class="form-label"><span class="required">{{ __('subscription::subscription.subscription.form.trial_days') }}</span></label>
+                            <input type="number" name="trial_days" id="trial_days" class="form-control" value="@if(isset($subscription)){{ $subscription->trial_days }}@else{{ old('trial_days') }}@endif">
+                            @error('trial_days')
                                 <em class="error invalid-subscription" style="display: inline-block;">{{ $message }}</em>
                             @enderror
                         </div>
@@ -100,7 +88,39 @@
                 </div>
             </div>
 
-            <hr class="horizontal light my-4">
+            <div class="col-md-12 mt-3">
+                <div class="input-group input-group-outline mt-3 is-filled @error('price') is-invalid @enderror">
+                    <label class="form-label"><span class="required">{{ __('subscription::subscription.subscription.form.price') }}</span></label>
+                    <input type="number" name="price" id="price" class="form-control" value="@if(isset($subscription)){{ $subscription->price }}@else{{ old('price') }}@endif">
+                    @error('price')
+                        <em class="error invalid-subscription" style="display: inline-block;">{{ $message }}</em>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="col-md-12 mt-5">
+                <div class="form-check form-switch d-flex align-items-center mb-3">
+                    <input class="form-check-input" type="checkbox" name="option_ad_free" id="option_ad_free" @if(isset($subscription) && $subscription->option_ad_free == 'Active'){{ $subscription->option_ad_free }} checked @endif>
+                    <label class="form-check-label mb-0 ms-3" for="option_ad_free">{{ __('subscription::subscription.subscription.form.option_ad_free') }}</label>
+                </div>
+            </div>
+
+            <div class="col-md-12 mt-3">
+                <div class="form-check form-switch d-flex align-items-center mb-3">
+                    <input class="form-check-input" type="checkbox" name="option_live_content" id="option_live_content" @if(isset($subscription) && $subscription->option_live_content == 'Active'){{ $subscription->option_live_content }} checked @endif>
+                    <label class="form-check-label mb-0 ms-3" for="option_live_content">{{ __('subscription::subscription.subscription.form.option_live_content') }}</label>
+                </div>
+            </div>
+
+            <div class="col-md-12 mt-3">
+                <div class="form-check form-switch d-flex align-items-center mb-3">
+                    <input class="form-check-input" type="checkbox" name="option_premium_content" id="option_premium_content" @if(isset($subscription) && $subscription->option_premium_content == 'Active'){{ $subscription->option_premium_content }} checked @endif>
+                    <label class="form-check-label mb-0 ms-3" for="option_premium_content">{{ __('subscription::subscription.subscription.form.option_premium_content') }}</label>
+                </div>
+            </div>
+
+            <h5 class="mt-5">SEO</h5>
+            <hr class="">
 
             <div class="col-md-12">
                 <div class="input-group input-group-outline mt-3 is-filled @error('seo_title') is-invalid @enderror">

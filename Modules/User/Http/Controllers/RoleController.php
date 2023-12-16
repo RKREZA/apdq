@@ -44,15 +44,15 @@ class RoleController extends Controller
                         $edit = '';
                     }
 
-                    if (Gate::check('role-delete')) {
-                        $delete = '<button class="remove btn btn-sm btn-danger mb-0 px-2" data-id="'.$row->id.'" data-action="'.route('admin.roles.trash').'" title="'.__('core::core.form.trash-button').'" data-toggle="tooltip">
-										<i class="material-icons text-sm">delete</i>
-									</button>';
-                    }else{
-                        $delete = '';
-                    }
+                    // if (Gate::check('role-delete')) {
+                    //     $delete = '<button class="remove btn btn-sm btn-danger mb-0 px-2" data-id="'.$row->id.'" data-action="'.route('admin.roles.trash').'" title="'.__('core::core.form.trash-button').'" data-toggle="tooltip">
+					// 					<i class="material-icons text-sm">delete</i>
+					// 				</button>';
+                    // }else{
+                    //     $delete = '';
+                    // }
 
-                    $action = $edit.' '.$delete;
+                    $action = $edit;
                     return $action;
                 })
 

@@ -20,8 +20,10 @@ class Subscription extends Model
 
     protected $fillable = [
         'title',
-        'description',
-        'duration',
+        'option_ad_free',
+        'option_live_content',
+        'option_premium_content',
+        'trial_days',
         'duration_type',
         'price',
         'status',

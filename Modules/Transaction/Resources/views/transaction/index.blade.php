@@ -21,7 +21,7 @@
             //     'url'                   => route('admin.transactions.create'),
             //     'text'                  => '',
             //     'img'                   => asset('assets/backend/img/icons/optimized/add.png'),
-            //     'permission'            => 'transaction-list',
+            //     'permission'            => 'transaction-create',
             // ],
         ],
         'include_header'        => __('transaction::transaction.transaction.name'),
@@ -38,25 +38,24 @@
 
     <div class="row">
 
-        <div class="col-md-12">
+        <div class="col-md-12 px-md-0">
             <div class="card">
                 <div class="card-body">
 
                     <div class="table-responsive">
                         @include('core::layouts.table',[
-                            'include_delete_all_url'            => route('admin.transactions.force_destroy_all'),
-                            'include_trash_all_url'             => route('admin.transactions.trash_all'),
-                            'include_delete_all_permission'     => 'transaction-delete',
+                            // 'include_delete_all_url'            => route('admin.transactions.force_destroy_all'),
+                            // 'include_trash_all_url'             => route('admin.transactions.trash_all'),
+                            // 'include_delete_all_permission'     => 'transaction-delete',
                             'include_index_table_data_route'    => route('admin.transactions.index'),
                             'include_table_rows'                => [
-                                'subscription_id'       => __('transaction::transaction.transaction.form.subscription_id'),
-                                'paymentgateway_id'     => __('transaction::transaction.transaction.form.paymentgateway_id'),
                                 'transaction_id'        => __('transaction::transaction.transaction.form.transaction_id'),
-                                'payment_amount'        => __('transaction::transaction.transaction.form.payment_amount'),
+                                'paymentgateway_id'     => __('transaction::transaction.transaction.form.paymentgateway_id'),
+                                'subscription_id'       => __('transaction::transaction.transaction.form.subscription_id'),
+                                'user_id'               => __('transaction::transaction.transaction.form.user_id'),
                                 'email'                 => __('transaction::transaction.transaction.form.email'),
                                 'status'                => __('core::core.form.status'),
-                                'created_at'            => __('core::core.form.created_at'),
-                                'action'                => __('core::core.form.action')
+                                'created_at'            => __('core::core.form.created_at')
                             ],
                         ])
                     </div>

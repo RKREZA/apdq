@@ -43,20 +43,20 @@ class SubscriptionsDataTable extends DataTable
                     $edit = '';
                 }
 
-                if (Gate::check('subscription-delete')) {
-                    $delete = '<button class="remove btn btn-sm btn-danger mb-0 px-2" data-id="'.$row->id.'" data-action="'.route('admin.subscriptions.trash').'" title="'.__('core::core.form.trash-button').'" data-toggle="tooltip">
-                                    <i class="material-icons text-sm">delete</i>
-                                </button>';
-                }else{
-                    $delete = '';
-                }
+                // if (Gate::check('subscription-delete')) {
+                //     $delete = '<button class="remove btn btn-sm btn-danger mb-0 px-2" data-id="'.$row->id.'" data-action="'.route('admin.subscriptions.trash').'" title="'.__('core::core.form.trash-button').'" data-toggle="tooltip">
+                //                     <i class="material-icons text-sm">delete</i>
+                //                 </button>';
+                // }else{
+                //     $delete = '';
+                // }
 
-                $action = $edit.' '.$delete;
+                $action = $edit;
                 return $action;
             })
 
             ->addColumn('title', function($row){
-                $title = substr(strip_tags($row->title), 0, 60)."...";
+                $title = $row->title;
                 return mb_convert_encoding($title, 'UTF-8', 'UTF-8');
             })
 
@@ -79,24 +79,38 @@ class SubscriptionsDataTable extends DataTable
                 return $status;
             })
 
-            // ->addColumn('thumbnail_url', function ($row) {
-            //     if (!empty($row->thumbnail_url)) {
-            //         // Check if the URL is already absolute
-            //         $isAbsoluteUrl = filter_var($row->thumbnail_url, FILTER_VALIDATE_URL) !== false;
+            ->addColumn('option_ad_free', function($row){
+                if ($row->option_ad_free == "Active") {
+                    $option_ad_free = '<i class="fi fi-ss-check-circle text-success"></i>';
+                }else{
+                    $option_ad_free = '<i class="fi fi-ss-cross-circle text-danger"></i>';
+                }
+                return $option_ad_free;
+            })
 
-            //         $thumbnail_url = '<img src="' . ($isAbsoluteUrl ? $row->thumbnail_url : '/' . $row->thumbnail_url) . '" class="img-fluid img-thumbnail" style="width: 50px; height:50px">';
-            //     } else {
-            //         $thumbnail_url = '<img src="/assets/backend/img/no-image.png" class="rounded-circle img-fluid img-thumbnail" style="width: 50px; height:50px">';
-            //     }
+            ->addColumn('option_live_content', function($row){
+                if ($row->option_live_content == "Active") {
+                    $option_live_content = '<i class="fi fi-ss-check-circle text-success"></i>';
+                }else{
+                    $option_live_content = '<i class="fi fi-ss-cross-circle text-danger"></i>';
+                }
+                return $option_live_content;
+            })
 
-            //     return $thumbnail_url;
-            // })
+            ->addColumn('option_premium_content', function($row){
+                if ($row->option_premium_content == "Active") {
+                    $option_premium_content = '<i class="fi fi-ss-check-circle text-success"></i>';
+                }else{
+                    $option_premium_content = '<i class="fi fi-ss-cross-circle text-danger"></i>';
+                }
+                return $option_premium_content;
+            })
 
             ->editColumn('created_at', '{{date("jS M Y", strtotime($created_at))}}')
 	        ->editColumn('updated_at', '{{date("jS M Y", strtotime($updated_at))}}')
 
             ->setRowId('id')
-            ->rawColumns(['action','checkbox','status']);
+            ->rawColumns(['option_ad_free','option_live_content','option_premium_content','action','checkbox','status']);
     }
 
     /**

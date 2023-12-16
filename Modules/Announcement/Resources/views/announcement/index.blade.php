@@ -20,8 +20,8 @@
             '1'       => [
                 'url'                   => route('admin.announcements.create'),
                 'text'                  => '',
-                'img'                   => asset('assets/backend/img/icons/optimized/add.png'),
-                'permission'            => 'announcement-list',
+                'icon'                  => '<i class="fi fi-ss-add"></i>',
+                'permission'            => 'announcement-create',
             ],
         ],
         'include_header'        => __('announcement::announcement.name'),
@@ -31,14 +31,13 @@
         'include_trashes'       => [
             'url'                   => route('admin.announcements.trashes'),
             'text'                  => __('core::core.form.trash'),
-            'img'                   => asset('assets/backend/img/icons/optimized/trash-white.png'),
             'permission'            => 'announcement-delete',
         ],
     ])
 
     <div class="row">
 
-        <div class="col-md-12">
+        <div class="col-md-12 px-md-0">
             <div class="card">
                 <div class="card-body">
 

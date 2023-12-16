@@ -25,7 +25,7 @@
 
     <div class="row">
 
-        <div class="col-md-12">
+        <div class="col-md-12 px-md-0">
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
@@ -34,7 +34,6 @@
                             'include_restore_all_url'               => route('admin.users.restore_all'),
                                 'include_index_table_data_route'    => route('admin.users.trashes'),
                                 'include_table_rows'                => [
-                                    'photo'     => __('core::core.form.photo'),
                                     'name'      => __('user::user.form.name'),
                                     'email'     => __('user::user.form.email'),
                                     'mobile'    => __('user::user.form.mobile'),

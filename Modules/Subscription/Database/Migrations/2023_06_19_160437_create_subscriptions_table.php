@@ -18,11 +18,16 @@ class CreateSubscriptionsTable extends Migration
                 $table->id();
                 $table->string('title');
                 $table->string('slug')->unique();
-                $table->text('description');
+
+                $table->enum('option_ad_free', ['Inactive', 'Active'])->default('Inactive');
+                $table->enum('option_live_content', ['Inactive', 'Active'])->default('Inactive');
+                $table->enum('option_premium_content', ['Inactive', 'Active'])->default('Inactive');
 
                 $table->string('duration');
                 $table->enum('duration_type', ['Day(s)', 'Month(s)', 'Year(s)'])->default('Day(s)');
                 $table->string('price');
+
+                $table->string('trial_days');
 
                 $table->string('seo_title')->nullable();
                 $table->text('seo_description')->nullable();

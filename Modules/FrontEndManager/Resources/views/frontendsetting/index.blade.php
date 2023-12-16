@@ -173,7 +173,7 @@
     ])
 
     <div class="row mb-5">
-        <div class="col-lg-3">
+        <div class="col-lg-3 ps-md-0">
             <div class="card position-sticky top-0">
                 <ul class="nav flex-column bg-white border-radius-lg p-3">
 
@@ -222,7 +222,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-lg-9 mt-lg-0 mt-4">
+        <div class="col-lg-9 mt-lg-0 mt-4 pe-md-0">
 
             <!-- Site Info -->
             <div class="card mb-2" id="site-info">

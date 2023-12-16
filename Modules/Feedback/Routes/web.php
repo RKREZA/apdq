@@ -8,7 +8,7 @@ Route::group(['middleware'=>'language'],function (){
 
 		Route::group(['middleware' => ['auth']], function() {
 
-			Route::prefix('fd')->group(function () {
+			Route::prefix('feedback')->group(function () {
 
 				// Feedback
 				Route::prefix('feedback')->group(function () {

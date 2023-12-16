@@ -20,8 +20,8 @@
             '1'       => [
                 'url'                   => route('admin.pagecategories.create'),
                 'text'                  => '',
-                'img'                   => asset('assets/backend/img/icons/optimized/add.png'),
-                'permission'            => 'pagecategory-list',
+                'icon'                  => '<i class="fi fi-ss-add"></i>',
+                'permission'            => 'pagecategory-create',
             ],
         ],
         'include_header'        => __('cms::cms.category.name'),
@@ -32,14 +32,13 @@
         'include_trashes'       => [
             'url'                   => route('admin.pagecategories.trashes'),
             'text'                  => __('core::core.form.trash'),
-            'img'                   => asset('assets/backend/img/icons/optimized/trash-white.png'),
             'permission'            => 'pagecategory-delete',
         ],
     ])
 
     <div class="row">
 
-        <div class="col-md-12">
+        <div class="col-md-12 px-md-0">
             <div class="card">
                 <div class="card-body">
 

@@ -14,6 +14,7 @@ use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Modules\Video\Entities\VideoCategory;
+use Str;
 
 class VideosDataTable extends DataTable
 {
@@ -57,7 +58,7 @@ class VideosDataTable extends DataTable
             })
 
             ->addColumn('title', function($row){
-                $title = substr(strip_tags($row->title), 0, 30)."...";
+                $title = wordwrap($row->title, 100, "<br>\n", true);
                 return mb_convert_encoding($title, 'UTF-8', 'UTF-8');
             })
 
@@ -93,9 +94,9 @@ class VideosDataTable extends DataTable
                     // Check if the URL is already absolute
                     $isAbsoluteUrl = filter_var($row->thumbnail_url, FILTER_VALIDATE_URL) !== false;
 
-                    $thumbnail_url = '<img src="' . ($isAbsoluteUrl ? $row->thumbnail_url : $row->thumbnail_url) . '" class="img-fluid img-thumbnail" style="width: 80px; height:60px">';
+                    $thumbnail_url = '<img src="' . ($isAbsoluteUrl ? $row->thumbnail_url : $row->thumbnail_url) . '" class="img-fluid img-thumbnail" style="width:100%;">';
                 } else {
-                    $thumbnail_url = '<img src="/assets/backend/img/no-image.png" class="rounded-circle img-fluid img-thumbnail" style="width: 60px; height:60px">';
+                    $thumbnail_url = '<img src="/assets/backend/img/no-image.png" class="rounded-circle img-fluid img-thumbnail" style="width:100%;">';
                 }
 
                 return $thumbnail_url;
@@ -119,7 +120,7 @@ class VideosDataTable extends DataTable
 	        ->editColumn('updated_at', '{{date("jS M Y", strtotime($updated_at))}}')
 
             ->setRowId('id')
-            ->rawColumns(['reaction','thumbnail_url','action','checkbox','status']);
+            ->rawColumns(['title','reaction','thumbnail_url','action','checkbox','status']);
     }
 
     /**

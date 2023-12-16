@@ -179,6 +179,11 @@ nav.navbar {
     align-items: center;
 }
 
+.dropdown-item i{
+    position: relative;
+    top: 2px;
+}
+
 
 .logo{
     height: 70px;

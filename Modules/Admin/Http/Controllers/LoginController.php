@@ -78,7 +78,6 @@ class LoginController extends Controller
 
         $data = $request->all();
 
-
         if (!isset(request()->remember)) {
             $data['remember'] = "off";
         }
@@ -92,7 +91,12 @@ class LoginController extends Controller
                     Session::forget('user_2fa');
                     return redirect()->route('admin.2fa.index');
                 }else{
-                    return redirect()->route('dashboard');
+                    if(isset($request->redirect) && request()->redirect == 'subscription'){
+                        return redirect()->route('frontend.subscription');
+                    }else{
+                        return redirect()->route('dashboard');
+                    }
+                    
                 }
 
             }else{

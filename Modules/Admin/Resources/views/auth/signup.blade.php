@@ -29,7 +29,7 @@
             <div class="page-header min-vh-100">
                 <div class="container my-auto">
                     <div class="row justify-content-center">
-                        <div class="col-md-4 my-4">
+                        <div class="col-md-6 my-4">
                             <div class="card p-3" style="">
                                 <div class="row text-center px-4" style="">
                                     <div class="col-12">
@@ -103,7 +103,7 @@
                                         {!!  GoogleReCaptchaV3::renderField('login_id','login_action') !!}
 
                                         <div class="text-center">
-                                            <button type="submit" class="create-button btn btn-dark w-100 mb-2" id="submit">
+                                            <button type="submit" class="btn btn-dark w-100 mb-2 p-3" id="submit">
                                                 {{ __('admin::auth.signup_button') }}
                                             </button>
                                         </div>
@@ -128,7 +128,7 @@
                             </div>
                         </div>
                         <div class="col-md-12 text-center">
-                            <a href="{{ route('admin.login') }}!" class="text-end text-danger text-gradient font-weight-bold">{{ __('admin::auth.signin_title') }}</a>
+                            <a href="{{ route('admin.login') }}" class="text-end text-danger text-gradient font-weight-bold">{{ __('admin::auth.signin_title') }}</a>
                         </div>
                     </div>
                 </div>
@@ -170,9 +170,6 @@
             },
             i_agree: {
                 required: true
-            },
-            password_confirmation: {
-                required: "{{ __('core::core.form.validation.required') }}",
             },
 
         };
@@ -231,33 +228,6 @@
         });
     </script>
 
-    <script>
-        // $("#submit").click(function (e) {
-        //     // alert('11');
-        //     let _token = $('meta[name="csrf-token"]').attr('content');
-        //     // e.preventDefault();
-        //     $.ajax({
-        //         type: 'POST',
-        //         url: '/verify/captcha',
-        //         data: {
-        //             _token: _token,
-        //             'g-recaptcha-response': getReCaptchaV3Response('login_ajax_id')
-        //         },
-        //         success: function (data) {
-        //             refreshReCaptchaV3('login_ajax_id', 'login_action');
-        //             @include('admin::layouts.includes.js.json_response')
-        //         },
-        //         error: function (err) {
-        //             refreshReCaptchaV3('login_ajax_id', 'login_action');
-        //             @include('admin::layouts.includes.js.json_response')
-        //         }
-        //     });
-        // });
-    </script>
     {!!  GoogleReCaptchaV3::init() !!}
 @endpush
 
-
-@push('js')
-
-@endpush

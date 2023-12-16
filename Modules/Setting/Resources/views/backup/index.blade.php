@@ -16,10 +16,9 @@
 
 @section('container')
 
-
-    <div class="position-sticky top-0 mb-2 shadow-blur border-radius-xl z-index-sticky">
+    <div class="position-sticky top-0 mb-1 shadow-blur border-radius-xl z-index-sticky">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 px-md-0">
                 <div class="card">
                     <div class="card-body py-3 px-4">
                         <div class="row">
@@ -65,7 +64,7 @@
 
     <div class="row">
 
-        <div class="col-md-12">
+        <div class="col-md-12 px-md-0">
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">

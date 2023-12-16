@@ -1,6 +1,6 @@
 <div class="row">
-    <div class="col-md-12">
-        <div class="card mb-2">
+    <div class="col-md-12 px-md-0">
+        <div class="card mb-1">
             <div class="card-body">
 
                 <form action="{{ $include_action }}" method="{{ $include_method }}" class="mt-1" >

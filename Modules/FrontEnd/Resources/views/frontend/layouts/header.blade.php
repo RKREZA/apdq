@@ -1,6 +1,12 @@
 @push('css')
 <style>
 
+.profile_img {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    margin: 0;
+}
 
 
 </style>
@@ -44,9 +50,28 @@
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('search*') ? 'active' : '' }}" aria-current="page" href="#search"><i class="fi fi-rs-search"></i> Rechercher</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link btn btn-lg btn-outline-white ms-0 ms-md-3" aria-current="page" href="{{ route('admin.login') }}">Login</a>
-                </li>
+
+                @if(auth()->check())
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle py-0" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            @if (count(auth()->user()->files)>0)
+                                <img src="{{ auth()->user()->files[0]->path }}" class="profile_img rounded-circle img-fluid img-thumbnail" style="width: 40px; height:40px">
+                            @else
+                                <img src="/assets/backend/img/no-image.png" class="profile_img rounded-circle img-fluid img-thumbnail" style="width: 40px; height:40px">
+                            @endif
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item py-2" href="{{ route('admin.profile') }}"><i class="fi fi-ss-user"></i> Profil</a></li>
+                        <li><a class="dropdown-item py-2" href="{{ route('dashboard') }}"><i class="fi fi-ss-apps"></i> Tableau de bord</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item py-2" href="{{ route('admin.logout') }}"><i class="fi fi-ss-sign-out-alt"></i> Se déconnecter</a></li>
+                        </ul>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-lg btn-outline-white ms-0 ms-md-3" aria-current="page" href="{{ route('admin.login') }}">Login</a>
+                    </li>
+                @endif
             </ul>
         </div>
 

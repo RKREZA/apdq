@@ -7,7 +7,5 @@ return [
         'form' => [
             'email' => 'Email',
         ],
-
     ],
-
 ];

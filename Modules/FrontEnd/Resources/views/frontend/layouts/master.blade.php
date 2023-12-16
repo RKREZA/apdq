@@ -255,6 +255,27 @@
 
     </script>
 
+    
+
+@if(session('error'))
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="25000">
+        <div class="toast-body">
+            <button type="button" class="btn-close float-end text-white" data-bs-dismiss="toast" aria-label="Close"></button>
+            {{ session('error') }}
+        </div>
+    </div>
+</div>
+
+<script>
+    var toastEl = document.querySelector('.toast');
+    var toast = new bootstrap.Toast(toastEl);
+    toast.show();
+</script>
+@endif
+
+
+
     @stack('js')
 
 </body>

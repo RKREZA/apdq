@@ -27,8 +27,6 @@ class FaqsDataTable extends DataTable
     {
         $data = CoreHelper::filter_data(request(), $query);
 
-
-
         return (new EloquentDataTable($data))
             ->addIndexColumn()
             ->addColumn('checkbox', function($row){
@@ -56,10 +54,17 @@ class FaqsDataTable extends DataTable
                 return $action;
             })
 
+            ->addColumn('title', function($row){
+                $title = wordwrap($row->title, 100, "<br>\n", true);
+                return mb_convert_encoding($title, 'UTF-8', 'UTF-8');
+            })
+
             ->addColumn('description', function($row){
-                $description = substr(strip_tags($row->description), 0, 100);
+                $description = substr(strip_tags($row->description), 0, 80);
                 return mb_convert_encoding($description, 'UTF-8', 'UTF-8');
-            })      ->addColumn('category_id', function($row){
+            })
+
+            ->addColumn('category_id', function($row){
                 $category = FaqCategory::find($row->category_id);
                 if (empty($category)) {
                     return 'NaN';
@@ -82,7 +87,7 @@ class FaqsDataTable extends DataTable
             })
 
             ->setRowId('id')
-            ->rawColumns(['action','checkbox','status']);
+            ->rawColumns(['title','action','checkbox','status']);
     }
 
     /**

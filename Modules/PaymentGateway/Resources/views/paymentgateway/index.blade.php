@@ -20,8 +20,8 @@
             // '1'       => [
             //     'url'                   => route('admin.paymentgateways.create'),
             //     'text'                  => '',
-            //     'img'                   => asset('assets/backend/img/icons/optimized/add.png'),
-            //     'permission'            => 'paymentgateway-list',
+            //     'icon'                  => '<i class="fi fi-ss-add"></i>',
+            //     'permission'            => 'paymentgateway-create',
             // ],
         ],
         'include_header'        => __('paymentgateway::paymentgateway.paymentgateway.name'),
@@ -31,22 +31,21 @@
         // 'include_trashes'       => [
         //     'url'                   => route('admin.paymentgateways.trashes'),
         //     'text'                  => __('core::core.form.trash'),
-        //     'img'                   => asset('assets/backend/img/icons/optimized/trash-white.png'),
         //     'permission'            => 'paymentgateway-delete',
         // ],
     ])
 
     <div class="row">
 
-        <div class="col-md-12">
+        <div class="col-md-12 px-md-0">
             <div class="card">
                 <div class="card-body">
 
                     <div class="table-responsive">
                         @include('core::layouts.table',[
-                            'include_delete_all_url'            => route('admin.paymentgateways.force_destroy_all'),
-                            'include_trash_all_url'             => route('admin.paymentgateways.trash_all'),
-                            'include_delete_all_permission'     => 'paymentgateway-delete',
+                            // 'include_delete_all_url'            => route('admin.paymentgateways.force_destroy_all'),
+                            // 'include_trash_all_url'             => route('admin.paymentgateways.trash_all'),
+                            // 'include_delete_all_permission'     => 'paymentgateway-delete',
                             'include_index_table_data_route'    => route('admin.paymentgateways.index'),
                             'include_table_rows'                => [
                                 'name'              => __('paymentgateway::paymentgateway.paymentgateway.form.name'),

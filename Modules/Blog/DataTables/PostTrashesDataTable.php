@@ -54,6 +54,11 @@ class PostTrashesDataTable extends DataTable
                 return $action;
             })
 
+            ->addColumn('title', function($row){
+                $title = wordwrap($row->title, 100, "<br>\n", true);
+                return mb_convert_encoding($title, 'UTF-8', 'UTF-8');
+            })
+
             ->addColumn('description', function($row){
                 $description = substr(strip_tags($row->description), 0, 100);
                 return mb_convert_encoding($description, 'UTF-8', 'UTF-8');
@@ -63,7 +68,7 @@ class PostTrashesDataTable extends DataTable
 	        ->editColumn('updated_at', '{{date("jS M Y", strtotime($updated_at))}}')
 
             ->setRowId('id')
-            ->rawColumns(['action','checkbox','status']);
+            ->rawColumns(['title','action','checkbox','status']);
     }
 
     /**

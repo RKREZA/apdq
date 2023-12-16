@@ -21,6 +21,7 @@ Route::group(['middleware'=>'language'],function (){
     Route::get('/live', 		            'FrontEndController@live')->name('frontend.live');
 
     Route::get('/subscription', 		    'FrontEndController@subscription')->name('frontend.subscription');
+    Route::get('/checkout', 		        'FrontEndController@checkout')->name('frontend.checkout');
 
     Route::get('/contact', 		            'FrontEndController@contact')->name('frontend.contact');
     Route::post('/contact/go', 		        'FrontEndController@contact_go')->name('frontend.contact_go');
@@ -32,4 +33,10 @@ Route::group(['middleware'=>'language'],function (){
     Route::get('/delete-user', 	            'FrontEndController@delete_user')->name('frontend.delete_user');
     Route::get('/privacy-policy', 	        'FrontEndController@privacy_policy')->name('frontend.privacy_policy');
     Route::get('/terms-of-services', 	    'FrontEndController@terms_of_services')->name('frontend.terms_of_services');
+
+
+
+    Route::post('/payment/paypal',                  'PayPalController@paypal')->name('frontend.paypal');
+    Route::get('/payment/paypal/cancel',           'PayPalController@cancel')->name('frontend.paypal.cancel');
+    Route::get('/payment/paypal/success',          'PayPalController@success')->name('frontend.paypal.success');
 });

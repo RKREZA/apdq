@@ -26,6 +26,7 @@ class FeedbacksDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         $data = CoreHelper::filter_data(request(), $query);
+        // $data = CoreHelper::filter_data_for_admin(request(), $query);
 
 
 
@@ -54,6 +55,11 @@ class FeedbacksDataTable extends DataTable
 
                 $action = $view.' '.$delete;
                 return $action;
+            })
+
+            ->addColumn('title', function($row){
+                $title = wordwrap($row->title, 100, "<br>\n", true);
+                return mb_convert_encoding($title, 'UTF-8', 'UTF-8');
             })
 
             ->addColumn('description', function($row){
@@ -87,7 +93,7 @@ class FeedbacksDataTable extends DataTable
 	        ->editColumn('updated_at', '{{date("jS M Y", strtotime($updated_at))}}')
 
             ->setRowId('id')
-            ->rawColumns(['action','checkbox','status']);
+            ->rawColumns(['title','action','checkbox','status']);
     }
 
     /**

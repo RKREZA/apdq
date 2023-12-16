@@ -25,14 +25,15 @@ Contact
     <img src="/assets/frontend/img/contact.webp" alt="">
     <div class="content">
         <h1>Contact</h1>
+        <h6>Contactez-nous – Parlons Politique et Rire</h6>
     </div>
 </section>
 <section id="contact_page" class="py-5">
     <div class="container py-4">
         <div class="row">
             <div class="col-md-12 text-center">
-                <h2>Get in touch!</h2>
-                <h6 class="text-muted">Share your thought</h6>
+                <h2>Entrer en contact!</h2>
+                <h6 class="text-muted">Partagez votre pensée</h6>
             </div>
         </div>
 
@@ -48,13 +49,13 @@ Contact
                         <form action="{{ route('frontend.contact_go') }}" method="POST" id="contact_form">
                             @csrf
                             <div class="mb-3">
-                                <label for="name" class="form-label">Name</label>
+                                <label for="name" class="form-label">Nom</label>
                                 <input type="name" class="form-control border-radius-round" id="name" name="name" required>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="email" class="form-label">Email address</label>
+                                        <label for="email" class="form-label">Adresse e-mail</label>
                                         <input type="email" class="form-control border-radius-round" id="email" name="email" required>
                                     </div>
                                 </div>
@@ -70,7 +71,7 @@ Contact
                                 <textarea class="form-control border-radius-round" id="message" name="message" rows="4" required></textarea>
                             </div>
 
-                            <button type="submit" class="btn btn-lg btn-primary border-radius-round w-100">Send</button>
+                            <button type="submit" class="btn btn-lg btn-primary border-radius-round w-100">Envoyer</button>
                         </form>
                     </div>
                 </div>

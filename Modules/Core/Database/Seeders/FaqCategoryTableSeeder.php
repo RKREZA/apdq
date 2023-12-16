@@ -16,13 +16,13 @@ class FaqCategoryTableSeeder extends Seeder
     public function run()
     {
         FaqCategory::create([
-            "name" => "Bus",
-            "code" => "bus",
+            "name" => "Subscription",
+            "code" => "subscription",
             "status" => "Active",
         ]);
         FaqCategory::create([
-            "name" => "Train",
-            "code" => "train",
+            "name" => "Payment",
+            "code" => "payment",
             "status" => "Active",
         ]);
     }

@@ -29,7 +29,7 @@ class User extends Authenticatable
         'password',
         'status',
         'password_changed_at',
-        
+
         'fb_id',
     ];
 
@@ -100,5 +100,71 @@ class User extends Authenticatable
 
         Sms::send_sms($receiverNumber, $message);
     }
+
+    public function transactions()
+    {
+        return $this->hasMany('Modules\Transaction\Entities\Transaction', 'user_id');
+    }
+
+    public function subscription()
+    {
+        return $this->hasOneThrough(
+            'Modules\Transaction\Entities\Transaction',
+            'Modules\Subscription\Entities\Subscription',
+            'user_id', // Foreign key on transactions table
+            'id', // Foreign key on subscriptions table
+            'id', // Local key on users table
+            'subscription_id' // Local key on transactions table
+        );
+    }
+
+    public function subscriptionStatus()
+    {
+        $transactions = $this->transactions;
+
+        if ($transactions->isEmpty()) {
+            return 'no_subscription'; // User has no transactions
+        }
+
+        $currentTransaction = $transactions->first();
+        $currentSubscription = $currentTransaction->subscription;
+
+        if (!$currentSubscription) {
+            return 'no_subscription'; // User has transactions, but no valid subscription found
+        }
+
+        $subscriptionDuration = $currentSubscription->duration;
+        $subscriptionDurationType = $currentSubscription->duration_type;
+
+        $subscriptionDurationInDays = $this->convertToDays($subscriptionDuration, $subscriptionDurationType);
+
+        $transactionCreatedAt = $currentTransaction->created_at;
+        $currentDate = now();
+
+        $daysPassed = $currentDate->diffInDays($transactionCreatedAt);
+
+        if ($daysPassed >= $subscriptionDurationInDays) {
+            return 'expired'; // Subscription has expired
+        } else {
+            $daysLeft = $subscriptionDurationInDays - $daysPassed;
+            return "expires_in_$daysLeft"; // Subscription is still active, and $daysLeft days are remaining
+        }
+    }
+
+    // Helper function to convert subscription duration to days
+    private function convertToDays($duration, $durationType)
+    {
+        switch ($durationType) {
+            case 'Day(s)':
+                return $duration;
+            case 'Month(s)':
+                return $duration * 30; // Assuming 1 month = 30 days
+            case 'Year(s)':
+                return $duration * 365; // Assuming 1 year = 365 days
+            default:
+                return 0;
+        }
+    }
+
 
 }

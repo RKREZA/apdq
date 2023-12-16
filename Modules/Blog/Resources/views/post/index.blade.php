@@ -20,8 +20,8 @@
             '1'       => [
                 'url'                   => route('admin.posts.create'),
                 'text'                  => '',
-                'img'                   => asset('assets/backend/img/icons/optimized/add.png'),
-                'permission'            => 'post-list',
+                'icon'                  => '<i class="fi fi-ss-add"></i>',
+                'permission'            => 'post-create',
             ],
             // '2'       => [
             //     'url'                   => route('admin.postcategories.index'),
@@ -37,14 +37,13 @@
         'include_trashes'       => [
             'url'                   => route('admin.posts.trashes'),
             'text'                  => __('core::core.form.trash'),
-            'img'                   => asset('assets/backend/img/icons/optimized/trash-white.png'),
             'permission'            => 'post-delete',
         ],
     ])
 
     <div class="row">
 
-        <div class="col-md-12">
+        <div class="col-md-12 px-md-0">
             <div class="card">
                 <div class="card-body">
 
@@ -57,7 +56,6 @@
                             'include_table_rows'                => [
                                 'photo'             => __('core::core.form.photo'),
                                 'title'             => __('blog::blog.post.form.title'),
-                                'description'       => __('blog::blog.post.form.description'),
                                 'category_id'       => __('blog::blog.post.form.category_id'),
                                 'status'            => __('core::core.form.status'),
                                 'created_at'        => __('core::core.form.created_at'),

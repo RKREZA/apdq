@@ -3,6 +3,7 @@
 return [
     'feedback'  => [
         'name' => 'Feedback',
+        'names' => 'Feedbacks',
 
         'form' => [
             'name' => 'Name',

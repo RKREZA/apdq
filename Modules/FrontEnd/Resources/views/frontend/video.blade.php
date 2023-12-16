@@ -89,6 +89,7 @@ Vidéo
     <img src="/assets/frontend/img/video.webp" alt="">
     <div class="content">
         <h1>Vidéos</h1>
+        <h6>Politique sans Filtre, Rires Garantis</h6>
     </div>
 </section>
 

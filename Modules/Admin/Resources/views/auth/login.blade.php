@@ -77,9 +77,10 @@
                                         {{-- @include('admin::layouts.includes.captcha') --}}
 
                                         {!!  GoogleReCaptchaV3::renderField('login_id','login_action') !!}
+                                        <input type="hidden" name="redirect" value="{{ request()->redirect }}">
 
                                         <div class="text-center">
-                                            <button type="submit" class="create-button btn btn-dark w-100 mb-2" id="submit">
+                                            <button type="submit" class="btn btn-dark w-100 mb-2 p-2" id="submit">
                                                 {{ __('admin::auth.signin_button') }}
                                             </button>
                                         </div>

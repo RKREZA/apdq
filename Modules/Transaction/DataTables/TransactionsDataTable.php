@@ -25,6 +25,7 @@ class TransactionsDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         $data = CoreHelper::filter_data(request(), $query);
+        $data = CoreHelper::filter_data_for_admin(request(), $data);
 
 
 
@@ -35,24 +36,24 @@ class TransactionsDataTable extends DataTable
                 return $checkbox;
             })
             ->addColumn('action', function($row){
-                if (Gate::check('transaction-edit')) {
-                    $edit = '<a href="'.route('admin.transactions.edit', $row->id).'" class="btn btn-sm btn-success mb-0 px-2" title="'.__('core::core.form.edit-button').'" data-toggle="tooltip">
-                                    <i class="material-icons text-sm">edit</i>
-                            </a>';
-                }else{
-                    $edit = '';
-                }
+                // if (Gate::check('transaction-edit')) {
+                //     $edit = '<a href="'.route('admin.transactions.edit', $row->id).'" class="btn btn-sm btn-success mb-0 px-2" title="'.__('core::core.form.edit-button').'" data-toggle="tooltip">
+                //                     <i class="material-icons text-sm">edit</i>
+                //             </a>';
+                // }else{
+                //     $edit = '';
+                // }
 
-                if (Gate::check('transaction-delete')) {
-                    $delete = '<button class="remove btn btn-sm btn-danger mb-0 px-2" data-id="'.$row->id.'" data-action="'.route('admin.transactions.trash').'" title="'.__('core::core.form.trash-button').'" data-toggle="tooltip">
-                                    <i class="material-icons text-sm">delete</i>
-                                </button>';
-                }else{
-                    $delete = '';
-                }
+                // if (Gate::check('transaction-delete')) {
+                //     $delete = '<button class="remove btn btn-sm btn-danger mb-0 px-2" data-id="'.$row->id.'" data-action="'.route('admin.transactions.trash').'" title="'.__('core::core.form.trash-button').'" data-toggle="tooltip">
+                //                     <i class="material-icons text-sm">delete</i>
+                //                 </button>';
+                // }else{
+                //     $delete = '';
+                // }
 
-                $action = $edit.' '.$delete;
-                return $action;
+                // $action = $edit;
+                // return $action;
             })
 
             ->addColumn('title', function($row){
@@ -67,32 +68,26 @@ class TransactionsDataTable extends DataTable
 
             ->addColumn('status', function($row){
 
-                if ($row->status == "Active") {
-                    $current_status = 'Checked';
+                if ($row->status == "Paid") {
+                    return "<span class='badge badge-success'>$row->status</span>";
                 }else{
-                    $current_status = '';
+                    return "<span class='badge badge-danger'>$row->status</span>";
                 }
-
-                $status = "<input type='checkbox' id='status_$row->id' id='user-$row->id' class='check' onclick='changeStatus(event.target, $row->id);' " .$current_status. ">
-                        <label for='status_$row->id' class='checktoggle'>checkbox</label>";
-
-                return $status;
             })
 
-            // ->addColumn('thumbnail_url', function ($row) {
-            //     if (!empty($row->thumbnail_url)) {
-            //         // Check if the URL is already absolute
-            //         $isAbsoluteUrl = filter_var($row->thumbnail_url, FILTER_VALIDATE_URL) !== false;
+            ->addColumn('subscription_id', function($row){
+                return $row->subscription->title;
+            })
 
-            //         $thumbnail_url = '<img src="' . ($isAbsoluteUrl ? $row->thumbnail_url : '/' . $row->thumbnail_url) . '" class="img-fluid img-thumbnail" style="width: 50px; height:50px">';
-            //     } else {
-            //         $thumbnail_url = '<img src="/assets/backend/img/no-image.png" class="rounded-circle img-fluid img-thumbnail" style="width: 50px; height:50px">';
-            //     }
+            ->addColumn('paymentgateway_id', function($row){
+                return $row->paymentgateway->name;
+            })
 
-            //     return $thumbnail_url;
-            // })
+            ->addColumn('user_id', function($row){
+                return $row->user->name;
+            })
 
-            ->editColumn('created_at', '{{date("jS M Y", strtotime($created_at))}}')
+            ->editColumn('created_at', '{{ date("jS M Y h:i:s A", strtotime($created_at)) }}')
 	        ->editColumn('updated_at', '{{date("jS M Y", strtotime($updated_at))}}')
 
             ->setRowId('id')

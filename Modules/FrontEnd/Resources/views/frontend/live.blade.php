@@ -15,7 +15,10 @@ En direct
 
 @push('css')
     <style>
-
+        iframe {
+            width: 100%;
+            min-height: 500px;
+        }
     </style>
 @endpush
 
@@ -25,12 +28,13 @@ En direct
     <img src="/assets/frontend/img/live.webp" alt="">
     <div class="content">
         <h1>En direct</h1>
+        <h6>En Direct et Sans Script : Humour Politique en Temps Réel</h6>
     </div>
 </section>
 <section id="video" class="py-5">
     <div class="container py-4">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 @if($live)
                     {!! $live->embed_html !!}
                 @else

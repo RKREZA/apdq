@@ -35,6 +35,7 @@
     <img src="/assets/frontend/img/about.webp" alt="">
     <div class="content">
         <h1>À propos</h1>
+        <h6>Derrière le Rire, Décryptage Politique</h6>
     </div>
 </section>
 

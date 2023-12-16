@@ -45,7 +45,6 @@
 
 </table>
 
-
 @push('js')
     <script>
         $('.data_table').DataTable({

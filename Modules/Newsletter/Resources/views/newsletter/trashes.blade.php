@@ -25,7 +25,7 @@
 
     <div class="row">
 
-        <div class="col-md-12">
+        <div class="col-md-12 px-md-0">
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
@@ -34,10 +34,9 @@
                             'include_restore_all_url'               => route('admin.newsletters.restore_all'),
                                 'include_index_table_data_route'    => route('admin.newsletters.trashes'),
                                 'include_table_rows'                => [
-                                    'title'         => __('newsletter::newsletter.newsletter.form.title'),
-                                    'description'   => __('newsletter::newsletter.newsletter.form.description'),
-                                    'status'        => __('core::core.form.status'),
-                                    'action'        => __('core::core.form.action'),
+                                    'email'             => __('newsletter::newsletter.newsletter.form.email'),
+                                    'created_at'        => __('core::core.form.created_at'),
+                                    'action'            => __('core::core.form.action'),
                                 ],
                             ])
                     </div>
