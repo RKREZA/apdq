@@ -16,7 +16,7 @@ Plan d'abonnement
 @push('css')
     <style>
         #subscription_page{
-            background-color: #fafafa;
+            /* background-color: #fafafa; */
         }
         .card{
             border-radius: 15px;
@@ -36,6 +36,9 @@ Plan d'abonnement
             box-shadow: 0 28px 40px -40px #000;
             border-radius: 15px;
         }
+        .top_content h2, .top_content h3{
+            color: #fff;
+        }
         #subscription_page ul{
             list-style-type: none;
             padding-left: 0;
@@ -52,82 +55,97 @@ Plan d'abonnement
             background: #528bc2;
             color: #fff;
         }
+        .description{
+            padding: 15px;
+            border-radius: 10px;
+            background: #161616;
+        }
     </style>
 @endpush
 
 @section('content')
 
-<section id="page_header" class="video_page_header">
+{{-- <section id="page_header" class="video_page_header">
     <img src="/assets/frontend/img/subscription.webp" alt="">
     <div class="content">
         <h1>Plan d'abonnement</h1>
         <h6>Rejoignez la Révolution du Rire – Plans d'Abonnement</h6>
     </div>
-</section>
-<section id="subscription_page" class="py-5">
-    <div class="container py-5">
-        <div class="row justify-content-center">
-            @foreach ($subscriptions as $subscription)
-            <div class="col-md-4">
-                <div class="card mb-3">
-                    {{-- <div class="card-header bg-white">
+</section> --}}
+<section id="subscription_page" class="pb-5 mx-3">
+    <div class="container py-2">
+        <div class="row">
 
-                    </div> --}}
-                    <div class="card-body text-center p-0 mt-3">
+            <div class="col-md-12">
+                <h4>Plan d'abonnement</h4>
+            </div>
 
-                        <div class="top mt-5">
-                            <div class="top_content">
-                                <h2 class="my-0 fw-bold text-center my-3">{{ $subscription->title }}</h2>
-                                <h3>
-                                    <span class="display-6">{{ $subscription->price }}</span>$
-                                    <small class="fw-light"> / {{ $subscription->duration }} {{ $subscription->duration_type }}</small></h3>
+
+            <div class="description">
+                <div class="row justify-content-center py-4">
+                    @foreach ($subscriptions as $subscription)
+                        <div class="col-md-4">
+                            <div class="card mb-3">
+                                {{-- <div class="card-header bg-white">
+
+                                </div> --}}
+                                <div class="card-body text-center p-0 mt-3">
+
+                                    <div class="top mt-5">
+                                        <div class="top_content">
+                                            <h2 class="my-0 fw-bold text-center my-3">{{ $subscription->title }}</h2>
+                                            <h3>
+                                                <span class="display-6">{{ $subscription->price }}</span>$
+                                                <small class="fw-light"> / {{ $subscription->duration }} {{ $subscription->duration_type }}</small></h3>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-5 pt-5 text-start px-5">
+                                        <ul>
+                                            <li>
+                                                @if($subscription->option_ad_free == 'Active')
+                                                <i class="fi fi-ss-check text-success"></i>
+                                                @else
+                                                <i class="fi fi-ss-cross-small text-danger"></i>
+                                                @endif
+                                                {{ __('subscription::subscription.subscription.form.option_ad_free') }}
+                                            </li>
+                                            <li>
+                                                @if($subscription->option_live_content == 'Active')
+                                                <i class="fi fi-ss-check text-success"></i>
+                                                @else
+                                                <i class="fi fi-ss-cross-small text-danger"></i>
+                                                @endif
+                                                {{ __('subscription::subscription.subscription.form.option_live_content') }}
+                                            </li>
+                                            <li>
+                                                @if($subscription->option_premium_content == 'Active')
+                                                <i class="fi fi-ss-check text-success"></i>
+                                                @else
+                                                <i class="fi fi-ss-cross-small text-danger"></i>
+                                                @endif
+                                                {{ __('subscription::subscription.subscription.form.option_premium_content') }}
+                                            </li>
+                                            <li>
+                                                <i class="fi fi-ss-check text-success"></i>
+                                                {{ $subscription->trial_days }}
+                                                {{ __('subscription::subscription.subscription.form.trial_days') }}
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    @if(auth()->check())
+                                        <a href="{{ route('frontend.checkout') }}?subscription_id={{ $subscription->id }}" type="button" class="w-100 btn btn-lg btn-outline-primary py-4 mt-4 custom_button">S'abonner</a>
+                                    @else
+                                        <a href="{{ route('admin.login') }}?redirect=subscription" type="button" class="w-100 btn btn-lg btn-outline-primary py-4 mt-4 custom_button">Connectez-vous pour vous abonner</a>
+                                    @endif
+
+                                </div>
                             </div>
                         </div>
-
-                        <div class="mt-5 pt-5 text-start px-5">
-                            <ul>
-                                <li>
-                                    @if($subscription->option_ad_free == 'Active')
-                                    <i class="fi fi-ss-check text-success"></i>
-                                    @else
-                                    <i class="fi fi-ss-cross-small text-danger"></i>
-                                    @endif
-                                    {{ __('subscription::subscription.subscription.form.option_ad_free') }}
-                                </li>
-                                <li>
-                                    @if($subscription->option_live_content == 'Active')
-                                    <i class="fi fi-ss-check text-success"></i>
-                                    @else
-                                    <i class="fi fi-ss-cross-small text-danger"></i>
-                                    @endif
-                                    {{ __('subscription::subscription.subscription.form.option_live_content') }}
-                                </li>
-                                <li>
-                                    @if($subscription->option_premium_content == 'Active')
-                                    <i class="fi fi-ss-check text-success"></i>
-                                    @else
-                                    <i class="fi fi-ss-cross-small text-danger"></i>
-                                    @endif
-                                    {{ __('subscription::subscription.subscription.form.option_premium_content') }}
-                                </li>
-                                <li>
-                                    <i class="fi fi-ss-check text-success"></i>
-                                    {{ $subscription->trial_days }}
-                                    {{ __('subscription::subscription.subscription.form.trial_days') }}
-                                </li>
-                            </ul>
-                        </div>
-
-                        @if(auth()->check())
-                            <a href="{{ route('frontend.checkout') }}?subscription_id={{ $subscription->id }}" type="button" class="w-100 btn btn-lg btn-outline-primary py-4 mt-4 custom_button">S'abonner</a>
-                        @else
-                            <a href="{{ route('admin.login') }}?redirect=subscription" type="button" class="w-100 btn btn-lg btn-outline-primary py-4 mt-4 custom_button">Connectez-vous pour vous abonner</a>
-                        @endif
-
-                    </div>
+                    @endforeach
                 </div>
             </div>
-            @endforeach
         </div>
     </div>
 </section>
