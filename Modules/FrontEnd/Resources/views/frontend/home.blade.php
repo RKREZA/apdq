@@ -21,33 +21,62 @@
 
 @section('content')
 
-<section id="slider">
+{{-- <section id="slider" class="mb-4">
     <div class="owl-carousel owl-theme">
-        <div class="item">
-            <img src="{{ asset('assets/frontend/img/slider.webp') }}" class="slider_overlay" alt="">
-        </div>
-        {{-- <div class="item">
-            <img src="{{ asset('assets/frontend/img/slider2.webp') }}" class="overlay" alt="">
-        </div> --}}
-    </div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="slider-content">
-                    <div class="text">
-                        <div class="line-1 wow fadeInLeft" data-wow-duration="1s">Actualité Politique Du Québec</div>
-                        <div class="line-2 wow fadeInRight" data-wow-duration="1s">Pour un <span class="text-style-1">autre son</span> <br>de cloche!</div>
-                        <p class="wow fadeInLeft">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis hic illum voluptatum odio distinctio, corrupti ratione neque facilis ad, magni at debitis ipsa ex! Obcaecati illo voluptas ratione incidunt qui.</p>
-                        <a href="{{ route('frontend.live') }}" class="btn btn-lg btn-outline-accent mt-3 wow bounceInUp">En direct</a>
+        @if(count($sliders)>0)
+            @foreach($sliders as $slider)
+                <div class="item">
+                    <img src="@if(count($slider->files)>0){{$slider->files[0]->path}}@else{{ asset('assets/frontend/img/slider.webp') }}@endif" class="slider_overlay" alt="">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="slider-content">
+                                    <div class="text">
+                                        <div class="line-1 wow fadeInLeft" data-wow-duration="1s">{{$slider->title}}</div>
+                                        <p class="wow fadeInLeft">{{ Str::limit(strip_tags($slider->description), 400, '...') }}</p>
+                                        @if(!empty($slider->video_id))
+                                            <a href="{{ route('frontend.video.single', $slider->video->slug) }}" class="btn btn-lg btn-red mt-3 wow bounceInUp">En savoir plus</a>
+                                        @elseif(!empty($slider->live_id))
+                                            <a href="{{ route('frontend.live') }}" class="btn btn-lg btn-red mt-3 wow bounceInUp">En savoir plus</a>
+                                        @else
+                                            <a href="{{ $slider->url }}" class="btn btn-lg btn-red mt-3 wow bounceInUp">En savoir plus</a>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                    @if(!empty($slider->video_id))
+                                        <a href="{{ route('frontend.video.single', $slider->video->slug) }}" class="live_container wow fadeInRight">
+                                            <img src="{{ $slider->video->thumbnail_url }}">
+                                            <div class="play-button-overlay">
+                                                <i class="fi fi-ss-live-alt"></i>
+                                            </div>
+                                        </a>
+                                    @elseif(!empty($slider->live_id))
+                                        <a href="{{ route('frontend.live') }}" class="live_container wow fadeInRight">
+                                            <img src="{{ $slider->live->thumbnail_url }}">
+                                            <div class="play-button-overlay">
+                                                <i class="fi fi-ss-live-alt"></i>
+                                            </div>
+                                        </a>
+                                    @endif
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
-<section id="social">
+                </div>
+            @endforeach
+        @else
+            <div class="item">
+                <img src="{{ asset('assets/frontend/img/slider.webp') }}" class="slider_overlay" alt="">
+            </div>
+        @endif
+    </div>
+
+
+</section> --}}
+
+{{-- <section id="social">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -61,9 +90,28 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 
-<section id="about" class="mb-5">
+{{-- <div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- Mods Center Responsive -->
+            <ins class="adsbygoogle"
+                style="display:block;"
+                data-ad-client="ca-pub-7301992079721298"
+                data-ad-slot="12345678901"
+                data-ad-format="auto"
+            >
+            </ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div>
+</div> --}}
+
+{{-- <section id="about" class="mb-5">
     <div class="container pt-4 pb-5">
         <div class="row justify-content-center align-items-center">
             <div class="col-md-5 wow fadeInLeft">
@@ -83,10 +131,115 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 
-<section id="category" class="py-5">
-    <div class="overlay"></div>
+
+{{-- <section id="video" class="">
+    <div class="container-fluid py-4"> --}}
+        {{-- <div class="row mb-4">
+            <div class="col-11 text-start">
+                <h4 class="fw-bold text-white">Dernières vidéos</h4>
+            </div>
+            <div class="col-1 text-end">
+                <a href="{{ route('frontend.video') }}"><h4 class="fw-bold text-white"><i class="fi fi-br-angle-double-small-right"></i></h4></a>
+            </div>
+
+        </div> --}}
+        {{-- <div class="row">
+
+            @foreach ($videos as $video)
+
+                <div class="col-md-2 px-2 mb-3 wow bounceInUp">
+                    <div class="card border-0">
+                        <div class="card-body p-0">
+                            <a href="{{ route('frontend.video.single', $video->slug) }}" class="">
+                                <div class="image-container" style="background-image:url({{ $video->thumbnail_url }});"></div>
+                            </a>
+                            <div class="video-content p-3">
+                                <h6><a href="{{ route('frontend.video.single', $video->slug) }}" class="text-white">{{ $video->title }}</a></h6>
+                                <div class="row sub-content">
+                                    <div class="col-12">
+                                        <small><a href="{{ route('frontend.video') }}?code={{ $video->category->code }}" class=""><i class="fi fi-ss-clipboard-list-check"></i> {{ $video->category->name }}</a></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @if ($loop->iteration >= 12)
+                    @break
+                @endif
+
+            @endforeach
+
+        </div> --}}
+    {{-- </div>
+</section> --}}
+
+
+@foreach($video_categories as $video_category)
+    @if(count($video_category->videos)>0)
+        <section id="video" class="mx-3">
+            <div class="container-fluid pb-3">
+                <div class="row mb-2">
+                    <div class="col-11 text-start">
+                        <a href="{{ route('frontend.video') }}?code={{ $video_category->code }}">
+                            <h5 class="fw-normal text-white custom_heading_5">{!! $video_category->icon !!} {{ $video_category->name }}</h5>
+                        </a>
+                    </div>
+                    <div class="col-1 text-end">
+                        <a href="{{ route('frontend.video') }}?code={{ $video_category->code }}">
+                            <h5 class="fw-normal text-white"><i class="fi fi-br-angle-double-small-right"></i></h5>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 px-2 mb-3">
+                        <div class="owl-carousel owl-theme">
+                            @foreach ($video_category->videos as $video)
+                                <div class="item">
+                                    <a href="{{ route('frontend.video.single', $video->slug) }}" class="">
+                                        <div class="card border-0">
+                                            <div class="card-body p-0">
+                                                <div class="image-container" style="background-image:url({{ $video->thumbnail_url }});"></div>
+                                                <div class="video-content-wrapper">
+                                                    <div class="video-content">
+                                                        <h6 class="text-white">
+                                                            {{-- <a href="{{ route('frontend.video.single', $video->slug) }}" class="text-white"> --}}
+                                                                {{ $video->title }}
+                                                            {{-- </a> --}}
+                                                        </h6>
+                                                        <div class="row sub-content">
+                                                            <div class="col-12">
+                                                                <small class="text-white">
+                                                                    {{-- <a href="{{ route('frontend.video') }}?code={{ $video->category->code }}" class=""> --}}
+                                                                        <i class="fi fi-ss-clipboard-list-check"></i> {{ $video->category->name }}
+                                                                    {{-- </a> --}}
+                                                                </small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    @if ($loop->iteration >= 16)
+                                        @break
+                                    @endif
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    @endif
+@endforeach
+
+
+{{-- <section id="category" class="py-5">
     <div class="container py-4 pb-5">
         <div class="row mb-4">
             <div class="col-md-12 text-center">
@@ -108,9 +261,9 @@
             @endforeach
         </div>
     </div>
-</section>
+</section> --}}
 
-<section id="video" class="py-5">
+{{-- <section id="video" class="py-5">
     <div class="container py-4">
         <div class="row mb-4">
             <div class="col-md-12 text-center">
@@ -127,7 +280,6 @@
                         <div class="card-body p-0">
                             <a href="{{ route('frontend.video.single', $video->slug) }}" class="">
                                 <div class="image-container" style="background-image:url({{ $video->thumbnail_url }});">
-                                    {{-- <img src="{{ $video->thumbnail_url }}" onerror="this.onerror=null;this.src='{{ asset('assets/frontend/img/no-video.png') }}';" alt=""> --}}
                                 </div>
                             </a>
                             <div class="video-content p-3">
@@ -137,7 +289,7 @@
                                         <small><a href="{{ route('frontend.video') }}?code={{ $video->category->code }}" class=""><i class="fi fi-ss-clipboard-list-check"></i> {{ $video->category->name }}</a></small>
                                     </div>
                                     <div class="col-6 text-end">
-                                        <small><i class="fi fi-ss-calendar-clock"></i> {{ date('d/m/Y', strtotime($video->created_at)) }}</small>
+                                        <small><i class="fi fi-rs-clock"></i> {{ date('d/m/Y', strtotime($video->created_at)) }}</small>
                                     </div>
                                 </div>
                             </div>
@@ -155,47 +307,47 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 
-<section id="blog" class="py-5">
-    <div class="overlay"></div>
-    <div class="container py-4">
-        <div class="row mb-4">
-            <div class="col-md-12 text-center">
-                <h1 class="text-dark fw-bold">Dernière <span class="text-muted">publication</span></h1>
-                <h5 class="text-dark">Message le plus récent</h5>
+<section id="blog" class="mx-3">
+    {{-- <div class="overlay"></div> --}}
+    <div class="container-fluid py-0">
+        <div class="row mb-3">
+            <div class="col-md-11 text-start">
+                <a href="{{ route('frontend.blog') }}">
+                    <h5 class="text-white fw-normal custom_heading_5"><i class="fi fi-ss-blog-pencil"></i> Dernière publication</h5>
+                </a>
+            </div>
+            <div class="col-1 text-end">
+                <a href="{{ route('frontend.blog') }}">
+                    <h5 class="fw-normal text-white"><i class="fi fi-br-angle-double-small-right"></i></h5>
+                </a>
             </div>
         </div>
         <div class="row">
 
             @foreach ($posts as $post)
 
-                <div class="col-md-3 mb-4 wow bounceInUp">
+                <div class="col-md-3 mb-4">
                     <div class="card border-0">
                         <div class="card-body p-0">
 
-                            <a href="" class="">
+                            <a href="{{ route('frontend.blog.single', $post->slug) }}" class="">
                                 @if (!empty($post->files[0]['path']))
-                                    <div class="image-container" style="background-image:url({{ $post->files[0]['path'] }});">
-
-                                    </div>
+                                    <div class="image-container" style="background-image:url({{ $post->files[0]['path'] }});"></div>
                                 @else
-                                    <div class="image-container" style="background-image:url(assets/frontend/img/no-image.png);">
-
-                                    </div>
+                                    <div class="image-container" style="background-image:url(assets/frontend/img/no-image.png);"></div>
                                 @endif
-
-
                             </a>
 
                             <div class="post-content p-3">
-                                <h6><a href="#" class="link-dark">{{ $post->title }}</a></h6>
+                                <h6><a href="{{ route('frontend.blog.single', $post->slug) }}" class="text-white">{{ $post->title }}</a></h6>
                                 <div class="row sub-content">
                                     <div class="col-6">
-                                        <small><a href="" class=""><i class="fi fi-ss-clipboard-list-check"></i> {{ $post->category->name }}</a></small>
+                                        <small><a href="{{ route('frontend.blog') }}?code={{ $post->category->code }}" class=""><i class="fi fi-ss-clipboard-list-check"></i> {{ $post->category->name }}</a></small>
                                     </div>
                                     <div class="col-6 text-end">
-                                        <small><i class="fi fi-ss-calendar-clock"></i> {{ date('d/m/Y', strtotime($post->created_at)) }}</small>
+                                        <small><i class="fi fi-rs-clock"></i> {{ \Modules\Core\Helpers\CoreHelper::human_readable_date($post->created_at) }}</small>
                                     </div>
                                 </div>
                             </div>
@@ -203,74 +355,74 @@
                     </div>
                 </div>
 
+
+
+                @if ($loop->iteration >= 8)
+                    @break
+                @endif
+
             @endforeach
 
-        </div>
-
-        <div class="row wow bounceInUp">
-            <div class="col-md-12 text-center">
-                <a href="{{ route('frontend.blog') }}" class="btn btn-md btn-outline-accent mt-5">En savoir plus</a>
-            </div>
         </div>
     </div>
 </section>
 
-<section id="newsletter" class="py-5">
-    <div class="container py-4">
+<section id="donation" class="mx-3">
+    {{-- <div class="overlay"></div> --}}
+    <div class="container-fluid py-4 pb-5">
+        <div class="row mb-3">
+            <div class="col-md-12 text-start">
+                <h5 class="text-dark fw-normal text-white custom_heading_5"><i class="fi fi-ss-donate"></i> Renforcez le Changement</h5>
+                {{-- <h5 class="text-dark">Ensemble, Alimentons la Démocratie</h5> --}}
+            </div>
+        </div>
+        <div class="row">
+            <a href="https://www.paypal.com/paypalme/DominickJasmin" target="_blank" class="col-md-4 mt-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <img src="{{ asset('assets/frontend/img/paypal.png') }}" class="donation_img my-3" alt="">
+                        <h4 class="mt-3 fw-bold text-white">PayPal</h4>
+                        <p class="text-white">Pour m'aider à vivre de APDQ - pour un autre son cloche</p>
+                    </div>
+                </div>
+            </a>
+            <a href="mailto:virement@actualitepolitiqueduquebec.com" target="_blank" class="col-md-4 mt-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <img src="{{ asset('assets/frontend/img/interac.png') }}" class="donation_img my-3" alt="">
+                        <h4 class="mt-3 fw-bold text-white">Faire un Don par Interac</h4>
+                        <p class="text-white">Réponse ou validation à donner : Dominick</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://bit.ly/DonAPDQ" target="_blank" class="col-md-4 mt-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <img src="{{ asset('assets/frontend/img/card.png') }}" class="donation_img my-3" alt="">
+                        <h4 class="mt-3 fw-bold text-white">Autres options</h4>
+                        <p class="text-white">Pour me faire un DON par carte de crédit sans PayPal</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section id="newsletter" class="mb-5 mx-3">
+    <div class="container-fluid py-4">
         <div class="row justify-content-center align-items-center">
-            <div class="col-md-4 mb-3 text-center wow slideInLeft">
-                <h1 class="fw-bold">S'abonner</h1>
-                <h5>Vers notre newsletter</h5>
+            <div class="col-md-4 mb-3 text-center">
+                <h1 class="fw-bold text-white">S'abonner</h1>
+                <h5 class="text-white">Vers notre newsletter</h5>
                 <form action="{{ route('frontend.newsletter') }}" method="post" class="mt-4" id="newsletterForm">
                     @csrf
                     <input type="email" class="form-control newsletter-input" name="email" placeholder="Email" required>
                     <button type="submit" class="btn btn-lg btn-default newsletter-button mt-3 w-100">S'abonner</button>
                 </form>
             </div>
-            <div class="col-md-4 wow slideInRight">
+            <div class="col-md-4">
                 <img class="newsletter-img" src="{{ asset('assets/frontend/img/person3.webp') }}" alt="">
             </div>
-        </div>
-    </div>
-</section>
-
-<section id="donation" class="py-5">
-    <div class="overlay"></div>
-    <div class="container py-4 pb-5">
-        <div class="row mb-4">
-            <div class="col-md-12 text-center">
-                <h1 class="text-dark fw-bold">Renforcez <span class="text-muted">le Changement</span></h1>
-                <h5 class="text-dark">Ensemble, Alimentons la Démocratie</h5>
-            </div>
-        </div>
-        <div class="row">
-            <a href="https://www.paypal.com/paypalme/DominickJasmin" target="_blank" class="col-md-4 mt-3 wow bounceInLeft">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <img src="{{ asset('assets/frontend/img/paypal.png') }}" class="donation_img my-3" alt="">
-                        <h4 class="mt-3 fw-bold">PayPal</h4>
-                        <p>Pour m'aider à vivre de APDQ - pour un autre son cloche</p>
-                    </div>
-                </div>
-            </a>
-            <a href="mailto:virement@actualitepolitiqueduquebec.com" target="_blank" class="col-md-4 mt-3 wow bounceInUp">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <img src="{{ asset('assets/frontend/img/interac.png') }}" class="donation_img my-3" alt="">
-                        <h4 class="mt-3 fw-bold">Faire un Don par Interac</h4>
-                        <p>Réponse ou validation à donner : Dominick</p>
-                    </div>
-                </div>
-            </a>
-            <a href="https://bit.ly/DonAPDQ" target="_blank" class="col-md-4 mt-3 wow bounceInRight">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <img src="{{ asset('assets/frontend/img/card.png') }}" class="donation_img my-3" alt="">
-                        <h4 class="mt-3 fw-bold">Autres options</h4>
-                        <p>Pour me faire un DON par carte de crédit sans PayPal</p>
-                    </div>
-                </div>
-            </a>
         </div>
     </div>
 </section>
@@ -283,15 +435,16 @@
 
     <script>
         $('.owl-carousel').owlCarousel({
-            margin: 0,
-            loop: true,
-            items: 1,
-            dots: false,
-            nav: false,
+            margin: 15,
+            loop: false,
+            items: 4,
+            dots: true,
+            nav: true,
+            navigationText: ["<img src='{{ asset('assets/frontend/img/arrow.svg') }}'>","<img src='{{ asset('assets/frontend/img/arrow.svg') }}'>"],
             smartSpeed: 1500,
-            autoplay: true,
+            autoplay: false,
             autoplayTimeout: 7000,
-            mouseDrag: false,
+            mouseDrag: true,
             animateIn: 'fadeIn',
             animateOut: 'fadeOut'
         });

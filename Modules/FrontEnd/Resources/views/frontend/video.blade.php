@@ -15,19 +15,20 @@ Vidéo
 
 @push('css')
     <style>
-        #video_page{
-            background: #fafafa;
-        }
-        #video_page .image-container {
+        #video_page .image-container{
             background-size: cover;
-            height: 170px;
+            height: 123px;
             background-position: center;
-            border-radius: 10px;
         }
+        /* #video .image-container:hover{
+            content: '';
+
+        } */
+
         #video_page .image-container::before {
             content: "";
             position: absolute;
-            top: 30%;
+            top: 24%;
             left: 50%;
             transform: translate(-50%, -50%);
             background-image: url(/assets/frontend/img/play.png);
@@ -35,16 +36,45 @@ Vidéo
             background-position: center;
             opacity: 1;
             transition: opacity 0.3s ease-in-out;
-            width: 75px;
-            height: 75px;
+            width: 40px;
+            height: 40px;
         }
-        #video_page .video-content h6 {
+        /* #video .image-container:hover::before {
+            opacity: 1;
+        } */
+
+
+        #video_page .card{
+            border-radius: 5px;
+            overflow: hidden;
+            transition: all 0.3s ease-in-out;
+            background: #2c2c2c82;
+        }
+        #video_page .card:hover{
+            transform: scale(1.1);
+        }
+        #video_page img{
+            width: 100%;
+        }
+
+        #video_page .video-content h6{
             max-height: 40px;
             overflow: hidden;
         }
-        #video_page .video-content .sub-content {
+
+        #video_page .video-content .sub-content{
             max-height: 30px;
             overflow: hidden;
+        }
+
+
+        #video_page .sub-content small,#video .sub-content small a{
+            font-size: 11px;
+            color: #9e9e9e;
+        }
+
+        #video_page .sub-content small a:hover{
+            color: #ff4b24 !important;
         }
         #video_page .sub-content small, #video_page .sub-content small a {
             font-size: 11px;
@@ -94,25 +124,26 @@ Vidéo
 </section>
 
 <section id="video_page" class="py-5">
-    <div class="container py-4">
+    <div class="container-fluid py-4">
         <div class="row">
 
 
-            <div class="col-md-4" id="filter">
+            <div class="col-md-3" id="filter">
                 <div class="card">
-                    <div class="card-header bg-white">
+                    {{-- <div class="card-header bg-white">
                         <h5 class="mt-2">Filter</h5>
-                    </div>
+                    </div> --}}
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <h6>Category</h6>
+                                <h5 class="text-white fw-bold">Category</h6>
+                                    <hr class="horizontal light">
                                 <ul>
                                     @foreach($video_categories as $category)
                                     <li>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="category" id="category_input{{ $category->code }}" value="{{ $category->code }}" @if(request()->code == $category->code) checked @endif>
-                                            <label class="form-check-label" for="category_input{{ $category->code }}">
+                                            <label class="form-check-label text-white" for="category_input{{ $category->code }}">
                                                 {{ $category->name }}
                                             </label>
                                           </div>
@@ -126,23 +157,23 @@ Vidéo
                 </div>
             </div>
 
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <div class="row">
                     @foreach ($videos as $video)
 
-                        <div class="col-md-4 mb-4">
+                        <div class="col-md-3 mb-4">
                             <div class="card border-0">
-                                <div class="card-body p-0 bg-white">
+                                <div class="card-body p-0">
                                     <a href="{{ route('frontend.video.single', $video->slug) }}" class="">
                                         <div class="image-container" style="background-image:url({{ $video->thumbnail_url }});">
                                             {{-- <img src="{{ $video->thumbnail_url }}" onerror="this.onerror=null;this.src='{{ asset('assets/frontend/img/no-video.png') }}';" alt=""> --}}
                                         </div>
                                     </a>
                                     <div class="video-content p-3">
-                                        <h6><a href="{{ route('frontend.video.single', $video->slug) }}" class="link-dark">{{ $video->title }}</a></h6>
+                                        <h6><a href="{{ route('frontend.video.single', $video->slug) }}" class="text-white">{{ $video->title }}</a></h6>
                                         <div class="row sub-content">
                                             <div class="col-6">
-                                                <small><a href="" class="text-muted"><i class="fi fi-ss-clipboard-list-check"></i> {{ $video->category->name }}</a></small>
+                                                <small><a href="{{ route('frontend.video') }}?code={{ $video->category->code }}" class="text-white"><i class="fi fi-ss-clipboard-list-check"></i> {{ $video->category->name }}</a></small>
                                             </div>
                                             <div class="col-6 text-end text-muted">
                                                 <small><i class="fi fi-ss-calendar-clock"></i> {{ date('d/m/Y', strtotime($video->created_at)) }}</small>
@@ -159,7 +190,7 @@ Vidéo
 
         </div>
 
-        <div class="row">
+        <div class="row mt-4">
             <div class="col-md-12">
                 {{ $videos->links('pagination::bootstrap-5') }}
             </div>

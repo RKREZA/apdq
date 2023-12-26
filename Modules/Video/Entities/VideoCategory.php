@@ -14,4 +14,9 @@ class VideoCategory extends Model
 
     protected $fillable = ['code', 'name', 'icon', 'description', 'status'];
 
+
+    public function videos()
+    {
+        return $this->hasMany('Modules\Video\Entities\Video','category_id');
+    }
 }

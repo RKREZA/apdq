@@ -1,8 +1,7 @@
 <?php
 namespace Modules\Core\Helpers;
 
-use Modules\Phase\Entities\Phase;
-use Modules\ProjectForm\Entities\ProjectFormFiscalYear;
+use Carbon\Carbon;
 
 class CoreHelper
 {
@@ -130,6 +129,31 @@ class CoreHelper
 
         return $query->orderBy('id', 'DESC');
     }
+
+    public static function human_readable_date($date)
+    {
+        // Assuming $post->created_at is a timestamp or a string that strtotime can parse
+        $date = Carbon::parse($date);
+
+        // Calculate the difference in days, months, and years
+        $daysAgo = $date->diffInDays(Carbon::now());
+        $monthsAgo = $date->diffInMonths(Carbon::now());
+        $yearsAgo = $date->diffInYears(Carbon::now());
+
+        // Choose the appropriate format based on the difference
+        if ($daysAgo < 7) {
+            $formattedDate = $date->diffForHumans();
+        } elseif ($monthsAgo < 12) {
+            $formattedDate = $monthsAgo . ' months ago';
+        } else {
+            $formattedDate = $yearsAgo . ' years ago';
+        }
+
+        return $formattedDate;
+    }
+
+
+
 
 
 

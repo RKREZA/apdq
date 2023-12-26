@@ -83,7 +83,7 @@ class PayPalController extends Controller
             $paypalToken    = $provider->getAccessToken();
             $response       = $provider->capturePaymentOrder($request->token);
 
-            if(isset($response['status']) && $response['status'] == 'COMPLETED') {
+            if (isset($response['status']) && $response['status'] == 'COMPLETED') {
 
                 $payment                    = new Transaction;
                 $payment->transaction_id    = $response['id'];
@@ -107,21 +107,17 @@ class PayPalController extends Controller
                 unset($_SESSION['user_id']);
                 unset($_SESSION['paymentgateway_id']);
 
-                $success_msg    = "Vous avez été abonné avec succès";
-                return redirect()->route('dashboard')->with('success',$success_msg);
-
-            }else{
+                $success_msg = "Vous avez été abonné avec succès";
+                DB::commit(); // Move the commit inside the try block
+                return redirect()->route('dashboard')->with('success', $success_msg);
+            } else {
                 return redirect()->route('frontend.paypal.cancel');
             }
 
-            return view('frontend::frontend.payment_success', compact('frontend_setting','payment'));
-
-		} catch (Exception $e) {
+        } catch (Exception $e) {
             DB::rollBack();
-			return redirect()->route('frontend.paypal.cancel');
-		}
-        DB::commit();
-
+            return redirect()->route('frontend.paypal.cancel');
+        }
     }
     public function cancel()
     {

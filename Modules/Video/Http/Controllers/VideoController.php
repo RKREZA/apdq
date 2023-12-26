@@ -300,7 +300,15 @@ class VideoController extends Controller
 
 	}
 
-
+    public function get()
+    {
+        $video = Video::find(request()->id);
+        if($video){
+            return $video;
+        }else{
+            return null;
+        }
+    }
 
 
 

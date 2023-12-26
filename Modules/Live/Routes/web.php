@@ -25,6 +25,8 @@ Route::group(['middleware'=>'language'],function (){
                     Route::delete('/force_destroy/all', 'LiveController@force_destroy_all')->name('admin.lives.force_destroy_all');
 					Route::post('/restore',             'LiveController@restore')->name('admin.lives.restore');
 					Route::post('/restore/all',         'LiveController@restore_all')->name('admin.lives.restore_all');
+					
+					Route::get('/get', 					'LiveController@get')->name('admin.lives.get');
 
 					Route::post('/fetch_youtube_data_from_link',         'LiveController@fetch_youtube_data_from_link')->name('admin.lives.fetch_youtube_data_from_link');
 				});

@@ -214,6 +214,7 @@ return [
         Alaouy\Youtube\YoutubeServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Srmklive\PayPal\Providers\PayPalServiceProvider::class,
+        Mastergalen\AdsenseAds\AdsServiceProvider::class,
 
     ],
 
@@ -279,7 +280,8 @@ return [
         'GoogleReCaptchaV3'=> TimeHunter\LaravelGoogleReCaptchaV3\Facades\GoogleReCaptchaV3::class,
         'Youtube'       => Alaouy\Youtube\Facades\Youtube::class,
         'Socialite'     => Laravel\Socialite\Facades\Socialite::class,
-        'PayPal'        => Srmklive\PayPal\Facades\PayPal::class
+        'PayPal'        => Srmklive\PayPal\Facades\PayPal::class,
+        'Ads'           => Mastergalen\AdsenseAds\AdsFacade::class,
     ],
 
 ];

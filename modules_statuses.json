@@ -19,5 +19,6 @@
     "Newsletter": true,
     "PaymentGateway": true,
     "Transaction": true,
-    "Cms": true
+    "Cms": true,
+    "Slider": true
 }

@@ -14,7 +14,7 @@
     <div class="display-comment @if($comment->parent_id != null) ms-3 @endif">
         <div class="row display-comment-row py-3">
             <div class="col-2">
-                @if (auth()->check())
+                @if (auth()->check() && isset(auth()->user()->files[0]->path))
                 <img style="height: 90px; width:90px; border-radius: 100px; padding: 5px; background: #fff;" src="/{{ auth()->user()->files[0]->path }}" onerror="this.onerror=null;this.src='{{ asset('assets/frontend/img/no-image.png') }}';" alt="">
                 @else
                 <img style="height: 90px; width:90px; border-radius: 100px; padding: 5px; background: #fff;" src="{{ asset('assets/frontend/img/no-image.png') }}" alt="">

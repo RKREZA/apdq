@@ -20,6 +20,7 @@ use Modules\Blog\Entities\PostComment;
 use Modules\Cms\Entities\PageCategory;
 use Modules\Cms\Entities\Page;
 use Modules\Live\Entities\Live;
+use Modules\Slider\Entities\Slider;
 use Modules\Subscription\Entities\Subscription;
 use Modules\PaymentGateway\Entities\PaymentGateway;
 use Modules\Newsletter\Entities\Newsletter;
@@ -40,8 +41,10 @@ class FrontEndController extends Controller
         $video_categories   = VideoCategory::where('status','Active')->get();
         $videos             = Video::where('status','Active')->get();
         $posts              = Post::where('status','Active')->get();
+        $live               = Live::where('status','Active')->first();
+        $sliders            = Slider::where('status','Active')->get();
 
-        return view('frontend::frontend.home', compact('frontend_setting','video_categories','videos','posts'));
+        return view('frontend::frontend.home', compact('frontend_setting','video_categories','videos','posts','live','sliders'));
     }
 
     public function about()
@@ -110,7 +113,7 @@ class FrontEndController extends Controller
         if(isset(request()->code) && !empty(request()->code)){
             $posts              = Post::where('status','Active')
                                         ->whereHas('category', function ($query) {
-                                            $query->where('id', request()->code);
+                                            $query->where('code', request()->code);
                                         })
                                         ->paginate(20);
         }else{

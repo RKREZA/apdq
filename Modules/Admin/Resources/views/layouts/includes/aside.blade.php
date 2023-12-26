@@ -309,6 +309,15 @@
                                 </li>
                             @endcan
 
+                            @can('slider-list')
+                                <li class="nav-item ">
+                                    <a class="nav-link  {{ request()->is('auth/frontendmanager/slider/*') ? 'active' : '' }}" href="{{ route('admin.sliders.index') }}">
+                                        <span class="sidenav-mini-icon"> - </span>
+                                        <span class="sidenav-normal"> {{ __('slider::slider.slider.name') }} </span>
+                                    </a>
+                                </li>
+                            @endcan
+
                         </ul>
                     </div>
                 </li>

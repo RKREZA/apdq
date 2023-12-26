@@ -26,6 +26,8 @@ Route::group(['middleware'=>'language'],function (){
                     Route::delete('/force_destroy/all', 'VideoController@force_destroy_all')->name('admin.videos.force_destroy_all');
 					Route::post('/restore',             'VideoController@restore')->name('admin.videos.restore');
 					Route::post('/restore/all',         'VideoController@restore_all')->name('admin.videos.restore_all');
+					
+					Route::get('/get', 					'VideoController@get')->name('admin.videos.get');
 
 
 					Route::post('/fetch_youtube_data_from_link',         'VideoController@fetch_youtube_data_from_link')->name('admin.videos.fetch_youtube_data_from_link');

@@ -23,7 +23,7 @@ class CreateTransactionsTable extends Migration
                 $table->text('data')->nullable();
 
                 $table->bigInteger('subscription_id')->unsigned()->nullable();
-                $table->foreign('subscription_id')->references('id')->on('transactions')->onDelete('set null');
+                $table->foreign('subscription_id')->references('id')->on('subscriptions')->onDelete('set null');
 
                 $table->bigInteger('user_id')->unsigned()->nullable();
                 $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');

@@ -142,6 +142,12 @@ Vidéo
             <h5 class="text-center">Aucune vidéo trouvée!</h5>
         @endif
 
+        <div class="row mt-4">
+            <div class="col-md-12">
+                {{ $videos->links('pagination::bootstrap-5') }}
+            </div>
+        </div>
+
 
 
         <h4 class="fw-bold mt-5">Posts</h4>
@@ -188,6 +194,12 @@ Vidéo
         @else
             <h5 class="text-center">Aucun message trouvé!</h5>
         @endif
+
+        <div class="row mt-4">
+            <div class="col-md-12">
+                {{ $posts->links('pagination::bootstrap-5') }}
+            </div>
+        </div>
 
     </div>
 </section>

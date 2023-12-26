@@ -25,6 +25,9 @@
             background-position: center;
             border-radius: 10px;
         }
+        /* .video_page_header{
+            height: 30vh;
+        } */
         #video_page .image-container::before {
             content: "";
             position: absolute;
@@ -104,21 +107,21 @@
 
 <section id="page_header" class="video_page_header">
     <img src="/assets/frontend/img/video.webp" alt="">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="content">
-                    <h6 class="text-danger">Vidéos</h6>
-                    <h2>{{ $video->title }}</h2>
-                </div>
-            </div>
-        </div>
+    <div class="content">
+        <h1>Vidéos</h1>
+        {{-- <h6>Politique sans Filtre, Rires Garantis</h6> --}}
     </div>
 </section>
 
 <section id="video_page" class="py-5">
     <div class="container py-4">
         <div class="row">
+
+            <div class="col-md-12">
+                <div class="content">
+                    <h2>{{ $video->title }}</h2>
+                </div>
+            </div>
 
             <div class="col-md-12">
                 <div class="row">

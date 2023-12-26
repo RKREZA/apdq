@@ -205,6 +205,52 @@ class PermissionTableSeeder extends Seeder
             ]);
         //Frontend Manager End
 
+        //Slider
+            $group = PermissionGroup::create([
+                'name' => 'slider',
+                'display_name' => 'Slider',
+            ]);
+            Permission::create([
+                'name' => 'slider-list',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'slider-create',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'slider-edit',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'slider-delete',
+                'permissiongroup_id' => $group->id,
+            ]);
+        //Slider End
+
+        //Slider Category
+            $group = PermissionGroup::create([
+                'name' => 'slidercategory',
+                'display_name' => 'slider Category',
+            ]);
+            Permission::create([
+                'name' => 'slidercategory-list',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'slidercategory-create',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'slidercategory-edit',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'slidercategory-delete',
+                'permissiongroup_id' => $group->id,
+            ]);
+        //Slider Category End
+
         //CMS
             $group = PermissionGroup::create([
                 'name' => 'cms',

@@ -16,11 +16,14 @@
     @else
         <link rel="shortcut icon" href="{{ $frontend_setting->favicon }}">
     @endif
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Play&family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-solid-straight/css/uicons-solid-straight.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-straight/css/uicons-regular-straight.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
     <link href="{{ asset('assets/backend/css/sweetalert.min.css') }}" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -41,12 +44,14 @@
     <div class="main-wrapper">
         @include('frontend::frontend.layouts.preloader')
         @include('frontend::frontend.layouts.header')
-        @yield('content')
-        @include('frontend::frontend.layouts.footer')
+        <div class="content_wrapper mt-5 pt-3">
+            @include('frontend::frontend.layouts.aside')
+            <div class="content mt-5">
+                @yield('content')
+                @include('frontend::frontend.layouts.footer')
+            </div>
+        </div>
     </div>
-
-
-
 
     <!-- Jquery -->
 
@@ -255,26 +260,36 @@
 
     </script>
 
-    
+
 
 @if(session('error'))
-<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-    <div class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="25000">
-        <div class="toast-body">
-            <button type="button" class="btn-close float-end text-white" data-bs-dismiss="toast" aria-label="Close"></button>
-            {{ session('error') }}
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        <div class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="25000">
+            <div class="toast-body">
+                <button type="button" class="btn-close float-end text-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                {{ session('error') }}
+            </div>
         </div>
     </div>
-</div>
 
-<script>
-    var toastEl = document.querySelector('.toast');
-    var toast = new bootstrap.Toast(toastEl);
-    toast.show();
-</script>
+    <script>
+        var toastEl = document.querySelector('.toast');
+        var toast = new bootstrap.Toast(toastEl);
+        toast.show();
+    </script>
 @endif
 
 
+    <script>
+        $(document).ready(function() {
+            // Add a click event handler to the button
+            $(".drawer_icon").click(function() {
+                // Toggle the 'active' class on the '.drawer' element
+                $(".drawer").toggleClass("drawer_shrink");
+                $(".content").toggleClass("drawer_content");
+            });
+        });
+    </script>
 
     @stack('js')
 

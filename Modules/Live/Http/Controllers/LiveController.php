@@ -278,6 +278,16 @@ class LiveController extends Controller
 
 	}
 
+    public function get()
+    {
+        $live = Live::find(request()->id);
+        if($live){
+            return $live;
+        }else{
+            return null;
+        }
+    }
+
 
 
 
