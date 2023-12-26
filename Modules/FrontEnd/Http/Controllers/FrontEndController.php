@@ -62,9 +62,9 @@ class FrontEndController extends Controller
                                         ->whereHas('category', function ($query) {
                                             $query->where('code', request()->code);
                                         })
-                                        ->paginate(20);
+                                        ->paginate(21);
         }else{
-            $videos              = Video::where('status','Active')->paginate(20);
+            $videos              = Video::where('status','Active')->paginate(21);
         }
 
         return view('frontend::frontend.video', compact('frontend_setting','video_categories','videos'));
@@ -115,9 +115,9 @@ class FrontEndController extends Controller
                                         ->whereHas('category', function ($query) {
                                             $query->where('code', request()->code);
                                         })
-                                        ->paginate(20);
+                                        ->paginate(21);
         }else{
-            $posts              = Post::where('status','Active')->paginate(20);
+            $posts              = Post::where('status','Active')->paginate(21);
         }
 
         return view('frontend::frontend.blog', compact('frontend_setting','post_categories','posts'));
