@@ -1,11 +1,14 @@
 @push('css')
 <style>
-    .display-comment{
-        padding-left: 15px;
-        border-left: 1px solid #ccc;
+    .display-comment {
+        padding: 0 15px;
+        border-left: 0;
+        background: #161616;
+        color: #9d9d9d;
+        border-radius: 15px;
     }
     .display-comment-row{
-        border-bottom: 1px solid #ccc !important;
+        border-bottom: 0;
         margin-left: -16px;
     }
 </style>
@@ -13,15 +16,15 @@
 @foreach($comments as $comment)
     <div class="display-comment @if($comment->parent_id != null) ms-3 @endif">
         <div class="row display-comment-row py-3">
-            <div class="col-2">
+            <div class="col-1">
                 @if (auth()->check() && isset(auth()->user()->files[0]->path))
-                <img style="height: 90px; width:90px; border-radius: 100px; padding: 5px; background: #fff;" src="/{{ auth()->user()->files[0]->path }}" onerror="this.onerror=null;this.src='{{ asset('assets/frontend/img/no-image.png') }}';" alt="">
+                <img style="height: 50px; width:50px; border-radius: 100px; padding: 5px; background: #fff;" src="/{{ auth()->user()->files[0]->path }}" onerror="this.onerror=null;this.src='{{ asset('assets/frontend/img/no-image.png') }}';" alt="">
                 @else
-                <img style="height: 90px; width:90px; border-radius: 100px; padding: 5px; background: #fff;" src="{{ asset('assets/frontend/img/no-image.png') }}" alt="">
+                <img style="height: 50px; width:50px; border-radius: 100px; padding: 5px; background: #fff;" src="{{ asset('assets/frontend/img/no-image.png') }}" alt="">
                 @endif
             </div>
 
-            <div class="col-md-10">
+            <div class="col-11">
                 <div class="row">
                     <div class="col">
                         <strong>{{ $comment->user->name }}</strong>

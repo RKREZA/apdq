@@ -19,27 +19,40 @@ En direct
             width: 100%;
             min-height: 500px;
         }
+        .description{
+            padding: 15px;
+            border-radius: 10px;
+            background: #161616;
+        }
     </style>
 @endpush
 
 @section('content')
 
-<section id="page_header" class="video_page_header">
+{{-- <section id="page_header" class="video_page_header">
     <img src="/assets/frontend/img/live.webp" alt="">
     <div class="content">
         <h1>En direct</h1>
         <h6>En Direct et Sans Script : Humour Politique en Temps Réel</h6>
     </div>
-</section>
-<section id="video" class="py-5">
-    <div class="container py-4">
+</section> --}}
+<section id="video" class="pb-5">
+    <div class="container py-2">
         <div class="row justify-content-center">
+
             <div class="col-md-12">
-                @if($live)
-                    {!! $live->embed_html !!}
-                @else
-                    <img src="{{ asset('assets/frontend/img/no-video.png') }}" alt="">
-                @endif
+                {{-- <h6 class="text-danger">Page</h6> --}}
+                <h4>En direct</h4>
+            </div>
+
+            <div class="col-md-12">
+                <div class="description">
+                    @if($live)
+                        {!! $live->embed_html !!}
+                    @else
+                        <img src="{{ asset('assets/frontend/img/no-video.png') }}" alt="">
+                    @endif
+                </div>
             </div>
         </div>
 

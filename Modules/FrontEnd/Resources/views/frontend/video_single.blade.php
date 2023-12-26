@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <style>
         #video_page{
-            background: #fafafa;
+            /* background: #fafafa; */
         }
         #video_page .image-container {
             background-size: cover;
@@ -28,7 +28,7 @@
         /* .video_page_header{
             height: 30vh;
         } */
-        #video_page .image-container::before {
+        /* #video_page .image-container::before {
             content: "";
             position: absolute;
             top: 30%;
@@ -41,7 +41,7 @@
             transition: opacity 0.3s ease-in-out;
             width: 75px;
             height: 75px;
-        }
+        } */
         #video_page .video-content h6 {
             max-height: 40px;
             overflow: hidden;
@@ -77,21 +77,23 @@
             padding: 10px 13px;
             margin: 3px;
             font-size: 20px;
-            color: #0dcaf0;
-            background-color: #fff;
+            color: #9d9d9d;
+            background-color: #161616;
         }
         div#social-links ul li a:hover {
             color: #fff;
-            background-color: #0dcaf0;
+            background-color: #0d99dc;
         }
 
         .emoji{
-            font-size: 40px;
+            font-size: 15px;
             line-height: 35px;
         }
-        .emoji button{
+        .emoji button {
             border: 0;
             background-color: transparent;
+            color: #9d9d9d;
+            padding: 4px;
         }
         .emoji button:hover{
             color: #0dcaf0;
@@ -100,57 +102,123 @@
         .fi-active{
             color: #0dcaf0;
         }
+        .reaction-counter {
+            position: relative;
+            top: -4px;
+            left: -8px;
+            font-weight: 100;
+        }
+        #share_button{
+            cursor: pointer;
+        }
+        .video-description{
+            padding: 15px;
+            border-radius: 10px;
+            background: #161616;
+        }
     </style>
 @endpush
 
 @section('content')
 
-<section id="page_header" class="video_page_header">
+{{-- <section id="page_header" class="video_page_header">
     <img src="/assets/frontend/img/video.webp" alt="">
     <div class="content">
         <h1>Vidéos</h1>
-        {{-- <h6>Politique sans Filtre, Rires Garantis</h6> --}}
     </div>
-</section>
+</section> --}}
 
-<section id="video_page" class="py-5">
-    <div class="container py-4">
+<section id="video_page" class="pb-5 mx-3">
+    <div class="container py-2">
         <div class="row">
 
-            <div class="col-md-12">
-                <div class="content">
-                    <h2>{{ $video->title }}</h2>
-                </div>
-            </div>
-
-            <div class="col-md-12">
+            <div class="col-md-8">
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="row">
-                            <div class="col my-2">
-                                <span class="text-info"><i class="fi fi-ss-calendar-clock"></i> {{ date("jS M Y", strtotime($video->created_at)) }}</span>
-                                &nbsp;&nbsp;
-                                <a href="{{ route('frontend.video') }}?code={{ $video->category->code }}" class="text-info"><i class="fi fi-ss-notebook"></i> {{ $video->category->name }}</a>
 
-                            </div>
-                            <div class="col text-end my-2">
-                                <span class="text-end">
-                                    {!! $share_component !!}
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-12 mt-4 embed_code">
+                    <div class="col-md-12 embed_code p-0">
                         {!! $video->embed_html !!}
                     </div>
 
-                    <div class="col-md-12 mt-4">
-                        {!! $video->description !!}
+                    <div class="row justify-content-end">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col text-center emoji my-2">
+                                    <button class="reaction-button" data-video-id="{{ $video->id }}" data-reaction-type="like">
+                                        <i class="fi fi-rs-social-network"></i>
+                                        <input type="hidden" class="previous_value" value="{{ $video->like }}">
+                                    </button>
+                                    <div class="badge badge-sm reaction-counter">{{ $video->like }}</div>
+                                </div>
+                                <div class="col text-center emoji my-2">
+                                    <button class="reaction-button" data-video-id="{{ $video->id }}" data-reaction-type="love">
+                                        <i class="fi fi-rs-heart"></i>
+                                        <input type="hidden" class="previous_value" value="{{ $video->love }}">
+                                    </button>
+                                    <div class="badge badge-sm reaction-counter">{{ $video->love }}</div>
+                                </div>
+                                <div class="col text-center emoji my-2">
+                                    <button class="reaction-button" data-video-id="{{ $video->id }}" data-reaction-type="haha">
+                                        <i class="fi fi-rs-surprise"></i>
+                                        <input type="hidden" class="previous_value" value="{{ $video->haha }}">
+                                    </button>
+                                    <div class="badge badge-sm reaction-counter">{{ $video->haha }}</div>
+                                </div>
+                                <div class="col text-center emoji my-2">
+                                    <button class="reaction-button" data-video-id="{{ $video->id }}" data-reaction-type="wow">
+                                        <i class="fi fi-rs-surprise"></i>
+                                        <input type="hidden" class="previous_value" value="{{ $video->wow }}">
+                                    </button>
+                                    <div class="badge badge-sm reaction-counter">{{ $video->wow }}</div>
+                                </div>
+                                <div class="col text-center emoji my-2">
+                                    <button class="reaction-button" data-video-id="{{ $video->id }}" data-reaction-type="sad">
+                                        <i class="fi fi-rs-sad"></i>
+                                        <input type="hidden" class="previous_value" value="{{ $video->sad }}">
+                                    </button>
+                                    <div class="badge badge-sm reaction-counter">{{ $video->sad }}</div>
+                                </div>
+                                <div class="col text-center emoji my-2">
+                                    <button class="reaction-button" data-video-id="{{ $video->id }}" data-reaction-type="angry">
+                                        <i class="fi fi-rs-angry"></i>
+                                        <input type="hidden" class="previous_value" value="{{ $video->angry }}">
+                                    </button>
+                                    <div class="badge badge-sm reaction-counter">{{ $video->angry }}</div>
+                                </div>
+                                <div class="col text-center emoji my-2">
+                                    <button class="reaction-button" data-video-id="{{ $video->id }}" data-reaction-type="dislike">
+                                        <i class="fi fi-rs-hand"></i>
+                                        <input type="hidden" class="previous_value" value="{{ $video->dislike }}">
+                                    </button>
+                                    <div class="badge badge-sm reaction-counter">{{ $video->dislike }}</div>
+                                </div>
+                                <div class="col text-center emoji my-2" id="share_button">
+                                    <button class="reaction-button">
+                                        <i class="fi fi-br-share"></i>
+                                    </button>
+                                    <div class="badge badge-sm reaction-counter">Share</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 text-center my-2 d-none" id="share_component">
+                            <span class="text-end">
+                                {!! $share_component !!}
+                            </span>
+                        </div>
+
+
                     </div>
 
-                    <div class="col-md-12 mt-5">
-                        <i class="fi fi-ss-label text-info" style="transform: rotate(90deg); display:inline-block;"></i> <span class="badge bg-info badge-sm ms-2">{{ $video->tag }}</span>
+                    <div class="col-md-12 mt-3">
+                        <h4>{{ $video->title }}</h4>
+                    </div>
+
+                    <div class="col-md-12 mt-3 video-description">
+                        {!! $video->description !!}
+
+                        <div class="mt-3">
+                            <i class="fi fi-ss-label text-info" style="transform: rotate(90deg); display:inline-block;"></i> <span class="badge bg-info badge-sm ms-2">{{ $video->tag }}</span>
+                        </div>
                     </div>
 
                     {{-- @include('frontend::frontend.layouts.comment_system',[
@@ -162,86 +230,26 @@
                 </div>
             </div>
 
-            <div class="col-md-12 mt-5">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col text-center emoji my-2">
-                                <button class="reaction-button w-100" data-video-id="{{ $video->id }}" data-reaction-type="like">
-                                    <i class="fi fi-rs-social-network"></i>
-                                    <input type="hidden" class="previous_value" value="{{ $video->like }}">
-                                </button>
-                                <div class="badge badge-sm bg-info w-100 mt-2">{{ $video->like }}</div>
-                            </div>
-                            <div class="col text-center emoji my-2">
-                                <button class="reaction-button w-100" data-video-id="{{ $video->id }}" data-reaction-type="love">
-                                    <i class="fi fi-rs-heart"></i>
-                                    <input type="hidden" class="previous_value" value="{{ $video->love }}">
-                                </button>
-                                <div class="badge badge-sm bg-info w-100 mt-2">{{ $video->love }}</div>
-                            </div>
-                            <div class="col text-center emoji my-2">
-                                <button class="reaction-button w-100" data-video-id="{{ $video->id }}" data-reaction-type="haha">
-                                    <i class="fi fi-rs-surprise"></i>
-                                    <input type="hidden" class="previous_value" value="{{ $video->haha }}">
-                                </button>
-                                <div class="badge badge-sm bg-info w-100 mt-2">{{ $video->haha }}</div>
-                            </div>
-                            <div class="col text-center emoji my-2">
-                                <button class="reaction-button w-100" data-video-id="{{ $video->id }}" data-reaction-type="wow">
-                                    <i class="fi fi-rs-surprise"></i>
-                                    <input type="hidden" class="previous_value" value="{{ $video->wow }}">
-                                </button>
-                                <div class="badge badge-sm bg-info w-100 mt-2">{{ $video->wow }}</div>
-                            </div>
-                            <div class="col text-center emoji my-2">
-                                <button class="reaction-button w-100" data-video-id="{{ $video->id }}" data-reaction-type="sad">
-                                    <i class="fi fi-rs-sad"></i>
-                                    <input type="hidden" class="previous_value" value="{{ $video->sad }}">
-                                </button>
-                                <div class="badge badge-sm bg-info w-100 mt-2">{{ $video->sad }}</div>
-                            </div>
-                            <div class="col text-center emoji my-2">
-                                <button class="reaction-button w-100" data-video-id="{{ $video->id }}" data-reaction-type="angry">
-                                    <i class="fi fi-rs-angry"></i>
-                                    <input type="hidden" class="previous_value" value="{{ $video->angry }}">
-                                </button>
-                                <div class="badge badge-sm bg-info w-100 mt-2">{{ $video->angry }}</div>
-                            </div>
-                            <div class="col text-center emoji my-2">
-                                <button class="reaction-button w-100" data-video-id="{{ $video->id }}" data-reaction-type="dislike">
-                                    <i class="fi fi-rs-hand"></i>
-                                    <input type="hidden" class="previous_value" value="{{ $video->dislike }}">
-                                </button>
-                                <div class="badge badge-sm bg-info w-100 mt-2">{{ $video->dislike }}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="col-md-4">
 
-            <div class="col-md-12 mt-5">
+                <div class="row">
 
-                <div class="row mt-5">
-
-                    <h4 class="text-info">Recent Videos</h4>
-                    <hr>
+                    <h5 class="">Recent Videos</h5>
+                    <hr class="horizontal light">
 
                     @foreach ($recent_videos as $recent_video)
 
-                    <div class="col-md-3 mb-4">
+                    <div class="col-md-12 mb-4">
                         <div class="card border-0">
                             <div class="card-body p-0">
                                 <a href="{{ route('frontend.video.single', $recent_video->slug) }}" class="">
-                                    <div class="image-container" style="background-image:url({{ $recent_video->thumbnail_url }});">
-                                        {{-- <img src="{{ $recent_video->thumbnail_url }}" onerror="this.onerror=null;this.src='{{ asset('assets/frontend/img/no-video.png') }}';" alt=""> --}}
-                                    </div>
+                                    <div class="image-container" style="background-image:url({{ $recent_video->thumbnail_url }});"></div>
                                 </a>
                                 <div class="video-content p-3">
-                                    <h6><a href="{{ route('frontend.video.single', $recent_video->slug) }}" class="link-dark">{{ $recent_video->title }}</a></h6>
+                                    <h6><a href="{{ route('frontend.video.single', $recent_video->slug) }}" class="text-muted">{{ $recent_video->title }}</a></h6>
                                     <div class="row sub-content">
                                         <div class="col-6">
-                                            <small><a href="{{ route('frontend.video') }}?code={{ $video->category->code }}" class="text-muted"><i class="fi fi-ss-clipboard-list-check"></i> {{ $recent_video->category->name }}</a></small>
+                                            <small><a href="{{ route('frontend.video') }}?code={{ $video->category->code }}" class=""><i class="fi fi-ss-clipboard-list-check"></i> {{ $recent_video->category->name }}</a></small>
                                         </div>
                                         <div class="col-6 text-end text-muted">
                                             <small><i class="fi fi-ss-calendar-clock"></i> {{ date('d/m/Y', strtotime($recent_video->created_at)) }}</small>
@@ -256,6 +264,7 @@
             </div>
 
         </div>
+
     </div>
 </section>
 
@@ -306,6 +315,16 @@
             });
         });
     });
+
+
 </script>
+
+<script>
+    $(document).ready(function () {
+      $("#share_button").click(function () {
+        $("#share_component").toggleClass('d-none');
+      });
+    });
+  </script>
 
 @endpush

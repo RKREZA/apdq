@@ -20,12 +20,17 @@
             height: auto;
             min-height: 60vh;
         }
+        .description{
+            padding: 15px;
+            border-radius: 10px;
+            background: #161616;
+        }
     </style>
 @endpush
 
 @section('content')
 
-<section id="page_header" class="video_page_header">
+{{-- <section id="page_header" class="video_page_header">
     <img src="/assets/frontend/img/video.webp" alt="">
     <div class="container">
         <div class="row justify-content-center">
@@ -37,24 +42,26 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 
-<section id="video" class="py-5">
-    <div class="container py-4">
+<section id="video" class="pb-5 mx-3">
+    <div class="container py-2">
         <div class="row">
 
-            <div class="col-md-12 embed_code">
-                {!! $page->embed_html !!}
+            <div class="col-md-12">
+                {{-- <h6 class="text-danger">Page</h6> --}}
+                <h4>{{ $page->title }}</h4>
             </div>
 
             <div class="col-md-12 mt-4">
-                {!! $page->description !!}
+                <div class="description">
+                    {!! $page->description !!}
+                </div>
             </div>
 
         </div>
     </div>
 </section>
-<hr class="horizontal dark">
 
 @endsection
 

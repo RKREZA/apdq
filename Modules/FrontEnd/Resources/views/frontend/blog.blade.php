@@ -17,7 +17,7 @@ Blog
     <style>
         #blog_page .image-container{
             background-size: cover;
-            height: 123px;
+            height: 170px;
             background-position: center;
         }
 
@@ -52,23 +52,23 @@ Blog
         }
 
         #blog_page .sub-content small a:hover{
-            color: #ff4b24 !important;
+            color: #0D99DC !important;
         }
     </style>
 @endpush
 
 @section('content')
 
-<section id="page_header" class="video_page_header">
+{{-- <section id="page_header" class="video_page_header">
     <img src="/assets/frontend/img/blog.webp" alt="">
     <div class="content">
         <h1>Blog</h1>
         <h6>Perspectives avec une Touche d'Humour : Le Blog Politique</h6>
     </div>
-</section>
+</section> --}}
 
-<div id="blog_page" class="py-5">
-    <div class="container-fluid py-4">
+<div id="blog_page" class="pb-5">
+    <div class="container-fluid py-2">
         <div class="row">
             <div class="col-md-3" id="filter">
                 <div class="card">
@@ -104,7 +104,7 @@ Blog
 
                     @foreach ($posts as $post)
 
-                        <div class="col-md-3 mb-4">
+                        <div class="col-md-4 mb-4">
                             <div class="card border-0">
                                 <div class="card-body p-0">
 

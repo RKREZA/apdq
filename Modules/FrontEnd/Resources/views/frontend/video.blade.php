@@ -74,7 +74,7 @@ Vidéo
         }
 
         #video_page .sub-content small a:hover{
-            color: #ff4b24 !important;
+            color: #0D99DC !important;
         }
         #video_page .sub-content small, #video_page .sub-content small a {
             font-size: 11px;
@@ -115,16 +115,16 @@ Vidéo
 
 @section('content')
 
-<section id="page_header" class="video_page_header">
+{{-- <section id="page_header" class="video_page_header">
     <img src="/assets/frontend/img/video.webp" alt="">
     <div class="content">
         <h1>Vidéos</h1>
         <h6>Politique sans Filtre, Rires Garantis</h6>
     </div>
-</section>
+</section> --}}
 
-<section id="video_page" class="py-5">
-    <div class="container-fluid py-4">
+<section id="video_page" class="pb-5">
+    <div class="container-fluid py-2">
         <div class="row">
 
 
@@ -161,7 +161,7 @@ Vidéo
                 <div class="row">
                     @foreach ($videos as $video)
 
-                        <div class="col-md-3 mb-4">
+                        <div class="col-md-4 mb-4">
                             <div class="card border-0">
                                 <div class="card-body p-0">
                                     <a href="{{ route('frontend.video.single', $video->slug) }}" class="">
@@ -172,12 +172,12 @@ Vidéo
                                     <div class="video-content p-3">
                                         <h6><a href="{{ route('frontend.video.single', $video->slug) }}" class="text-white">{{ $video->title }}</a></h6>
                                         <div class="row sub-content">
-                                            <div class="col-6">
+                                            <div class="col-12">
                                                 <small><a href="{{ route('frontend.video') }}?code={{ $video->category->code }}" class="text-white"><i class="fi fi-ss-clipboard-list-check"></i> {{ $video->category->name }}</a></small>
                                             </div>
-                                            <div class="col-6 text-end text-muted">
+                                            {{-- <div class="col-6 text-end text-muted">
                                                 <small><i class="fi fi-ss-calendar-clock"></i> {{ date('d/m/Y', strtotime($video->created_at)) }}</small>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                 </div>

@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <style>
         #blog_page{
-            background: #fafafa;
+            /* background: #fafafa; */
         }
         .embed_code iframe{
             width: 100%;
@@ -26,6 +26,7 @@
         }
         .recent_post{
             border-radius: 10px;
+            background: #0f0f0f;
         }
         .recent_post ul{
             list-style-type: none;
@@ -45,13 +46,13 @@
             padding: 10px 13px;
             margin: 3px;
             font-size: 20px;
-            color: #0dcaf0;
-            background-color: #fff;
+            color: #0d99dc;
+            background-color: #161616;
             border-radius: 5px;
         }
         div#social-links ul li a:hover {
             color: #fff;
-            background-color: #0dcaf0;
+            background-color: #0d99dc;
         }
 
         .social_icon{
@@ -73,12 +74,20 @@
             height: 50px;
             width: 50px !important;
         }
+
+        .title h2{
+            color: #9e9e9e;
+            font-size: 23px;
+        }
+        .description{
+            color: #9e9e9e;
+        }
     </style>
 @endpush
 
 @section('content')
 
-<section id="page_header" class="video_page_header">
+{{-- <section id="page_header" class="video_page_header">
     <img src="/assets/frontend/img/blog.webp" alt="">
     <div class="container">
         <div class="row justify-content-center">
@@ -89,17 +98,17 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 
-<section id="blog_page" class="py-5">
-    <div class="container py-4">
+<section id="blog_page" class="pb-5">
+    <div class="container py-2">
         <div class="row">
 
             <div class="col-md-8">
                 <div class="row">
 
                     <div class="col-md-12">
-                        <div class="content">
+                        <div class="title">
                             <h2>{{ $post->title }}</h2>
                         </div>
                     </div>
@@ -110,7 +119,7 @@
                         <a href="{{ route('frontend.blog') }}?code={{ $post->category->code }}" class="text-info"><i class="fi fi-ss-notebook"></i> {{ $post->category->name }}</a>
                     </div>
 
-                    <div class="col-md-12 mt-4">
+                    <div class="col-md-12 mt-4 description">
                         {!! $post->description !!}
                     </div>
 
@@ -132,18 +141,18 @@
             </div>
 
             <div class="col-md-4">
-                <div class="bg-white p-4 recent_post">
+                <div class="p-4 recent_post">
                     <h4 class="text-info mb-3">Nouvelles récentes</h4>
                     <ul>
                         @foreach ($recent_posts as $recent_post)
                             <li class="mb-3 pt-3" style="border-top: 1px solid #ccc;">
-                                <a href="{{ route('frontend.blog.single', $recent_post->slug) }}" class="text-dark">
+                                <a href="{{ route('frontend.blog.single', $recent_post->slug) }}" class="text-light">
                                     <div class="row">
                                         <div class="col-3">
                                             @if (!empty($recent_post->files[0]['path']))
-                                                <img src="/{{ $recent_post->files[0]['path'] }}" style="height: 100px; width: 100px;" alt="">
+                                                <img src="/{{ $recent_post->files[0]['path'] }}" style="height: 80px; width: 80px;" alt="">
                                             @else
-                                                <img src="{{ asset('assets/frontend/img/no-image.png') }}" style="height: 100px; width: 100px;" alt="">
+                                                <img src="{{ asset('assets/frontend/img/no-image.png') }}" style="height: 80px; width: 80px;" alt="">
                                             @endif
                                         </div>
                                         <div class="col-9">
