@@ -41,11 +41,6 @@
                     <a class="nav-link {{ request()->is('search*') ? 'active' : '' }}" aria-current="page" href="#search"><i class="fi fi-rs-search"></i> Rechercher</a>
                 </li> --}}
 
-
-
-
-
-
                 <li class="nav-item">
                     <form action="{{ route('frontend.search') }}" method="get" id="search_form">
                         @csrf
@@ -59,19 +54,11 @@
                 @endphp
                 <li class="nav-item dropdown">
                     <a href="javascript:;" class="nav-link change-language btn btn-lg btn-outline-icon ms-0 ms-md-3" id="dropdownMenuButton"
-                        data-bs-toggle="dropdown" aria-expanded="false" data-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="{{ __('core::core.form.change-language') }}">
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false">
 
                         <i class="fi fi-br-language"></i>
 
-                        {{-- <span class="language-text" style="">
-                            @foreach ($languages as $language)
-                                @if (Session::get('locale') === $language->code)
-                                    {{ $language->name }}
-                                @elseif (config('app.locale') == $language->code)
-                                    {{ $language->name }}
-                                @endif
-                            @endforeach
-                        </span> --}}
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end p-2 me-sm-n4" aria-labelledby="dropdownMenuButton">
                         @if ($languages)
@@ -99,18 +86,20 @@
 
                 @if(auth()->check())
                     <li class="nav-item dropdown profile">
-                        <a class="nav-link dropdown-toggle p-0 ms-0 ms-md-3" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a href="javascript:;" class="nav-link dropdown-toggle p-0 ms-0 ms-md-3" id="navbarDropdown" role="button"
+                                                data-bs-toggle="dropdown"
+                                                aria-expanded="false">
                             @if (count(auth()->user()->files)>0)
                                 <img src="{{ auth()->user()->files[0]->path }}" class="profile_img rounded-circle img-fluid img-thumbnail">
                             @else
                                 <img src="/assets/backend/img/no-image.png" class="profile_img rounded-circle img-fluid img-thumbnail">
                             @endif
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item py-2" href="{{ route('admin.profile') }}"><i class="fi fi-ss-user"></i> Profil</a></li>
-                        <li><a class="dropdown-item py-2" href="{{ route('dashboard') }}"><i class="fi fi-ss-apps"></i> Tableau de bord</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item py-2" href="{{ route('admin.logout') }}"><i class="fi fi-ss-sign-out-alt"></i> Se déconnecter</a></li>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item py-2" href="{{ route('admin.profile') }}"><i class="fi fi-ss-user"></i> Profil</a></li>
+                            <li><a class="dropdown-item py-2" href="{{ route('dashboard') }}"><i class="fi fi-ss-apps"></i> Tableau de bord</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item py-2" href="{{ route('admin.logout') }}"><i class="fi fi-ss-sign-out-alt"></i> Se déconnecter</a></li>
                         </ul>
                     </li>
                 @else
