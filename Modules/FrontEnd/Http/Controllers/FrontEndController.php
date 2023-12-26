@@ -25,7 +25,7 @@ use Modules\Subscription\Entities\Subscription;
 use Modules\PaymentGateway\Entities\PaymentGateway;
 use Modules\Newsletter\Entities\Newsletter;
 use Illuminate\Support\Facades\Validator;
-use App\Mail\SendMail;
+use App\Mail\Http\SendMail;
 use Illuminate\Support\Facades\Mail;
 
 class FrontEndController extends Controller
