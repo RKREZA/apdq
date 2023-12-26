@@ -20,5 +20,5 @@
     "PaymentGateway": true,
     "Transaction": true,
     "Cms": true,
-    "Slider": true
+    "Slider": false
 }
