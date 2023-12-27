@@ -22,20 +22,6 @@
     </style>
 @endpush
 
-{{-- <div class="row mb-4">
-    <div class="col-md-10">
-        <input type="text" name="youtube_link" id="youtube_link" class="form-control px-3" placeholder="Youtube Link">
-    </div>
-
-    <div class="col-md-2">
-        <button type="button" id="fetch_youtube_data" class="btn btn-primary btn-lg w-100">Fetch</button>
-    </div>
-</div>
-<hr class="horizontal dark"> --}}
-
-
-
-
 
 
 @push('js')

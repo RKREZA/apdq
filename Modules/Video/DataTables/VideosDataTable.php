@@ -94,9 +94,9 @@ class VideosDataTable extends DataTable
                     // Check if the URL is already absolute
                     $isAbsoluteUrl = filter_var($row->thumbnail_url, FILTER_VALIDATE_URL) !== false;
 
-                    $thumbnail_url = '<img src="' . ($isAbsoluteUrl ? $row->thumbnail_url : $row->thumbnail_url) . '" class="img-fluid img-thumbnail" style="width:100%;">';
+                    $thumbnail_url = '<img src="' . ($isAbsoluteUrl ? $row->thumbnail_url : $row->thumbnail_url) . '" class="img-fluid img-thumbnail" style="width:100%; max-width: 100px !important;">';
                 } else {
-                    $thumbnail_url = '<img src="/assets/backend/img/no-image.png" class="rounded-circle img-fluid img-thumbnail" style="width:100%;">';
+                    $thumbnail_url = '<img src="/assets/backend/img/no-image.png" class="rounded-circle img-fluid img-thumbnail" style="width:100%; max-width: 100px !important;">';
                 }
 
                 return $thumbnail_url;

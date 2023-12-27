@@ -28,6 +28,7 @@ class Video extends Model
         'tag',
         'category_id',
         'status',
+        'created_at',
         'seo_title',
         'seo_description',
         'seo_keyword',

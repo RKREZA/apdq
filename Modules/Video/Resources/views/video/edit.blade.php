@@ -37,18 +37,31 @@
                         {{-- @include('video::video.form') --}}
 
 
-                        <div class="col-md-12">
-                            <div class="input-group input-group-outline mt-3 is-filled @error('category_id') is-invalid @enderror is-filled">
-                                <label class="form-label" for="category_id"><span class="required">{{ __('video::video.video.form.category_id') }}</span></label>
-                                <select name="category_id" id="category_id" class="form-control @error('category_id') is-invalid @enderror">
-                                    <option value="" disabled readonly selected>{{ __('video::video.video.form.select_category') }}</option>
-                                    @foreach (\Modules\Video\Entities\VideoCategory::where('status','Active')->get() as $category)
-                                        <option value="{{ $category->id }}" @if(isset($video) && $video->category_id == $category->id) selected @else{{ old('category_id') }}@endif>{{ $category->name }}</option>
-                                    @endforeach
-                                </select>
-                                @error('category_id')
-                                    <em class="error invalid-video" style="display: inline-block;">{{ $message }}</em>
-                                @enderror
+                        <div class="row">
+                            <div class="col-md-6 ps-0">
+                                <div class="input-group input-group-outline mt-3 is-filled @error('category_id') is-invalid @enderror is-filled">
+                                    <label class="form-label" for="category_id"><span class="required">{{ __('video::video.video.form.category_id') }}</span></label>
+                                    <select name="category_id" id="category_id" class="form-control @error('category_id') is-invalid @enderror">
+                                        <option value="" disabled readonly selected>{{ __('video::video.video.form.select_category') }}</option>
+                                        @foreach (\Modules\Video\Entities\VideoCategory::where('status','Active')->get() as $category)
+                                            <option value="{{ $category->id }}" @if(isset($video) && $video->category_id == $category->id) selected @else{{ old('category_id') }}@endif>{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('category_id')
+                                        <em class="error invalid-video" style="display: inline-block;">{{ $message }}</em>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 pe-0">
+                                <div class="input-group input-group-outline mt-3 is-filled @error('created_at') is-invalid @enderror">
+                                    <label class="form-label"><span class="required">{{ __('video::video.video.form.created_at') }}</span></label>
+                                    <input type="datetime-local" name="created_at" id="created_at" class="form-control" value="@if(isset($video)){{ $video->created_at }}@else{{ old('created_at') }}@endif">
+
+                                    @error('created_at')
+                                        <em class="error invalid-video" style="display: inline-block;">{{ $message }}</em>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
 

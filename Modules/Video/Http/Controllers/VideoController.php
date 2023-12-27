@@ -16,6 +16,7 @@ use Youtube;
 use Alaouy\Youtube\Rules\ValidYoutubeVideo;
 
 use GuzzleHttp\Client;
+use Carbon\Carbon;
 
 class VideoController extends Controller
 {
@@ -88,7 +89,7 @@ class VideoController extends Controller
             $video_type = 'youtube';
         }
 
-		// try {
+		try {
 			Video::create([
                 'video_type'    => $video_type,
                 'title'         => mb_convert_encoding($request->input('title'), 'UTF-8'),
@@ -101,16 +102,17 @@ class VideoController extends Controller
                 'external_id'   => $request->input('external_id'),
                 'seo_title'     => $request->input('seo_title'),
                 'seo_description'=> $request->input('seo_description'),
-                'seo_keyword'   => $request->input('seo_keyword')
+                'seo_keyword'   => $request->input('seo_keyword'),
+                'created_at'    => $request->input('created_at')
             ]);
 
 			$success_msg = __('core::core.message.success.store');
 			return redirect()->route('admin.videos.index')->with('success',$success_msg);
 
-		// } catch (Exception $e) {
-		// 	$error_msg = __('core::core.message.error');
-		// 	return redirect()->route('admin.videos.index')->with('error',$error_msg);
-		// }
+		} catch (Exception $e) {
+			$error_msg = __('core::core.message.error');
+			return redirect()->route('admin.videos.index')->with('error',$error_msg);
+		}
     }
 
     public function edit($id)
@@ -339,16 +341,20 @@ class VideoController extends Controller
             $youtube_id =  isset($params['v']) ? $params['v'] : null;
 
             $fetch = Youtube::getVideoInfo($youtube_id);
+            // dd($fetch);
 
             $videoDescription = $fetch->snippet->description;
             $cleanDescription = strip_tags($videoDescription, '<br><a><strong><em><ul><ol><li>');
+            $carbonInstance = Carbon::parse($fetch->snippet->publishedAt);
 
             // dd($fetch);
             $video['title']         = $fetch->snippet->title;
             $video['description']   = nl2br($this->convertTimestamps($cleanDescription, $fetch->id));
-            $video['thumbnail_url'] = $fetch->snippet->thumbnails->high->url;
+            $video['thumbnail_url'] = $fetch->snippet->thumbnails->standard->url;
+            $video['tag']           = implode(', ', $fetch->snippet->tags);
             $video['embed_html']    = $fetch->player->embedHtml;
             $video['external_id']   = $fetch->id;
+            $video['created_at']    = $carbonInstance->format('Y-m-d H:i:s');
 
             return $video;
         }

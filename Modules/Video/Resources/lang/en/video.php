@@ -2,38 +2,39 @@
 
 return [
     'video'  => [
-        'name' => 'Vidéo',
-        'names' => 'Vidéos',
+        'name' => 'Video',
+        'names' => 'Videos',
 
         'form' => [
-            'title' => 'Titre',
+            'title' => 'Title',
             'description' => 'Description',
-            'embed_html' => 'Code d\'intégration HTML',
-            'thumbnail_url' => 'Vignette',
-            'external_id' => 'ID externe',
-            'tag' => 'Balises',
-            'category_id' => 'Catégorie',
-            'select_category' => 'Sélectionner la catégorie',
-            'youtube_link' => 'Lien YouTube',
-            'seo_title' => 'Titre SEO',
-            'seo_description' => 'Description SEO',
-            'seo_keyword' => 'Mots-clés SEO',
-            'reaction' => 'Réactions',
-            'video_type' => 'Type de vidéo',
-            'select_video_type' => 'Sélectionner le type de vidéo'
+            'embed_html' => 'HTML Embed Code',
+            'thumbnail_url' => 'Thumbnail',
+            'external_id' => 'External ID',
+            'tag' => 'Tags',
+            'category_id' => 'Category',
+            'select_category' => 'Select Category',
+            'youtube_link' => 'YouTube Link',
+            'seo_title' => 'SEO Title',
+            'seo_description' => 'SEO Description',
+            'seo_keyword' => 'SEO Keywords',
+            'reaction' => 'Reactions',
+            'video_type' => 'Video Type',
+            'select_video_type' => 'Select Video Type',
+            'created_at' => 'Publish Date',
         ],
 
     ],
 
     'category' => [
-        'name' => 'Catégorie de vidéo',
-        'list' => 'Liste des catégories de vidéo',
+        'name' => 'Video Category',
+        'list' => 'List of Video Categories',
 
         'form' => [
-            'icon' => 'Icône',
+            'icon' => 'Icon',
             'description' => 'Description',
             'code' => 'Code',
-            'name' => 'Nom',
+            'name' => 'Name',
         ],
     ],
 

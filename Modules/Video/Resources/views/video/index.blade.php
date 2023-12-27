@@ -64,6 +64,7 @@
                                 'title'             => __('video::video.video.form.title'),
                                 'category_id'       => __('video::video.video.form.category_id'),
                                 'reaction'          => __('video::video.video.form.reaction'),
+                                'created_at'            => __('video::video.video.form.created_at'),
                                 'status'            => __('core::core.form.status'),
                                 'action'            => __('core::core.form.action'),
                             ],

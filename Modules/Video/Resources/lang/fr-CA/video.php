@@ -20,7 +20,8 @@ return [
             'seo_keyword' => 'Mots-clés SEO',
             'reaction' => 'Réactions',
             'video_type' => 'Type de vidéo',
-            'select_video_type' => 'Sélectionner le type de vidéo'
+            'select_video_type' => 'Sélectionner le type de vidéo',
+            'created_at' => 'Date de publication',
         ],
 
     ],
