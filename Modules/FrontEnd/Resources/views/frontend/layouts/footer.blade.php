@@ -8,7 +8,7 @@
                 <img src="{{ asset('assets/frontend/img/logo.webp') }}" class="footer-logo" alt="">
                 <div class="social-link">
                     <ul>
-                        <li style="font-family: 'Play', sans-serif; font-size: 14px;" class="text-white">Je m'appelle Dominick Jasmin et j'ai créer ce site pour donner mon opinion et mes observations sur la politique canadienne et québécoise, avec un brin d'humour ;)</li>
+                        <li style="font-family: 'Play', sans-serif; font-size: 13px;" class="text-white">Je m'appelle Dominick Jasmin et j'ai créer ce site pour donner mon opinion et mes observations sur la politique canadienne et québécoise, avec un brin d'humour 😉</li>
                         <li><a target="_blank" href="https://facebook.com/APDQavecDominick/"><img src="{{ asset('assets/frontend/img/youtube.png') }}" alt=""></a></li>
                         <li><a target="_blank" href="https://www.youtube.com/c/Actualit%C3%A9PolitiqueDuQu%C3%A9bec"><img src="{{ asset('assets/frontend/img/facebook.png') }}" alt=""></a></li>
                         <li><a target="_blank" href="https://twitter.com/PolitiqueQuebec"><img src="{{ asset('assets/frontend/img/twitter.png') }}" alt=""></a></li>

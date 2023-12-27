@@ -17,6 +17,10 @@
         <link rel="shortcut icon" href="{{ $frontend_setting->favicon }}">
     @endif
 
+
+    {{-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> --}}
+    <script data-ad-client="ca-pub-7301992079721298" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Play&family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -260,24 +264,26 @@
 
     </script>
 
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
 
-
-@if(session('error'))
-    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-        <div class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="25000">
-            <div class="toast-body">
-                <button type="button" class="btn-close float-end text-white" data-bs-dismiss="toast" aria-label="Close"></button>
-                {{ session('error') }}
+    @if(session('error'))
+        <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+            <div class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="25000">
+                <div class="toast-body">
+                    <button type="button" class="btn-close float-end text-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                    {{ session('error') }}
+                </div>
             </div>
         </div>
-    </div>
 
-    <script>
-        var toastEl = document.querySelector('.toast');
-        var toast = new bootstrap.Toast(toastEl);
-        toast.show();
-    </script>
-@endif
+        <script>
+            var toastEl = document.querySelector('.toast');
+            var toast = new bootstrap.Toast(toastEl);
+            toast.show();
+        </script>
+    @endif
 
 
     <script>

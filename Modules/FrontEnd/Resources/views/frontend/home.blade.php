@@ -92,25 +92,6 @@
     </div>
 </section> --}}
 
-{{-- <div class="container-fluid">
-    <div class="row justify-content-center">
-        <div class="col">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            <!-- Mods Center Responsive -->
-            <ins class="adsbygoogle"
-                style="display:block;"
-                data-ad-client="ca-pub-7301992079721298"
-                data-ad-slot="12345678901"
-                data-ad-format="auto"
-            >
-            </ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-    </div>
-</div> --}}
-
 {{-- <section id="about" class="mb-5">
     <div class="container pt-4 pb-5">
         <div class="row justify-content-center align-items-center">
@@ -176,7 +157,22 @@
         </div> --}}
     {{-- </div>
 </section> --}}
-
+<section id="ad_banner" class=" mb-4 mx-3">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col" style="background: #ccc; border-radius: 15px;">
+                <!-- Mods Center Responsive -->
+                <ins class="adsbygoogle"
+                    style="display:block;"
+                    data-ad-client="ca-pub-7301992079721298"
+                    data-ad-slot="12345678901"
+                    data-ad-format="auto"
+                >
+                </ins>
+            </div>
+        </div>
+    </div>
+</section>
 
 @foreach($video_categories as $video_category)
     @if(count($video_category->videos)>0)
@@ -197,38 +193,61 @@
                 <div class="row">
                     <div class="col-md-12 px-2 mb-3">
                         <div class="owl-carousel owl-theme">
-                            @foreach ($video_category->videos as $video)
-                                <div class="item">
-                                    <a href="{{ route('frontend.video.single', $video->slug) }}" class="">
+
+
+                            @php
+                                $videos = $video_category->videos->take(8)->toArray(); // Take the first 8 videos
+                                $adIndex = rand(0, 8); // Randomly select an index to insert the ad
+
+                                array_splice($videos, $adIndex, 0, [[
+                                    'is_ad' => true, // Marking this as an ad item
+                                ]]);
+                            @endphp
+
+                            @foreach ($videos as $video)
+                                @if (isset($video['is_ad']) && $video['is_ad'])
+                                    {{-- Insert the ad section --}}
+                                    <div class="item">
                                         <div class="card border-0">
-                                            <div class="card-body p-0">
-                                                <div class="image-container" style="background-image:url({{ $video->thumbnail_url }});"></div>
-                                                <div class="video-content-wrapper">
-                                                    <div class="video-content">
-                                                        <h6 class="text-white">
-                                                            {{-- <a href="{{ route('frontend.video.single', $video->slug) }}" class="text-white"> --}}
-                                                                {{ $video->title }}
-                                                            {{-- </a> --}}
-                                                        </h6>
-                                                        <div class="row sub-content">
-                                                            <div class="col-12">
-                                                                <small class="text-white">
-                                                                    {{-- <a href="{{ route('frontend.video') }}?code={{ $video->category->code }}" class=""> --}}
-                                                                        <i class="fi fi-ss-clipboard-list-check"></i> {{ $video->category->name }}
-                                                                    {{-- </a> --}}
-                                                                </small>
+                                            <div class="card-body" style="min-height: 160px; background: #ccc">
+                                                <!-- Mods Center Responsive -->
+                                                <ins class="adsbygoogle"
+                                                    style="display:block;"
+                                                    data-ad-client="ca-pub-7301992079721298"
+                                                    data-ad-slot="12345678901"
+                                                    data-ad-format="auto"
+                                                ></ins>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @else
+                                    {{-- Regular video item --}}
+                                    <div class="item">
+                                        <a href="{{ route('frontend.video.single', $video['slug']) }}" class="">
+                                            <div class="card border-0">
+                                                <div class="card-body p-0">
+                                                    <div class="image-container" style="background-image:url({{ $video['thumbnail_url'] }});"></div>
+                                                    <div class="video-content-wrapper">
+                                                        <div class="video-content">
+                                                            <h6 class="text-white">{{ $video['title'] }}</h6>
+                                                            <div class="row sub-content">
+                                                                <div class="col-12">
+                                                                    <small class="text-white"><i class="fi fi-ss-clipboard-list-check"></i> {{ $video_category->name }}</small>
+
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </a>
-                                    @if ($loop->iteration >= 16)
-                                        @break
-                                    @endif
-                                </div>
+                                        </a>
+                                    </div>
+                                @endif
                             @endforeach
+
+
+
+
                         </div>
                     </div>
 
@@ -237,6 +256,22 @@
         </section>
     @endif
 @endforeach
+
+<section id="ad_banner_2" class=" mb-4 mx-3">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col" style="background: #ccc; border-radius: 15px;">
+                <!-- Mods Center Responsive -->
+                <ins class="adsbygoogle"
+                    style="display:block;"
+                    data-ad-client="ca-pub-7301992079721298"
+                    data-ad-slot="12345678902"
+                    data-ad-format="auto">
+                </ins>
+            </div>
+        </div>
+    </div>
+</section>
 
 
 {{-- <section id="category" class="py-5">
