@@ -125,6 +125,28 @@ Vidéo
 
 <section id="video_page" class="pb-5">
     <div class="container-fluid py-2">
+        <div class="mb-3">
+            @if (isset(request()->code))
+                        <span class="badge bg-info badge-sm ms-2">
+                            <i class="fi fi-ss-label" style="transform: rotate(90deg); display:inline-block;"></i>
+                            {{ request()->code }}
+                        </span>
+            @endif
+            @if (isset(request()->year))
+                        <span class="badge bg-info badge-sm ms-2">
+                            <i class="fi fi-ss-label" style="transform: rotate(90deg); display:inline-block;"></i>
+                            {{ request()->year }}
+                        </span>
+            @endif
+
+            @if (isset(request()->month))
+                        <span class="badge bg-info badge-sm ms-2">
+                            <i class="fi fi-ss-label" style="transform: rotate(90deg); display:inline-block;"></i>
+                            {{ request()->month }}
+                        </span>
+            @endif
+        </div>
+
         <div class="row">
 
 

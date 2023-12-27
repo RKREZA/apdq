@@ -27,13 +27,39 @@ use Modules\Newsletter\Entities\Newsletter;
 use Illuminate\Support\Facades\Validator;
 use App\Mail\Http\SendMail;
 use Illuminate\Support\Facades\Mail;
+use Carbon\Carbon;
 
 class FrontEndController extends Controller
 {
     function __construct()
 	{
         $frontend_setting   = FrontendSetting::first();
+        $this->yearsMonths = $this->getYearsMonths();
+        View::share('yearsMonths', $this->yearsMonths);
 	}
+
+    private function getYearsMonths()
+    {
+        $videos = Video::selectRaw('YEAR(created_at) as year, MONTHNAME(created_at) as month')
+            ->groupBy('year', 'month')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        $yearsMonths = [];
+
+        foreach ($videos as $video) {
+            $year = $video->year;
+            $month = $video->month;
+
+            if (!isset($yearsMonths[$year])) {
+                $yearsMonths[$year] = [];
+            }
+
+            $yearsMonths[$year][] = $month;
+        }
+
+        return $yearsMonths;
+    }
 
     public function home()
     {
@@ -57,14 +83,22 @@ class FrontEndController extends Controller
     {
         $frontend_setting   = FrontendSetting::first();
         $video_categories    = VideoCategory::where('status','Active')->get();
-        if(isset(request()->code) && !empty(request()->code)){
-            $videos              = Video::where('status','Active')
-                                        ->whereHas('category', function ($query) {
-                                            $query->where('code', request()->code);
-                                        })
-                                        ->paginate(21);
-        }else{
-            $videos              = Video::where('status','Active')->paginate(21);
+        if (request()->has('year') && request()->has('month')) {
+            $year = request()->input('year');
+            $month = request()->input('month');
+
+            $videos = Video::where('status', 'Active')
+                ->whereYear('created_at', $year)
+                ->whereMonth('created_at', Carbon::parse($month)->format('m'))
+                ->paginate(21);
+        } elseif (request()->has('code') && !empty(request()->code)) {
+            $videos = Video::where('status', 'Active')
+                ->whereHas('category', function ($query) {
+                    $query->where('code', request()->code);
+                })
+                ->paginate(21);
+        } else {
+            $videos = Video::where('status', 'Active')->paginate(21);
         }
 
         return view('frontend::frontend.video', compact('frontend_setting','video_categories','videos'));
