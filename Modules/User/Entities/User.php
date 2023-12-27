@@ -106,16 +106,9 @@ class User extends Authenticatable
         return $this->hasMany('Modules\Transaction\Entities\Transaction', 'user_id');
     }
 
-    public function subscription()
+    public function subscriptions()
     {
-        return $this->hasOneThrough(
-            'Modules\Transaction\Entities\Transaction',
-            'Modules\Subscription\Entities\Subscription',
-            'user_id', // Foreign key on transactions table
-            'id', // Foreign key on subscriptions table
-            'id', // Local key on users table
-            'subscription_id' // Local key on transactions table
-        );
+        return $this->hasMany('Modules\Subscription\Entities\Subscription', 'user_id');
     }
 
     public function subscriptionStatus()
@@ -123,19 +116,18 @@ class User extends Authenticatable
         $transactions = $this->transactions;
 
         if ($transactions->isEmpty()) {
-            return 'no_subscription'; // User has no transactions
+            return $this->buildStatusResponse('no_subscription');
         }
 
         $currentTransaction = $transactions->first();
         $currentSubscription = $currentTransaction->subscription;
 
         if (!$currentSubscription) {
-            return 'no_subscription'; // User has transactions, but no valid subscription found
+            return $this->buildStatusResponse('no_subscription');
         }
 
         $subscriptionDuration = $currentSubscription->duration;
         $subscriptionDurationType = $currentSubscription->duration_type;
-
         $subscriptionDurationInDays = $this->convertToDays($subscriptionDuration, $subscriptionDurationType);
 
         $transactionCreatedAt = $currentTransaction->created_at;
@@ -144,12 +136,28 @@ class User extends Authenticatable
         $daysPassed = $currentDate->diffInDays($transactionCreatedAt);
 
         if ($daysPassed >= $subscriptionDurationInDays) {
-            return 'expired'; // Subscription has expired
+            return $this->buildStatusResponse('expired');
         } else {
             $daysLeft = $subscriptionDurationInDays - $daysPassed;
-            return "expires_in_$daysLeft"; // Subscription is still active, and $daysLeft days are remaining
+            $status = "expires_in_$daysLeft";
+
+            // Fetch option statuses and include in the response
+            $optionAdFree = $currentSubscription->option_ad_free;
+            $optionLiveContent = $currentSubscription->option_live_content;
+            $optionPremiumContent = $currentSubscription->option_premium_content;
+
+            return $this->buildStatusResponse($status, compact('optionAdFree', 'optionLiveContent', 'optionPremiumContent'));
         }
     }
+
+    private function buildStatusResponse($status, $options = [])
+    {
+        $response = compact('status');
+        $response = array_merge($response, $options);
+
+        return $response;
+    }
+
 
     // Helper function to convert subscription duration to days
     private function convertToDays($duration, $durationType)

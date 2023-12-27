@@ -63,12 +63,6 @@
                             <i class="fi fi-ss-user"></i> <span class="text-sm ms-2">{{ __('admin::profile.tab.profile') }}</span>
                         </a>
                     </li>
-                    {{-- <li class="nav-item pt-2">
-                        <a class="nav-link text-dark d-flex" data-scroll="" href="#change_signature">
-                            <i class="material-icons text-lg me-2">fingerprint</i>
-                            <span class="text-sm">{{ __('admin::profile.tab.signature') }}</span>
-                        </a>
-                    </li> --}}
                     <li class="nav-item pt-2">
                         <a class="nav-link text-dark d-flex" data-scroll="" href="#change_password">
                             <i class="fi fi-ss-lock"></i> <span class="text-sm ms-2">{{ __('admin::profile.tab.change_password') }}</span>
@@ -257,36 +251,64 @@
             </div>
 
             @if (auth()->user()->hasRole('User'))
-            <!-- Subscription -->
-            <div class="card mt-2" id="current_subscription">
-                <div class="card-header">
-                    <h5 class="m-0"><i class="fi fi-ss-money-check-edit"></i> {{ __('admin::profile.tab.current_subscription') }}</h5>
-                </div>
+                <!-- Subscription -->
+                <div class="card mt-2" id="current_subscription">
+                    <div class="card-header">
+                        <h5 class="m-0"><i class="fi fi-ss-money-check-edit"></i> {{ __('admin::profile.tab.current_subscription') }}</h5>
+                    </div>
 
-                <div class="card-body">
+                    <div class="card-body">
 
-                    <div class="row">
-                        <div class="col-md-6 pb-4">
+                        <div class="row">
+                            <div class="col-md-6 pb-4">
 
-                            @if (auth()->user()->subscriptionStatus() == 'expired')
-                                <b>{{ __('admin::profile.form.subscription_expired') }}</b>
-                                <a href="{{ route('frontend.subscription') }}" class="btn btn-warning" target="_blank">{{ __('core::core.form.buy_now') }}</a>
-                            @elseif (str_starts_with(auth()->user()->subscriptionStatus(), 'expires_in_'))
-                                <b>{{ __('admin::profile.form.subscription_expires_in', ['days' => substr(auth()->user()->subscriptionStatus(), 11)]) }}</b>
-                            @else
-                                <b>{{ __('admin::profile.form.no_subscription') }}</b>
-                                <a href="{{ route('frontend.subscription') }}" class="btn btn-warning" target="_blank">{{ __('core::core.form.buy_now') }}</a>
-                            @endif
+                                @php
+                                    $subscriptionStatus = auth()->user()->subscriptionStatus();
+                                    // dd($subscriptionStatus['status']);
+                                    if ($subscriptionStatus['status'] !== 'no_subscription') {
+                                        $optionAdFree = $subscriptionStatus['optionAdFree'] ?? null;
+                                        $optionLiveContent = $subscriptionStatus['optionLiveContent'] ?? null;
+                                        $optionPremiumContent = $subscriptionStatus['optionPremiumContent'] ?? null;
+                                    }
+                                @endphp
 
-                        </div>
-                        <div class="col-md-6">
+                                @if ($subscriptionStatus['status'] == 'expired')
+                                    <b>{{ __('admin::profile.form.subscription_expired') }}</b>
+                                    <a href="{{ route('frontend.subscription') }}" class="btn btn-warning" target="_blank">{{ __('core::core.form.buy_now') }}</a>
+                                @elseif (str_starts_with($subscriptionStatus['status'], 'expires_in_'))
+                                    <b>{{ __('admin::profile.form.subscription_expires_in', ['days' => substr($subscriptionStatus['status'], 11)]) }}</b>
+                                    <a href="{{ route('frontend.subscription') }}" class="btn btn-warning" target="_blank">{{ __('core::core.form.change') }}</a>
+                                @else
+                                    <b>{{ __('admin::profile.form.no_subscription') }}</b>
+                                    <a href="{{ route('frontend.subscription') }}" class="btn btn-warning" target="_blank">{{ __('core::core.form.buy_now') }}</a>
+                                @endif
 
+                            </div>
+                            <div class="col-md-6">
+                                <!-- Include logic to display or handle the status of option_ad_free, option_live_content, and option_premium_content -->
+                                @if ($optionAdFree == 'Active')
+                                    <p>Ad-Free Option is Active</p>
+                                @else
+                                    <p>Ad-Free Option is Inactive</p>
+                                @endif
+
+                                @if ($optionLiveContent == 'Active')
+                                    <p>Live Content Option is Active</p>
+                                @else
+                                    <p>Live Content Option is Inactive</p>
+                                @endif
+
+                                @if ($optionPremiumContent == 'Active')
+                                    <p>Premium Content Option is Active</p>
+                                @else
+                                    <p>Premium Content Option is Inactive</p>
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </div>
-
-            </div>
             @endif
+
 
         </div>
     </div>

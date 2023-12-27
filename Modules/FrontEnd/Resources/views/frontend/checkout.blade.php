@@ -23,7 +23,7 @@ Check-out
         }
         .header h4{
             border: none;
-            background: #9fcaf9;
+            background: #1c449d;
             color: #fff;
             padding: 17px;
         }
@@ -32,7 +32,7 @@ Check-out
             padding: 30px;
         }
         .top_content {
-            background: #9fcaf9;
+            background: #1c449d;
             color: #fff;
             position: absolute;
             left: 0;
@@ -57,9 +57,9 @@ Check-out
 
         .custom_button{
             border: none;
-            border-top: 1px solid #528bc2;
+            border-top: 1px solid #1c449d;
             border-radius: 0 0 15px 15px;
-            background: #528bc2;
+            background: #1c449d;
             color: #fff;
         }
         .custom_button i{
@@ -142,7 +142,7 @@ Check-out
                                 </div>
                             </div>
 
-                            <div class="mt-5 pt-5 pb-4 text-start px-5">
+                            <div class="mt-5 pt-5 pb-4 text-start px-5 text-white">
                                 <ul>
                                     <li>
                                         @if($subscription->option_ad_free == 'Active')
@@ -206,12 +206,15 @@ Check-out
                             </div>
 
                             <div class="footer">
-
-
-
                                 <form action="{{ route('frontend.paypal') }}" method="post">
                                     @csrf
                                     <input type="hidden" name="subscription_id" value="{{ $subscription->id }}">
+
+                                    <div class="form-check mb-3 mx-4">
+                                        <input class="form-check-input" type="checkbox" name="i_agree" id="i_agree" required>
+                                        <label class="form-check-label ms-2 text-white" for="i_agree">{{ __('admin::auth.form.i_agree') }} <a href="#" target="_blank">{{ $page->title }}</a></label>
+                                    </div>
+
                                     <button type="submit" class="w-100 btn btn-lg btn-outline-primary py-4 mt-4 custom_button">
                                         <i class="fi fi-ss-money-bill-wave"></i>
                                         Payer

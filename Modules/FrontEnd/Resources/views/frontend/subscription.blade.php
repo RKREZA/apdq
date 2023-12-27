@@ -26,7 +26,7 @@ Plan d'abonnement
             padding: 30px;
         }
         .top_content {
-            background: #9fcaf9;
+            background: #1c449d;
             color: #fff;
             position: absolute;
             left: 0;
@@ -50,9 +50,9 @@ Plan d'abonnement
 
         .custom_button{
             border: none;
-            border-top: 1px solid #528bc2;
+            border-top: 1px solid #1c449d;
             border-radius: 0 0 15px 15px;
-            background: #528bc2;
+            background: #1c449d;
             color: #fff;
         }
         .description{
@@ -100,7 +100,7 @@ Plan d'abonnement
                                         </div>
                                     </div>
 
-                                    <div class="mt-5 pt-5 text-start px-5">
+                                    <div class="mt-5 pt-5 text-start px-5 text-white">
                                         <ul>
                                             <li>
                                                 @if($subscription->option_ad_free == 'Active')

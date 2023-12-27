@@ -21,158 +21,27 @@
 
 @section('content')
 
-{{-- <section id="slider" class="mb-4">
-    <div class="owl-carousel owl-theme">
-        @if(count($sliders)>0)
-            @foreach($sliders as $slider)
-                <div class="item">
-                    <img src="@if(count($slider->files)>0){{$slider->files[0]->path}}@else{{ asset('assets/frontend/img/slider.webp') }}@endif" class="slider_overlay" alt="">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="slider-content">
-                                    <div class="text">
-                                        <div class="line-1 wow fadeInLeft" data-wow-duration="1s">{{$slider->title}}</div>
-                                        <p class="wow fadeInLeft">{{ Str::limit(strip_tags($slider->description), 400, '...') }}</p>
-                                        @if(!empty($slider->video_id))
-                                            <a href="{{ route('frontend.video.single', $slider->video->slug) }}" class="btn btn-lg btn-red mt-3 wow bounceInUp">En savoir plus</a>
-                                        @elseif(!empty($slider->live_id))
-                                            <a href="{{ route('frontend.live') }}" class="btn btn-lg btn-red mt-3 wow bounceInUp">En savoir plus</a>
-                                        @else
-                                            <a href="{{ $slider->url }}" class="btn btn-lg btn-red mt-3 wow bounceInUp">En savoir plus</a>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                    @if(!empty($slider->video_id))
-                                        <a href="{{ route('frontend.video.single', $slider->video->slug) }}" class="live_container wow fadeInRight">
-                                            <img src="{{ $slider->video->thumbnail_url }}">
-                                            <div class="play-button-overlay">
-                                                <i class="fi fi-ss-live-alt"></i>
-                                            </div>
-                                        </a>
-                                    @elseif(!empty($slider->live_id))
-                                        <a href="{{ route('frontend.live') }}" class="live_container wow fadeInRight">
-                                            <img src="{{ $slider->live->thumbnail_url }}">
-                                            <div class="play-button-overlay">
-                                                <i class="fi fi-ss-live-alt"></i>
-                                            </div>
-                                        </a>
-                                    @endif
-                            </div>
-                        </div>
-                    </div>
+@if(auth()->user() && auth()->user()->subscriptionStatus()['optionAdFree'] == 'Active')
 
+@else
+    <section id="ad_banner" class=" mb-4 mx-3">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col" style="background: #ccc; border-radius: 15px;">
+                    <!-- Mods Center Responsive -->
+                    <ins class="adsbygoogle"
+                        style="display:block;"
+                        data-ad-client="ca-pub-7301992079721298"
+                        data-ad-slot="12345678901"
+                        data-ad-format="auto"
+                    >
+                    </ins>
                 </div>
-            @endforeach
-        @else
-            <div class="item">
-                <img src="{{ asset('assets/frontend/img/slider.webp') }}" class="slider_overlay" alt="">
-            </div>
-        @endif
-    </div>
-
-
-</section> --}}
-
-{{-- <section id="social">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <ul>
-                    <li class="wow fadeInDown" data-wow-duration="1s"><span target="_blank" style="font-family: 'Play', sans-serif; font-size: 18px;">Abonnez-vous sur vos plateformes préférées</span></li>
-                    <li class="wow fadeInUp" data-wow-duration="1s"><a target="_blank" href="https://facebook.com/APDQavecDominick/"><img src="{{ asset('assets/frontend/img/youtube.png') }}" alt=""></a></li>
-                    <li class="wow fadeInUp" data-wow-duration="1s"><a target="_blank" href="https://www.youtube.com/c/Actualit%C3%A9PolitiqueDuQu%C3%A9bec"><img src="{{ asset('assets/frontend/img/facebook.png') }}" alt=""></a></li>
-                    <li class="wow fadeInUp" data-wow-duration="1s"><a target="_blank" href="https://rumble.com/c/APDQ"><img src="{{ asset('assets/frontend/img/rumble.webp') }}" alt=""></a></li>
-                    <li class="wow fadeInUp" data-wow-duration="1s"><a target="_blank" href="https://odysee.com/$/invite/@Actualitepolitiqueduquebec:0"><img src="{{ asset('assets/frontend/img/odysee.png') }}" alt=""></a></li>
-                </ul>
             </div>
         </div>
-    </div>
-</section> --}}
+    </section>
+@endif
 
-{{-- <section id="about" class="mb-5">
-    <div class="container pt-4 pb-5">
-        <div class="row justify-content-center align-items-center">
-            <div class="col-md-5 wow fadeInLeft">
-                <img class="about_img" src="{{ asset('assets/frontend/img/person.webp') }}" alt="">
-            </div>
-            <div class="col-md-5 wow fadeInRight">
-                <h1 class="fw-bold">À Propos</h1>
-                <p style="text-align: justify">En 2020, quand les mesures sanitaires ont été imposées à la pop
-                    ulation, tous les médias, ordre professionnel, fonctionnaires, pali
-                    er de gouvernement, etc… se sont tous unis pour que toute la po
-                    pulation suive les mesures et se fasse vacciner. Cette folie à fait
-                    en sorte que je ne pouvais rester sans rien faire. J'ai donc décidé
-                    de faire mes propres analyse des conférences de presse de nos
-                    gouvernements pour dénoncer tout le mal que nos gouvernemen
-                    ts faisaient à 100% de la population.</p>
-                <a href="{{ route('frontend.about') }}" class="btn btn-md btn-outline-accent mt-3">En savoir plus</a>
-            </div>
-        </div>
-    </div>
-</section> --}}
-
-
-{{-- <section id="video" class="">
-    <div class="container-fluid py-4"> --}}
-        {{-- <div class="row mb-4">
-            <div class="col-11 text-start">
-                <h4 class="fw-bold text-white">Dernières vidéos</h4>
-            </div>
-            <div class="col-1 text-end">
-                <a href="{{ route('frontend.video') }}"><h4 class="fw-bold text-white"><i class="fi fi-br-angle-double-small-right"></i></h4></a>
-            </div>
-
-        </div> --}}
-        {{-- <div class="row">
-
-            @foreach ($videos as $video)
-
-                <div class="col-md-2 px-2 mb-3 wow bounceInUp">
-                    <div class="card border-0">
-                        <div class="card-body p-0">
-                            <a href="{{ route('frontend.video.single', $video->slug) }}" class="">
-                                <div class="image-container" style="background-image:url({{ $video->thumbnail_url }});"></div>
-                            </a>
-                            <div class="video-content p-3">
-                                <h6><a href="{{ route('frontend.video.single', $video->slug) }}" class="text-white">{{ $video->title }}</a></h6>
-                                <div class="row sub-content">
-                                    <div class="col-12">
-                                        <small><a href="{{ route('frontend.video') }}?code={{ $video->category->code }}" class=""><i class="fi fi-ss-clipboard-list-check"></i> {{ $video->category->name }}</a></small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                @if ($loop->iteration >= 12)
-                    @break
-                @endif
-
-            @endforeach
-
-        </div> --}}
-    {{-- </div>
-</section> --}}
-<section id="ad_banner" class=" mb-4 mx-3">
-    <div class="container-fluid">
-        <div class="row justify-content-center">
-            <div class="col" style="background: #ccc; border-radius: 15px;">
-                <!-- Mods Center Responsive -->
-                <ins class="adsbygoogle"
-                    style="display:block;"
-                    data-ad-client="ca-pub-7301992079721298"
-                    data-ad-slot="12345678901"
-                    data-ad-format="auto"
-                >
-                </ins>
-            </div>
-        </div>
-    </div>
-</section>
 
 @foreach($video_categories as $video_category)
     @if(count($video_category->videos)>0)
@@ -207,19 +76,25 @@
                             @foreach ($videos as $video)
                                 @if (isset($video['is_ad']) && $video['is_ad'])
                                     {{-- Insert the ad section --}}
-                                    <div class="item">
-                                        <div class="card border-0">
-                                            <div class="card-body" style="min-height: 160px; background: #ccc">
-                                                <!-- Mods Center Responsive -->
-                                                <ins class="adsbygoogle"
-                                                    style="display:block;"
-                                                    data-ad-client="ca-pub-7301992079721298"
-                                                    data-ad-slot="12345678901"
-                                                    data-ad-format="auto"
-                                                ></ins>
+
+                                    @if(auth()->user() && auth()->user()->subscriptionStatus()['optionAdFree'] == 'Active')
+
+                                    @else
+                                        <div class="item">
+                                            <div class="card border-0">
+                                                <div class="card-body" style="min-height: 160px; background: #ccc">
+                                                    <!-- Mods Center Responsive -->
+                                                    <ins class="adsbygoogle"
+                                                        style="display:block;"
+                                                        data-ad-client="ca-pub-7301992079721298"
+                                                        data-ad-slot="12345678901"
+                                                        data-ad-format="auto"
+                                                    ></ins>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    @endif
+
                                 @else
                                     {{-- Regular video item --}}
                                     <div class="item">
@@ -257,92 +132,26 @@
     @endif
 @endforeach
 
-<section id="ad_banner_2" class=" mb-4 mx-3">
-    <div class="container-fluid">
-        <div class="row justify-content-center">
-            <div class="col" style="background: #ccc; border-radius: 15px;">
-                <!-- Mods Center Responsive -->
-                <ins class="adsbygoogle"
-                    style="display:block;"
-                    data-ad-client="ca-pub-7301992079721298"
-                    data-ad-slot="12345678902"
-                    data-ad-format="auto">
-                </ins>
-            </div>
-        </div>
-    </div>
-</section>
 
+@if(auth()->user() && auth()->user()->subscriptionStatus()['optionAdFree'] == 'Active')
 
-{{-- <section id="category" class="py-5">
-    <div class="container py-4 pb-5">
-        <div class="row mb-4">
-            <div class="col-md-12 text-center">
-                <h1 class="text-dark fw-bold">Catégories <span class="text-muted">principales</span></h1>
-                <h5 class="text-dark">Parcourez les catégories principales</h5>
-            </div>
-        </div>
-        <div class="row">
-            @foreach ($video_categories as $video_category)
-                <a href="{{ route('frontend.video') }}?code={{ $video_category->code }}" class="col-md-3 mt-3 wow bounceInDown">
-                    <div class="card">
-                        <div class="card-body text-center">
-                            {!! $video_category->icon !!}
-                            <h4>{{ $video_category->name }}</h4>
-                            <p class="small">{{ $video_category->description }}</p>
-                        </div>
-                    </div>
-                </a>
-            @endforeach
-        </div>
-    </div>
-</section> --}}
-
-{{-- <section id="video" class="py-5">
-    <div class="container py-4">
-        <div class="row mb-4">
-            <div class="col-md-12 text-center">
-                <h1 class="fw-bold">Dernières <span class="text-muted">vidéos</span></h1>
-                <h5 class="">Videos les plus récents</h5>
-            </div>
-        </div>
-        <div class="row">
-
-            @foreach ($videos as $video)
-
-                <div class="col-md-3 mb-4 wow bounceInUp">
-                    <div class="card border-0">
-                        <div class="card-body p-0">
-                            <a href="{{ route('frontend.video.single', $video->slug) }}" class="">
-                                <div class="image-container" style="background-image:url({{ $video->thumbnail_url }});">
-                                </div>
-                            </a>
-                            <div class="video-content p-3">
-                                <h6><a href="{{ route('frontend.video.single', $video->slug) }}" class="link-dark">{{ $video->title }}</a></h6>
-                                <div class="row sub-content">
-                                    <div class="col-6">
-                                        <small><a href="{{ route('frontend.video') }}?code={{ $video->category->code }}" class=""><i class="fi fi-ss-clipboard-list-check"></i> {{ $video->category->name }}</a></small>
-                                    </div>
-                                    <div class="col-6 text-end">
-                                        <small><i class="fi fi-rs-clock"></i> {{ date('d/m/Y', strtotime($video->created_at)) }}</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+@else
+    <section id="ad_banner_2" class=" mb-4 mx-3">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col" style="background: #ccc; border-radius: 15px;">
+                    <!-- Mods Center Responsive -->
+                    <ins class="adsbygoogle"
+                        style="display:block;"
+                        data-ad-client="ca-pub-7301992079721298"
+                        data-ad-slot="12345678902"
+                        data-ad-format="auto">
+                    </ins>
                 </div>
-
-            @endforeach
-
-        </div>
-
-        <div class="row animated-section wow bounceInUp">
-            <div class="col-md-12 text-center">
-                <a href="{{ route('frontend.video') }}" class="btn btn-md btn-outline-accent mt-5">En savoir plus</a>
             </div>
         </div>
-    </div>
-</section> --}}
+    </section>
+@endif
 
 <section id="blog" class="mx-3">
     {{-- <div class="overlay"></div> --}}

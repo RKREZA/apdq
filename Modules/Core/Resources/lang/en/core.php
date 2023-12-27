@@ -150,6 +150,7 @@ return [
         'notification_type'         => 'Type',
 
         'buy_now'                   => 'Buy Now',
+        'change'                    => 'Change',
 
         'validation'                => [
             'required'              => 'Required!',

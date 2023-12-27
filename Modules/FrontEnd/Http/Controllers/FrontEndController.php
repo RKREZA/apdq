@@ -248,12 +248,13 @@ class FrontEndController extends Controller
         $frontend_setting       = FrontendSetting::first();
         $payment_gateways       = PaymentGateway::where('status','Active')->get();
         $subscription           = Subscription::find($request->subscription_id);
+        $page                   = Page::where('slug','termes-et-conditions')->first();
 
         if(!$subscription){
             abort('404');
         }
 
-        return view('frontend::frontend.checkout', compact('frontend_setting','subscription','payment_gateways'));
+        return view('frontend::frontend.checkout', compact('frontend_setting','subscription','payment_gateways','page'));
     }
 
     public function donation()
