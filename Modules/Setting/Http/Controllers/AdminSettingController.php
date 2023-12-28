@@ -53,7 +53,7 @@ class AdminSettingController extends Controller
 			$success_msg = __('setting::setting.adminsetting.message.update.success');
                 return response()->json(['success'=>$success_msg]);
             } catch (Exception $e) {
-			$error_msg = __('setting::setting.category.message.update.error');
+			$error_msg = __('setting::setting.adminsetting.message.update.error');
                 return response()->json(['success'=>$error_msg]);
             }
         }
@@ -78,7 +78,7 @@ class AdminSettingController extends Controller
 			$success_msg = __('setting::setting.adminsetting.message.update.success');
                 return response()->json(['success'=>$success_msg]);
             } catch (Exception $e) {
-			$error_msg = __('setting::setting.category.message.update.error');
+			$error_msg = __('setting::setting.adminsetting.message.update.error');
                 return response()->json(['success'=>$error_msg]);
             }
         }
@@ -103,7 +103,7 @@ class AdminSettingController extends Controller
 			$success_msg = __('setting::setting.adminsetting.message.update.success');
                 return response()->json(['success'=>$success_msg]);
             } catch (Exception $e) {
-			$error_msg = __('setting::setting.category.message.update.error');
+			$error_msg = __('setting::setting.adminsetting.message.update.error');
                 return response()->json(['success'=>$error_msg]);
             }
         }
@@ -129,7 +129,7 @@ class AdminSettingController extends Controller
 			return redirect()->route('admin.setting.adminsettings.index')->with('success',$success_msg);
 
 		} catch (Exception $e) {
-			$error_msg = __('setting::setting.category.message.update.error');
+			$error_msg = __('setting::setting.adminsetting.message.update.error');
 			return redirect()->route('admin.setting.adminsettings.index')->with('error',$error_msg);
 		}
     }
@@ -153,7 +153,7 @@ class AdminSettingController extends Controller
                 $success_msg = __('setting::setting.adminsetting.message.update.success');
                 return response()->json(['success'=>$success_msg]);
             } catch (Exception $e) {
-                $error_msg = __('setting::setting.category.message.update.error');
+                $error_msg = __('setting::setting.adminsetting.message.update.error');
                 return response()->json(['success'=>$error_msg]);
             }
         }
@@ -182,7 +182,7 @@ class AdminSettingController extends Controller
 			return redirect()->route('admin.setting.adminsettings.index')->with('success',$success_msg);
 
 		} catch (Exception $e) {
-			$error_msg = __('setting::setting.category.message.update.error');
+			$error_msg = __('setting::setting.adminsetting.message.update.error');
 			return redirect()->route('admin.setting.adminsettings.index')->with('error',$error_msg);
 		}
     }
@@ -213,7 +213,7 @@ class AdminSettingController extends Controller
 			return redirect()->route('admin.setting.adminsettings.index')->with('success',$success_msg);
 
 		} catch (Exception $e) {
-			$error_msg = __('setting::setting.category.message.update.error');
+			$error_msg = __('setting::setting.adminsetting.message.update.error');
 			return redirect()->route('admin.setting.adminsettings.index')->with('error',$error_msg);
 		}
     }
@@ -249,7 +249,7 @@ class AdminSettingController extends Controller
 			return redirect()->route('admin.setting.adminsettings.index')->with('success',$success_msg);
 
 		} catch (Exception $e) {
-			$error_msg = __('setting::setting.category.message.update.error');
+			$error_msg = __('setting::setting.adminsetting.message.update.error');
 			return redirect()->route('admin.setting.adminsettings.index')->with('error',$error_msg);
 		}
     }
@@ -276,7 +276,28 @@ class AdminSettingController extends Controller
 			return redirect()->route('admin.setting.adminsettings.index')->with('success',$success_msg);
 
 		} catch (Exception $e) {
-			$error_msg = __('setting::setting.category.message.update.error');
+			$error_msg = __('setting::setting.adminsetting.message.update.error');
+			return redirect()->route('admin.setting.adminsettings.index')->with('error',$error_msg);
+		}
+    }
+
+    public function update_setting(Request $request)
+    {
+        $rules = [];
+        $messages = [];
+
+        $this->validate($request, $rules, $messages);
+        $input      = $request->all();
+
+		try {
+            $setting    = Setting::find(1);
+			$setting->update($input);
+
+			$success_msg = __('setting::setting.adminsetting.message.update.success');
+			return redirect()->route('admin.setting.adminsettings.index')->with('success',$success_msg);
+
+		} catch (Exception $e) {
+			$error_msg = __('setting::setting.adminsetting.message.update.error');
 			return redirect()->route('admin.setting.adminsettings.index')->with('error',$error_msg);
 		}
     }
@@ -311,7 +332,7 @@ class AdminSettingController extends Controller
     //         return redirect()->route('admin.setting.adminsettings.index')->with('success',$success_msg);
 
 	// 	} catch (Exception $e) {
-	// 		$error_msg = __('setting::setting.category.message.update.error');
+	// 		$error_msg = __('setting::setting.adminsetting.message.update.error');
 	// 		return redirect()->route('admin.setting.adminsettings.index')->with('error',$error_msg);
 	// 	}
 
@@ -346,7 +367,7 @@ class AdminSettingController extends Controller
     //         return redirect()->route('admin.setting.adminsettings.index')->with('success',$success_msg);
 
 	// 	} catch (Exception $e) {
-	// 		$error_msg = __('setting::setting.category.message.update.error');
+	// 		$error_msg = __('setting::setting.adminsetting.message.update.error');
 	// 		return redirect()->route('admin.setting.adminsettings.index')->with('error',$error_msg);
 	// 	}
 

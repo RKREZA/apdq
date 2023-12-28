@@ -78,6 +78,11 @@ return [
             'update_sms_setting_button' => 'Update SMS Setting Info',
             'update_sms_template_button' => 'Update SMS Template Info',
 
+            'update_other_google_credentials_button' => 'Update Google Credentials',
+            'update_google_login_button' => 'Update Google Login',
+            'update_facebook_login_button' => 'Update Facebook Login',
+            'update_gdpr_button' => 'Update GDPR',
+
             'mail_mailer' => 'Mailer',
             'mail_host' => 'Host',
             'mail_port' => 'Port',
@@ -94,6 +99,27 @@ return [
             'pusher_app_id' => 'App ID',
             'pusher_app_key' => 'App Key',
             'pusher_app_secret' => 'App Secret',
+
+            'other_google_credentials' => 'Other Google Credentials',
+            'google_login' => 'Google Login',
+            'google_client_id' => 'Google Client ID',
+            'google_client_secret' => 'Google Client Secret',
+            'google_redirect' => 'Google Redirect URL',
+
+            'google_recaptcha_v3_site_key' => 'Google Recaptcha V3 Site Key',
+            'google_recaptcha_v3_secret_key' => 'Google Recaptcha V3 Secret Key',
+            'google_adsense_publisher_id' => 'Adsense Publisher ID',
+            'google_youtube_api_key' => 'Youtube API Kay',
+
+            'facebook_login' => 'Facebook Login',
+            'facebook_app_id' => 'Facebook App ID',
+            'facebook_client_secret' => 'Facebook Client Secret',
+            'facebook_redirect' => 'Facebook Redirect URL',
+
+            'gdpr' => 'GDPR',
+            'gdpr_cookie_title' => 'GDPR Cookie Title',
+            'gdpr_cookie_text' => 'GDPR Cookie Text',
+            'gdpr_cookie_url' => 'GDPR Cookie URL',
 
             'validation'    => [
                 'title' => [

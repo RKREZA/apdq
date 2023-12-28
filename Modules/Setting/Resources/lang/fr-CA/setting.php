@@ -77,6 +77,12 @@ return [
             'update_sms_setting_button' => 'Mettre à jour les informations de paramètres SMS',
             'update_sms_template_button' => 'Mettre à jour les informations de modèle SMS',
 
+            'update_other_google_credentials_button' => 'Mettre à jour les identifiants Google',
+            'update_google_login_button' => 'Mettre à jour la connexion Google',
+            'update_facebook_login_button' => 'Mettre à jour la connexion Facebook',
+            'update_gdpr_button' => 'Mettre à jour GDPR',
+
+
             'mail_mailer' => 'Messager',
             'mail_host' => 'Hôte',
             'mail_port' => 'Port',
@@ -93,6 +99,27 @@ return [
             'pusher_app_id' => 'ID de l\'application Pusher',
             'pusher_app_key' => 'Clé de l\'application Pusher',
             'pusher_app_secret' => 'Secret de l\'application Pusher',
+
+            'other_google_credentials' => 'Other Google Credentials',
+            'google_login' => 'Connexion Google',
+            'google_client_id' => 'Identifiant client Google',
+            'google_client_secret' => 'Secret client Google',
+            'google_redirect' => 'URL de redirection Google',
+
+            'google_recaptcha_v3_site_key' => 'Clé du site Google Recaptcha V3',
+            'google_recaptcha_v3_secret_key' => 'Clé secrète Google Recaptcha V3',
+            'google_adsense_publisher_id' => 'ID de l\'éditeur Adsense Google',
+            'google_youtube_api_key' => 'Clé API YouTube Google',
+
+            'facebook_login' => 'Connexion Facebook',
+            'facebook_app_id' => 'ID de l\'application Facebook',
+            'facebook_client_secret' => 'Secret client Facebook',
+            'facebook_redirect' => 'URL de redirection Facebook',
+
+            'gdpr' => 'GDPR',
+            'gdpr_cookie_title' => 'Titre du cookie GDPR',
+            'gdpr_cookie_text' => 'Texte du cookie GDPR',
+            'gdpr_cookie_url' => 'URL du cookie GDPR',
 
             'validation'    => [
                 'title' => [

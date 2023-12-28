@@ -35,6 +35,28 @@ class CreateSettingsTable extends Migration
 
                 $table->enum('back_to_top_status', ['Inactive', 'Active'])->default('Active');
 
+
+
+                $table->enum('google_login', ['Inactive', 'Active'])->default('Active');
+                $table->text('google_client_id')->nullable();
+                $table->text('google_client_secret')->nullable();
+                $table->text('google_redirect')->nullable();
+                $table->text('google_recaptcha_v3_site_key')->nullable();
+                $table->text('google_recaptcha_v3_secret_key')->nullable();
+                $table->text('google_adsense_publisher_id')->nullable();
+                $table->text('google_youtube_api_key')->nullable();
+
+                $table->enum('facebook_login', ['Inactive', 'Active'])->default('Active');
+                $table->text('facebook_app_id')->nullable();
+                $table->text('facebook_client_secret')->nullable();
+                $table->text('facebook_redirect')->nullable();
+
+                $table->text('gdpr_cookie_title')->nullable();
+                $table->text('gdpr_cookie_text')->nullable();
+                $table->text('gdpr_cookie_url')->nullable();
+
+
+
                 $table->string('copyright')->nullable();
 
                 $table->timestamps();

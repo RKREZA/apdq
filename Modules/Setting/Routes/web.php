@@ -29,7 +29,8 @@ Route::group(['middleware'=>'language'],function (){
                     Route::post('/update/email_template', 	'AdminSettingController@email_template')->name('admin.setting.adminsettings.email_template');
                     Route::post('/update/sms_setting', 	'AdminSettingController@sms_setting')->name('admin.setting.adminsettings.sms_setting');
                     Route::post('/update/sms_template', 	'AdminSettingController@sms_template')->name('admin.setting.adminsettings.sms_template');
-                    Route::post('/update/pusher_setting', 	'AdminSettingController@pusher_setting')->name('admin.setting.adminsettings.pusher_setting');
+
+                    Route::post('/update/update_setting', 	'AdminSettingController@update_setting')->name('admin.setting.adminsettings.update_setting');
                 });
 
                 // SMS SETTING

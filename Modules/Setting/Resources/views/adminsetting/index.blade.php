@@ -180,9 +180,8 @@
 
                     <li class="nav-item">
                         <a class="nav-link text-dark d-flex" data-scroll="" href="#site-info">
-                            <i class="material-icons text-lg me-2">info</i>
-                            <span
-                                class="text-sm">{{ __('setting::setting.adminsetting.form.tab_info') }}</span>
+                            <i class="fi fi-sr-info"></i>
+                            <span class="text-sm ms-2">{{ __('setting::setting.adminsetting.form.tab_info') }}</span>
                         </a>
                     </li>
 
@@ -190,8 +189,8 @@
 
                     <li class="nav-item">
                         <a class="nav-link text-dark d-flex" data-scroll="" href="#profile">
-                            <i class="material-icons text-lg me-2">image</i>
-                            <span class="text-sm">{{ __('setting::setting.adminsetting.form.tab_logo_favicon') }}</span>
+                            <i class="fi fi-sr-id-badge"></i>
+                            <span class="text-sm ms-2">{{ __('setting::setting.adminsetting.form.tab_logo_favicon') }}</span>
                         </a>
                     </li>
 
@@ -199,8 +198,8 @@
 
                     <li class="nav-item">
                         <a class="nav-link text-dark d-flex" data-scroll="" href="#meta-info">
-                            <i class="material-icons text-lg me-2">travel_explore</i>
-                            <span class="text-sm">{{ __('setting::setting.adminsetting.form.tab_meta') }}</span>
+                            <i class="fi fi-sr-site-alt"></i>
+                            <span class="text-sm ms-2">{{ __('setting::setting.adminsetting.form.tab_meta') }}</span>
                         </a>
                     </li>
 
@@ -208,8 +207,8 @@
 
                     <li class="nav-item">
                         <a class="nav-link text-dark d-flex" data-scroll="" href="#preloader">
-                            <i class="material-icons text-lg me-2">hourglass_empty</i>
-                            <span class="text-sm">{{ __('setting::setting.adminsetting.form.tab_preloader') }}</span>
+                            <i class="fi fi-sr-loading"></i>
+                            <span class="text-sm ms-2">{{ __('setting::setting.adminsetting.form.tab_preloader') }}</span>
                         </a>
                     </li>
 
@@ -217,8 +216,8 @@
 
                     <li class="nav-item">
                         <a class="nav-link text-dark d-flex" data-scroll="" href="#back_to_top">
-                            <i class="material-icons text-lg me-2">navigation</i>
-                            <span class="text-sm">{{ __('setting::setting.adminsetting.form.tab_back_to_top') }}</span>
+                            <i class="fi fi-sr-arrow-alt-to-top"></i>
+                            <span class="text-sm ms-2">{{ __('setting::setting.adminsetting.form.tab_back_to_top') }}</span>
                         </a>
                     </li>
 
@@ -226,8 +225,44 @@
 
                     <li class="nav-item">
                         <a class="nav-link text-dark d-flex" data-scroll="" href="#copyright">
-                            <i class="material-icons text-lg me-2">copyright</i>
-                            <span class="text-sm">{{ __('setting::setting.adminsetting.form.tab_copyright') }}</span>
+                            <i class="fi fi-sr-copyright"></i>
+                            <span class="text-sm ms-2">{{ __('setting::setting.adminsetting.form.tab_copyright') }}</span>
+                        </a>
+                    </li>
+
+                    <hr class="horizontal light">
+
+                    <li class="nav-item">
+                        <a class="nav-link text-dark d-flex" data-scroll="" href="#google_login">
+                            <i class="fi fi-brands-google"></i>
+                            <span class="text-sm ms-2">{{ __('setting::setting.adminsetting.form.google_login') }}</span>
+                        </a>
+                    </li>
+
+                    <hr class="horizontal light">
+
+                    <li class="nav-item">
+                        <a class="nav-link text-dark d-flex" data-scroll="" href="#facebook_login">
+                            <i class="fi fi-brands-facebook"></i>
+                            <span class="text-sm ms-2">{{ __('setting::setting.adminsetting.form.facebook_login') }}</span>
+                        </a>
+                    </li>
+
+                    <hr class="horizontal light">
+
+                    <li class="nav-item">
+                        <a class="nav-link text-dark d-flex" data-scroll="" href="#other_google_credentials">
+                            <i class="fi fi-brands-google"></i>
+                            <span class="text-sm ms-2">{{ __('setting::setting.adminsetting.form.other_google_credentials') }}</span>
+                        </a>
+                    </li>
+
+                    <hr class="horizontal light">
+
+                    <li class="nav-item">
+                        <a class="nav-link text-dark d-flex" data-scroll="" href="#gdpr">
+                            <i class="fi fi-sr-shield-check"></i>
+                            <span class="text-sm ms-2">{{ __('setting::setting.adminsetting.form.gdpr') }}</span>
                         </a>
                     </li>
 
@@ -263,7 +298,7 @@
                             </div>
 
                             <div class="form-group">
-                                <button class="create-button btn btn-dark btn-md float-end mt-4 mb-0"><i class="material-icons text-sm me-2">sync</i>{{ __('setting::setting.adminsetting.form.update_info_button') }}</button>
+                                <button class="create-button btn btn-dark btn-md float-end mt-4 mb-0"><i class="fi fi-sr-refresh me-2"></i>{{ __('setting::setting.adminsetting.form.update_info_button') }}</button>
                             </div>
                         </div>
 
@@ -385,7 +420,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <button class="create-button btn btn-dark btn-md float-end mt-4 mb-0"><i class="material-icons text-sm me-2">sync</i>{{ __('setting::setting.adminsetting.form.update_meta_button') }}</button>
+                                    <button class="create-button btn btn-dark btn-md float-end mt-4 mb-0"><i class="fi fi-sr-refresh me-2"></i>{{ __('setting::setting.adminsetting.form.update_meta_button') }}</button>
                                 </div>
                             </form>
                         </div>
@@ -411,7 +446,7 @@
                             </div>
 
                             <div class="form-group">
-                                <button class="create-button btn btn-dark btn-md float-end mt-4 mb-0"><i class="material-icons text-sm me-2">sync</i>{{ __('setting::setting.adminsetting.form.update_preloader_button') }}</button>
+                                <button class="create-button btn btn-dark btn-md float-end mt-4 mb-0"><i class="fi fi-sr-refresh me-2"></i>{{ __('setting::setting.adminsetting.form.update_preloader_button') }}</button>
                             </div>
                         </div>
 
@@ -439,7 +474,7 @@
                             </div>
 
                             <div class="form-group">
-                                <button class="create-button btn btn-dark btn-md float-end mt-4 mb-0"><i class="material-icons text-sm me-2">sync</i>{{ __('setting::setting.adminsetting.form.update_back_to_top_button') }}</button>
+                                <button class="create-button btn btn-dark btn-md float-end mt-4 mb-0"><i class="fi fi-sr-refresh me-2"></i>{{ __('setting::setting.adminsetting.form.update_back_to_top_button') }}</button>
                             </div>
                         </div>
 
@@ -466,7 +501,7 @@
                             </div>
 
                             <div class="form-group">
-                                <button class="create-button btn btn-dark btn-md float-end mt-4 mb-0"><i class="material-icons text-sm me-2">sync</i>{{ __('setting::setting.adminsetting.form.update_copyright_button') }}</button>
+                                <button class="create-button btn btn-dark btn-md float-end mt-4 mb-0"><i class="fi fi-sr-refresh me-2"></i>{{ __('setting::setting.adminsetting.form.update_copyright_button') }}</button>
                             </div>
                         </div>
 
@@ -474,6 +509,192 @@
                     </div>
                 </form>
             </div>
+
+
+            <!-- google_login -->
+            <div class="card mt-2" id="google_login">
+                <div class="card-header">
+                    <h6 class="m-0">{{ __('setting::setting.adminsetting.form.google_login') }}</h6>
+                </div>
+                <form method="post" action="{{ route('admin.setting.adminsettings.update_setting') }}"
+                    id="">
+                    @csrf()
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 mb-3">
+                                <div class="input-group input-group-outline is-filled @if ($setting->google_login) is-valid @endif">
+                                    <label class="form-label">{{ __('setting::setting.adminsetting.form.google_login') }}</label>
+                                    <select name="google_login" id="google_login" class="form-control">
+                                        <option @if ($setting->google_login) @if($setting->google_login == 'Active') selected @endif value="{{ $setting->google_login }}" @endif>Active</option>
+                                        <option @if ($setting->google_login) @if($setting->google_login == 'Inactive') selected @endif value="{{ $setting->google_login }}" @endif>Inactive</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <div class="input-group input-group-outline is-filled @if ($setting->google_client_id) is-valid @endif">
+                                    <label class="form-label">{{ __('setting::setting.adminsetting.form.google_client_id') }}</label>
+                                    <input type="text" name="google_client_id" class="form-control" @if ($setting->google_client_id) value="{{ $setting->google_client_id }}" @endif>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <div class="input-group input-group-outline is-filled @if ($setting->google_client_secret) is-valid @endif">
+                                    <label class="form-label">{{ __('setting::setting.adminsetting.form.google_client_secret') }}</label>
+                                    <input type="text" name="google_client_secret" class="form-control" @if ($setting->google_client_secret) value="{{ $setting->google_client_secret }}" @endif>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <div class="input-group input-group-outline is-filled @if ($setting->google_redirect) is-valid @endif">
+                                    <label class="form-label">{{ __('setting::setting.adminsetting.form.google_redirect') }}</label>
+                                    <input type="text" name="google_redirect" class="form-control" @if ($setting->google_redirect) value="{{ $setting->google_redirect }}" @endif>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <button class="create-button btn btn-dark btn-md float-end mt-4 mb-0"><i class="fi fi-sr-refresh me-2"></i>{{ __('setting::setting.adminsetting.form.update_google_login_button') }}</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </form>
+            </div>
+
+            <!-- facebook_login -->
+            <div class="card mt-2" id="facebook_login">
+                <div class="card-header">
+                    <h6 class="m-0">{{ __('setting::setting.adminsetting.form.facebook_login') }}</h6>
+                </div>
+                <form method="post" action="{{ route('admin.setting.adminsettings.update_setting') }}"
+                    id="">
+                    @csrf()
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 mb-3">
+                                <div class="input-group input-group-outline is-filled @if ($setting->facebook_login) is-valid @endif">
+                                    <label class="form-label">{{ __('setting::setting.adminsetting.form.facebook_login') }}</label>
+                                    <select name="facebook_login" id="facebook_login" class="form-control">
+                                        <option @if ($setting->facebook_login) @if($setting->facebook_login == 'Active') selected @endif value="{{ $setting->facebook_login }}" @endif>Active</option>
+                                        <option @if ($setting->facebook_login) @if($setting->facebook_login == 'Inactive') selected @endif value="{{ $setting->facebook_login }}" @endif>Inactive</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <div class="input-group input-group-outline is-filled @if ($setting->facebook_app_id) is-valid @endif">
+                                    <label class="form-label">{{ __('setting::setting.adminsetting.form.facebook_app_id') }}</label>
+                                    <input type="text" name="facebook_app_id" class="form-control" @if ($setting->facebook_app_id) value="{{ $setting->facebook_app_id }}" @endif>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <div class="input-group input-group-outline is-filled @if ($setting->facebook_client_secret) is-valid @endif">
+                                    <label class="form-label">{{ __('setting::setting.adminsetting.form.facebook_client_secret') }}</label>
+                                    <input type="text" name="facebook_client_secret" class="form-control" @if ($setting->facebook_client_secret) value="{{ $setting->facebook_client_secret }}" @endif>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <div class="input-group input-group-outline is-filled @if ($setting->facebook_redirect) is-valid @endif">
+                                    <label class="form-label">{{ __('setting::setting.adminsetting.form.facebook_redirect') }}</label>
+                                    <input type="text" name="facebook_redirect" class="form-control" @if ($setting->facebook_redirect) value="{{ $setting->facebook_redirect }}" @endif>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <button class="create-button btn btn-dark btn-md float-end mt-4 mb-0"><i class="fi fi-sr-refresh me-2"></i>{{ __('setting::setting.adminsetting.form.update_facebook_login_button') }}</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </form>
+            </div>
+
+
+
+            <!-- Other Google Credentials -->
+            <div class="card mt-2" id="other_google_credentials">
+                <div class="card-header">
+                    <h6 class="m-0">{{ __('setting::setting.adminsetting.form.other_google_credentials') }}</h6>
+                </div>
+                <form method="post" action="{{ route('admin.setting.adminsettings.update_setting') }}"
+                    id="">
+                    @csrf()
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 mb-3">
+                                <div class="input-group input-group-outline is-filled @if ($setting->google_recaptcha_v3_site_key) is-valid @endif">
+                                    <label class="form-label">{{ __('setting::setting.adminsetting.form.google_recaptcha_v3_site_key') }}</label>
+                                    <input type="text" name="google_recaptcha_v3_site_key" class="form-control" @if ($setting->google_recaptcha_v3_site_key) value="{{ $setting->google_recaptcha_v3_site_key }}" @endif>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <div class="input-group input-group-outline is-filled @if ($setting->google_recaptcha_v3_secret_key) is-valid @endif">
+                                    <label class="form-label">{{ __('setting::setting.adminsetting.form.google_recaptcha_v3_secret_key') }}</label>
+                                    <input type="text" name="google_recaptcha_v3_secret_key" class="form-control" @if ($setting->google_recaptcha_v3_secret_key) value="{{ $setting->google_recaptcha_v3_secret_key }}" @endif>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <div class="input-group input-group-outline is-filled @if ($setting->google_adsense_publisher_id) is-valid @endif">
+                                    <label class="form-label">{{ __('setting::setting.adminsetting.form.google_adsense_publisher_id') }}</label>
+                                    <input type="text" name="google_adsense_publisher_id" class="form-control" @if ($setting->google_adsense_publisher_id) value="{{ $setting->google_adsense_publisher_id }}" @endif>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <div class="input-group input-group-outline is-filled @if ($setting->google_youtube_api_key) is-valid @endif">
+                                    <label class="form-label">{{ __('setting::setting.adminsetting.form.google_youtube_api_key') }}</label>
+                                    <input type="text" name="google_youtube_api_key" class="form-control" @if ($setting->google_youtube_api_key) value="{{ $setting->google_youtube_api_key }}" @endif>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <button class="create-button btn btn-dark btn-md float-end mt-4 mb-0"><i class="fi fi-sr-refresh me-2"></i>{{ __('setting::setting.adminsetting.form.update_other_google_credentials_button') }}</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </form>
+            </div>
+
+
+            <!-- GDPR -->
+            <div class="card mt-2" id="gdpr">
+                <div class="card-header">
+                    <h6 class="m-0">{{ __('setting::setting.adminsetting.form.gdpr') }}</h6>
+                </div>
+                <form method="post" action="{{ route('admin.setting.adminsettings.update_setting') }}"
+                    id="">
+                    @csrf()
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 mb-3">
+                                <div class="input-group input-group-outline is-filled @if ($setting->gdpr_cookie_title) is-valid @endif">
+                                    <label class="form-label">{{ __('setting::setting.adminsetting.form.gdpr_cookie_title') }}</label>
+                                    <input type="text" name="gdpr_cookie_title" class="form-control" @if ($setting->gdpr_cookie_title) value="{{ $setting->gdpr_cookie_title }}" @endif>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <div class="input-group input-group-outline is-filled @if ($setting->gdpr_cookie_text) is-valid @endif">
+                                    <label class="form-label">{{ __('setting::setting.adminsetting.form.gdpr_cookie_text') }}</label>
+                                    <input type="text" name="gdpr_cookie_text" class="form-control" @if ($setting->gdpr_cookie_text) value="{{ $setting->gdpr_cookie_text }}" @endif>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <div class="input-group input-group-outline is-filled @if ($setting->gdpr_cookie_url) is-valid @endif">
+                                    <label class="form-label">{{ __('setting::setting.adminsetting.form.gdpr_cookie_url') }}</label>
+                                    <input type="text" name="gdpr_cookie_url" class="form-control" @if ($setting->gdpr_cookie_url) value="{{ $setting->gdpr_cookie_url }}" @endif>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <button class="create-button btn btn-dark btn-md float-end mt-4 mb-0"><i class="fi fi-sr-refresh me-2"></i>{{ __('setting::setting.adminsetting.form.update_gdpr_button') }}</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </form>
+            </div>
+
+
         </div>
     </div>
 
