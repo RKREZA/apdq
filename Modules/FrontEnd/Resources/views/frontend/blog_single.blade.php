@@ -100,7 +100,7 @@
     </div>
 </section> --}}
 
-<section id="blog_page" class="pb-5">
+<section id="blog_page" class="pb-5 mx-3">
     <div class="container py-2">
         <div class="row">
 

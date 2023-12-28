@@ -21,7 +21,7 @@
 
 @section('content')
 
-@if(auth()->user() && auth()->user()->subscriptionStatus()['optionAdFree'] == 'Active')
+@if(auth()->user() && auth()->user()->subscriptionStatus()['status'] != 'no_subscription' && auth()->user()->subscriptionStatus()['optionAdFree'] == 'Active' && auth()->user()->hasRole('Admin'))
 
 @else
     <section id="ad_banner" class=" mb-4 mx-3">
@@ -77,7 +77,7 @@
                                 @if (isset($video['is_ad']) && $video['is_ad'])
                                     {{-- Insert the ad section --}}
 
-                                    @if(auth()->user() && auth()->user()->subscriptionStatus()['optionAdFree'] == 'Active')
+                                    @if(auth()->user() && auth()->user()->subscriptionStatus()['status'] != 'no_subscription' && auth()->user()->subscriptionStatus()['optionAdFree'] == 'Active' && auth()->user()->hasRole('Admin'))
 
                                     @else
                                         <div class="item">
@@ -133,7 +133,7 @@
 @endforeach
 
 
-@if(auth()->user() && auth()->user()->subscriptionStatus()['optionAdFree'] == 'Active')
+@if(auth()->user() && auth()->user()->subscriptionStatus()['status'] != 'no_subscription' && auth()->user()->subscriptionStatus()['optionAdFree'] == 'Active' && auth()->user()->hasRole('Admin'))
 
 @else
     <section id="ad_banner_2" class=" mb-4 mx-3">

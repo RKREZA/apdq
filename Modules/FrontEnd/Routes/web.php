@@ -9,6 +9,7 @@ Route::group(['middleware'=>'language'],function (){
 
     Route::get('/video', 		            'FrontEndController@video')->name('frontend.video');
     Route::get('/video/{slug}', 		    'FrontEndController@video_single')->name('frontend.video.single');
+    Route::post('/video/comment/store', 		'FrontEndController@video_comment_store')->name('frontend.video.comments.store');
     Route::post('/video/react',             'FrontEndController@react')->name('frontend.video.react');
 
 

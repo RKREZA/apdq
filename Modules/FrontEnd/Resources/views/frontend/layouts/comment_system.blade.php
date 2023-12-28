@@ -19,7 +19,7 @@
                 </div> --}}
                 <div class="col-12">
                     @if (auth()->check())
-                        <form method="post" action="{{ route('frontend.blog.comments.store') }}" id="comment_form">
+                        <form method="post" action="{{ $comment_store_route }}" id="comment_form">
                             @csrf
                             <div class="form-group">
                                 <textarea class="form-control tiny" name="body" row="10"></textarea>

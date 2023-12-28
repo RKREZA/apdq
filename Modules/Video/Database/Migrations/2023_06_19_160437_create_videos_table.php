@@ -45,6 +45,23 @@ class CreateVideosTable extends Migration
                 $table->softDeletes();
             });
         }
+
+        if (!Schema::hasTable('video_comments')) {
+            Schema::create('video_comments', function (Blueprint $table) {
+                $table->increments('id');
+
+                $table->bigInteger('user_id')->unsigned()->nullable();
+                $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+
+                $table->bigInteger('video_id')->unsigned()->nullable();
+                $table->foreign('video_id')->references('id')->on('videos')->onDelete('set null');
+
+                $table->integer('parent_id')->unsigned()->nullable();
+                $table->text('body');
+                $table->timestamps();
+                $table->softDeletes();
+            });
+        }
     }
 
     /**
@@ -55,5 +72,6 @@ class CreateVideosTable extends Migration
     public function down()
     {
         Schema::dropIfExists('videos');
+        Schema::dropIfExists('video_comments');
     }
 }

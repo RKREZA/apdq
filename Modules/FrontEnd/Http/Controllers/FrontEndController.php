@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\View;
 use Modules\FrontEndManager\Entities\FrontendSetting;
 use Modules\Video\Entities\VideoCategory;
 use Modules\Video\Entities\Video;
+use Modules\Video\Entities\VideoComment;
 use Modules\Blog\Entities\PostCategory;
 use Modules\Blog\Entities\Post;
 use Modules\Blog\Entities\PostComment;
@@ -104,12 +105,31 @@ class FrontEndController extends Controller
         return view('frontend::frontend.video', compact('frontend_setting','video_categories','videos'));
     }
 
+    public function video_comment_store(Request $request)
+    {
+        $request->validate([
+            'body'=>'required',
+        ]);
+        $input = $request->all();
+        $input['user_id'] = auth()->user()->id;
+        $input['video_id'] = $request->post_id;
+
+        try {
+            VideoComment::create($input);
+            return redirect()->back();
+
+		} catch (Exception $e) {
+            return redirect()->back();
+		}
+    }
+
     public function video_single($slug)
     {
         $frontend_setting   = FrontendSetting::first();
         $video_categories    = VideoCategory::where('status','Active')->get();
         $video               = Video::where('slug',$slug)->first();
         $recent_videos       = Video::where('status', 'Active')->orderBy('id','DESC')->limit(4)->get();
+        $video_comments      = VideoComment::where('video_id', $video->id)->get();
 
         $share_component = \Share::page(
             route('frontend.video.single', $video->slug),
@@ -123,7 +143,7 @@ class FrontEndController extends Controller
         ->whatsapp();
 
         if($video){
-            return view('frontend::frontend.video_single', compact('frontend_setting','video_categories','video','recent_videos','share_component'));
+            return view('frontend::frontend.video_single', compact('frontend_setting','video_categories','video','recent_videos','share_component','video_comments'));
         }else{
             return abort(404);
         }

@@ -14,7 +14,7 @@
 </style>
 @endpush
 @foreach($comments as $comment)
-    <div class="display-comment @if($comment->parent_id != null) ms-3 @endif">
+    <div class="display-comment mb-2 @if($comment->parent_id != null) ms-3 @endif">
         <div class="row display-comment-row py-3">
             <div class="col-1">
                 @if (auth()->check() && isset(auth()->user()->files[0]->path))
@@ -26,11 +26,12 @@
 
             <div class="col-11">
                 <div class="row">
-                    <div class="col">
+                    <div class="col mt-2">
                         <strong>{{ $comment->user->name }}</strong>
                     </div>
                     <div class="col text-end">
-                        <small>{{date("jS M Y", strtotime($comment->created_at))}}</small>
+                        <small style="    position: absolute;
+                        right: 15px;">{{date("jS M Y", strtotime($comment->created_at))}}</small>
                     </div>
                 </div>
                 <p>{!! $comment->body !!}</p>

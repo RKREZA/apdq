@@ -57,4 +57,9 @@ class Video extends Model
         return $this->belongsTo('Modules\Video\Entities\VideoCategory');
     }
 
+    public function comments()
+    {
+        return $this->hasMany('Modules\Video\Entities\VideoComment')->whereNull('parent_id');
+    }
+
 }

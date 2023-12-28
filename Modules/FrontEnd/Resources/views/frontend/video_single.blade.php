@@ -23,7 +23,7 @@
             background-size: cover;
             height: 170px;
             background-position: center;
-            border-radius: 10px;
+            border-radius: 7px;
         }
         /* .video_page_header{
             height: 30vh;
@@ -116,6 +116,10 @@
             border-radius: 10px;
             background: #161616;
         }
+        .embed_code{
+            border-radius: 10px;
+            overflow: hidden;
+        }
     </style>
 @endpush
 
@@ -132,7 +136,7 @@
     <div class="container py-2">
         <div class="row">
 
-            <div class="col-md-8">
+            <div class="col-md-8 pe-md-4 pe-0">
                 <div class="row">
 
                     <div class="col-md-12 embed_code p-0">
@@ -221,12 +225,13 @@
                         </div>
                     </div>
 
-                    {{-- @include('frontend::frontend.layouts.comment_system',[
+                    @include('frontend::frontend.layouts.comment_system',[
                         'comments'              => $video->comments,
                         'post_id'               => $video->id,
                         'post'                  => $video,
                         'comment_store_route'   => route('frontend.video.comments.store')
-                    ]) --}}
+                    ])
+
                 </div>
             </div>
 
