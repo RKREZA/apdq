@@ -13,6 +13,8 @@ use Modules\PaymentGateway\DataTables\PaymentGatewaysDataTable;
 use Modules\PaymentGateway\DataTables\PaymentGatewayTrashesDataTable;
 use Youtube;
 use Alaouy\Youtube\Rules\ValidYoutubeVideo;
+use Dotenv\Dotenv;
+use Illuminate\Support\Facades\Artisan;
 
 class PaymentGatewayController extends Controller
 {
@@ -42,7 +44,6 @@ class PaymentGatewayController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
         $rules = [
             'title' 					=> 'required',
 			'description' 			    => 'required|string',
@@ -66,7 +67,6 @@ class PaymentGatewayController extends Controller
         ];
 
         $validate = $this->validate($request, $rules, $messages);
-        // dd($request->all());
 		try {
 			PaymentGateway::create([
                 'title'         => $request->input('title'),
@@ -92,7 +92,6 @@ class PaymentGatewayController extends Controller
     {
         $paymentgateway = PaymentGateway::find($id);
         $info = json_decode($paymentgateway->info);
-        // dd($info->mode);
         return view('paymentgateway::paymentgateway.edit', compact('paymentgateway','info'));
     }
 
@@ -108,30 +107,81 @@ class PaymentGatewayController extends Controller
 
         $validate = $this->validate($request, $rules, $messages);
 
-        $paymentgateway     = PaymentGateway::find($id);
-        $input              = $request->all();
         $input['info']      = null;
+        $input['name']      = $request->name;
 
-        if($paymentgateway->code == 'paypal'){
+        if($request->code == 'paypal'){
             $input['info']  = json_encode([
-                'mode'              => $request->mode,
-                'paypal_client_id'  => $request->paypal_client_id,
-                'paypal_secret'     => $request->paypal_secret,
+                'mode'                      => $request->mode,
+                'currency'                  => $request->currency,
+                'sandbox_paypal_client_id'  => $request->sandbox_paypal_client_id,
+                'sandbox_paypal_secret'     => $request->sandbox_paypal_secret,
+                'live_paypal_client_id'     => $request->live_paypal_client_id,
+                'live_paypal_secret'        => $request->live_paypal_secret,
             ]);
         }
 
-        DB::beginTransaction();
 		try {
+            $paymentgateway     = PaymentGateway::find($id);
 			$paymentgateway->update($input);
+
+            // Update the .env file
+            $this->updateEnv([
+                'PAYPAL_MODE'                   => $request->mode,
+                'PAYPAL_CURRENCY'               => $request->currency,
+
+                'PAYPAL_SANDBOX_CLIENT_ID'      => $request->sandbox_paypal_client_id,
+                'PAYPAL_SANDBOX_CLIENT_SECRET'  => $request->sandbox_paypal_secret,
+                
+                'PAYPAL_LIVE_CLIENT_ID'         => $request->live_paypal_client_id,
+                'PAYPAL_LIVE_CLIENT_SECRET'     => $request->live_paypal_secret,
+            ]);
+        
+            $success_msg = __('core::core.message.success.store');
+            return redirect()->route('admin.paymentgateways.index')->with('success',$success_msg);
 		} catch (Exception $e) {
-            DB::rollBack();
-			$error_msg      = __('core::core.message.error');
+			$error_msg = __('core::core.message.error');
 			return redirect()->route('admin.paymentgateways.index')->with('error',$error_msg);
 		}
-        DB::commit();
-        $success_msg    = __('core::core.message.success.update');
-        return redirect()->route('admin.paymentgateways.index')->with('success',$success_msg);
 
+    }
+
+    protected function updateEnv(array $data)
+    {
+        // Update .env file using config helper
+        config([
+            'paypal.mode' => $data['PAYPAL_MODE'],
+            'paypal.currency' => $data['PAYPAL_CURRENCY'],
+            'paypal.sandbox_client_id' => $data['PAYPAL_SANDBOX_CLIENT_ID'],
+            'paypal.sandbox_client_secret' => $data['PAYPAL_SANDBOX_CLIENT_SECRET'],
+            'paypal.live_client_id' => $data['PAYPAL_LIVE_CLIENT_ID'],
+            'paypal.live_client_secret' => $data['PAYPAL_LIVE_CLIENT_SECRET'],
+        ]);
+
+        // Save the changes to the .env file
+        $this->saveEnvFile($data);
+
+        // Reload the configuration
+        Artisan::call('config:cache');
+    }
+
+    protected function saveEnvFile(array $data)
+    {
+        $envFile = base_path('.env');
+
+        // Load existing environment variables
+        $envData = file_get_contents($envFile);
+
+        // Update specific variables
+        $envData = preg_replace('/PAYPAL_MODE=(.*)/', 'PAYPAL_MODE=' . $data['PAYPAL_MODE'], $envData);
+        $envData = preg_replace('/PAYPAL_CURRENCY=(.*)/', 'PAYPAL_CURRENCY=' . $data['PAYPAL_CURRENCY'], $envData);
+        $envData = preg_replace('/PAYPAL_SANDBOX_CLIENT_ID=(.*)/', 'PAYPAL_SANDBOX_CLIENT_ID=' . $data['PAYPAL_SANDBOX_CLIENT_ID'], $envData);
+        $envData = preg_replace('/PAYPAL_SANDBOX_CLIENT_SECRET=(.*)/', 'PAYPAL_SANDBOX_CLIENT_SECRET=' . $data['PAYPAL_SANDBOX_CLIENT_SECRET'], $envData);
+        $envData = preg_replace('/PAYPAL_LIVE_CLIENT_ID=(.*)/', 'PAYPAL_LIVE_CLIENT_ID=' . $data['PAYPAL_LIVE_CLIENT_ID'], $envData);
+        $envData = preg_replace('/PAYPAL_LIVE_CLIENT_SECRET=(.*)/', 'PAYPAL_LIVE_CLIENT_SECRET=' . $data['PAYPAL_LIVE_CLIENT_SECRET'], $envData);
+
+        // Save the changes
+        file_put_contents($envFile, $envData);
     }
 
     public function view($id)

@@ -20,16 +20,26 @@
     <div class="col-md-4">
         <div class="input-group input-group-outline mt-3 is-filled @error('code') is-invalid @enderror">
             <label class="form-label">{{ __('paymentgateway::paymentgateway.paymentgateway.form.code') }}</label>
-            <input type="text" name="code" id="code" class="form-control" disabled value="@if(isset($paymentgateway)){{ $paymentgateway->code }}@else{{ old('code') }}@endif">
+            <input type="text" name="code" id="code" class="form-control" value="@if(isset($paymentgateway)){{ $paymentgateway->code }}@else{{ old('code') }}@endif">
             @error('code')
                 <em class="error invalid-paymentgateway" style="display: inline-block;">{{ $message }}</em>
             @enderror
         </div>
     </div>
 
-    @if($paymentgateway->code == 'paypal')
+    
 
-    <div class="col-md-12">
+    <div class="col-md-6">
+        <div class="input-group input-group-outline mt-3 is-filled @error('currency') is-invalid @enderror">
+            <label class="form-label">{{ __('paymentgateway::paymentgateway.paymentgateway.form.currency') }}</label>
+            <input type="text" name="currency" id="currency" class="form-control" value="@if(isset($info)){{ $info->currency }}@else{{ old('currency') }}@endif">
+            @error('currency')
+                <em class="error invalid-paymentgateway" style="display: inline-block;">{{ $message }}</em>
+            @enderror
+        </div>
+    </div>
+
+    <div class="col-md-6">
         <div class="input-group input-group-outline mt-3 is-filled @error('mode') is-invalid @enderror is-filled">
             <label class="form-label" for="payment_mode"><span class="required">{{ __('paymentgateway::paymentgateway.paymentgateway.form.mode') }}</span></label>
             <select name="mode" id="payment_mode" class="form-control @error('category_id') is-invalid @enderror">
@@ -42,25 +52,48 @@
         </div>
     </div>
 
-    <div class="col-md-12">
-        <div class="input-group input-group-outline mt-3 is-filled @error('paypal_client_id') is-invalid @enderror">
-            <label class="form-label">{{ __('paymentgateway::paymentgateway.paymentgateway.form.paypal_client_id') }}</label>
-            <input type="text" name="paypal_client_id" id="paypal_client_id" class="form-control" value="@if(isset($info)){{ $info->paypal_client_id }}@else{{ old('paypal_client_id') }}@endif">
-            @error('paypal_client_id')
-                <em class="error invalid-paymentgateway" style="display: inline-block;">{{ $message }}</em>
-            @enderror
-        </div>
-    </div>
 
-    <div class="col-md-12">
-        <div class="input-group input-group-outline mt-3 is-filled @error('paypal_secret') is-invalid @enderror">
-            <label class="form-label">{{ __('paymentgateway::paymentgateway.paymentgateway.form.paypal_secret') }}</label>
-            <input type="text" name="paypal_secret" id="paypal_secret" class="form-control" value="@if(isset($info)){{ $info->paypal_secret }}@else{{ old('paypal_secret') }}@endif">
-            @error('paypal_secret')
-                <em class="error invalid-paymentgateway" style="display: inline-block;">{{ $message }}</em>
-            @enderror
+    @if($paymentgateway->code == 'paypal')
+
+        <div class="col-md-6">
+            <div class="input-group input-group-outline mt-3 is-filled @error('sandbox_paypal_client_id') is-invalid @enderror">
+                <label class="form-label">{{ __('paymentgateway::paymentgateway.paymentgateway.form.sandbox_paypal_client_id') }}</label>
+                <input type="text" name="sandbox_paypal_client_id" id="sandbox_paypal_client_id" class="form-control" value="@if(isset($info)){{ $info->sandbox_paypal_client_id }}@else{{ old('sandbox_paypal_client_id') }}@endif">
+                @error('sandbox_paypal_client_id')
+                    <em class="error invalid-paymentgateway" style="display: inline-block;">{{ $message }}</em>
+                @enderror
+            </div>
         </div>
-    </div>
+
+        <div class="col-md-6">
+            <div class="input-group input-group-outline mt-3 is-filled @error('sandbox_paypal_secret') is-invalid @enderror">
+                <label class="form-label">{{ __('paymentgateway::paymentgateway.paymentgateway.form.sandbox_paypal_secret') }}</label>
+                <input type="text" name="sandbox_paypal_secret" id="sandbox_paypal_secret" class="form-control" value="@if(isset($info)){{ $info->sandbox_paypal_secret }}@else{{ old('sandbox_paypal_secret') }}@endif">
+                @error('sandbox_paypal_secret')
+                    <em class="error invalid-paymentgateway" style="display: inline-block;">{{ $message }}</em>
+                @enderror
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="input-group input-group-outline mt-3 is-filled @error('live_paypal_client_id') is-invalid @enderror">
+                <label class="form-label">{{ __('paymentgateway::paymentgateway.paymentgateway.form.live_paypal_client_id') }}</label>
+                <input type="text" name="live_paypal_client_id" id="live_paypal_client_id" class="form-control" value="@if(isset($info)){{ $info->live_paypal_client_id }}@else{{ old('live_paypal_client_id') }}@endif">
+                @error('live_paypal_client_id')
+                    <em class="error invalid-paymentgateway" style="display: inline-block;">{{ $message }}</em>
+                @enderror
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="input-group input-group-outline mt-3 is-filled @error('live_paypal_secret') is-invalid @enderror">
+                <label class="form-label">{{ __('paymentgateway::paymentgateway.paymentgateway.form.live_paypal_secret') }}</label>
+                <input type="text" name="live_paypal_secret" id="live_paypal_secret" class="form-control" value="@if(isset($info)){{ $info->live_paypal_secret }}@else{{ old('live_paypal_secret') }}@endif">
+                @error('live_paypal_secret')
+                    <em class="error invalid-paymentgateway" style="display: inline-block;">{{ $message }}</em>
+                @enderror
+            </div>
+        </div>
 
     @endif
 

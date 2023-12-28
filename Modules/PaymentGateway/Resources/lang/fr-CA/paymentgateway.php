@@ -9,8 +9,11 @@ return [
             'code' => 'Code',
             'info' => 'Info',
             'mode' => 'Mode de paiement Paypal',
-            'paypal_client_id' => 'Identifiant client Paypal',
-            'paypal_secret' => 'Secret Paypal',
+            'currency' => 'Devise',
+            'sandbox_paypal_client_id' => 'Identifiant client PayPal Sandbox',
+            'sandbox_paypal_secret' => 'Secret client PayPal Sandbox',
+            'live_paypal_client_id' => 'Identifiant client PayPal en direct',
+            'live_paypal_secret' => 'Secret client PayPal en direct',
         ],
 
     ],
