@@ -85,7 +85,7 @@
                                     @else
                                         <div class="item">
                                             <div class="card border-0">
-                                                <div class="card-body" style="min-height: 160px; background: #ccc">
+                                                <div class="card-body" style="min-height: 210px; background: #ccc">
                                                     <!-- Mods Center Responsive -->
                                                     <ins class="adsbygoogle"
                                                         style="display:block;"
