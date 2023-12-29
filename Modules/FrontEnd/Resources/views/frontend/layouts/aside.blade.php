@@ -58,7 +58,7 @@
 
 @push('js')
 <script>
-    let dropdowns = document.querySelectorAll('.dropdown-toggle');
+    let dropdowns = document.querySelectorAll('#myDrawer .dropdown-toggle');
 
     dropdowns.forEach((dd) => {
         dd.addEventListener('click', function (e) {
