@@ -40,7 +40,7 @@ En direct
 @section('content')
 
 <section id="video" class="pb-5">
-    <div class="container py-2">
+    <div class="container-fluid py-2">
         <div class="row justify-content-center">
 
             <div class="col-md-12">

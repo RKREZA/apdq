@@ -45,7 +45,7 @@
 </section> --}}
 
 <div id="about_page" class="mb-5 mx-3">
-    <div class="container py-2">
+    <div class="container-fluid py-2">
 
         <div class="col-md-12">
             {{-- <h6 class="text-danger">Page</h6> --}}

@@ -36,6 +36,9 @@
                         data-ad-format="auto"
                     >
                     </ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
                 </div>
             </div>
         </div>
@@ -90,6 +93,9 @@
                                                         data-ad-slot="12345678901"
                                                         data-ad-format="auto"
                                                     ></ins>
+                                                    <script>
+                                                        (adsbygoogle = window.adsbygoogle || []).push({});
+                                                    </script>
                                                 </div>
                                             </div>
                                         </div>
@@ -147,6 +153,9 @@
                         data-ad-slot="12345678902"
                         data-ad-format="auto">
                     </ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
                 </div>
             </div>
         </div>

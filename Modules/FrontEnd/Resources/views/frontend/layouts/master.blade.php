@@ -264,10 +264,6 @@
 
     </script>
 
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-
     @if(session('error'))
         <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
             <div class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="25000">

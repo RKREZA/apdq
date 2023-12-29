@@ -17,7 +17,7 @@ Vidéo
     <style>
         #video_page .image-container{
             background-size: cover;
-            height: 123px;
+            height: 210px;
             background-position: center;
         }
         /* #video .image-container:hover{
@@ -25,7 +25,7 @@ Vidéo
 
         } */
 
-        #video_page .image-container::before {
+        /* #video_page .image-container::before {
             content: "";
             position: absolute;
             top: 24%;
@@ -38,7 +38,7 @@ Vidéo
             transition: opacity 0.3s ease-in-out;
             width: 40px;
             height: 40px;
-        }
+        } */
         /* #video .image-container:hover::before {
             opacity: 1;
         } */
