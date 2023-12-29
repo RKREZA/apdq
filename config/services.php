@@ -36,4 +36,19 @@ return [
         'redirect' => 'https://apdq.jackalit.com/auth/facebook/callback',
     ],
 
+    'stripe' => [
+        'secret' => env('STRIPE_SECRET'),
+
+        'mode'    => env('STRIPE_MODE', 'sandbox'),
+        'sandbox' => [
+            'client_id'         => env('STRIPE_SANDBOX_KEY', ''),
+            'client_secret'     => env('STRIPE_SANDBOX_SECRET', ''),
+        ],
+        'live' => [
+            'client_id'         => env('STRIPE_LIVE_KEY', ''),
+            'client_secret'     => env('STRIPE_LIVE_SECRET', ''),
+        ],
+        'currency'       => env('STRIPE_CURRENCY', 'CAD'),
+    ],
+
 ];

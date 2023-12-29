@@ -107,8 +107,8 @@ class PayPalController extends Controller
                 unset($_SESSION['user_id']);
                 unset($_SESSION['paymentgateway_id']);
 
-                $success_msg = "Vous avez été abonné avec succès";
                 DB::commit(); // Move the commit inside the try block
+                $success_msg = "Vous avez été abonné avec succès";
                 return redirect()->route('dashboard')->with('success', $success_msg);
             } else {
                 return redirect()->route('frontend.paypal.cancel');

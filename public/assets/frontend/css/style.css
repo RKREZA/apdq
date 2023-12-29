@@ -20,6 +20,12 @@ a:hover, a:focus{
     color: #fff !important;
 }
 
+.back_button{
+    font-size: 1.2em;
+    position: relative;
+    top: 6px;
+}
+
 .text-light{
     color: #9d9d9d;
 }

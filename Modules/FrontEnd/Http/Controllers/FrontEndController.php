@@ -379,9 +379,25 @@ class FrontEndController extends Controller
             return response()->json(['error'=>$error_msg]);
 		}
     }
+    
+    public function stripe(Request $request)
+    {
+        $frontend_setting       = FrontendSetting::first();
+        $subscription           = Subscription::find($request->subscription_id);
+
+        $payment_gateway        = PaymentGateway::where('code','stripe')->first();
+        $payment_gateway_info   = json_decode($payment_gateway->info, true); // Decoding as an associative array
+
+        if (isset($payment_gateway_info['mode']) && $payment_gateway_info['mode'] === 'sandbox') {
+            $stripe_key = $payment_gateway_info['sandbox_stripe_key'];
+        } else {
+            $stripe_key = $payment_gateway_info['live_stripe_key'];
+        }
+        $currency = $payment_gateway_info['currency'];
 
 
-
+        return view('frontend::frontend.stripe', compact('frontend_setting','subscription','payment_gateway','stripe_key','currency'));
+    }
 
 
 

@@ -62,6 +62,11 @@ Check-out
             background: #1c449d;
             color: #fff;
         }
+
+        .custom_button:disabled {
+            visibility: hidden;
+        }
+
         .custom_button i{
             position: relative;
             top: 3px;
@@ -191,22 +196,34 @@ Check-out
                             <div class="row m-4">
                                 @foreach ($payment_gateways as $payment_gateway)
 
-                                    @if ($payment_gateway->code == 'paypal')
-                                        <div class='col-md-4 text-center'>
-                                            <input type="radio" name="payment_gateway" id="img1" class="d-none imgbgchk" checked value="{{ $payment_gateway->code }}">
-                                            <label for="img1" class="p-3">
-                                                <img src="{{ asset('assets/frontend/img/paypal.png') }}" alt="Image 1" class="img-thumbnail p-4">
-                                                <div class="tick_container">
-                                                    <div class="tick"><i class="fi fi-ss-check"></i></div>
-                                                </div>
-                                            </label>
-                                        </div>
-                                    @endif
+                                @if ($payment_gateway->code == 'paypal')
+                                    <div class='col-md-4 text-center'>
+                                        <input type="radio" name="payment_gateway" id="paypal" class="d-none imgbgchk" value="{{ $payment_gateway->code }}">
+                                        <label for="paypal" class="p-3">
+                                            <img src="{{ asset('assets/frontend/img/paypal.png') }}" alt="Image 1" class="img-thumbnail p-4">
+                                            <div class="tick_container">
+                                                <div class="tick"><i class="fi fi-ss-check"></i></div>
+                                            </div>
+                                        </label>
+                                    </div>
+                                @endif
+
+                                @if ($payment_gateway->code == 'stripe')
+                                    <div class='col-md-4 text-center'>
+                                        <input type="radio" name="payment_gateway" id="stripe" class="d-none imgbgchk" value="{{ $payment_gateway->code }}">
+                                        <label for="stripe" class="p-3">
+                                            <img src="{{ asset('assets/frontend/img/card.png') }}" alt="Image 1" class="img-thumbnail p-4">
+                                            <div class="tick_container">
+                                                <div class="tick"><i class="fi fi-ss-check"></i></div>
+                                            </div>
+                                        </label>
+                                    </div>
+                                @endif
                                 @endforeach
                             </div>
 
                             <div class="footer">
-                                <form action="{{ route('frontend.paypal') }}" method="post">
+                                <form action="" method="post" id="checkout_form">
                                     @csrf
                                     <input type="hidden" name="subscription_id" value="{{ $subscription->id }}">
 
@@ -215,10 +232,10 @@ Check-out
                                         <label class="form-check-label ms-2 text-white" for="i_agree">{{ __('admin::auth.form.i_agree') }} <a href="#" target="_blank">{{ $page->title }}</a></label>
                                     </div>
 
-                                    <button type="submit" class="w-100 btn btn-lg btn-outline-primary py-4 mt-4 custom_button">
+                                    <button type="submit" class="w-100 btn btn-lg btn-outline-primary py-4 mt-4 custom_button" id="checkout_button" disabled>
                                         <i class="fi fi-ss-money-bill-wave"></i>
-                                        Payer
-                                        ({{ $subscription->price }}$)
+                                        Go to Payment Page
+                                        {{-- ({{ $subscription->price }}$) --}}
                                     </a>
                                 </form>
                             </div>
@@ -235,5 +252,21 @@ Check-out
 
 
 @push('js')
+
+<script>
+    $(document).ready(function() {
+        $('input[name="payment_gateway"]').change(function() {
+            var selectedGateway = $('input[name="payment_gateway"]:checked').val();
+            if (selectedGateway == 'paypal') {
+                $('#checkout_form').attr('action', "{{ route('frontend.paypal') }}");
+            } else if (selectedGateway == 'stripe') {
+                $('#checkout_form').attr('action', "{{ route('frontend.stripe') }}");
+            }
+            
+            $('#checkout_button').removeAttr('disabled');
+            // Add more conditions for other payment gateways if needed
+        });
+    });
+</script>
 
 @endpush

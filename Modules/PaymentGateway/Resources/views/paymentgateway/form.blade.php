@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    
+
 
     <div class="col-md-6">
         <div class="input-group input-group-outline mt-3 is-filled @error('currency') is-invalid @enderror">
@@ -97,15 +97,52 @@
 
     @endif
 
-    {{-- <div class="col-md-12">
-        <div class="input-group input-group-outline mt-3 is-filled @error('description') is-invalid @enderror">
-            <label class="form-label"><span class="required">{{ __('paymentgateway::paymentgateway.paymentgateway.form.description') }}</span></label>
-            <textarea rows="6" id="description" name="description" class="form-control tiny">@if(isset($paymentgateway)){{ $paymentgateway->description }}@else{{ old('description') }}@endif</textarea>
-            @error('description')
-                <em class="error invalid-paymentgateway" style="display: inline-block;">{{ $message }}</em>
-            @enderror
+
+
+
+    @if($paymentgateway->code == 'stripe')
+
+        <div class="col-md-6">
+            <div class="input-group input-group-outline mt-3 is-filled @error('sandbox_stripe_key') is-invalid @enderror">
+                <label class="form-label">{{ __('paymentgateway::paymentgateway.paymentgateway.form.sandbox_stripe_key') }}</label>
+                <input type="text" name="sandbox_stripe_key" id="sandbox_stripe_key" class="form-control" value="@if(isset($info)){{ $info->sandbox_stripe_key }}@else{{ old('sandbox_stripe_key') }}@endif">
+                @error('sandbox_stripe_key')
+                    <em class="error invalid-paymentgateway" style="display: inline-block;">{{ $message }}</em>
+                @enderror
+            </div>
         </div>
-    </div> --}}
+
+        <div class="col-md-6">
+            <div class="input-group input-group-outline mt-3 is-filled @error('sandbox_stripe_secret') is-invalid @enderror">
+                <label class="form-label">{{ __('paymentgateway::paymentgateway.paymentgateway.form.sandbox_stripe_secret') }}</label>
+                <input type="text" name="sandbox_stripe_secret" id="sandbox_stripe_secret" class="form-control" value="@if(isset($info)){{ $info->sandbox_stripe_secret }}@else{{ old('sandbox_stripe_secret') }}@endif">
+                @error('sandbox_stripe_secret')
+                    <em class="error invalid-paymentgateway" style="display: inline-block;">{{ $message }}</em>
+                @enderror
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="input-group input-group-outline mt-3 is-filled @error('live_stripe_key') is-invalid @enderror">
+                <label class="form-label">{{ __('paymentgateway::paymentgateway.paymentgateway.form.live_stripe_key') }}</label>
+                <input type="text" name="live_stripe_key" id="live_stripe_key" class="form-control" value="@if(isset($info)){{ $info->live_stripe_key }}@else{{ old('live_stripe_key') }}@endif">
+                @error('live_stripe_key')
+                    <em class="error invalid-paymentgateway" style="display: inline-block;">{{ $message }}</em>
+                @enderror
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="input-group input-group-outline mt-3 is-filled @error('live_stripe_secret') is-invalid @enderror">
+                <label class="form-label">{{ __('paymentgateway::paymentgateway.paymentgateway.form.live_stripe_secret') }}</label>
+                <input type="text" name="live_stripe_secret" id="live_stripe_secret" class="form-control" value="@if(isset($info)){{ $info->live_stripe_secret }}@else{{ old('live_stripe_secret') }}@endif">
+                @error('live_stripe_secret')
+                    <em class="error invalid-paymentgateway" style="display: inline-block;">{{ $message }}</em>
+                @enderror
+            </div>
+        </div>
+
+    @endif
 
 </div>
 
