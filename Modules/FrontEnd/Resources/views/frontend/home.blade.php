@@ -223,7 +223,7 @@
 <section id="donation" class="mx-3">
     {{-- <div class="overlay"></div> --}}
     <div class="container-fluid py-4 pb-5">
-        <div class="row mb-3">
+        <div class="row">
             <div class="col-md-12 text-start">
                 <h5 class="text-dark fw-normal text-white custom_heading_5"><i class="fi fi-ss-donate"></i> Renforcez le Changement</h5>
                 {{-- <h5 class="text-dark">Ensemble, Alimentons la Démocratie</h5> --}}
