@@ -21,7 +21,7 @@
         }
         #video_page .image-container {
             background-size: cover;
-            height: 170px;
+            height: 210px;
             background-position: center;
             border-radius: 7px;
         }
@@ -133,7 +133,7 @@
 </section> --}}
 
 <section id="video_page" class="pb-5 mx-3">
-    <div class="container py-2">
+    <div class="container-fluid py-2">
         <div class="row">
 
             <div class="col-md-8 pe-md-4 pe-0">

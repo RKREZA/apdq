@@ -17,7 +17,7 @@ Blog
     <style>
         #blog_page .image-container{
             background-size: cover;
-            height: 170px;
+            height: 250px;
             background-position: center;
         }
 
