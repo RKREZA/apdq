@@ -90,7 +90,6 @@ class VideoCategoryController extends Controller
 	{
 		$rules = [
             'name' 			        => 'required',
-            'code'                  => 'required|unique:video_categories,code,'.$id,
 			'icon' 			        => 'nullable|string',
 			'description' 			=> 'nullable|string',
         ];
