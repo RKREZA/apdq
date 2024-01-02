@@ -58,7 +58,7 @@ Payment
         .custom_button{
             border: none;
             border-top: 1px solid #1c449d;
-            border-radius: 50px;
+            border-radius: 6px;
             background: #1c449d;
             color: #fff;
         }
@@ -73,7 +73,7 @@ Payment
         }
 
         #payment-form .form-control {
-            border-radius: 50px;
+            border-radius: 6px;
             padding-left: 15px;
             padding-right: 15px;
             background: #3f3f3f;
@@ -168,67 +168,67 @@ Payment
                             </div>
 
                             <div class="row m-4">
-                                
+
 
 
                                 <div class="panel panel-default credit-card-box">
-                                    
+
                                     <div class="panel-body">
-                        
+
                                         @if (Session::has('success'))
                                             <div class="alert alert-success text-center">
                                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
                                                 <p>{{ Session::get('success') }}</p>
                                             </div>
                                         @endif
-                        
+
                                         @if (Session::has('error'))
                                             <div class="alert alert-danger text-center">
                                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
                                                 <p>{{ Session::get('error') }}</p>
                                             </div>
                                         @endif
-                        
-                                        <form role="form" 
-                                                action="{{ route('frontend.stripe.post') }}" 
-                                                method="post" 
+
+                                        <form role="form"
+                                                action="{{ route('frontend.stripe.post') }}"
+                                                method="post"
                                                 class="require-validation"
                                                 data-cc-on-file="false"
                                                 data-stripe-publishable-key="{{ $stripe_key }}"
                                                 id="payment-form">
                                             @csrf
-                        
+
                                             <div class='row mb-3'>
                                                 <div class='col-xs-12 form-group required'>
-                                                    <label class='control-label text-light'>Name on Card</label> 
+                                                    <label class='control-label text-light'>Name on Card</label>
                                                     <input class='form-control' size='4' type='text'>
                                                 </div>
                                             </div>
-                        
+
                                             <div class='row mb-3'>
-                                                <div class='col-xs-12 form-group card required'>
-                                                    <label class='control-label text-light'>Card Number</label> 
+                                                <div class='col-xs-12 form-group required'>
+                                                    <label class='control-label text-light'>Card Number</label>
                                                     <input autocomplete='off' class='form-control card-number' maxlength='20' size='20' type='text'>
                                                 </div>
                                             </div>
-                        
+
                                             <div class='row mb-4'>
                                                 <div class='col-xs-12 col-md-4 form-group cvc required'>
-                                                    <label class='control-label text-light'>CVC</label> 
+                                                    <label class='control-label text-light'>CVC</label>
                                                     <input autocomplete='off' class='form-control card-cvc' placeholder='ex. 311' minlength='3' maxlength='4' size='4' type='text'>
                                                 </div>
                                                 <div class='col-xs-12 col-md-4 form-group expiration required'>
-                                                    <label class='control-label text-light'>Expiration Month</label> 
+                                                    <label class='control-label text-light'>Expiration Month</label>
                                                     <input class='form-control card-expiry-month' placeholder='MM' minlength='2' maxlength='2' size='2' type='text'>
                                                 </div>
                                                 <div class='col-xs-12 col-md-4 form-group expiration required'>
-                                                    <label class='control-label text-light'>Expiration Year</label> 
+                                                    <label class='control-label text-light'>Expiration Year</label>
                                                     <input class='form-control card-expiry-year' placeholder='YYYY' minlength='4' maxlength='4' size='4' type='text'>
                                                 </div>
                                             </div>
 
-                                            
-    
+
+
                                             <div class='row my-3'>
                                                 <div class='col-md-12 form-group'>
                                                     <div class="error d-none">
@@ -236,16 +236,16 @@ Payment
                                                     </div>
                                                 </div>
                                             </div>
-                        
+
                                             <div class="row mb-3 ">
                                                 <div class="col-xs-12">
                                                     <button class="btn btn-primary btn-lg btn-block w-100 custom_button" type="submit">Pay Now {{ $subscription->price }}$ (CAD)</button>
                                                 </div>
                                             </div>
-                                                
+
                                         </form>
                                     </div>
-                                </div>      
+                                </div>
                             </div>
 
 
