@@ -55,7 +55,7 @@
                     <div class="col-md-12">
                         <div class="input-group input-group-outline my-2 is-filled @if(old('code')) is-valid @endif @error('code') is-invalid @enderror">
                             <label class="form-label"><span class="required">{{ __('video::video.category.form.code') }}</span></label>
-                            <input type="text" name="code" disabled class="form-control" value="{{ $videocategory->code }}">
+                            <input type="text" disabled class="form-control" value="{{ $videocategory->code }}">
                             @error('code')
                                 <em class="error invalid-video" style="display: inline-block;">{{ $message }}</em>
                             @enderror
