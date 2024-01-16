@@ -334,6 +334,14 @@ aside .dropend .dropdown-toggle::after {
     top: 15px;
 }
 
+.drawer_shrink .dropend .dropdown-toggle::after {
+    display: none;
+}
+
+.drawer_shrink ul ul.dropdown-menu{
+    display: none !important;
+}
+
 /* End Aside */
 
 /* Navbar */
