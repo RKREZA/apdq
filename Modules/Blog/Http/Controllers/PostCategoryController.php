@@ -132,7 +132,16 @@ class PostCategoryController extends Controller
 
 		$id                 = request()->input('id');
 		try {
-            PostCategory::find($id)->delete();
+            // PostCategory::find($id)->delete();
+            $category = PostCategory::find($id);
+
+            if($category->posts->count() > 0){
+                DB::commit();
+                $error_msg  = __('blog::blog.category.message.error_post_exist_with_this_category');
+                return response()->json(['error'=>$error_msg]);
+            }
+
+            $category->delete();
         } catch (Exception $e) {
             DB::rollBack();
             $error_msg  = __('core::core.message.error');
@@ -151,7 +160,15 @@ class PostCategoryController extends Controller
         DB::beginTransaction();
         foreach($ids as $id){
             try {
-                PostCategory::find($id)->delete();
+                // PostCategory::find($id)->delete();
+                $category = PostCategory::find($id);
+
+                if($category->posts->count() > 0){
+                    $error_msg  = __('blog::blog.category.message.error_post_exist_with_this_category');
+                    return response()->json(['error'=>$error_msg]);
+                }
+
+                $category->delete();
             } catch (Exception $e) {
                 DB::rollBack();
                 $error_msg = __('core::core.message.error');
@@ -170,9 +187,18 @@ class PostCategoryController extends Controller
 		$id                 = request()->input('id');
 
 		try {
-            $post = PostCategory::find($id);
-            if ($post) {
-                $post->forceDelete();
+            // $post = PostCategory::find($id);
+
+            $category = PostCategory::find($id);
+
+            if($category->posts->count() > 0){
+                DB::commit();
+                $error_msg  = __('blog::blog.category.message.error_post_exist_with_this_category');
+                return response()->json(['error'=>$error_msg]);
+            }
+
+            if ($category) {
+                $category->forceDelete();
             }else{
                 PostCategory::onlyTrashed()->find($id)->forceDelete();
             }
@@ -195,9 +221,17 @@ class PostCategoryController extends Controller
         DB::beginTransaction();
         foreach($ids as $id){
             try {
-                $post = PostCategory::find($id);
-                if ($post) {
-                    $post->forceDelete();
+                // $post = PostCategory::find($id);
+
+                $category = PostCategory::find($id);
+
+                if($category->posts->count() > 0){
+                    $error_msg  = __('blog::blog.category.message.error_post_exist_with_this_category');
+                    return response()->json(['error'=>$error_msg]);
+                }
+
+                if ($category) {
+                    $category->forceDelete();
                 }else{
                     PostCategory::onlyTrashed()->find($id)->forceDelete();
                 }

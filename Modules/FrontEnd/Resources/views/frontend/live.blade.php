@@ -57,12 +57,12 @@ En direct
                         @endif
                     @elseif(auth()->user() && auth()->user()->subscriptionStatus()['status'] != 'no_subscription')
                         <div class="text-center">
-                            <p class="mt-3 text-center">Please subscribe to watch live stream!</p>
+                            <p class="mt-3 text-center">Veuillez vous abonner pour regarder la diffusion en direct !</p>
                             <a href="{{ route('frontend.subscription') }}" class="btn btn-warning text-center" target="_blank">{{ __('core::core.form.buy_now') }}</a>
                         </div>
                     @else
                         <div class="text-center">
-                            <p class="mt-3 text-center">You don't have permission to watch live. Please change you subscription package to watch live stream!</p>
+                            <p class="mt-3 text-center">Vous n'êtes pas autorisé à regarder en direct. Veuillez modifier votre forfait d'abonnement pour regarder la diffusion en direct !</p>
                             <a href="{{ route('frontend.subscription') }}" class="btn btn-warning text-center" target="_blank">{{ __('core::core.form.change') }}</a>
                         </div>
                     @endif

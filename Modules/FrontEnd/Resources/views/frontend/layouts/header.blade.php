@@ -44,12 +44,12 @@
                 <li class="nav-item">
                     <form action="{{ route('frontend.search') }}" method="get" id="search_form">
                         @csrf
-                        <input type="search" name="keyword" @if(isset(request()->keyword)) {{ request()->keyword }} @endif autocomplete="off" placeholder="Search" required />
+                        <input type="search" name="keyword" @if(isset(request()->keyword)) {{ request()->keyword }} @endif autocomplete="off" placeholder="Recherche" required />
                         <button type="submit" class="btn btn-success"><i class="fi fi-br-search"></i></button>
                     </form>
                 </li>
 
-                @php
+                {{-- @php
                     $languages = \Modules\Language\Entities\Language::where('status','Active')->get();
                 @endphp
                 <li class="nav-item dropdown">
@@ -82,7 +82,7 @@
                             @endforeach
                         @endif
                     </ul>
-                </li>
+                </li> --}}
 
                 @if(auth()->check())
                     <li class="nav-item dropdown profile">

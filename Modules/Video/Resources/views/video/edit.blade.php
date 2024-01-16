@@ -32,7 +32,7 @@
             <div class="row">
 
                 <div class="col-md-8">
-                    <form id="video_edit_form" action="{{ route('admin.videos.update', $video->id) }}" method="POST" role="form" autocomplete="off">
+                    <form id="video_edit_form" action="{{ route('admin.videos.update', $video->id) }}" method="POST" role="form" autocomplete="off" accept-charset="UTF-8">
                         @csrf()
                         {{-- @include('video::video.form') --}}
 

@@ -14,4 +14,8 @@ class PostCategory extends Model
 
     protected $fillable = ['code', 'name', 'status'];
 
+    public function posts()
+    {
+        return $this->hasMany('Modules\Blog\Entities\Post','category_id');
+    }
 }

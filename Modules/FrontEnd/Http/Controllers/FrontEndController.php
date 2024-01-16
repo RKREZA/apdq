@@ -91,13 +91,52 @@ class FrontEndController extends Controller
             $videos = Video::where('status', 'Active')
                 ->whereYear('created_at', $year)
                 ->whereMonth('created_at', Carbon::parse($month)->format('m'))
-                ->paginate(21);
+                ->paginate(20);
         } elseif (request()->has('code') && !empty(request()->code)) {
             $videos = Video::where('status', 'Active')
                 ->whereHas('category', function ($query) {
                     $query->where('code', request()->code);
                 })
-                ->paginate(21);
+                ->paginate(20);
+        } elseif (request()->has('tag') && !empty(request()->tag)) {
+            $tag = request()->tag;
+
+            $videos = Video::where('status', 'Active')
+                ->where(function ($query) use ($tag) {
+                    $query->where('tag', 'like', "%{$tag}%")
+                        ->orWhere('tag', 'like', "%{$tag},%")
+                        ->orWhere('tag', 'like', "%,{$tag}%")
+                        ->orWhere('tag', 'like', "{$tag},%")
+                        ->orWhere('tag', 'like', "%,{$tag}");
+                })
+                ->paginate(20);
+        } elseif (request()->has('filter') && !empty(request()->filter)) {
+            $videosQuery = Video::where('status', 'Active');
+
+            // Apply different sorting based on the filter value
+            switch (request()->filter) {
+                case 'latest':
+                    $videosQuery->latest();
+                    break;
+
+                case 'oldest':
+                    $videosQuery->oldest();
+                    break;
+
+                case 'popular':
+                    // Sum up all reaction counts and order by the total count in descending order
+                    $videosQuery->orderByRaw('`like` + `love` + `haha` + `wow` + `angry` + `dislike` DESC');
+
+
+                    break;
+
+                default:
+                    // Handle other filters if needed
+                    break;
+            }
+
+            // Paginate the results
+            $videos = $videosQuery->paginate(20);
         } else {
             $videos = Video::where('status', 'Active')->paginate(21);
         }
@@ -170,7 +209,19 @@ class FrontEndController extends Controller
                                             $query->where('code', request()->code);
                                         })
                                         ->paginate(21);
-        }else{
+        } elseif (request()->has('tag') && !empty(request()->tag)) {
+            $tag = request()->tag;
+
+            $videos = Post::where('status', 'Active')
+                ->where(function ($query) use ($tag) {
+                    $query->where('tag', 'like', "%{$tag}%")
+                        ->orWhere('tag', 'like', "%{$tag},%")
+                        ->orWhere('tag', 'like', "%,{$tag}%")
+                        ->orWhere('tag', 'like', "{$tag},%")
+                        ->orWhere('tag', 'like', "%,{$tag}");
+                })
+                ->paginate(20);
+        } else{
             $posts              = Post::where('status','Active')->paginate(21);
         }
 
@@ -379,7 +430,7 @@ class FrontEndController extends Controller
             return response()->json(['error'=>$error_msg]);
 		}
     }
-    
+
     public function stripe(Request $request)
     {
         $frontend_setting       = FrontendSetting::first();

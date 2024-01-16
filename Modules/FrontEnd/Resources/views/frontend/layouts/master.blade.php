@@ -19,7 +19,8 @@
 
 
     {{-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> --}}
-    <script data-ad-client="ca-pub-7301992079721298" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    {{-- <script data-ad-client="ca-pub-7301992079721298" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> --}}
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7301992079721298" crossorigin="anonymous"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,12 +63,13 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    <script src="https://kit.fontawesome.com/037d9df8c4.js" crossorigin="anonymous"></script>
     <script src="{{ asset('assets/backend/js/sweetalert.min.js') }}"></script>
-    <script src="{{ asset('assets/frontend/js/WOW.js') }}"></script>
+    {{-- <script src="{{ asset('assets/frontend/js/WOW.js') }}"></script> --}}
     <script src="{{ asset('assets/frontend/js/main.js') }}"></script>
     <script src="{{ asset('assets/frontend/js/owl.carousel.min.js') }}"></script>
 
-    <script>
+    {{-- <script>
         (function() {
             var Util,
                 __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
@@ -262,7 +264,7 @@
         );
         wow.init();
 
-    </script>
+    </script> --}}
 
     @if(session('error'))
         <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">

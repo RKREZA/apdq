@@ -78,7 +78,7 @@ Route::group(['middleware'=>'language'],function (){
 
                 DB::table('password_resets')->where(['email'=> $request->email])->delete();
                 $success_msg        = __('admin::auth.message.cheng_pass');
-                return redirect('/admin/login')->with('success' ,$success_msg);
+                return redirect('/auth/login')->with('success' ,$success_msg);
 
 			})->middleware('guest')->name('admin.password.update');
 

@@ -16,6 +16,7 @@ return [
             'seo_title' => 'Titre SEO',
             'seo_description' => 'Description SEO',
             'seo_keyword' => 'Mot-clé SEO',
+            'created_at' => 'Date de publication',
         ],
 
     ],
@@ -29,6 +30,10 @@ return [
             'code' => 'Code',
             'name' => 'Nom',
         ],
+
+        'message' => [
+            'error_video_exist_with_this_category' => 'Le message existe déjà dans cette catégorie'
+        ]
     ],
 
 ];

@@ -58,7 +58,7 @@ Vidéo
             background: transparent;
         }
         #search_page .card:hover{
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
         #search_page img{
             width: 100%;
@@ -153,7 +153,9 @@ Vidéo
                                     <h6><a href="{{ route('frontend.video.single', $video->slug) }}" class="text-light">{{ $video->title }}</a></h6>
                                     <div class="row sub-content">
                                         <div class="col-6">
-                                            <small><a href="" class="text-muted"><i class="fi fi-ss-clipboard-list-check"></i> {{ $video->category->name }}</a></small>
+                                            @isset($video->category)
+                                            <small><a href="" class="text-muted"><i class="fi fi-ss-clipboard-list-check"></i> {{ optional($video->category)->name }}</a></small>
+                                            @endisset
                                         </div>
                                         <div class="col-6 text-end text-muted">
                                             <small><i class="fi fi-ss-calendar-clock"></i> {{ date('d/m/Y', strtotime($video->created_at)) }}</small>

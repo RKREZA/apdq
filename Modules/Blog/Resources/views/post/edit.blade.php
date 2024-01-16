@@ -90,7 +90,10 @@
             },
             tag: {
                 required: true
-            }
+            },
+            created_at: {
+                required: true
+            },
 
         };
         var messages                    = {
@@ -104,6 +107,9 @@
                 required: "{{ __('core::core.form.validation.required') }}",
             },
             tag: {
+                required: "{{ __('core::core.form.validation.required') }}",
+            },
+            created_at: {
                 required: "{{ __('core::core.form.validation.required') }}",
             },
         };

@@ -51,7 +51,8 @@ class PostController extends Controller
 			'category_id' 			    => 'required',
 			'seo_title' 			    => 'nullable|string',
 			'seo_description' 		    => 'nullable|string',
-			'seo_keyword' 			    => 'nullable|string'
+			'seo_keyword' 			    => 'nullable|string',
+			'created_at' 			    => 'required',
         ];
 
         $messages = [
@@ -62,6 +63,7 @@ class PostController extends Controller
             'seo_title.required'        => __('core::core.form.validation.required'),
             'seo_description.required'  => __('core::core.form.validation.required'),
             'seo_keyword.required'      => __('core::core.form.validation.required'),
+            'created_at.required'       => __('core::core.form.validation.required'),
         ];
 
         $validate = $this->validate($request, $rules, $messages);
@@ -75,7 +77,8 @@ class PostController extends Controller
                 'category_id'   => $request->input('category_id'),
                 'seo_title'     => $request->input('seo_title'),
                 'seo_description'=> $request->input('seo_description'),
-                'seo_keyword'   => $request->input('seo_keyword')
+                'seo_keyword'   => $request->input('seo_keyword'),
+                'created_at'    => $request->input('created_at')
             ]);
 
             if (!empty($request->input('files'))) {
@@ -114,11 +117,13 @@ class PostController extends Controller
         $rules = [
             'title' 					=> 'required',
 			'description' 	            => 'required|string',
+			'created_at' 			    => 'required',
         ];
 
         $messages = [
             'title.required'    	=> __('core::core.form.validation.required'),
             'description.required'  => __('core::core.form.validation.required'),
+            'created_at.required'       => __('core::core.form.validation.required'),
         ];
 
         $validate = $this->validate($request, $rules, $messages);

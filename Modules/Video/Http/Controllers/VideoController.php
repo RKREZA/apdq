@@ -135,7 +135,9 @@ class VideoController extends Controller
 
         $validate = $this->validate($request, $rules, $messages);
 
+        // $request->title  = utf8_encode($request->title);
 
+        // dd($request->all());
         DB::beginTransaction();
 		try {
             $input       = $request->all();

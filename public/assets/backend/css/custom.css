@@ -1211,7 +1211,7 @@ language-text{
 
 .create-button {
     padding: 8px 15px 8px 15px;
-    border: 0;
+    /* border: 0; */
     background-color: #2045a8 !important;
     opacity: 1 !important;
     box-shadow: none !important;

@@ -137,7 +137,16 @@ class VideoCategoryController extends Controller
 
 		$id                 = request()->input('id');
 		try {
-            VideoCategory::find($id)->delete();
+            $category = VideoCategory::find($id);
+
+            if($category->videos->count() > 0){
+                DB::commit();
+                $error_msg  = __('video::video.category.message.error_video_exist_with_this_category');
+                return response()->json(['error'=>$error_msg]);
+            }
+
+            $category->delete();
+
         } catch (Exception $e) {
             DB::rollBack();
             $error_msg  = __('core::core.message.error');
@@ -156,7 +165,17 @@ class VideoCategoryController extends Controller
         DB::beginTransaction();
         foreach($ids as $id){
             try {
-                VideoCategory::find($id)->delete();
+                // VideoCategory::find($id)->delete();
+
+                $category = VideoCategory::find($id);
+
+                if($category->videos->count() > 0){
+                    $error_msg  = __('video::video.category.message.error_video_exist_with_this_category');
+                    return response()->json(['error'=>$error_msg]);
+                }
+
+                $category->delete();
+
             } catch (Exception $e) {
                 DB::rollBack();
                 $error_msg = __('core::core.message.error');
@@ -175,9 +194,16 @@ class VideoCategoryController extends Controller
 		$id                 = request()->input('id');
 
 		try {
-            $video = VideoCategory::find($id);
-            if ($video) {
-                $video->forceDelete();
+            $category = VideoCategory::find($id);
+
+            if($category->videos->count() > 0){
+                DB::commit();
+                $error_msg  = __('video::video.category.message.error_video_exist_with_this_category');
+                return response()->json(['error'=>$error_msg]);
+            }
+
+            if ($category) {
+                $category->forceDelete();
             }else{
                 VideoCategory::onlyTrashed()->find($id)->forceDelete();
             }
@@ -200,9 +226,16 @@ class VideoCategoryController extends Controller
         DB::beginTransaction();
         foreach($ids as $id){
             try {
-                $video = VideoCategory::find($id);
-                if ($video) {
-                    $video->forceDelete();
+
+                $category = VideoCategory::find($id);
+
+                if($category->videos->count() > 0){
+                    $error_msg  = __('video::video.category.message.error_video_exist_with_this_category');
+                    return response()->json(['error'=>$error_msg]);
+                }
+
+                if ($category) {
+                    $category->forceDelete();
                 }else{
                     VideoCategory::onlyTrashed()->find($id)->forceDelete();
                 }

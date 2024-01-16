@@ -104,8 +104,7 @@
         }
         .reaction-counter {
             position: relative;
-            top: -4px;
-            left: -8px;
+            top: -7px;
             font-weight: 100;
         }
         #share_button{
@@ -119,6 +118,18 @@
         .embed_code{
             border-radius: 10px;
             overflow: hidden;
+        }
+
+        @keyframes shake {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(-5px, 0); }
+            50% { transform: translate(5px, 0); }
+            75% { transform: translate(-5px, 0); }
+            100% { transform: translate(5px, 0); }
+        }
+
+        .shake {
+            animation: shake 0.5s ease-in-out;
         }
     </style>
 @endpush
@@ -148,58 +159,67 @@
                             <div class="row">
                                 <div class="col text-center emoji my-2">
                                     <button class="reaction-button" data-video-id="{{ $video->id }}" data-reaction-type="like">
-                                        <i class="fi fi-rs-social-network"></i>
+                                        {{-- <i class="fi fi-rs-social-network"></i> --}}
+                                        <img src="{{ asset('assets/frontend/img/like.webp') }}" style="height: 35px" alt="">
                                         <input type="hidden" class="previous_value" value="{{ $video->like }}">
                                     </button>
-                                    <div class="badge badge-sm reaction-counter">{{ $video->like }}</div>
+                                    <div class="badge badge-sm reaction-counter w-100">{{ $video->like }}</div>
                                 </div>
                                 <div class="col text-center emoji my-2">
                                     <button class="reaction-button" data-video-id="{{ $video->id }}" data-reaction-type="love">
-                                        <i class="fi fi-rs-heart"></i>
+                                        {{-- <i class="fi fi-rs-heart"></i> --}}
+                                        <img src="{{ asset('assets/frontend/img/love.webp') }}" style="height: 35px" alt="">
                                         <input type="hidden" class="previous_value" value="{{ $video->love }}">
                                     </button>
-                                    <div class="badge badge-sm reaction-counter">{{ $video->love }}</div>
+                                    <div class="badge badge-sm reaction-counter w-100">{{ $video->love }}</div>
                                 </div>
                                 <div class="col text-center emoji my-2">
                                     <button class="reaction-button" data-video-id="{{ $video->id }}" data-reaction-type="haha">
-                                        <i class="fi fi-rs-surprise"></i>
+                                        {{-- <i class="fi fi-rs-surprise"></i> --}}
+                                        <img src="{{ asset('assets/frontend/img/haha.webp') }}" style="height: 35px" alt="">
                                         <input type="hidden" class="previous_value" value="{{ $video->haha }}">
                                     </button>
-                                    <div class="badge badge-sm reaction-counter">{{ $video->haha }}</div>
+                                    <div class="badge badge-sm reaction-counter w-100">{{ $video->haha }}</div>
                                 </div>
                                 <div class="col text-center emoji my-2">
                                     <button class="reaction-button" data-video-id="{{ $video->id }}" data-reaction-type="wow">
-                                        <i class="fi fi-rs-surprise"></i>
+                                        {{-- <i class="fi fi-rs-surprise"></i> --}}
+                                        <img src="{{ asset('assets/frontend/img/wow.webp') }}" style="height: 35px" alt="">
                                         <input type="hidden" class="previous_value" value="{{ $video->wow }}">
                                     </button>
-                                    <div class="badge badge-sm reaction-counter">{{ $video->wow }}</div>
+                                    <div class="badge badge-sm reaction-counter w-100">{{ $video->wow }}</div>
                                 </div>
                                 <div class="col text-center emoji my-2">
                                     <button class="reaction-button" data-video-id="{{ $video->id }}" data-reaction-type="sad">
-                                        <i class="fi fi-rs-sad"></i>
+                                        {{-- <i class="fi fi-rs-sad"></i> --}}
+                                        <img src="{{ asset('assets/frontend/img/sad.webp') }}" style="height: 35px" alt="">
                                         <input type="hidden" class="previous_value" value="{{ $video->sad }}">
                                     </button>
-                                    <div class="badge badge-sm reaction-counter">{{ $video->sad }}</div>
+                                    <div class="badge badge-sm reaction-counter w-100">{{ $video->sad }}</div>
                                 </div>
                                 <div class="col text-center emoji my-2">
                                     <button class="reaction-button" data-video-id="{{ $video->id }}" data-reaction-type="angry">
-                                        <i class="fi fi-rs-angry"></i>
+                                        {{-- <i class="fi fi-rs-angry"></i> --}}
+                                        <img src="{{ asset('assets/frontend/img/angry.webp') }}" style="height: 35px" alt="">
                                         <input type="hidden" class="previous_value" value="{{ $video->angry }}">
                                     </button>
-                                    <div class="badge badge-sm reaction-counter">{{ $video->angry }}</div>
+                                    <div class="badge badge-sm reaction-counter w-100">{{ $video->angry }}</div>
                                 </div>
                                 <div class="col text-center emoji my-2">
                                     <button class="reaction-button" data-video-id="{{ $video->id }}" data-reaction-type="dislike">
-                                        <i class="fi fi-rs-hand"></i>
+                                        {{-- <i class="fi fi-rs-hand"></i> --}}
+                                        <img src="{{ asset('assets/frontend/img/dislike.webp') }}" style="height: 35px" alt="">
                                         <input type="hidden" class="previous_value" value="{{ $video->dislike }}">
                                     </button>
-                                    <div class="badge badge-sm reaction-counter">{{ $video->dislike }}</div>
+                                    <div class="badge badge-sm reaction-counter w-100">{{ $video->dislike }}</div>
                                 </div>
                                 <div class="col text-center emoji my-2" id="share_button">
                                     <button class="reaction-button">
-                                        <i class="fi fi-br-share"></i>
+                                        {{-- <i class="fi fi-br-share"></i> --}}
+
+                                        <img src="{{ asset('assets/frontend/img/share.webp') }}" style="height: 35px" alt="">
                                     </button>
-                                    <div class="badge badge-sm reaction-counter">Share</div>
+                                    <div class="badge badge-sm reaction-counter w-100">Share</div>
                                 </div>
                             </div>
                         </div>
@@ -221,7 +241,20 @@
                         {!! $video->description !!}
 
                         <div class="mt-3">
-                            <i class="fi fi-ss-label text-info" style="transform: rotate(90deg); display:inline-block;"></i> <span class="badge bg-info badge-sm ms-2">{{ $video->tag }}</span>
+                            {{-- <i class="fi fi-ss-label text-info" style="transform: rotate(90deg); display:inline-block;"></i> --}}
+
+                                @php
+                                    $tags = explode(',', $video->tag);
+                                @endphp
+
+                                @foreach($tags as $tag)
+                                    <span class="badge bg-info badge-sm">
+                                        <a href="{{ route('frontend.video', ['tag' => $tag]) }}" class="text-white">{{ $tag }}</a>
+                                        @if(!$loop->last)
+                                            ,
+                                        @endif
+                                    </span>
+                                @endforeach
                         </div>
                     </div>
 
@@ -239,7 +272,7 @@
 
                 <div class="row">
 
-                    <h5 class="">Recent Videos</h5>
+                    <h5 class="">Vidéos récentes</h5>
                     <hr class="horizontal light">
 
                     @foreach ($recent_videos as $recent_video)
@@ -254,7 +287,9 @@
                                     <h6><a href="{{ route('frontend.video.single', $recent_video->slug) }}" class="text-muted">{{ $recent_video->title }}</a></h6>
                                     <div class="row sub-content">
                                         <div class="col-6">
-                                            <small><a href="{{ route('frontend.video') }}?code={{ $video->category->code }}" class=""><i class="fi fi-ss-clipboard-list-check"></i> {{ $recent_video->category->name }}</a></small>
+                                            @isset($video->category)
+                                            <small><a href="{{ route('frontend.video') }}?code={{ optional($video->category)->code }}" class=""><i class="fi fi-ss-clipboard-list-check"></i> {{ $recent_video->category->name }}</a></small>
+                                            @endisset
                                         </div>
                                         <div class="col-6 text-end text-muted">
                                             <small><i class="fi fi-ss-calendar-clock"></i> {{ date('d/m/Y', strtotime($recent_video->created_at)) }}</small>
@@ -310,6 +345,16 @@
                         var newValue = previousValue+1;
                         badge.html(newValue);
                         button.next('.previous_value').val(previousValue + 1);
+
+                        // Add shake effect to the emoji
+                        button.closest('.emoji').find('img').addClass('shake');
+
+                        // Remove shake effect after a delay
+                        setTimeout(function() {
+                            button.closest('.emoji').find('img').removeClass('shake');
+                        }, 1000); // Adjust the duration (in milliseconds) as needed
+
+
                     } else {
                         console.error('Failed to submit reaction');
                     }

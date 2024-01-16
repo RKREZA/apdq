@@ -32,7 +32,7 @@
             <div class="row">
 
                 <div class="col-md-8">
-                    <form id="video_create_form" action="{{ route('admin.videos.store') }}" method="POST" role="form" autocomplete="off">
+                    <form id="video_create_form" action="{{ route('admin.videos.store') }}" method="POST" role="form" autocomplete="off" accept-charset="UTF-8">
                         @csrf()
 
                         <div class="row">

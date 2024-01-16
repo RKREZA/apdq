@@ -27,7 +27,7 @@ class Post extends Model
         'seo_title',
         'seo_description',
         'seo_keyword',
-
+        'created_at',
     ];
 
     /**

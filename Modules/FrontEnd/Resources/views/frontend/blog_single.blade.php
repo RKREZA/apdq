@@ -123,8 +123,35 @@
                         {!! $post->description !!}
                     </div>
 
-                    <div class="col-md-12 mt-5">
-                        <i class="fi fi-ss-label text-info" style="transform: rotate(90deg); display:inline-block;"></i> <span class="badge bg-info badge-sm ms-2">{{ $post->tag }}</span>
+                    <div class="col-md-12">
+                        <ins class="adsbygoogle"
+                            style="display:block; text-align:center;"
+                            data-ad-layout="in-article"
+                            data-ad-format="fluid"
+                            data-ad-client="ca-pub-7301992079721298"
+                            data-ad-slot="5426634185"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    </div>
+
+
+
+                    <div class="mt-3">
+                        {{-- <i class="fi fi-ss-label text-info" style="transform: rotate(90deg); display:inline-block;"></i> --}}
+
+                            @php
+                                $tags = explode(',', $post->tag);
+                            @endphp
+
+                            @foreach($tags as $tag)
+                                <span class="badge bg-info badge-sm">
+                                    <a href="{{ route('frontend.blog', ['tag' => $tag]) }}" class="text-white">{{ $tag }}</a>
+                                    @if(!$loop->last)
+                                        ,
+                                    @endif
+                                </span>
+                            @endforeach
                     </div>
 
                     <div class="col-md-12 mt-5">

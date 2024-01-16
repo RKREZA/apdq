@@ -5,4 +5,6 @@ return [
         'title' => 'Home',
     ],
 
+    'search' => 'Search',
+
 ];

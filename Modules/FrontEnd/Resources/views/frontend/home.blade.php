@@ -21,21 +21,21 @@
 
 @section('content')
 
-@if(auth()->user() && auth()->user()->subscriptionStatus()['status'] != 'no_subscription' && auth()->user()->subscriptionStatus()['optionAdFree'] == 'Active' && auth()->user()->hasRole('Admin'))
+{{-- {{ dd(auth()->user()->subscriptionStatus()) }} --}}
+@if(auth()->user() && auth()->user()->subscriptionStatus()['status'] != 'no_subscription' && auth()->user()->subscriptionStatus()['optionAdFree'] == 'Active' && auth()->user()->hasRole('User'))
 
 @else
     <section id="ad_banner" class=" mb-4 mx-3">
         <div class="container-fluid">
             <div class="row justify-content-center">
-                <div class="col" style="background: #ccc; border-radius: 15px;">
-                    <!-- Mods Center Responsive -->
+                <div class="col" style="width: 260px;" id="Adscode">
+                    <!-- banner ads -->
                     <ins class="adsbygoogle"
-                        style="display:block;"
+                        style="display:block"
                         data-ad-client="ca-pub-7301992079721298"
-                        data-ad-slot="12345678901"
+                        data-ad-slot="4688267585"
                         data-ad-format="auto"
-                    >
-                    </ins>
+                        data-full-width-responsive="true"></ins>
                     <script>
                         (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>
@@ -45,6 +45,84 @@
     </section>
 @endif
 
+<section id="video" class="mx-3">
+    <div class="container-fluid pb-3">
+        <div class="row mb-2">
+            <div class="col-11 text-start">
+                <a href="{{ route('frontend.video') }}">
+                    <h5 class="fw-normal text-white custom_heading_5"><i class="fi fi-ss-fire-flame-curved"></i> Dernières vidéos</h5>
+                </a>
+            </div>
+            <div class="col-1 text-end">
+                <a href="{{ route('frontend.video') }}">
+                    <h5 class="fw-normal text-white"><i class="fi fi-br-angle-double-small-right"></i></h5>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 px-2 mb-3">
+                <div class="owl-carousel owl-theme">
+
+                    @foreach ($videos->take(8) as $video)
+                        @if (isset($video['is_ad']) && $video['is_ad'])
+                            {{-- Insert the ad section --}}
+
+                            @if(auth()->user() && auth()->user()->subscriptionStatus()['status'] != 'no_subscription' && auth()->user()->subscriptionStatus()['optionAdFree'] == 'Active' && auth()->user()->hasRole('User'))
+
+                            @else
+                                <div class="item">
+                                    <div class="card border-0">
+                                        <div class="card-body" style="min-width: 260px;">
+                                            <!-- Mods Center Responsive -->
+                                            <ins class="adsbygoogle"
+                                                style="display:block"
+                                                data-ad-format="fluid"
+                                                data-ad-layout-key="-79+ew-1a-28+94"
+                                                data-ad-client="ca-pub-7301992079721298"
+                                                data-ad-slot="5618205875"></ins>
+                                            <script>
+                                                (adsbygoogle = window.adsbygoogle || []).push({});
+                                            </script>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+
+                        @else
+                            {{-- Regular video item --}}
+                            <div class="item">
+                                <a href="{{ route('frontend.video.single', $video['slug']) }}" class="">
+                                    <div class="card border-0">
+                                        <div class="card-body p-0">
+                                            <div class="image-container" style="background-image:url({{ $video['thumbnail_url'] }});"></div>
+                                            <div class="video-content-wrapper">
+                                                <div class="video-content">
+                                                    <h6 class="text-white">{{ $video['title'] }}</h6>
+                                                    <div class="row sub-content">
+                                                        <div class="col-12">
+                                                            @isset($video->category)
+                                                            <small class="text-white"><i class="fi fi-ss-clipboard-list-check"></i> {{ optional($video->category)->name }}</small>
+                                                            @endisset
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        @endif
+                    @endforeach
+
+
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
 
 @foreach($video_categories as $video_category)
     @if(count($video_category->videos)>0)
@@ -80,26 +158,25 @@
                                 @if (isset($video['is_ad']) && $video['is_ad'])
                                     {{-- Insert the ad section --}}
 
-                                    @if(auth()->user() && auth()->user()->subscriptionStatus()['status'] != 'no_subscription' && auth()->user()->subscriptionStatus()['optionAdFree'] == 'Active' && auth()->user()->hasRole('Admin'))
+                                    @if(auth()->user() && auth()->user()->subscriptionStatus()['status'] != 'no_subscription' && auth()->user()->subscriptionStatus()['optionAdFree'] == 'Active' && auth()->user()->hasRole('User'))
 
                                     @else
-                                        <div class="item">
-                                            <div class="card border-0">
-                                                <div class="card-body" style="min-height: 210px; background: #ccc">
-                                                    <!-- Mods Center Responsive -->
-                                                    <ins class="adsbygoogle"
-                                                        style="display:block;"
-                                                        data-ad-client="ca-pub-7301992079721298"
-                                                        data-ad-slot="12345678901"
-                                                        data-ad-format="auto"
-                                                    ></ins>
-
-                                                    <script>
-                                                        (adsbygoogle = window.adsbygoogle || []).push({});
-                                                    </script>
-                                                </div>
+                                    <div class="item">
+                                        <div class="card border-0">
+                                            <div class="card-body" style="min-width: 250px;">
+                                                <!-- Adsense Ad Code -->
+                                                <ins class="adsbygoogle"
+                                                     style="display:block"
+                                                     data-ad-format="fluid"
+                                                     data-ad-layout-key="-79+ew-1a-28+94"
+                                                     data-ad-client="ca-pub-7301992079721298"
+                                                     data-ad-slot="5618205875"></ins>
+                                                <script>
+                                                    (adsbygoogle = window.adsbygoogle || []).push({});
+                                                </script>
                                             </div>
                                         </div>
+                                    </div>
                                     @endif
 
                                 @else
@@ -140,20 +217,20 @@
 @endforeach
 
 
-@if(auth()->user() && auth()->user()->subscriptionStatus()['status'] != 'no_subscription' && auth()->user()->subscriptionStatus()['optionAdFree'] == 'Active' && auth()->user()->hasRole('Admin'))
+@if(auth()->user() && auth()->user()->subscriptionStatus()['status'] != 'no_subscription' && auth()->user()->subscriptionStatus()['optionAdFree'] == 'Active' && auth()->user()->hasRole('User'))
 
 @else
     <section id="ad_banner_2" class=" mb-4 mx-3">
         <div class="container-fluid">
             <div class="row justify-content-center">
-                <div class="col" style="background: #ccc; border-radius: 15px;">
+                <div class="col" style="min-width: 260px;">
                     <!-- Mods Center Responsive -->
                     <ins class="adsbygoogle"
-                        style="display:block;"
+                        style="display:block"
                         data-ad-client="ca-pub-7301992079721298"
-                        data-ad-slot="12345678902"
-                        data-ad-format="auto">
-                    </ins>
+                        data-ad-slot="4688267585"
+                        data-ad-format="auto"
+                        data-full-width-responsive="true"></ins>
                     <script>
                         (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>
@@ -270,7 +347,7 @@
                 <h5 class="text-white">Vers notre newsletter</h5>
                 <form action="{{ route('frontend.newsletter') }}" method="post" class="mt-4" id="newsletterForm">
                     @csrf
-                    <input type="email" class="form-control newsletter-input" name="email" placeholder="Email" required>
+                    <input type="email" class="form-control newsletter-input" name="email" placeholder="E-mail" required>
                     <button type="submit" class="btn btn-lg btn-default newsletter-button mt-3 w-100">S'abonner</button>
                 </form>
             </div>

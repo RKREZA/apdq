@@ -29,7 +29,7 @@ Blog
             background: #2c2c2c82;
         }
         #blog_page .card:hover{
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
         #blog_page img{
             width: 100%;
@@ -69,6 +69,14 @@ Blog
 
 <div id="blog_page" class="pb-5">
     <div class="container-fluid py-2">
+        @if (isset(request()->tag))
+            <div class="mb-3">
+                <span class="badge bg-dark text-light badge-sm">
+                    <i class="fi fi-ss-label" style="transform: rotate(90deg); display:inline-block;"></i> &nbsp;
+                    {{ request()->tag }}
+                </span>
+            </div>
+        @endif
         <div class="row">
             <div class="col-md-3" id="filter">
                 <div class="card">

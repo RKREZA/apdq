@@ -17,7 +17,7 @@ Vidéo
     <style>
         #video_page .image-container{
             background-size: cover;
-            height: 210px;
+            height: 180px;
             background-position: center;
         }
         /* #video .image-container:hover{
@@ -51,7 +51,7 @@ Vidéo
             background: #2c2c2c82;
         }
         #video_page .card:hover{
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
         #video_page img{
             width: 100%;
@@ -125,36 +125,45 @@ Vidéo
 
 <section id="video_page" class="pb-5">
     <div class="container-fluid py-2">
-        <div class="mb-3">
+            @if (isset(request()->tag))
+            <div class="mb-3">
+                <span class="badge bg-dark text-light badge-sm">
+                    <i class="fi fi-ss-label" style="transform: rotate(90deg); display:inline-block;"></i> &nbsp;
+                    {{ request()->tag }}
+                </span>
+            </div>
+            @endif
             @if (isset(request()->code))
-                        <span class="badge bg-dark text-light badge-sm ms-2">
-                            <i class="fi fi-ss-label" style="transform: rotate(90deg); display:inline-block;"></i>
-                            {{ request()->code }}
-                        </span>
+            <div class="mb-3">
+                <span class="badge bg-dark text-light badge-sm">
+                    <i class="fi fi-ss-label" style="transform: rotate(90deg); display:inline-block;"></i> &nbsp;
+                    {{ request()->code }}
+                </span>
+            </div>
             @endif
             @if (isset(request()->year))
-                        <span class="badge bg-dark text-light badge-sm ms-2">
-                            <i class="fi fi-ss-label" style="transform: rotate(90deg); display:inline-block;"></i>
-                            {{ request()->year }}
-                        </span>
+            <div class="mb-3">
+                <span class="badge bg-dark text-light badge-sm">
+                    <i class="fi fi-ss-label" style="transform: rotate(90deg); display:inline-block;"></i> &nbsp;
+                    {{ request()->year }}
+                </span>
+            </div>
             @endif
 
             @if (isset(request()->month))
-                        <span class="badge bg-dark text-light badge-sm ms-2">
-                            <i class="fi fi-ss-label" style="transform: rotate(90deg); display:inline-block;"></i>
-                            {{ request()->month }}
-                        </span>
+            <div class="mb-3">
+                <span class="badge bg-dark text-light badge-sm">
+                    <i class="fi fi-ss-label" style="transform: rotate(90deg); display:inline-block;"></i> &nbsp;
+                    {{ request()->month }}
+                </span>
+            </div>
             @endif
-        </div>
 
         <div class="row">
 
 
-            <div class="col-md-3" id="filter">
+            {{-- <div class="col-md-3" id="filter">
                 <div class="card">
-                    {{-- <div class="card-header bg-white">
-                        <h5 class="mt-2">Filter</h5>
-                    </div> --}}
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
@@ -177,13 +186,19 @@ Vidéo
 
                     </div>
                 </div>
+            </div> --}}
+
+            <div class="col-md-12 mb-2">
+                <a href="{{ route('frontend.video') }}?filter=latest" class="btn btn-dark m-1 ms-0 @if(Request::get('filter') == 'latest') bg-light text-dark @endif">Dernier</a>
+                <a href="{{ route('frontend.video') }}?filter=popular" class="btn btn-dark m-1 ms-0 @if(Request::get('filter') == 'popular') bg-light text-dark @endif">Populaire</a>
+                <a href="{{ route('frontend.video') }}?filter=oldest" class="btn btn-dark m-1 ms-0 @if(Request::get('filter') == 'oldest') bg-light text-dark @endif">Le plus ancien</a>
             </div>
 
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="row">
                     @foreach ($videos as $video)
 
-                        <div class="col-md-4 mb-4">
+                        <div class="col-md-3 mb-4">
                             <div class="card border-0">
                                 <div class="card-body p-0">
                                     <a href="{{ route('frontend.video.single', $video->slug) }}" class="">
@@ -195,7 +210,9 @@ Vidéo
                                         <h6><a href="{{ route('frontend.video.single', $video->slug) }}" class="text-white">{{ $video->title }}</a></h6>
                                         <div class="row sub-content">
                                             <div class="col-12">
-                                                <small><a href="{{ route('frontend.video') }}?code={{ $video->category->code }}" class="text-white"><i class="fi fi-ss-clipboard-list-check"></i> {{ $video->category->name }}</a></small>
+                                                @isset($video->category)
+                                                <small><a href="{{ route('frontend.video') }}?code={{ optional($video->category)->code }}" class="text-white"><i class="fi fi-ss-clipboard-list-check"></i> {{ optional($video->category)->name }}</a></small>
+                                                @endisset
                                             </div>
                                             {{-- <div class="col-6 text-end text-muted">
                                                 <small><i class="fi fi-ss-calendar-clock"></i> {{ date('d/m/Y', strtotime($video->created_at)) }}</small>

@@ -29,7 +29,7 @@
 
     <div class="card">
         <div class="card-body">
-            <form id="video_create_form" action="{{ route('admin.videos.store') }}" method="POST" role="form" autocomplete="off">
+            <form id="video_create_form" action="{{ route('admin.videos.store') }}" method="POST" role="form" autocomplete="off" accept-charset="UTF-8">
                 @csrf()
                 {{-- @include('video::video.manual.form') --}}
 

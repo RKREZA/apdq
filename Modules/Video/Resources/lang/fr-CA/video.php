@@ -32,10 +32,15 @@ return [
 
         'form' => [
             'icon' => 'Icône',
+            'icon_from' => '(Font Awesome or Flat Icon)',
             'description' => 'Description',
             'code' => 'Code',
             'name' => 'Nom',
         ],
+
+        'message' => [
+            'error_video_exist_with_this_category' => 'La vidéo existe déjà avec cette catégorie'
+        ]
     ],
 
 ];

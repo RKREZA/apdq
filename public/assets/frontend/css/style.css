@@ -20,6 +20,10 @@ a:hover, a:focus{
     color: #fff !important;
 }
 
+.note-modal-content{
+    margin: 21vh auto !important;
+}
+
 .back_button{
     font-size: 1.2em;
     position: relative;
@@ -947,7 +951,7 @@ section#blog{
 }
 
 #blog .card:hover{
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 #blog .post-content h6{

@@ -58,7 +58,7 @@
                                 'title'             => __('blog::blog.post.form.title'),
                                 'category_id'       => __('blog::blog.post.form.category_id'),
                                 'status'            => __('core::core.form.status'),
-                                'created_at'        => __('core::core.form.created_at'),
+                                'created_at'        => __('blog::blog.post.form.created_at'),
                                 'action'            => __('core::core.form.action'),
                             ],
                         ])

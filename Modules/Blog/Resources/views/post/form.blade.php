@@ -17,7 +17,7 @@
 
 <div class="row">
 
-    <div class="col-md-12">
+    <div class="col-md-6">
         <div class="input-group input-group-outline mt-3 is-filled @error('category_id') is-invalid @enderror is-filled">
             <label class="form-label" for="category_id"><span class="required">{{ __('blog::blog.post.form.category_id') }}</span></label>
             <select name="category_id" id="category_id" class="form-control @error('category_id') is-invalid @enderror">
@@ -28,6 +28,17 @@
             </select>
             @error('category_id')
                 <em class="error invalid-post" style="display: inline-block;">{{ $message }}</em>
+            @enderror
+        </div>
+    </div>
+
+    <div class="col-md-6 pe-0">
+        <div class="input-group input-group-outline mt-3 is-filled @error('created_at') is-invalid @enderror">
+            <label class="form-label"><span class="required">{{ __('blog::blog.post.form.created_at') }}</span></label>
+            <input type="datetime-local" name="created_at" id="created_at" class="form-control" value="@if(isset($post)){{ $post->created_at }}@else{{ old('created_at') }}@endif">
+
+            @error('created_at')
+                <em class="error invalid-video" style="display: inline-block;">{{ $message }}</em>
             @enderror
         </div>
     </div>

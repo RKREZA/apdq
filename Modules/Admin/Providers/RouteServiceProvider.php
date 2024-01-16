@@ -20,7 +20,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected $moduleNamespace = 'Modules\Admin\Http\Controllers';
 
-    public const HOME = '/admin/dashboard';
+    public const HOME = '/auth/dashboard';
 
     /**
      * Called before routes are registered.

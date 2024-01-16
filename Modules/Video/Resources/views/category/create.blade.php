@@ -64,7 +64,7 @@
 
                     <div class="col-md-12">
                         <div class="input-group input-group-outline my-2 is-filled @if(old('icon')) is-valid @endif @error('icon') is-invalid @enderror">
-                            <label class="form-label"><span class="required">{{ __('video::video.category.form.icon') }}</span></label>
+                            <label class="form-label"><span class="required">{{ __('video::video.category.form.icon') }} {{ __('video::video.category.form.icon_from') }}</span></label>
                             <input type="text" name="icon" class="form-control" value="{{ old('icon') }}">
                             @error('icon')
                                 <em class="error invalid-video" style="display: inline-block;">{{ $message }}</em>
