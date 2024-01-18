@@ -189,9 +189,9 @@ Vidéo
             </div> --}}
 
             <div class="col-md-12 mb-2">
-                <a href="{{ route('frontend.video') }}?filter=latest" class="btn btn-dark m-1 ms-0 @if(Request::get('filter') == 'latest') bg-light text-dark @endif">Dernier</a>
-                <a href="{{ route('frontend.video') }}?filter=popular" class="btn btn-dark m-1 ms-0 @if(Request::get('filter') == 'popular') bg-light text-dark @endif">Populaire</a>
-                <a href="{{ route('frontend.video') }}?filter=oldest" class="btn btn-dark m-1 ms-0 @if(Request::get('filter') == 'oldest') bg-light text-dark @endif">Le plus ancien</a>
+                <a href="{{ route('frontend.video') }}?filter=latest" class="btn btn-dark m-1 ms-0 @if(Request::get('filter') == 'latest') bg-light text-dark @endif">Les plus récentes</a>
+                <a href="{{ route('frontend.video') }}?filter=popular" class="btn btn-dark m-1 ms-0 @if(Request::get('filter') == 'popular') bg-light text-dark @endif">Populaires</a>
+                <a href="{{ route('frontend.video') }}?filter=oldest" class="btn btn-dark m-1 ms-0 @if(Request::get('filter') == 'oldest') bg-light text-dark @endif">Les plus anciennes</a>
             </div>
 
             <div class="col-md-12">
