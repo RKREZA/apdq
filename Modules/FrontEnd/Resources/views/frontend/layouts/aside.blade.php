@@ -64,6 +64,7 @@
         dd.addEventListener('click', function (e) {
             var el = this.nextElementSibling;
             el.classList.toggle('d-block');
+            this.classList.toggle('open_caret');
         });
     });
 </script>
