@@ -43,6 +43,15 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-12">
+                        <div class="input-group input-group-outline my-2 is-filled @if(old('serial')) is-valid @endif @error('serial') is-invalid @enderror">
+                            <label class="form-label"><span class="">{{ __('video::video.category.form.serial') }}</span></label>
+                            <input type="text" name="serial" class="form-control" value="{{ $videocategory->serial }}">
+                            @error('serial')
+                                <em class="error invalid-video" style="display: inline-block;">{{ $message }}</em>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-12">
                         <div class="input-group input-group-outline my-2 is-filled @if(old('name')) is-valid @endif @error('name') is-invalid @enderror">
                             <label class="form-label"><span class="required">{{ __('video::video.category.form.name') }}</span></label>
                             <input type="text" name="name" class="form-control" value="{{ $videocategory->name }}">
@@ -64,7 +73,7 @@
 
                     <div class="col-md-12">
                         <div class="input-group input-group-outline my-2 is-filled @if(old('icon')) is-valid @endif @error('icon') is-invalid @enderror">
-                            <label class="form-label"><span class="required">{{ __('video::video.category.form.icon') }} {{ __('video::video.category.form.icon_from') }}</span></label>
+                            <label class="form-label"><span class="">{{ __('video::video.category.form.icon') }} {{ __('video::video.category.form.icon_from') }}</span></label>
                             <input type="text" name="icon" class="form-control" value="{{ $videocategory->icon }}">
                             @error('icon')
                                 <em class="error invalid-video" style="display: inline-block;">{{ $message }}</em>
@@ -74,7 +83,7 @@
 
                     <div class="col-md-12">
                         <div class="input-group input-group-outline my-2 is-filled @if(old('description')) is-valid @endif @error('description') is-invalid @enderror">
-                            <label class="form-label"><span class="required">{{ __('video::video.category.form.description') }}</span></label>
+                            <label class="form-label"><span class="">{{ __('video::video.category.form.description') }}</span></label>
                             <textarea name="description" class="form-control" row="4">{{ $videocategory->description }}</textarea>
                             @error('description')
                                 <em class="error invalid-video" style="display: inline-block;">{{ $message }}</em>

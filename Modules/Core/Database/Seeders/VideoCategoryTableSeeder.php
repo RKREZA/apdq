@@ -28,8 +28,8 @@ class VideoCategoryTableSeeder extends Seeder
             'description' => 'Nouvelles mises à jour et annonces officielles décryptées.'
         ]);
         VideoCategory::create([
-            'name'  => 'PPériode de questions',
-            'code'  => 'ppériode-de-questions',
+            'name'  => 'Période de questions',
+            'code'  => 'période-de-questions',
             'icon'  => '<i class="fi fi-ss-shield-interrogation"></i>',
             'description' => 'Perspectives issues des séances de questions-réponses avec des acteurs clés'
         ]);

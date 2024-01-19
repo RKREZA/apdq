@@ -10,7 +10,7 @@
             </a>
         </li>
 
-        @foreach(\Modules\Video\Entities\VideoCategory::where('status','Active')->get() as $video_category)
+        @foreach(\Modules\Video\Entities\VideoCategory::where('status','Active')->orderByRaw('ISNULL(serial), serial ASC')->get() as $video_category)
             <li>
                 <a href="{{ route('frontend.video') }}?code={{ $video_category->code }}" data-bs-toggle="tooltip" data-bs-placement="right"
                                                                                         data-bs-custom-class="custom-tooltip"

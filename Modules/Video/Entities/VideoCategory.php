@@ -12,7 +12,7 @@ class VideoCategory extends Model
 {
     use HasFactory, Notifiable, Loggable, SoftDeletes;
 
-    protected $fillable = ['code', 'name', 'icon', 'description', 'status'];
+    protected $fillable = ['serial','code', 'name', 'icon', 'description', 'status'];
 
 
     public function videos()

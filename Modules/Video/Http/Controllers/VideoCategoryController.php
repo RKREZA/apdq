@@ -44,6 +44,7 @@ class VideoCategoryController extends Controller
     public function store(Request $request)
 	{
         $rules = [
+			'serial' 			    => 'nullable',
             'code' 					=> 'required|unique:video_categories,code',
 			'name' 			        => 'required|string',
 			'icon' 			        => 'nullable|string',
@@ -60,6 +61,7 @@ class VideoCategoryController extends Controller
 
 		try {
 			$role = VideoCategory::create([
+                'serial' => $request->input('serial'),
                 'name' => $request->input('name'),
                 'code' => $request->input('code'),
                 'icon' => $request->input('icon'),
@@ -89,6 +91,7 @@ class VideoCategoryController extends Controller
     public function update(Request $request, $id)
 	{
 		$rules = [
+			'serial' 			    => 'nullable',
             'name' 			        => 'required',
 			'icon' 			        => 'nullable|string',
 			'description' 			=> 'nullable|string',

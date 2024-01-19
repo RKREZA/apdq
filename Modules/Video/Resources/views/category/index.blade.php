@@ -49,6 +49,7 @@
                             'include_delete_all_permission'     => 'videocategory-delete',
                             'include_index_table_data_route'    => route('admin.videocategories.index'),
                             'include_table_rows'                => [
+                                'serial'        => __('video::video.category.form.serial'),
                                 'icon'          => __('video::video.category.form.icon'),
                                 'name'          => __('video::video.category.form.name'),
                                 'code'          => __('video::video.category.form.code'),

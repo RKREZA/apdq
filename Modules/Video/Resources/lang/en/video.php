@@ -38,6 +38,7 @@ return [
             'description' => 'Description',
             'code' => 'Code',
             'name' => 'Name',
+            'serial' => 'Serial',
         ],
 
         'message' => [

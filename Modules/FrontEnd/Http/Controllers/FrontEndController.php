@@ -66,7 +66,7 @@ class FrontEndController extends Controller
     public function home()
     {
         $frontend_setting   = FrontendSetting::first();
-        $video_categories   = VideoCategory::where('status','Active')->get();
+        $video_categories   = VideoCategory::where('status','Active')->orderByRaw('ISNULL(serial), serial ASC')->get();
         $videos             = Video::where('status','Active')->get();
         $posts              = Post::where('status','Active')->get();
         $live               = Live::where('status','Active')->first();
@@ -85,7 +85,7 @@ class FrontEndController extends Controller
     {
         try {
             $frontend_setting   = FrontendSetting::first();
-            $video_categories    = VideoCategory::where('status','Active')->get();
+            $video_categories    = VideoCategory::where('status','Active')->orderByRaw('ISNULL(serial), serial ASC')->get();
             if (request()->has('year') && request()->has('month')) {
                 $year = request()->input('year');
                 $month = request()->input('month');
@@ -230,7 +230,7 @@ class FrontEndController extends Controller
             abort(404);
         }
         $frontend_setting   = FrontendSetting::first();
-        $video_categories    = VideoCategory::where('status','Active')->get();
+        $video_categories    = VideoCategory::where('status','Active')->orderByRaw('ISNULL(serial), serial ASC')->get();
         $recent_videos       = Video::where('status', 'Active')->orderBy('id','DESC')->limit(4)->get();
         $video_comments      = VideoComment::where('video_id', $video->id)->get();
 
@@ -267,7 +267,7 @@ class FrontEndController extends Controller
     {
         try {
             $frontend_setting   = FrontendSetting::first();
-            $post_categories    = PostCategory::where('status','Active')->get();
+            $post_categories    = PostCategory::where('status','Active')->orderByRaw('ISNULL(serial), serial ASC')->get();
             if(isset(request()->code) && !empty(request()->code)){
                 $posts              = Post::where('status','Active')
                                             ->whereHas('category', function ($query) {

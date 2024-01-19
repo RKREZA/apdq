@@ -16,6 +16,7 @@ class CreateVideoCategoriesTable extends Migration
         if (!Schema::hasTable('video_categories')) {
             Schema::create('video_categories', function (Blueprint $table) {
                 $table->id();
+                $table->string('serial')->nullable();
                 $table->string('name');
                 $table->string('code')->unique();
                 $table->string('icon');
