@@ -104,6 +104,11 @@ body{
     background-image: url(../img/icons/optimized/day-white.png);
 } */
 
+
+.note-editor .note-toolbar .note-color .note-dropdown-menu .note-palette:first-child, .note-popover .popover-content .note-color .note-dropdown-menu .note-palette:first-child{
+    margin: 0px 2px !important;
+}
+
 .smallicon{
     height: 35px;
     width: 35px;
