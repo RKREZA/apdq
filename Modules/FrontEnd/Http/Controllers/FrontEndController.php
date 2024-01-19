@@ -139,10 +139,43 @@ class FrontEndController extends Controller
                 // Paginate the results
                 $videos = $videosQuery->paginate(20);
             } else {
-                $videos = Video::where('status', 'Active')->paginate(21);
+                $videos = Video::where('status', 'Active')->paginate(20);
             }
 
             return view('frontend::frontend.video', compact('frontend_setting','video_categories','videos'));
+        } catch (\Throwable $th) {
+            abort(404);
+        }
+    }
+
+    public function video_oldest()
+    {
+        // try {
+            $frontend_setting   = FrontendSetting::first();
+            $videos    = Video::where('status','Active')->orderBy('id','asc')->paginate(21);
+            return view('frontend::frontend.video_oldest', compact('frontend_setting','videos'));
+        // } catch (\Throwable $th) {
+        //     abort(404);
+        // }
+    }
+
+    public function video_latest()
+    {
+        try {
+            $frontend_setting   = FrontendSetting::first();
+            $videos    = Video::where('status','Active')->orderBy('id','desc')->paginate(21);
+            return view('frontend::frontend.video_latest', compact('frontend_setting','videos'));
+        } catch (\Throwable $th) {
+            abort(404);
+        }
+    }
+
+    public function video_popular()
+    {
+        try {
+            $frontend_setting   = FrontendSetting::first();
+            $videos    = Video::where('status','Active')->orderByRaw('`like` + `love` + `haha` + `wow` + `angry` + `dislike` DESC')->paginate(21);
+            return view('frontend::frontend.video_popular', compact('frontend_setting','videos'));
         } catch (\Throwable $th) {
             abort(404);
         }

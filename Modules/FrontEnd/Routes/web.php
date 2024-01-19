@@ -8,6 +8,9 @@ Route::group(['middleware'=>'language'],function (){
     Route::get('/a-propos', 		            'FrontEndController@about')->name('frontend.about');
 
     Route::get('/video', 		                'FrontEndController@video')->name('frontend.video');
+    Route::get('/video/oldest',                 'FrontEndController@video_oldest')->name('frontend.video.oldest');
+    Route::get('/video/latest',                 'FrontEndController@video_latest')->name('frontend.video.latest');
+    Route::get('/video/popular',                 'FrontEndController@video_popular')->name('frontend.video.popular');
     Route::get('/video/playlist',               'FrontEndController@video_playlist')->name('frontend.video.playlist');
     Route::get('/video/playlist/{id}',          'FrontEndController@video_playlist_single')->name('frontend.video.playlist.single');
     Route::get('/video/{slug}', 		        'FrontEndController@video_single')->name('frontend.video.single');

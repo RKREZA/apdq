@@ -1,14 +1,14 @@
 @extends('frontend::frontend.layouts.master')
 
 @section('title')
-Vidéo
+Populaires Vidéo
 @endsection
 @section('seo')
-    <meta name="title" content="Vidéo">
+    <meta name="title" content="Populaires Vidéo">
     <meta name="description" content="{{ $frontend_setting->meta_description }}">
     <meta name="keywords" content="{{ $frontend_setting->meta_keywords }}">
 
-    <meta property="og:title" content="Vidéo" />
+    <meta property="og:title" content="Populaires Vidéo" />
     <meta property="og:description" content="{{ $frontend_setting->social_description }}" />
     <meta property="og:image" content="{{ $frontend_setting->logo_dark }}" />
 @endsection
@@ -160,33 +160,6 @@ Vidéo
             @endif
 
         <div class="row">
-
-
-            {{-- <div class="col-md-3" id="filter">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h5 class="text-white fw-bold">Category</h6>
-                                    <hr class="horizontal light">
-                                <ul>
-                                    @foreach($video_categories as $category)
-                                    <li>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="category" id="category_input{{ $category->code }}" value="{{ $category->code }}" @if(request()->code == $category->code) checked @endif>
-                                            <label class="form-check-label text-white" for="category_input{{ $category->code }}">
-                                                {{ $category->name }}
-                                            </label>
-                                          </div>
-                                    </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div> --}}
 
             <div class="col-md-10 mb-2">
                 <a href="{{ route('frontend.video.latest') }}" class="btn btn-dark m-1 ms-0 {{ request()->is('video/latest*') ? 'active' : '' }}">Les plus récentes</a>
