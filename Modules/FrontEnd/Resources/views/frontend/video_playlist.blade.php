@@ -17,8 +17,11 @@ Playlist vidéo
     <style>
         #video_page .image-container{
             background-size: cover;
-            height: 180px;
+            height: 210px;
             background-position: center;
+        }
+        .drawer_content #video_page .image-container {
+            height: 240px;
         }
         /* #video .image-container:hover{
             content: '';
