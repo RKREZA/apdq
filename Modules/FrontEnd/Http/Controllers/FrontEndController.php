@@ -119,11 +119,11 @@ class FrontEndController extends Controller
                 // Apply different sorting based on the filter value
                 switch (request()->filter) {
                     case 'latest':
-                        $videosQuery = $videosQuery->orderBy('created_at','desc');
+                        $videosQuery = $videosQuery->orderBy('created_at','asc');
                         break;
 
                     case 'oldest':
-                        $videosQuery = $videosQuery->orderBy('created_at','asc');
+                        $videosQuery = $videosQuery->orderBy('created_at','desc');
                         break;
 
                     case 'popular':
