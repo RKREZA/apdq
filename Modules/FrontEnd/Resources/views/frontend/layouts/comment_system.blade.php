@@ -30,7 +30,7 @@
                             </div>
                         </form>
                     @else
-                        <h4 class="mt-4" id="comment_form">Please <a href="{{ route('admin.login') }}">sign in</a> to write a comment</h4>
+                        <h4 class="mt-4" id="comment_form">S'il te plaît <a href="{{ route('admin.login') }}">se connecter</a> pour écrire un commentaire</h4>
                     @endif
                 </div>
             </div>
