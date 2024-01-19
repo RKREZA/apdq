@@ -181,9 +181,13 @@ class FrontEndController extends Controller
 
     public function video_single($slug)
     {
+
+        $video               = Video::where('slug',$slug)->first();
+        if(!$video){
+            abort(404);
+        }
         $frontend_setting   = FrontendSetting::first();
         $video_categories    = VideoCategory::where('status','Active')->get();
-        $video               = Video::where('slug',$slug)->first();
         $recent_videos       = Video::where('status', 'Active')->orderBy('id','DESC')->limit(4)->get();
         $video_comments      = VideoComment::where('video_id', $video->id)->get();
 
