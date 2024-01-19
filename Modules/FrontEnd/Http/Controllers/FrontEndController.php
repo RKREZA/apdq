@@ -265,7 +265,7 @@ class FrontEndController extends Controller
 
     public function blog()
     {
-        // try {
+        try {
             $frontend_setting   = FrontendSetting::first();
             $post_categories    = PostCategory::where('status','Active')->get();
             if(isset(request()->code) && !empty(request()->code)){
@@ -291,9 +291,9 @@ class FrontEndController extends Controller
             }
 
             return view('frontend::frontend.blog', compact('frontend_setting','post_categories','posts'));
-        // } catch (\Throwable $th) {
-        //     abort(404);
-        // }
+        } catch (\Throwable $th) {
+            abort(404);
+        }
     }
 
     public function blog_single($slug)
