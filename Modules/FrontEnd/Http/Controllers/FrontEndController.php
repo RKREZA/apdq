@@ -136,7 +136,7 @@ class FrontEndController extends Controller
                 }
 
                 // Paginate the results
-                $videos = $videosQuery->paginate(20);
+                $videos = $videosQuery->orderBy('id','DESC')->paginate(20);
             } else {
                 $videos = Video::where('status', 'Active')->paginate(21);
             }
