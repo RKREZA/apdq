@@ -118,18 +118,16 @@ class FrontEndController extends Controller
                 // Apply different sorting based on the filter value
                 switch (request()->filter) {
                     case 'latest':
-                        $videosQuery->latest();
+                        $videosQuery = $videosQuery->latest();
                         break;
 
                     case 'oldest':
-                        $videosQuery->oldest();
+                        $videosQuery = $videosQuery->oldest();
                         break;
 
                     case 'popular':
                         // Sum up all reaction counts and order by the total count in descending order
-                        $videosQuery->orderByRaw('`like` + `love` + `haha` + `wow` + `angry` + `dislike` DESC');
-
-
+                        $videosQuery = $videosQuery->orderByRaw('`like` + `love` + `haha` + `wow` + `angry` + `dislike` DESC');
                         break;
 
                     default:
