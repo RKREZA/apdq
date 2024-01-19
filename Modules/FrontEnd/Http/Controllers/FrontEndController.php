@@ -113,16 +113,17 @@ class FrontEndController extends Controller
                     })
                     ->paginate(20);
             } elseif (request()->has('filter') && !empty(request()->filter)) {
-                $videosQuery = Video::where('status', 'Active');
+                $videosQuery = Video::query();
+                $videosQuery = $videosQuery->where('status', 'Active');
 
                 // Apply different sorting based on the filter value
                 switch (request()->filter) {
                     case 'latest':
-                        $videosQuery = $videosQuery->latest();
+                        $videosQuery = $videosQuery->orderBy('created_at','desc');
                         break;
 
                     case 'oldest':
-                        $videosQuery = $videosQuery->oldest();
+                        $videosQuery = $videosQuery->orderBy('created_at','asc');
                         break;
 
                     case 'popular':
@@ -136,7 +137,7 @@ class FrontEndController extends Controller
                 }
 
                 // Paginate the results
-                $videos = $videosQuery->orderBy('id','DESC')->paginate(20);
+                $videos = $videosQuery->paginate(20);
             } else {
                 $videos = Video::where('status', 'Active')->paginate(21);
             }
