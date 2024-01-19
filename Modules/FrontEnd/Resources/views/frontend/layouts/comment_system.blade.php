@@ -6,7 +6,7 @@
 <div class="colmd-12 mt-4">
     <div class="card bg-transparent border-0">
         <div class="card-header p-0 pb-3 bg-transparent">
-            <h4 class="m-1 text-light">{{ $post->comments->count() }} Comments</h4>
+            <h4 class="m-1 text-light">{{ $post->comments->count() }} Les commentaires</h4>
         </div>
         <div class="card-body p-0 pb-3 bg-transparent">
             <div class="row">
