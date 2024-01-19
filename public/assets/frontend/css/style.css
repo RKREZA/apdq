@@ -122,6 +122,10 @@ hr.horizontal.light {
     background: transparent !important;
 }
 
+.bg-info {
+    background-color: #001f97 !important;
+}
+
 .btn-outline-white{
     border: 2px solid #fff;
     color: #fff;
