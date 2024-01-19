@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <p>{!! $comment->body !!}</p>
-                <a href="#" class="reply-link" data-key="{{ $comment->id }}"><i class="fi fi-ss-redo"></i> Reply</a>
+                <a href="#" class="reply-link" data-key="{{ $comment->id }}"><i class="fi fi-ss-redo"></i> Répondre</a>
                 @if (auth()->check())
                     <form method="post" action="{{ $comment_store_route }}" class="mt-3 reply-form reply-form-{{ $comment->id }}" id="reply_form_{{ $comment->id }}" style="display: none;">
                         @csrf
@@ -46,7 +46,7 @@
                                     <input type="hidden" name="post_id" value="{{ $post_id }}" />
                                     <input type="hidden" name="parent_id" value="{{ $comment->id }}" />
                                 </div>
-                                <button type="submit" class="btn btn-warning mt-2 pt-2 text-white"><i class="fi fi-ss-redo"></i> Reply</button>
+                                <button type="submit" class="btn btn-warning mt-2 pt-2 text-white"><i class="fi fi-ss-redo"></i> Répondre</button>
                             </div>
                         </div>
                     </form>
