@@ -36,9 +36,9 @@
                         data-ad-slot="4688267585"
                         data-ad-format="auto"
                         data-full-width-responsive="true"></ins>
-                    <script>
+                    {{-- <script>
                         (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
+                    </script> --}}
                 </div>
             </div>
         </div>
@@ -63,7 +63,16 @@
             <div class="col-md-12 px-2 mb-3">
                 <div class="owl-carousel owl-theme">
 
-                    @foreach ($videos->take(8) as $video)
+                    @php
+                        $videos = $videos->take(8)->toArray(); // Take the first 8 videos
+                        $adIndex = rand(0, 8); // Randomly select an index to insert the ad
+
+                        array_splice($videos, $adIndex, 0, [[
+                            'is_ad' => true, // Marking this as an ad item
+                        ]]);
+                    @endphp
+
+                    @foreach ($videos as $video)
                         @if (isset($video['is_ad']) && $video['is_ad'])
                             {{-- Insert the ad section --}}
 
@@ -79,10 +88,11 @@
                                                 data-ad-format="fluid"
                                                 data-ad-layout-key="-79+ew-1a-28+94"
                                                 data-ad-client="ca-pub-7301992079721298"
+                                                data-full-width-responsive="true"
                                                 data-ad-slot="5618205875"></ins>
-                                            <script>
+                                            {{-- <script>
                                                 (adsbygoogle = window.adsbygoogle || []).push({});
-                                            </script>
+                                            </script> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -163,17 +173,19 @@
                                     @else
                                     <div class="item">
                                         <div class="card border-0">
-                                            <div class="card-body" style="min-width: 250px;">
+                                            <div class="card-body" style="min-width: 260px;">
                                                 <!-- Adsense Ad Code -->
-                                                <ins class="adsbygoogle"
-                                                     style="display:block"
-                                                     data-ad-format="fluid"
-                                                     data-ad-layout-key="-79+ew-1a-28+94"
-                                                     data-ad-client="ca-pub-7301992079721298"
-                                                     data-ad-slot="5618205875"></ins>
-                                                <script>
+                                                <!-- Mods Center Responsive -->
+                                                    <ins class="adsbygoogle"
+                                                    style="display:block"
+                                                    data-ad-format="fluid"
+                                                    data-ad-layout-key="-79+ew-1a-28+94"
+                                                    data-ad-client="ca-pub-7301992079721298"
+                                                    data-full-width-responsive="true"
+                                                    data-ad-slot="5618205875"></ins>
+                                                {{-- <script>
                                                     (adsbygoogle = window.adsbygoogle || []).push({});
-                                                </script>
+                                                </script> --}}
                                             </div>
                                         </div>
                                     </div>
@@ -231,9 +243,9 @@
                         data-ad-slot="4688267585"
                         data-ad-format="auto"
                         data-full-width-responsive="true"></ins>
-                    <script>
+                    {{-- <script>
                         (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
+                    </script> --}}
                 </div>
             </div>
         </div>
@@ -401,6 +413,12 @@
                     }
                 });
             });
+        });
+    </script>
+
+    <script>
+        window.addEventListener('load', function() {
+            (adsbygoogle = window.adsbygoogle || []).push({});
         });
     </script>
 
