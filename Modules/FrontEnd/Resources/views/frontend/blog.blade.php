@@ -86,7 +86,7 @@ Blog
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <h6 class="text-white">Category</h6>
+                                <h6 class="text-white">Catégorie</h6>
                                 <hr class="horizontal light">
                                 <ul>
                                     @foreach($post_categories as $category)
