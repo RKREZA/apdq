@@ -83,82 +83,93 @@ class FrontEndController extends Controller
 
     public function video()
     {
-        $frontend_setting   = FrontendSetting::first();
-        $video_categories    = VideoCategory::where('status','Active')->get();
-        if (request()->has('year') && request()->has('month')) {
-            $year = request()->input('year');
-            $month = request()->input('month');
+        try {
+            $frontend_setting   = FrontendSetting::first();
+            $video_categories    = VideoCategory::where('status','Active')->get();
+            if (request()->has('year') && request()->has('month')) {
+                $year = request()->input('year');
+                $month = request()->input('month');
 
-            $videos = Video::where('status', 'Active')
-                ->whereYear('created_at', $year)
-                ->whereMonth('created_at', Carbon::parse($month)->format('m'))
-                ->paginate(20);
-        } elseif (request()->has('code') && !empty(request()->code)) {
-            $videos = Video::where('status', 'Active')
-                ->whereHas('category', function ($query) {
-                    $query->where('code', request()->code);
-                })
-                ->paginate(20);
-        } elseif (request()->has('tag') && !empty(request()->tag)) {
-            $tag = request()->tag;
+                $videos = Video::where('status', 'Active')
+                    ->whereYear('created_at', $year)
+                    ->whereMonth('created_at', Carbon::parse($month)->format('m'))
+                    ->paginate(20);
+            } elseif (request()->has('code') && !empty(request()->code)) {
+                $videos = Video::where('status', 'Active')
+                    ->whereHas('category', function ($query) {
+                        $query->where('code', request()->code);
+                    })
+                    ->paginate(20);
+            } elseif (request()->has('tag') && !empty(request()->tag)) {
+                $tag = request()->tag;
 
-            $videos = Video::where('status', 'Active')
-                ->where(function ($query) use ($tag) {
-                    $query->where('tag', 'like', "%{$tag}%")
-                        ->orWhere('tag', 'like', "%{$tag},%")
-                        ->orWhere('tag', 'like', "%,{$tag}%")
-                        ->orWhere('tag', 'like', "{$tag},%")
-                        ->orWhere('tag', 'like', "%,{$tag}");
-                })
-                ->paginate(20);
-        } elseif (request()->has('filter') && !empty(request()->filter)) {
-            $videosQuery = Video::where('status', 'Active');
+                $videos = Video::where('status', 'Active')
+                    ->where(function ($query) use ($tag) {
+                        $query->where('tag', 'like', "%{$tag}%")
+                            ->orWhere('tag', 'like', "%{$tag},%")
+                            ->orWhere('tag', 'like', "%,{$tag}%")
+                            ->orWhere('tag', 'like', "{$tag},%")
+                            ->orWhere('tag', 'like', "%,{$tag}");
+                    })
+                    ->paginate(20);
+            } elseif (request()->has('filter') && !empty(request()->filter)) {
+                $videosQuery = Video::where('status', 'Active');
 
-            // Apply different sorting based on the filter value
-            switch (request()->filter) {
-                case 'latest':
-                    $videosQuery->latest();
-                    break;
+                // Apply different sorting based on the filter value
+                switch (request()->filter) {
+                    case 'latest':
+                        $videosQuery->latest();
+                        break;
 
-                case 'oldest':
-                    $videosQuery->oldest();
-                    break;
+                    case 'oldest':
+                        $videosQuery->oldest();
+                        break;
 
-                case 'popular':
-                    // Sum up all reaction counts and order by the total count in descending order
-                    $videosQuery->orderByRaw('`like` + `love` + `haha` + `wow` + `angry` + `dislike` DESC');
+                    case 'popular':
+                        // Sum up all reaction counts and order by the total count in descending order
+                        $videosQuery->orderByRaw('`like` + `love` + `haha` + `wow` + `angry` + `dislike` DESC');
 
 
-                    break;
+                        break;
 
-                default:
-                    // Handle other filters if needed
-                    break;
+                    default:
+                        // Handle other filters if needed
+                        break;
+                }
+
+                // Paginate the results
+                $videos = $videosQuery->paginate(20);
+            } else {
+                $videos = Video::where('status', 'Active')->paginate(21);
             }
 
-            // Paginate the results
-            $videos = $videosQuery->paginate(20);
-        } else {
-            $videos = Video::where('status', 'Active')->paginate(21);
+            return view('frontend::frontend.video', compact('frontend_setting','video_categories','videos'));
+        } catch (\Throwable $th) {
+            abort(404);
         }
-
-        return view('frontend::frontend.video', compact('frontend_setting','video_categories','videos'));
     }
 
     public function video_playlist()
     {
-        $frontend_setting   = FrontendSetting::first();
-        $videoplaylists = VideoPlaylist::where('status', 'Active')->paginate(21);
-        return view('frontend::frontend.video_playlist', compact('frontend_setting','videoplaylists'));
+        try {
+            $frontend_setting   = FrontendSetting::first();
+            $videoplaylists = VideoPlaylist::where('status', 'Active')->paginate(21);
+            return view('frontend::frontend.video_playlist', compact('frontend_setting','videoplaylists'));
+        } catch (\Throwable $th) {
+            abort(404);
+        }
     }
 
     public function video_playlist_single($id)
     {
-        $frontend_setting   = FrontendSetting::first();
-        $videoplaylist = VideoPlaylist::where('status','Active')->find($id);
-
-        $videos = $videoplaylist->videos()->where('status', 'Active')->paginate(21);
-        return view('frontend::frontend.video_playlist_single', compact('frontend_setting','videoplaylist','videos'));
+        try {
+            $frontend_setting   = FrontendSetting::first();
+            $videoplaylist = VideoPlaylist::where('status','Active')->find($id);
+            $videos = $videoplaylist->videos()->where('status', 'Active')->paginate(21);
+            return view('frontend::frontend.video_playlist_single', compact('frontend_setting','videoplaylist','videos'));
+        } catch (\Throwable $th) {
+            abort(404);
+        }
     }
 
     public function video_comment_store(Request $request)
@@ -222,56 +233,64 @@ class FrontEndController extends Controller
 
     public function blog()
     {
-        $frontend_setting   = FrontendSetting::first();
-        $post_categories    = PostCategory::where('status','Active')->get();
-        if(isset(request()->code) && !empty(request()->code)){
-            $posts              = Post::where('status','Active')
-                                        ->whereHas('category', function ($query) {
-                                            $query->where('code', request()->code);
-                                        })
-                                        ->paginate(21);
-        } elseif (request()->has('tag') && !empty(request()->tag)) {
-            $tag = request()->tag;
+        try {
+            $frontend_setting   = FrontendSetting::first();
+            $post_categories    = PostCategory::where('status','Active')->get();
+            if(isset(request()->code) && !empty(request()->code)){
+                $posts              = Post::where('status','Active')
+                                            ->whereHas('category', function ($query) {
+                                                $query->where('code', request()->code);
+                                            })
+                                            ->paginate(21);
+            } elseif (request()->has('tag') && !empty(request()->tag)) {
+                $tag = request()->tag;
 
-            $posts = Post::where('status', 'Active')
-                ->where(function ($query) use ($tag) {
-                    $query->where('tag', 'like', "%{$tag}%")
-                        ->orWhere('tag', 'like', "%{$tag},%")
-                        ->orWhere('tag', 'like', "%,{$tag}%")
-                        ->orWhere('tag', 'like', "{$tag},%")
-                        ->orWhere('tag', 'like', "%,{$tag}");
-                })
-                ->paginate(20);
-        } else{
-            $posts              = Post::where('status','Active')->paginate(21);
+                $posts = Post::where('status', 'Active')
+                    ->where(function ($query) use ($tag) {
+                        $query->where('tag', 'like', "%{$tag}%")
+                            ->orWhere('tag', 'like', "%{$tag},%")
+                            ->orWhere('tag', 'like', "%,{$tag}%")
+                            ->orWhere('tag', 'like', "{$tag},%")
+                            ->orWhere('tag', 'like', "%,{$tag}");
+                    })
+                    ->paginate(20);
+            } else{
+                $posts              = Post::where('status','Active')->paginate(21);
+            }
+
+            return view('frontend::frontend.blog', compact('frontend_setting','post_categories','posts'));
+        } catch (\Throwable $th) {
+            abort(404);
         }
-
-        return view('frontend::frontend.blog', compact('frontend_setting','post_categories','posts'));
     }
 
     public function blog_single($slug)
     {
-        $frontend_setting   = FrontendSetting::first();
-        $post_categories    = PostCategory::where('status','Active')->get();
-        $post               = Post::where('slug',$slug)->first();
-        $recent_posts       = Post::where('status', 'Active')->orderBy('id','DESC')->limit(5)->get();
-        $post_comments      = PostComment::where('post_id', $post->id)->get();
+        try {
+            $frontend_setting   = FrontendSetting::first();
+            $post_categories    = PostCategory::where('status','Active')->get();
+            $post               = Post::where('slug',$slug)->first();
+            $recent_posts       = Post::where('status', 'Active')->orderBy('id','DESC')->limit(5)->get();
+            $post_comments      = PostComment::where('post_id', $post->id)->get();
 
-        $share_component = \Share::page(
-            route('frontend.blog.single', $post->slug),
-            $post->title,
-            ['target' => '_parent']
-        )
-        ->facebook()
-        ->twitter()
-        ->linkedin()
-        ->telegram()
-        ->whatsapp();
+            $share_component = \Share::page(
+                route('frontend.blog.single', $post->slug),
+                $post->title,
+                ['target' => '_parent']
+            )
+            ->facebook()
+            ->twitter()
+            ->linkedin()
+            ->telegram()
+            ->whatsapp();
 
-        if($post){
-            return view('frontend::frontend.blog_single', compact('frontend_setting','post_categories','post','recent_posts','post_comments','share_component'));
-        }else{
-            return abort(404);
+            if($post){
+                return view('frontend::frontend.blog_single', compact('frontend_setting','post_categories','post','recent_posts','post_comments','share_component'));
+            }else{
+                return abort(404);
+            }
+        } catch (\Throwable $th) {
+            abort(404);
         }
     }
 
@@ -298,41 +317,52 @@ class FrontEndController extends Controller
 
     public function search(Request $request)
     {
-        $frontend_setting   = FrontendSetting::first();
+        try {
+            $frontend_setting   = FrontendSetting::first();
 
-        $video_categories       = VideoCategory::where('status','Active')->get();
-        $videos                 = Video::where('status','Active')
-                                        ->where('title','like',"%$request->keyword%")
-                                        ->orWhere('seo_title','like',"%$request->keyword%")
-                                        ->orWhere('seo_keyword','like',"%$request->keyword%")
-                                        ->orWhere('seo_description','like',"%$request->keyword%")
-                                        ->paginate(20);
+            $video_categories       = VideoCategory::where('status','Active')->get();
+            $videos                 = Video::where('status','Active')
+                                            ->where('title','like',"%$request->keyword%")
+                                            ->orWhere('seo_title','like',"%$request->keyword%")
+                                            ->orWhere('seo_keyword','like',"%$request->keyword%")
+                                            ->orWhere('seo_description','like',"%$request->keyword%")
+                                            ->paginate(20);
 
-        $post_categories        = PostCategory::where('status','Active')->get();
-        $posts                  = Post::where('status','Active')
-                                        ->where('title','like',"%$request->keyword%")
-                                        ->orWhere('seo_title','like',"%$request->keyword%")
-                                        ->orWhere('seo_keyword','like',"%$request->keyword%")
-                                        ->orWhere('seo_description','like',"%$request->keyword%")
-                                        ->paginate(20);
+            $post_categories        = PostCategory::where('status','Active')->get();
+            $posts                  = Post::where('status','Active')
+                                            ->where('title','like',"%$request->keyword%")
+                                            ->orWhere('seo_title','like',"%$request->keyword%")
+                                            ->orWhere('seo_keyword','like',"%$request->keyword%")
+                                            ->orWhere('seo_description','like',"%$request->keyword%")
+                                            ->paginate(20);
 
-        return view('frontend::frontend.search', compact('frontend_setting','video_categories','videos','post_categories','posts'));
+            return view('frontend::frontend.search', compact('frontend_setting','video_categories','videos','post_categories','posts'));
+        } catch (\Throwable $th) {
+            abort(404);
+        }
     }
 
     public function live()
     {
-        $frontend_setting   = FrontendSetting::first();
-        $live               = Live::where('status','Active')->first();
-
-        return view('frontend::frontend.live', compact('frontend_setting','live'));
+        try {
+            $frontend_setting   = FrontendSetting::first();
+            $live               = Live::where('status','Active')->first();
+            return view('frontend::frontend.live', compact('frontend_setting','live'));
+        } catch (\Throwable $th) {
+            abort(404);
+        }
     }
 
     public function subscription()
     {
-        $frontend_setting       = FrontendSetting::first();
-        $subscriptions           = Subscription::where('status','Active')->get();
+        try {
+            $frontend_setting       = FrontendSetting::first();
+            $subscriptions           = Subscription::where('status','Active')->get();
 
-        return view('frontend::frontend.subscription', compact('frontend_setting','subscriptions'));
+            return view('frontend::frontend.subscription', compact('frontend_setting','subscriptions'));
+        } catch (\Throwable $th) {
+            abort(404);
+        }
     }
 
     public function checkout(Request $request)
@@ -470,8 +500,6 @@ class FrontEndController extends Controller
 
         return view('frontend::frontend.stripe', compact('frontend_setting','subscription','payment_gateway','stripe_key','currency'));
     }
-
-
 
 
 
