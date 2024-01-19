@@ -21,7 +21,13 @@
         }
         #video_page .image-container {
             background-size: cover;
-            height: 210px;
+            height: 280px;
+            background-position: center;
+            border-radius: 7px;
+        }
+        .drawer_content #video_page .image-container {
+            background-size: cover;
+            height: 310px;
             background-position: center;
             border-radius: 7px;
         }
