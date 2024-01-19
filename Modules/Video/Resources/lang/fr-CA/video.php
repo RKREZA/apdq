@@ -13,7 +13,9 @@ return [
             'external_id' => 'ID externe',
             'tag' => 'Balises',
             'category_id' => 'Catégorie',
+            'playlist_id' => 'Playlist',
             'select_category' => 'Sélectionner la catégorie',
+            'select_playlist' => 'Sélectionner la playlist',
             'youtube_link' => 'Lien YouTube',
             'seo_title' => 'Titre SEO',
             'seo_description' => 'Description SEO',
@@ -40,6 +42,19 @@ return [
 
         'message' => [
             'error_video_exist_with_this_category' => 'La vidéo existe déjà avec cette catégorie'
+        ]
+    ],
+
+    'playlist' => [
+        'name' => 'Playlist vidéo',
+        'list' => 'Liste de playlists vidéo',
+
+        'form' => [
+            'name' => 'Nom',
+        ],
+
+        'message' => [
+            'error_video_exist_with_this_playlist' => 'La vidéo existe déjà avec cette playlist'
         ]
     ],
 

@@ -40,6 +40,9 @@ class CreateVideosTable extends Migration
 
                 $table->bigInteger('category_id')->unsigned()->nullable();
                 $table->foreign('category_id')->references('id')->on('video_categories')->onDelete('set null');
+
+                $table->bigInteger('playlist_id')->unsigned()->nullable();
+                $table->foreign('playlist_id')->references('id')->on('video_playlists')->onDelete('set null');
                 $table->enum('status', ['Inactive', 'Active'])->default('Active');
                 $table->timestamps();
                 $table->softDeletes();

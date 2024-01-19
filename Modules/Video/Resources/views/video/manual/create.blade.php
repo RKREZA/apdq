@@ -36,7 +36,7 @@
                         @csrf()
 
                         <div class="row">
-                            <div class="col-md-6 ps-0">
+                            <div class="col-md-4 ps-0">
                                 <div class="input-group input-group-outline mt-3 is-filled @error('category_id') is-invalid @enderror is-filled">
                                     <label class="form-label" for="category_id"><span class="required">{{ __('video::video.video.form.category_id') }}</span></label>
                                     <select name="category_id" id="category_id" class="form-control @error('category_id') is-invalid @enderror">
@@ -50,8 +50,22 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="col-md-4 ps-0">
+                                <div class="input-group input-group-outline mt-3 is-filled @error('playlist_id') is-invalid @enderror is-filled">
+                                    <label class="form-label" for="playlist_id"><span class="required">{{ __('video::video.video.form.playlist_id') }}</span></label>
+                                    <select name="playlist_id" id="playlist_id" class="form-control @error('playlist_id') is-invalid @enderror">
+                                        <option value="" disabled readonly selected>{{ __('video::video.video.form.select_playlist') }}</option>
+                                        @foreach (\Modules\Video\Entities\VideoPlaylist::where('status','Active')->get() as $playlist)
+                                            <option value="{{ $playlist->id }}">{{ $playlist->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('playlist_id')
+                                        <em class="error invalid-video" style="display: inline-block;">{{ $message }}</em>
+                                    @enderror
+                                </div>
+                            </div>
 
-                            <div class="col-md-6 pe-0">
+                            <div class="col-md-4 pe-0">
                                 <div class="input-group input-group-outline mt-3 is-filled @error('created_at') is-invalid @enderror">
                                     <label class="form-label"><span class="required">{{ __('video::video.video.form.created_at') }}</span></label>
                                     <input type="datetime-local" name="created_at" id="created_at" class="form-control" value="{{ old('created_at') }}">
@@ -220,10 +234,16 @@
             category_id: {
                 required: true
             },
+            playlist_id: {
+                required: true
+            },
             tag: {
                 required: true
             },
             embed_html: {
+                required: true
+            },
+            created_at: {
                 required: true
             },
 
@@ -238,10 +258,16 @@
             category_id: {
                 required: "{{ __('core::core.form.validation.required') }}",
             },
+            playlist_id: {
+                required: "{{ __('core::core.form.validation.required') }}",
+            },
             tag: {
                 required: "{{ __('core::core.form.validation.required') }}",
             },
             embed_html: {
+                required: "{{ __('core::core.form.validation.required') }}",
+            },
+            created_at: {
                 required: "{{ __('core::core.form.validation.required') }}",
             },
         };

@@ -7,17 +7,15 @@ use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Illuminate\Support\Facades\Gate;
 use Modules\Core\Helpers\CoreHelper;
+use Modules\Video\Entities\VideoPlaylist;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
-use Modules\Video\Entities\VideoCategory;
-use Modules\Video\Entities\VideoPlaylist;
-use Str;
 
-class VideosDataTable extends DataTable
+class VideoPlaylistDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -29,8 +27,6 @@ class VideosDataTable extends DataTable
     {
         $data = CoreHelper::filter_data(request(), $query);
 
-
-
         return (new EloquentDataTable($data))
             ->addIndexColumn()
             ->addColumn('checkbox', function($row){
@@ -38,16 +34,16 @@ class VideosDataTable extends DataTable
                 return $checkbox;
             })
             ->addColumn('action', function($row){
-                if (Gate::check('video-edit')) {
-                    $edit = '<a href="'.route('admin.videos.edit', $row->id).'" class="btn btn-sm btn-success mb-0 px-2" title="'.__('core::core.form.edit-button').'" data-toggle="tooltip">
+                if (Gate::check('videoplaylist-edit')) {
+                    $edit = '<a href="'.route('admin.videoplaylists.edit', $row->id).'" class="btn btn-sm btn-success mb-0 px-2" title="'.__('core::core.form.edit-button').'" data-toggle="tooltip">
                                     <i class="material-icons text-sm">edit</i>
                             </a>';
                 }else{
                     $edit = '';
                 }
 
-                if (Gate::check('video-delete')) {
-                    $delete = '<button class="remove btn btn-sm btn-danger mb-0 px-2" data-id="'.$row->id.'" data-action="'.route('admin.videos.trash').'" title="'.__('core::core.form.trash-button').'" data-toggle="tooltip">
+                if (Gate::check('videoplaylist-delete')) {
+                    $delete = '<button class="remove btn btn-sm btn-danger mb-0 px-2" data-id="'.$row->id.'" data-action="'.route('admin.videoplaylists.trash').'" title="'.__('core::core.form.trash-button').'" data-toggle="tooltip">
                                     <i class="material-icons text-sm">delete</i>
                                 </button>';
                 }else{
@@ -56,32 +52,6 @@ class VideosDataTable extends DataTable
 
                 $action = $edit.' '.$delete;
                 return $action;
-            })
-
-            ->addColumn('title', function($row){
-                $title = wordwrap($row->title, 100, "<br>\n", true);
-                return mb_convert_encoding($title, 'UTF-8', 'UTF-8');
-            })
-
-            ->addColumn('description', function($row){
-                $description = substr(strip_tags($row->description), 0, 50)."...";
-                return mb_convert_encoding($description, 'UTF-8', 'UTF-8');
-            })
-
-            ->addColumn('category_id', function($row){
-                $category = VideoCategory::find($row->category_id);
-                if (empty($category)) {
-                    return 'NaN';
-                }
-                return $category->name;
-            })
-
-            ->addColumn('playlist_id', function($row){
-                $playlist = VideoPlaylist::find($row->playlist_id);
-                if (empty($playlist)) {
-                    return 'NaN';
-                }
-                return $playlist->name;
             })
 
             ->addColumn('status', function($row){
@@ -98,47 +68,20 @@ class VideosDataTable extends DataTable
                 return $status;
             })
 
-            ->addColumn('thumbnail_url', function ($row) {
-                if (!empty($row->thumbnail_url)) {
-                    // Check if the URL is already absolute
-                    $isAbsoluteUrl = filter_var($row->thumbnail_url, FILTER_VALIDATE_URL) !== false;
-
-                    $thumbnail_url = '<img src="' . ($isAbsoluteUrl ? $row->thumbnail_url : $row->thumbnail_url) . '" class="img-fluid img-thumbnail" style="width:100%; max-width: 100px !important;">';
-                } else {
-                    $thumbnail_url = '<img src="/assets/backend/img/no-image.png" class="rounded-circle img-fluid img-thumbnail" style="width:100%; max-width: 100px !important;">';
-                }
-
-                return $thumbnail_url;
-            })
-
-
-
-            ->addColumn('reaction', function($row){
-                $reaction="<span style=\"width:50px; display:inline-block;\">Like</span><span class=\"badge badge-sm badge-dark\" style=\"position: relative;top: -2px;\">$row->like</span><br>";
-                $reaction.="<span style=\"width:50px; display:inline-block;\">Love</span><span class=\"badge badge-sm badge-dark\" style=\"position: relative;top: -2px;\">$row->love</span><br>";
-                $reaction.="<span style=\"width:50px; display:inline-block;\">Haha</span><span class=\"badge badge-sm badge-dark\" style=\"position: relative;top: -2px;\">$row->haha</span><br>";
-                $reaction.="<span style=\"width:50px; display:inline-block;\">Wow </span><span class=\"badge badge-sm badge-dark\" style=\"position: relative;top: -2px;\">$row->wow</span><br>";
-                $reaction.="<span style=\"width:50px; display:inline-block;\">Sad </span><span class=\"badge badge-sm badge-dark\" style=\"position: relative;top: -2px;\">$row->sad</span><br>";
-                $reaction.="<span style=\"width:50px; display:inline-block;\">Angry</span><span class=\"badge badge-sm badge-dark\" style=\"position: relative;top: -2px;\">$row->angry</span><br>";
-                $reaction.="<span style=\"width:50px; display:inline-block;\">Dislike</span><span class=\"badge badge-sm badge-dark\" style=\"position: relative;top: -2px;\">$row->dislike</span><br>";
-
-                return $reaction;
-            })
-
             ->editColumn('created_at', '{{date("jS M Y", strtotime($created_at))}}')
 	        ->editColumn('updated_at', '{{date("jS M Y", strtotime($updated_at))}}')
 
             ->setRowId('id')
-            ->rawColumns(['title','reaction','thumbnail_url','action','checkbox','status']);
+            ->rawColumns(['icon','action','checkbox','status']);
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Video $model
+     * @param \App\VideoPlaylist $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Video $model): QueryBuilder
+    public function query(VideoPlaylist $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -198,6 +141,6 @@ class VideosDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'videos_' . date('YmdHis');
+        return 'videoplaylists_' . date('YmdHis');
     }
 }

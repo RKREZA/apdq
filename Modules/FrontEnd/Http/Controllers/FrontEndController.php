@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 use Modules\FrontEndManager\Entities\FrontendSetting;
+use Modules\Video\Entities\VideoPlaylist;
 use Modules\Video\Entities\VideoCategory;
 use Modules\Video\Entities\Video;
 use Modules\Video\Entities\VideoComment;
@@ -144,6 +145,22 @@ class FrontEndController extends Controller
         return view('frontend::frontend.video', compact('frontend_setting','video_categories','videos'));
     }
 
+    public function video_playlist()
+    {
+        $frontend_setting   = FrontendSetting::first();
+        $videoplaylists = VideoPlaylist::where('status', 'Active')->paginate(21);
+        return view('frontend::frontend.video_playlist', compact('frontend_setting','videoplaylists'));
+    }
+
+    public function video_playlist_single($id)
+    {
+        $frontend_setting   = FrontendSetting::first();
+        $videoplaylist = VideoPlaylist::where('status','Active')->find($id);
+
+        $videos = $videoplaylist->videos()->where('status', 'Active')->paginate(21);
+        return view('frontend::frontend.video_playlist_single', compact('frontend_setting','videoplaylist','videos'));
+    }
+
     public function video_comment_store(Request $request)
     {
         $request->validate([
@@ -212,7 +229,7 @@ class FrontEndController extends Controller
         } elseif (request()->has('tag') && !empty(request()->tag)) {
             $tag = request()->tag;
 
-            $videos = Post::where('status', 'Active')
+            $posts = Post::where('status', 'Active')
                 ->where(function ($query) use ($tag) {
                     $query->where('tag', 'like', "%{$tag}%")
                         ->orWhere('tag', 'like', "%{$tag},%")

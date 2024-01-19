@@ -27,6 +27,7 @@ class Video extends Model
         'external_id',
         'tag',
         'category_id',
+        'playlist_id',
         'status',
         'created_at',
         'seo_title',
@@ -55,6 +56,11 @@ class Video extends Model
     public function category()
     {
         return $this->belongsTo('Modules\Video\Entities\VideoCategory');
+    }
+
+    public function playlist()
+    {
+        return $this->belongsTo('Modules\Video\Entities\VideoPlaylist');
     }
 
     public function comments()

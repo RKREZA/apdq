@@ -26,7 +26,7 @@ Route::group(['middleware'=>'language'],function (){
                     Route::delete('/force_destroy/all', 'VideoController@force_destroy_all')->name('admin.videos.force_destroy_all');
 					Route::post('/restore',             'VideoController@restore')->name('admin.videos.restore');
 					Route::post('/restore/all',         'VideoController@restore_all')->name('admin.videos.restore_all');
-					
+
 					Route::get('/get', 					'VideoController@get')->name('admin.videos.get');
 
 
@@ -49,6 +49,24 @@ Route::group(['middleware'=>'language'],function (){
 					Route::post('/restore',             'VideoCategoryController@restore')->name('admin.videocategories.restore');
 					Route::post('/restore/all',         'VideoCategoryController@restore_all')->name('admin.videocategories.restore_all');
 					Route::get('/status_update', 	    'VideoCategoryController@status_update')->name('admin.videocategories.status_update');
+                });
+
+
+				// Video Playlist
+                Route::prefix('playlist')->group(function () {
+					Route::get('/trashes', 			    'VideoPlaylistController@trashes')->name('admin.videoplaylists.trashes');
+					Route::get('/index', 			    'VideoPlaylistController@index')->name('admin.videoplaylists.index');
+					Route::get('/create', 			    'VideoPlaylistController@create')->name('admin.videoplaylists.create');
+					Route::post('/store', 			    'VideoPlaylistController@store')->name('admin.videoplaylists.store');
+					Route::get('/edit/{id}', 		    'VideoPlaylistController@edit')->name('admin.videoplaylists.edit');
+					Route::post('/update/{id}', 	    'VideoPlaylistController@update')->name('admin.videoplaylists.update');
+					Route::delete('/trash', 		    'VideoPlaylistController@trash')->name('admin.videoplaylists.trash');
+                    Route::delete('/trash/all', 	    'VideoPlaylistController@trash_all')->name('admin.videoplaylists.trash_all');
+					Route::delete('/force_destroy',     'VideoPlaylistController@force_destroy')->name('admin.videoplaylists.force_destroy');
+                    Route::delete('/force_destroy/all', 'VideoPlaylistController@force_destroy_all')->name('admin.videoplaylists.force_destroy_all');
+					Route::post('/restore',             'VideoPlaylistController@restore')->name('admin.videoplaylists.restore');
+					Route::post('/restore/all',         'VideoPlaylistController@restore_all')->name('admin.videoplaylists.restore_all');
+					Route::get('/status_update', 	    'VideoPlaylistController@status_update')->name('admin.videoplaylists.status_update');
                 });
             });
 

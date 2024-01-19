@@ -20,7 +20,7 @@
                 </a>
             </li>
 
-            @if (Gate::check('video-list') || Gate::check('videocategory-list'))
+            @if (Gate::check('video-list') || Gate::check('videocategory-list') || Gate::check('videoplaylist-list'))
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#video" class="nav-link fw-normal {{ request()->is('auth/video/*') ? 'active' : '' }}" aria-controls="video" role="button" aria-expanded="{{ request()->is('auth/video/*') ? 'true' : 'false' }}">
                         <i class="fi fi-ss-blog-text"></i>
@@ -45,6 +45,16 @@
                                         href="{{ route('admin.videocategories.index') }}">
                                         <span class="sidenav-mini-icon"> - </span>
                                         <span class="sidenav-normal"> {{ __('video::video.category.name') }} </span>
+                                    </a>
+                                </li>
+                            @endcan
+
+                            @can('videoplaylist-list')
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->is('auth/video/playlist/*') ? 'active' : '' }}"
+                                        href="{{ route('admin.videoplaylists.index') }}">
+                                        <span class="sidenav-mini-icon"> - </span>
+                                        <span class="sidenav-normal"> {{ __('video::video.playlist.name') }} </span>
                                     </a>
                                 </li>
                             @endcan

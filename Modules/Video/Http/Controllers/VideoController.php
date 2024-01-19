@@ -56,9 +56,10 @@ class VideoController extends Controller
     {
         $rules = [
             'title' 					=> 'required',
-			'description' 			    => 'required|string',
+			'description' 			    => 'nullable|string',
 			'tag' 			            => 'required|string',
 			'category_id' 			    => 'required',
+			'playlist_id' 			    => 'required',
 			'embed_html' 			    => 'required|string',
 			'thumbnail_url' 			=> 'nullable|string',
 			'external_id' 			    => 'nullable|string',
@@ -72,6 +73,7 @@ class VideoController extends Controller
             'description.required'      => __('core::core.form.validation.required'),
             'tag.required'              => __('core::core.form.validation.required'),
             'category_id.required'      => __('core::core.form.validation.required'),
+            'playlist_id.required'      => __('core::core.form.validation.required'),
             'embed_html.required'       => __('core::core.form.validation.required'),
             'thumbnail_url.required'    => __('core::core.form.validation.required'),
             'external_id.required'      => __('core::core.form.validation.required'),
@@ -94,6 +96,7 @@ class VideoController extends Controller
                 'video_type'    => $video_type,
                 'title'         => mb_convert_encoding($request->input('title'), 'UTF-8'),
                 'category_id'   => mb_convert_encoding($request->input('category_id'), 'UTF-8'),
+                'playlist_id'   => mb_convert_encoding($request->input('playlist_id'), 'UTF-8'),
                 'description'   => $request->input('description'),
                 'tag'           => $request->input('tag'),
                 'category_id'   => $request->input('category_id'),
@@ -125,7 +128,7 @@ class VideoController extends Controller
     {
         $rules = [
             'title' 					=> 'required',
-			'description' 	            => 'required|string',
+			'description' 	            => 'nullable|string',
         ];
 
         $messages = [

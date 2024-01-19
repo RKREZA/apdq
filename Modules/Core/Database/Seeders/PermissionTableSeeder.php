@@ -485,6 +485,29 @@ class PermissionTableSeeder extends Seeder
             ]);
         //Video Category End
 
+        //Video Playlist
+            $group = PermissionGroup::create([
+                'name' => 'videoplaylist',
+                'display_name' => 'Video Playlist',
+            ]);
+            Permission::create([
+                'name' => 'videoplaylist-list',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'videoplaylist-create',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'videoplaylist-edit',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'videoplaylist-delete',
+                'permissiongroup_id' => $group->id,
+            ]);
+        //Video Playlist End
+
         //Post
             $group = PermissionGroup::create([
                 'name' => 'post',

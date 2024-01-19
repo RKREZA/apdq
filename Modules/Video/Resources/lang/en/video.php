@@ -13,7 +13,9 @@ return [
             'external_id' => 'External ID',
             'tag' => 'Tags',
             'category_id' => 'Category',
+            'playlist_id' => 'Playlist',
             'select_category' => 'Select Category',
+            'select_playlist' => 'Select Playlist',
             'youtube_link' => 'YouTube Link',
             'seo_title' => 'SEO Title',
             'seo_description' => 'SEO Description',
@@ -40,6 +42,19 @@ return [
 
         'message' => [
             'error_video_exist_with_this_category' => 'Video already exists with this category'
+        ]
+    ],
+
+    'playlist' => [
+        'name' => 'Video Playlist',
+        'list' => 'List of Video Playlists',
+
+        'form' => [
+            'name' => 'Name',
+        ],
+
+        'message' => [
+            'error_video_exist_with_this_playlist' => 'Video already exists with this playlist'
         ]
     ],
 

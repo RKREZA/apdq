@@ -1,14 +1,14 @@
 @extends('frontend::frontend.layouts.master')
 
 @section('title')
-Vidéo
+{{ $videoplaylist->name }}
 @endsection
 @section('seo')
-    <meta name="title" content="Vidéo">
+    <meta name="title" content="{{ $videoplaylist->name }}">
     <meta name="description" content="{{ $frontend_setting->meta_description }}">
     <meta name="keywords" content="{{ $frontend_setting->meta_keywords }}">
 
-    <meta property="og:title" content="Vidéo" />
+    <meta property="og:title" content="{{ $videoplaylist->name }}" />
     <meta property="og:description" content="{{ $frontend_setting->social_description }}" />
     <meta property="og:image" content="{{ $frontend_setting->logo_dark }}" />
 @endsection
@@ -115,83 +115,15 @@ Vidéo
 
 @section('content')
 
-{{-- <section id="page_header" class="video_page_header">
-    <img src="/assets/frontend/img/video.webp" alt="">
-    <div class="content">
-        <h1>Vidéos</h1>
-        <h6>Politique sans Filtre, Rires Garantis</h6>
-    </div>
-</section> --}}
-
 <section id="video_page" class="pb-5">
     <div class="container-fluid py-2">
-            @if (isset(request()->tag))
-            <div class="mb-3">
-                <span class="badge bg-dark text-light badge-sm">
-                    <i class="fi fi-ss-label" style="transform: rotate(90deg); display:inline-block;"></i> &nbsp;
-                    {{ request()->tag }}
-                </span>
-            </div>
-            @endif
-            @if (isset(request()->code))
-            <div class="mb-3">
-                <span class="badge bg-dark text-light badge-sm">
-                    <i class="fi fi-ss-label" style="transform: rotate(90deg); display:inline-block;"></i> &nbsp;
-                    {{ request()->code }}
-                </span>
-            </div>
-            @endif
-            @if (isset(request()->year))
-            <div class="mb-3">
-                <span class="badge bg-dark text-light badge-sm">
-                    <i class="fi fi-ss-label" style="transform: rotate(90deg); display:inline-block;"></i> &nbsp;
-                    {{ request()->year }}
-                </span>
-            </div>
-            @endif
 
-            @if (isset(request()->month))
-            <div class="mb-3">
-                <span class="badge bg-dark text-light badge-sm">
-                    <i class="fi fi-ss-label" style="transform: rotate(90deg); display:inline-block;"></i> &nbsp;
-                    {{ request()->month }}
-                </span>
-            </div>
-            @endif
 
         <div class="row">
 
-
-            {{-- <div class="col-md-3" id="filter">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h5 class="text-white fw-bold">Category</h6>
-                                    <hr class="horizontal light">
-                                <ul>
-                                    @foreach($video_categories as $category)
-                                    <li>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="category" id="category_input{{ $category->code }}" value="{{ $category->code }}" @if(request()->code == $category->code) checked @endif>
-                                            <label class="form-check-label text-white" for="category_input{{ $category->code }}">
-                                                {{ $category->name }}
-                                            </label>
-                                          </div>
-                                    </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div> --}}
-
             <div class="col-md-10 mb-2">
-                <a href="{{ route('frontend.video') }}?filter=latest" class="btn btn-dark m-1 ms-0 @if(Request::get('filter') == 'latest') bg-light text-dark @endif">Les plus récentes</a>
-                <a href="{{ route('frontend.video') }}?filter=popular" class="btn btn-dark m-1 ms-0 @if(Request::get('filter') == 'popular') bg-light text-dark @endif">Populaires</a>
-                <a href="{{ route('frontend.video') }}?filter=oldest" class="btn btn-dark m-1 ms-0 @if(Request::get('filter') == 'oldest') bg-light text-dark @endif">Les plus anciennes</a>
+
+                <h5 class="m-0 mt-2">Playlist vidéo > {{ $videoplaylist->name }}</h5>
             </div>
 
             <div class="col-md-2 mb-2 text-end">

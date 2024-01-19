@@ -63,6 +63,7 @@
                                 'thumbnail_url'     => __('video::video.video.form.thumbnail_url'),
                                 'title'             => __('video::video.video.form.title'),
                                 'category_id'       => __('video::video.video.form.category_id'),
+                                'playlist_id'       => __('video::video.video.form.playlist_id'),
                                 'reaction'          => __('video::video.video.form.reaction'),
                                 'created_at'            => __('video::video.video.form.created_at'),
                                 'status'            => __('core::core.form.status'),
