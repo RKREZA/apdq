@@ -246,7 +246,7 @@ En direct
                 url: '{{ route("frontend.live.fetch.messages") }}',
                 type: 'GET',
                 data: {
-                    external_id: '{{ $live->external_id }}' // Ensure this value is quoted
+                    external_id: '@if(!empty($live) && !empty($live->external_id)){{ $live->external_id }}@endif' // Ensure this value is quoted
                 }, // Missing comma here
                 success: function(response) {
                     var messages = response.messages;
