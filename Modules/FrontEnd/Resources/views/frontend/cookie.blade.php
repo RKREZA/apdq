@@ -6,7 +6,10 @@
         </header>
 
         <div class="data">
-            <p>Ce site Web utilise des cookies pour vous aider à avoir une expérience de navigation supérieure et plus pertinente sur le site Web. <a href="#"> En savoir plus...</a></p>
+            <p>Ce site Web utilise des cookies pour vous aider à avoir une expérience de navigation supérieure et plus pertinente sur le site Web.
+                <a href="#"> En savoir plus...</a>
+                <a href="{{ route('frontend.page.single','termes-et-conditions') }}" target="_blank">En savoir plus...</a></
+            </p>
         </div>
 
         <div class="buttons">
