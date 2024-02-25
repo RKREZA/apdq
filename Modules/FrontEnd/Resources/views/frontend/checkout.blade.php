@@ -230,7 +230,7 @@ Check-out
 
                                             <button type="submit" class="w-100 btn btn-lg btn-outline-primary py-4 mt-4 custom_button" id="checkout_button" disabled>
                                                 <i class="fi fi-ss-money-bill-wave"></i>
-                                                Go to Payment Page
+                                                Aller à la page de paiement
                                                 {{-- ({{ $subscription->price }}$) --}}
                                             </a>
                                         </form>
