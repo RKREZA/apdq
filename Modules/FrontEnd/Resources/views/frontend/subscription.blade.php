@@ -70,7 +70,7 @@ Plan d'abonnement
 
         <div class="row">
             <div class="col-md-10 mb-4">
-                <h5 class="m-0 mt-2 text-light"><i class="fi fi-ss-money-check-edit" style="position: relative; top: 3px"></i> Plan d'abonnement</h5>
+                <h5 class="m-0 text-light"><i class="fi fi-ss-money-check-edit" style="position: relative; top: 3px"></i> Plan d'abonnement</h5>
             </div>
         </div>
 

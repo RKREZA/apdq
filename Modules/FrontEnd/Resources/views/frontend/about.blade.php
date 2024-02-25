@@ -41,7 +41,7 @@
 
         <div class="row">
             <div class="col-md-10 mb-4">
-                <h5 class="m-0 mt-2 text-light"><i class="fi fi-sr-id-card-clip-alt" style="position: relative; top: 3px"></i> À propos</h5>
+                <h5 class="m-0 text-light"><i class="fi fi-sr-id-card-clip-alt" style="position: relative; top: 3px"></i> À propos</h5>
             </div>
         </div>
 

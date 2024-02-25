@@ -35,7 +35,7 @@
 
         <div class="row">
             <div class="col-md-10 mb-4">
-                <h5 class="m-0 mt-2 text-light">{{ $page->title }}</h5>
+                <h5 class="m-0 text-light">{{ $page->title }}</h5>
             </div>
         </div>
 

@@ -132,7 +132,7 @@ Playlist vidéo
         <div class="row">
 
             <div class="col-md-10 mb-4">
-                <h5 class="m-0 mt-2 text-light"><i class="fi fi-rs-list-music" style="position: relative; top: 3px"></i> Playlist vidéo</h5>
+                <h5 class="m-0 text-light"><i class="fi fi-rs-list-music" style="position: relative; top: 3px"></i> Playlist vidéo</h5>
             </div>
 
             {{-- <div class="col-md-2 mb-2 text-end">

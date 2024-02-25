@@ -51,7 +51,7 @@ Contact
 
         <div class="row">
             <div class="col-md-10 mb-4">
-                <h5 class="m-0 mt-2 text-light"><i class="fi fi-ss-customer-service" style="position: relative; top: 3px"></i> Contact</h5>
+                <h5 class="m-0 text-light"><i class="fi fi-ss-customer-service" style="position: relative; top: 3px"></i> Contact</h5>
             </div>
         </div>
 

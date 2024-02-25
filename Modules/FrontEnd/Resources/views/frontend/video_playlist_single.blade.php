@@ -122,7 +122,7 @@
         <div class="row">
 
             <div class="col-md-10 mb-4">
-                <h5 class="m-0 mt-2 text-light"><i class="fi fi-rs-list-music" style="position: relative; top: 3px"></i> Playlist vidéo <i class="fi fi-sr-angle-small-right" style="position: relative; top:3px;"></i> {{ $videoplaylist->name }}</h5>
+                <h5 class="m-0 text-light"><i class="fi fi-rs-list-music" style="position: relative; top: 3px"></i> Playlist vidéo <i class="fi fi-sr-angle-small-right" style="position: relative; top:3px;"></i> {{ $videoplaylist->name }}</h5>
             </div>
 
             <div class="col-md-12">

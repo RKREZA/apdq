@@ -44,7 +44,7 @@ En direct
 
         <div class="row">
             <div class="col-md-10 mb-4">
-                <h5 class="m-0 mt-2 text-light"><i class="fi fi-ss-signal-stream" style="position: relative; top: 3px"></i> En direct</h5>
+                <h5 class="m-0 text-light"><i class="fi fi-ss-signal-stream" style="position: relative; top: 3px"></i> En direct</h5>
             </div>
         </div>
 

@@ -122,7 +122,7 @@ Check-out
 
         <div class="row">
             <div class="col-md-10 mb-4">
-                <h5 class="m-0 mt-2 text-light"><a href="{{ route('frontend.subscription') }}" class="back_button"><i class="fi fi-sr-angle-small-left"></i></a> Check-out</h5>
+                <h5 class="m-0 text-light"><a href="{{ route('frontend.subscription') }}" class="back_button"><i class="fi fi-sr-angle-small-left"></i></a> Check-out</h5>
             </div>
         </div>
 
