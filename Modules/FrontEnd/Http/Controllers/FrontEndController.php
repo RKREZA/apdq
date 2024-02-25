@@ -434,15 +434,15 @@ class FrontEndController extends Controller
 
     public function live()
     {
-        try {
+        // try {
             $live               = Live::where('status','Active')->where('archive','Inactive')->first();
             $messages = $this->fetchLiveChatMessagesUsingVideoId($live->external_id);
             $archived_lives     = Live::where('status','Active')->where('archive','Active')->get();
             // dd($messages);
             return view('frontend::frontend.live', compact('live','messages','archived_lives'));
-        } catch (\Throwable $th) {
-            abort(404);
-        }
+        // } catch (\Throwable $th) {
+        //     abort(404);
+        // }
     }
 
     public function live_archive()
