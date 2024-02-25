@@ -16,6 +16,10 @@ class CreatePostsTable extends Migration
         if (!Schema::hasTable('posts')) {
             Schema::create('posts', function (Blueprint $table) {
                 $table->id();
+
+                $table->enum('publish_type', ['publish', 'schedule'])->default('publish');
+                $table->enum('content_type', ['paid', 'free'])->default('free');
+
                 $table->string('title');
                 $table->string('slug')->unique();
                 $table->text('description');
@@ -27,6 +31,10 @@ class CreatePostsTable extends Migration
 
                 $table->bigInteger('category_id')->unsigned()->nullable();
                 $table->foreign('category_id')->references('id')->on('post_categories')->onDelete('set null');
+
+                $table->bigInteger('subcategory_id')->unsigned()->nullable();
+                $table->foreign('subcategory_id')->references('id')->on('post_subcategories')->onDelete('set null');
+
                 $table->enum('status', ['Inactive', 'Active'])->default('Active');
                 $table->timestamps();
                 $table->softDeletes();

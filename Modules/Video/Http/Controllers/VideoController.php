@@ -59,13 +59,17 @@ class VideoController extends Controller
 			'description' 			    => 'nullable|string',
 			'tag' 			            => 'required|string',
 			'category_id' 			    => 'required',
+			'subcategory_id' 		    => 'required',
 			'playlist_id' 			    => 'required',
 			'embed_html' 			    => 'required|string',
 			'thumbnail_url' 			=> 'nullable|string',
 			'external_id' 			    => 'nullable|string',
 			'seo_title' 			    => 'nullable|string',
 			'seo_description' 		    => 'nullable|string',
-			'seo_keyword' 			    => 'nullable|string'
+			'seo_keyword' 			    => 'nullable|string',
+
+            'publish_type'              => 'required',
+            'content_type'        => 'required',
         ];
 
         $messages = [
@@ -73,6 +77,7 @@ class VideoController extends Controller
             'description.required'      => __('core::core.form.validation.required'),
             'tag.required'              => __('core::core.form.validation.required'),
             'category_id.required'      => __('core::core.form.validation.required'),
+            'subcategory_id.required'   => __('core::core.form.validation.required'),
             'playlist_id.required'      => __('core::core.form.validation.required'),
             'embed_html.required'       => __('core::core.form.validation.required'),
             'thumbnail_url.required'    => __('core::core.form.validation.required'),
@@ -80,6 +85,9 @@ class VideoController extends Controller
             'seo_title.required'        => __('core::core.form.validation.required'),
             'seo_description.required'  => __('core::core.form.validation.required'),
             'seo_keyword.required'      => __('core::core.form.validation.required'),
+
+            'publish_type.required'         => __('core::core.form.validation.required'),
+            'content_type.required'   => __('core::core.form.validation.required'),
         ];
 
         $validate = $this->validate($request, $rules, $messages);
@@ -100,13 +108,17 @@ class VideoController extends Controller
                 'description'   => $request->input('description'),
                 'tag'           => $request->input('tag'),
                 'category_id'   => $request->input('category_id'),
+                'subcategory_id'   => $request->input('subcategory_id'),
                 'embed_html'    => $request->input('embed_html'),
                 'thumbnail_url' => $request->input('thumbnail_url'),
                 'external_id'   => $request->input('external_id'),
                 'seo_title'     => $request->input('seo_title'),
                 'seo_description'=> $request->input('seo_description'),
                 'seo_keyword'   => $request->input('seo_keyword'),
-                'created_at'    => $request->input('created_at')
+                'created_at'    => $request->input('created_at'),
+
+                'publish_type'          => $request->input('created_at'),
+                'content_type'    => $request->input('created_at')
             ]);
 
 			$success_msg = __('core::core.message.success.store');
@@ -129,16 +141,20 @@ class VideoController extends Controller
         $rules = [
             'title' 					=> 'required',
 			'description' 	            => 'nullable|string',
+
+            'publish_type'              => 'required',
+            'content_type'        => 'required',
         ];
 
         $messages = [
             'title.required'    	=> __('core::core.form.validation.required'),
             'description.required'  => __('core::core.form.validation.required'),
+
+            'publish_type.required'         => __('core::core.form.validation.required'),
+            'content_type.required'   => __('core::core.form.validation.required'),
         ];
 
         $validate = $this->validate($request, $rules, $messages);
-
-        // $request->title  = utf8_encode($request->title);
 
         // dd($request->all());
         DB::beginTransaction();
@@ -169,6 +185,22 @@ class VideoController extends Controller
         DB::beginTransaction();
         try {
 		    Video::find($request->id)->update(['status' => $request->status]);
+        } catch (Exception $e) {
+            DB::rollBack();
+            $error_msg  = __('core::core.message.error');
+            return response()->json(['error'=>$error_msg]);
+        }
+        DB::commit();
+        $success_msg        = __('core::core.message.success.update');
+        return response()->json(['success'=> $success_msg]);
+
+	}
+
+	public function featured_update(Request $request)
+	{
+        DB::beginTransaction();
+        try {
+		    Video::find($request->id)->update(['featured' => $request->featured]);
         } catch (Exception $e) {
             DB::rollBack();
             $error_msg  = __('core::core.message.error');

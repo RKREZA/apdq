@@ -21,7 +21,7 @@
                     @foreach ($model->files as $file)
                         <tr>
                             <td class="w-10 text-center">
-                                @if ($file->type == 'png' || $file->type == 'jpg' || $file->type == 'gif' || $file->type == 'JPG')
+                                @if ($file->type == 'png' || $file->type == 'jpg' || $file->type == 'gif' || $file->type == 'JPG' || $file->type == 'webp' || $file->type == 'avif')
                                     <i class="fi fi-ss-picture"></i>
                                 @elseif($file->type == 'pdf')
                                     <i class="fi fi-ss-file-pdf"></i>

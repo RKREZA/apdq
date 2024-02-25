@@ -20,6 +20,7 @@ Route::group(['middleware'=>'language'],function (){
 					Route::get('/edit/{id}', 		    'VideoController@edit')->name('admin.videos.edit');
 					Route::post('/update/{id}', 	    'VideoController@update')->name('admin.videos.update');
 					Route::get('/status_update', 	    'VideoController@status_update')->name('admin.videos.status_update');
+					Route::get('/featured_update', 	    'VideoController@featured_update')->name('admin.videos.featured_update');
 					Route::delete('/trash', 		    'VideoController@trash')->name('admin.videos.trash');
                     Route::delete('/trash/all', 	    'VideoController@trash_all')->name('admin.videos.trash_all');
 					Route::delete('/force_destroy',     'VideoController@force_destroy')->name('admin.videos.force_destroy');
@@ -49,6 +50,24 @@ Route::group(['middleware'=>'language'],function (){
 					Route::post('/restore',             'VideoCategoryController@restore')->name('admin.videocategories.restore');
 					Route::post('/restore/all',         'VideoCategoryController@restore_all')->name('admin.videocategories.restore_all');
 					Route::get('/status_update', 	    'VideoCategoryController@status_update')->name('admin.videocategories.status_update');
+                });
+
+
+				// Video Subcategory
+                Route::prefix('subcategory')->group(function () {
+					Route::get('/trashes', 			    'VideoSubcategoryController@trashes')->name('admin.videosubcategories.trashes');
+					Route::get('/index', 			    'VideoSubcategoryController@index')->name('admin.videosubcategories.index');
+					Route::get('/create', 			    'VideoSubcategoryController@create')->name('admin.videosubcategories.create');
+					Route::post('/store', 			    'VideoSubcategoryController@store')->name('admin.videosubcategories.store');
+					Route::get('/edit/{id}', 		    'VideoSubcategoryController@edit')->name('admin.videosubcategories.edit');
+					Route::post('/update/{id}', 	    'VideoSubcategoryController@update')->name('admin.videosubcategories.update');
+					Route::delete('/trash', 		    'VideoSubcategoryController@trash')->name('admin.videosubcategories.trash');
+                    Route::delete('/trash/all', 	    'VideoSubcategoryController@trash_all')->name('admin.videosubcategories.trash_all');
+					Route::delete('/force_destroy',     'VideoSubcategoryController@force_destroy')->name('admin.videosubcategories.force_destroy');
+                    Route::delete('/force_destroy/all', 'VideoSubcategoryController@force_destroy_all')->name('admin.videosubcategories.force_destroy_all');
+					Route::post('/restore',             'VideoSubcategoryController@restore')->name('admin.videosubcategories.restore');
+					Route::post('/restore/all',         'VideoSubcategoryController@restore_all')->name('admin.videosubcategories.restore_all');
+					Route::get('/status_update', 	    'VideoSubcategoryController@status_update')->name('admin.videosubcategories.status_update');
                 });
 
 

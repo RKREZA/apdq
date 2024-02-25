@@ -50,6 +50,23 @@
                 </div>
             </div>
 
+
+
+            <div class="col-md-12">
+                <div class="input-group input-group-outline mb-3 is-filled @error('category_id') is-invalid @enderror is-filled">
+                    <label class="form-label" for="category_id"><span class="required">{{ __('newsletter::newsletter.newsletter.form.category_id') }}</span></label>
+                    <select name="category_id" id="category_id" class="form-control @error('category_id') is-invalid @enderror">
+                        <option value="" disabled readonly selected>{{ __('newsletter::newsletter.newsletter.form.select_category') }}</option>
+                        @foreach (\Modules\Newsletter\Entities\NewsletterCategory::where('status','Active')->get() as $category)
+                            <option value="{{ $category->id }}" @if(isset($newsletter) && $newsletter->category_id == $category->id) selected @else{{ old('category_id') }}@endif>{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('category_id')
+                        <em class="error invalid-newsletter" style="display: inline-block;">{{ $message }}</em>
+                    @enderror
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

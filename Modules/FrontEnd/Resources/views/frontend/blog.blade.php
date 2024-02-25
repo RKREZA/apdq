@@ -28,7 +28,7 @@ Blog
             transition: all 0.3s ease-in-out;
             background: #2c2c2c82;
         }
-        #blog_page .card:hover{
+        #blog_page #blog_content .card:hover{
             transform: scale(1.05);
         }
         #blog_page img{
@@ -59,16 +59,16 @@ Blog
 
 @section('content')
 
-{{-- <section id="page_header" class="video_page_header">
-    <img src="/assets/frontend/img/blog.webp" alt="">
-    <div class="content">
-        <h1>Blog</h1>
-        <h6>Perspectives avec une Touche d'Humour : Le Blog Politique</h6>
-    </div>
-</section> --}}
-
 <div id="blog_page" class="pb-5">
     <div class="container-fluid py-2">
+
+        <div class="row">
+            <div class="col-md-10 mb-4">
+                <h5 class="m-0 mt-2 text-light"><i class="fi fi-ss-blog-text" style="position: relative; top: 3px"></i> Blog</h5>
+            </div>
+        </div>
+
+
         @if (isset(request()->tag))
             <div class="mb-3">
                 <span class="badge bg-dark text-light badge-sm">
@@ -77,6 +77,7 @@ Blog
                 </span>
             </div>
         @endif
+
         <div class="row">
             <div class="col-md-3" id="filter">
                 <div class="card">
@@ -107,7 +108,26 @@ Blog
                 </div>
             </div>
 
-            <div class="col-md-9">
+            <div class="col-md-9" id="blog_content">
+                @if(auth()->user() && auth()->user()->subscriptionStatus()['status'] != 'no_subscription' && auth()->user()->subscriptionStatus()['optionAdFree'] == 'Active' && auth()->user()->hasRole('User'))
+
+                @else
+
+                    <div class="row justify-content-center mb-3" id="ad_banner_2">
+                        <div class="col" style="min-width: 260px;">
+                            <!-- Mods Center Responsive -->
+                            {{-- <ins class="adsbygoogle"
+                                style="display:block"
+                                data-ad-client="ca-pub-7301992079721298"
+                                data-ad-slot="4688267585"
+                                data-ad-format="auto"
+                                data-full-width-responsive="true"></ins> --}}
+
+                                <img src="{{ asset('assets/frontend/img/ad-placeholder.png') }}" alt="" style="width: 100%; border-radius: 15px;">
+                        </div>
+                    </div>
+                @endif
+
                 <div class="row">
 
                     @foreach ($posts as $post)
@@ -120,7 +140,7 @@ Blog
                                         @if (!empty($post->files[0]['path']))
                                             <div class="image-container" style="background-image:url({{ $post->files[0]['path'] }});"></div>
                                         @else
-                                            <div class="image-container" style="background-image:url(assets/frontend/img/no-image.png);"></div>
+                                            <div class="image-container" style="background-image:url(assets/frontend/img/no-image.webp);"></div>
                                         @endif
 
 

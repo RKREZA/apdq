@@ -12,7 +12,7 @@ class PostCategory extends Model
 {
     use HasFactory, Notifiable, Loggable, SoftDeletes;
 
-    protected $fillable = ['code', 'name', 'status'];
+    protected $fillable = ['serial', 'code', 'name', 'status'];
 
     public function posts()
     {

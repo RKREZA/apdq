@@ -16,7 +16,10 @@ class CreateNewslettersTable extends Migration
         if (!Schema::hasTable('newsletters')) {
             Schema::create('newsletters', function (Blueprint $table) {
                 $table->id();
-                $table->string('email')->unique();
+                $table->string('email');
+
+                $table->bigInteger('category_id')->unsigned()->nullable();
+                $table->foreign('category_id')->references('id')->on('newsletter_categories')->onDelete('set null');
 
                 $table->enum('status', ['Inactive', 'Active'])->default('Active');
                 $table->timestamps();

@@ -17,10 +17,10 @@ class CreateVideoCategoriesTable extends Migration
             Schema::create('video_categories', function (Blueprint $table) {
                 $table->id();
                 $table->string('serial')->nullable();
-                $table->string('name');
+                $table->string('name')->nullable();
                 $table->string('code')->unique();
-                $table->string('icon');
-                $table->text('description');
+                $table->string('icon')->nullable();
+                $table->text('description')->nullable();
                 $table->enum('status', ['Inactive', 'Active'])->default('Active');
                 $table->timestamps();
                 $table->softDeletes();

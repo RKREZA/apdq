@@ -79,7 +79,7 @@ class UserTrashesDataTable extends DataTable
                 if (count($row->files)>0) {
                     $photo = '<img src="/'.$row->files[0]->path.'" class="rounded-circle img-fluid img-thumbnail" style="width: 50px; height:50px">';
                 }else{
-                    $photo = '<img src="/assets/backend/img/no-image.png" class="rounded-circle img-fluid img-thumbnail" style="width: 50px; height:50px">';
+                    $photo = '<img src="/assets/backend/img/no-image.webp" class="rounded-circle img-fluid img-thumbnail" style="width: 50px; height:50px">';
                 }
                 return $photo;
             })

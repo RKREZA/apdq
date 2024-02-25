@@ -78,6 +78,16 @@ return [
     'total'             => 'Total',
     'amount'            => 'Amount',
     'emails'            => 'Emails',
+    'seo_information'   => 'SEO Information',
+    'thumbnail'         => 'Thumbnail',
+    'video'             => 'Video',
+
+    'publish_information' => 'Publish Information',
+    'publish_type'      => 'Publish Type',
+    'publish'           => 'Publish',
+    'schedule'          => 'Schedule',
+    'free'              => 'Free',
+    'paid'              => 'Paid',
 
     'notice'              => 'Notice Board',
 
@@ -96,6 +106,8 @@ return [
         'files'                     => 'Files',
         'date'                      => 'Date',
         'status'                    => 'Status',
+        'archive'                   => 'Live/Archive',
+        'featured'                  => 'Featured',
         'action'                    => 'Action',
         'view-button'               => 'View',
         'edit-button'               => 'Edit',
@@ -173,6 +185,7 @@ return [
         ],
         'error'                     => 'Something went wrong!',
         'update_profile'            => 'Your profile is not updated. Please contact with project office',
+        'already_exist'             => 'Already exists!',
     ],
 
 ];

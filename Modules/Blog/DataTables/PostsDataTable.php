@@ -14,6 +14,7 @@ use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Modules\Blog\Entities\PostCategory;
+use Modules\Blog\Entities\PostSubcategory;
 
 class PostsDataTable extends DataTable
 {
@@ -38,9 +39,9 @@ class PostsDataTable extends DataTable
 
             ->addColumn('photo', function($row){
                 if (count($row->files)>0) {
-                    $photo = '<img src="/'.$row->files[0]->path.'" class="rounded-circle img-fluid img-thumbnail" style="width: 50px; height:50px">';
+                    $photo = '<img src="/'.$row->files[0]->path.'" class="img-fluid img-thumbnail" style="width: 50px; height:50px">';
                 }else{
-                    $photo = '<img src="/assets/backend/img/no-image.png" class="rounded-circle img-fluid img-thumbnail" style="width: 50px; height:50px">';
+                    $photo = '<img src="/assets/backend/img/no-image.webp" class="img-fluid img-thumbnail" style="width: 50px; height:50px">';
                 }
                 return $photo;
             })
@@ -68,6 +69,13 @@ class PostsDataTable extends DataTable
 
             ->addColumn('title', function($row){
                 $title = wordwrap($row->title, 100, "<br>\n", true);
+                $title.='&nbsp;';
+                if($row->content_type == 'free'){
+                    $title.='<span class="badge badge-success">'.$row->content_type.'</span>';
+                }else{
+                    $title.='<span class="badge badge-warning">'.$row->content_type.'</span>';
+                }
+
                 return mb_convert_encoding($title, 'UTF-8', 'UTF-8');
             })
 
@@ -82,6 +90,14 @@ class PostsDataTable extends DataTable
                     return 'NaN';
                 }
                 return $category->name;
+            })
+
+            ->addColumn('subcategory_id', function($row){
+                $subcategory = PostSubcategory::find($row->subcategory_id);
+                if (empty($subcategory)) {
+                    return 'NaN';
+                }
+                return $subcategory->name;
             })
 
             ->addColumn('status', function($row){
@@ -105,11 +121,26 @@ class PostsDataTable extends DataTable
                 return $thumbnail;
             })
 
-            ->editColumn('created_at', '{{date("jS M Y", strtotime($created_at))}}')
+
+
+            ->addColumn('created_at', function ($row) {
+
+                if($row->publish_type == 'publish'){
+                    $data = '<span class="badge badge-success">'.$row->publish_type.'</span>';
+                }else{
+                    $data = '<span class="badge badge-warning">'.$row->publish_type.'</span>';
+                }
+                $data.="<br>";
+                $data.= date("jS M Y", strtotime($row->created_at));
+                $data.="<br>";
+                $data.= date("H:i:A", strtotime($row->created_at));
+                return $data;
+            })
+
 	        ->editColumn('updated_at', '{{date("jS M Y", strtotime($updated_at))}}')
 
             ->setRowId('id')
-            ->rawColumns(['title','photo','action','checkbox','status']);
+            ->rawColumns(['title','photo','action','checkbox','status','created_at']);
     }
 
     /**

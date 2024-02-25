@@ -1,10 +1,10 @@
 @extends('frontend::frontend.layouts.master')
 
 @section('title')
-Vidéo
+Résultat de recherche pour : "{{ request()->keyword }}"
 @endsection
 @section('seo')
-    <meta name="title" content="Vidéo">
+    <meta name="title" content="Résultat de recherche pour : {{ request()->keyword }}">
     <meta name="description" content="{{ $frontend_setting->meta_description }}">
     <meta name="keywords" content="{{ $frontend_setting->meta_keywords }}">
 
@@ -118,24 +118,18 @@ Vidéo
 
 @section('content')
 
-{{-- <section id="page_header" class="video_page_header">
-    <img src="/assets/frontend/img/search.webp" alt="">
-    <div class="content">
-        <h1>Résultat de recherche pour : "{{ request()->keyword }}"</h1>
-    </div>
-</section> --}}
 
-<section id="search_page" class="pb-5 mx-3">
+<section id="search_page" class="pb-5">
     <div class="container-fluid py-2">
 
         <div class="row">
-            <div class="col-md-12">
-                <h4>Résultat de recherche pour : "{{ request()->keyword }}"</h4>
+            <div class="col-md-10 mb-4">
+                <h5 class="m-0 mt-2 text-light"><i class="fi fi-sr-discover" style="position: relative; top: 3px"></i> Résultat de recherche pour : "{{ request()->keyword }}"</h5>
             </div>
         </div>
 
         <div class="description">
-            <h4 class="fw-bold">Vidéo</h4>
+            <h5 class="fw-bold">Vidéo</h5>
             <hr>
             @if(count($videos)>0)
             <div class="row">
@@ -144,9 +138,17 @@ Vidéo
                     <div class="col-md-3 mb-4">
                         <div class="card border-0">
                             <div class="card-body p-0">
+
+                                @if ($video['content_type'] == 'paid')
+                                    <div class="premium" style="position: absolute; right: 10px; top: 10px;">
+                                        <img class="crown" src="{{ asset('assets/frontend/img/crown.svg') }}" style="    background: #000;
+                                        padding: 10px;
+                                        border-radius: 6px;"></img>
+                                    </div>
+                                @endif
                                 <a href="{{ route('frontend.video.single', $video->slug) }}" class="">
                                     <div class="image-container" style="background-image:url({{ $video->thumbnail_url }});">
-                                        {{-- <img src="{{ $video->thumbnail_url }}" onerror="this.onerror=null;this.src='{{ asset('assets/frontend/img/no-video.png') }}';" alt=""> --}}
+                                        {{-- <img src="{{ $video->thumbnail_url }}" onerror="this.onerror=null;this.src='{{ asset('assets/frontend/img/no-video.webp') }}';" alt=""> --}}
                                     </div>
                                 </a>
                                 <div class="video-content p-3">
@@ -177,10 +179,10 @@ Vidéo
                     {{ $videos->links('pagination::bootstrap-5') }}
                 </div>
             </div>
+        </div>
 
-
-
-            <h4 class="fw-bold mt-5">Posts</h4>
+        <div class="description mt-4">
+            <h5 class="fw-bold">Posts</h5>
             <hr>
             @if(count($posts)>0)
             <div class="row">
@@ -196,7 +198,7 @@ Vidéo
 
                                         </div>
                                     @else
-                                        <div class="post-image-container" style="background-image:url(assets/frontend/img/no-image.png);">
+                                        <div class="post-image-container" style="background-image:url(assets/frontend/img/no-image.webp);">
 
                                         </div>
                                     @endif

@@ -5,14 +5,13 @@ namespace Modules\Newsletter\Http\Controllers;
 use Exception;
 use Illuminate\Http\Request;
 use Modules\Newsletter\Entities\Newsletter;
+use Modules\Newsletter\Entities\NewsletterCategory;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
 use Yajra\DataTables\Facades\DataTables;
 use Modules\Newsletter\DataTables\NewslettersDataTable;
 use Modules\Newsletter\DataTables\NewsletterTrashesDataTable;
-use Youtube;
-use Alaouy\Youtube\Rules\ValidYoutubeVideo;
 
 class NewsletterController extends Controller
 {
@@ -53,9 +52,24 @@ class NewsletterController extends Controller
 
         $validate = $this->validate($request, $rules, $messages);
         // dd($request->all());
+
+        $category = NewsletterCategory::where('code','live')->first();
+        if (!$category) {
+
+            $error_msg = __('core::core.message.error');
+			return redirect()->route('admin.newsletters.index')->with('error',$error_msg);
+        }
+        $check_email = Newsletter::where('email',$request->email)->where('category_id',$category->id)->first();
+        if($check_email){
+            $error_msg = __('core::core.message.already_exist');
+			return redirect()->route('admin.newsletters.index')->with('error',$error_msg);
+        }
+
+
 		try {
 			Newsletter::create([
-                'email'         => $request->input('email')
+                'category_id'           => $request->input('category_id'),
+                'email'                 => $request->input('email')
             ]);
 
 			$success_msg = __('core::core.message.success.store');

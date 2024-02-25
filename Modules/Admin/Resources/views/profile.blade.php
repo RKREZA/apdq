@@ -91,7 +91,7 @@
                     <div class="row justify-content-left align-items-center">
                         {{-- <div class="col-sm-auto col-md-4">
                             <div class="custom-file-container">
-                                <img src="/@if(count(auth()->user()->files)>0){{ auth()->user()->files[0]->path }}@endif" alt="..." id="profile_output" class="img-thumbnail rounded" onerror="this.src='{{ asset('assets/backend/img/no-image.png') }}';">
+                                <img src="/@if(count(auth()->user()->files)>0){{ auth()->user()->files[0]->path }}@endif" alt="..." id="profile_output" class="img-thumbnail rounded" onerror="this.src='{{ asset('assets/backend/img/no-image.webp') }}';">
                             </div>
                         </div> --}}
                         <div class="col-sm-auto col-md-12 my-auto">

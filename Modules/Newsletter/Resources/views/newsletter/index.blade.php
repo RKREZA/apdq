@@ -49,6 +49,7 @@
                             'include_index_table_data_route'    => route('admin.newsletters.index'),
                             'include_table_rows'                => [
                                 'email'             => __('newsletter::newsletter.newsletter.form.email'),
+                                'category_id'             => __('newsletter::newsletter.newsletter.form.category_id'),
                                 'created_at'        => __('core::core.form.created_at'),
                                 'action'            => __('core::core.form.action'),
                             ],

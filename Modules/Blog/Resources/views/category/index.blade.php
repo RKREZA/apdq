@@ -49,6 +49,7 @@
                             'include_delete_all_permission'     => 'postcategory-delete',
                             'include_index_table_data_route'    => route('admin.postcategories.index'),
                             'include_table_rows'                => [
+                                'serial'          => __('blog::blog.category.form.serial'),
                                 'name'          => __('blog::blog.category.form.name'),
                                 'code'          => __('blog::blog.category.form.code'),
                                 'status'        => __('core::core.form.status'),

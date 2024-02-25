@@ -49,6 +49,16 @@
                                 </li>
                             @endcan
 
+                            @can('videosubcategory-list')
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->is('auth/video/subcategory/*') ? 'active' : '' }}"
+                                        href="{{ route('admin.videosubcategories.index') }}">
+                                        <span class="sidenav-mini-icon"> - </span>
+                                        <span class="sidenav-normal"> {{ __('video::video.subcategory.name') }} </span>
+                                    </a>
+                                </li>
+                            @endcan
+
                             @can('videoplaylist-list')
                                 <li class="nav-item">
                                     <a class="nav-link {{ request()->is('auth/video/playlist/*') ? 'active' : '' }}"
@@ -85,17 +95,51 @@
                 {{-- <hr class="horizontal light"> --}}
             @endcan
 
-            @can('newsletter-list')
+            {{-- @can('newsletter-list')
                 <li class="nav-item ">
                     <a class="nav-link  {{ request()->is('auth/newsletter/*') ? 'active' : '' }}" href="{{ route('admin.newsletters.index') }}">
                         <i class="fi fi-ss-envelope-download"></i>
                         <span class="sidenav-normal"> {{ __('newsletter::newsletter.newsletter.name') }} </span>
                     </a>
                 </li>
-                {{-- <hr class="horizontal light"> --}}
-            @endcan
+            @endcan --}}
 
-            @if (Gate::check('post-list') || Gate::check('postcategory-list'))
+            @if (Gate::check('newsletter-list') || Gate::check('newslettercategory-list'))
+                <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#newsletter" class="nav-link fw-normal {{ request()->is('auth/newsletter/*') ? 'active' : '' }}" aria-controls="newsletter" role="button" aria-expanded="{{ request()->is('auth/newsletter/*') ? 'true' : 'false' }}">
+                        <i class="fi fi-ss-newsletter-text"></i>
+                        <span class="nav-link-text">{{ __('newsletter::newsletter.newsletter.name') }}</span>
+                    </a>
+                    <div class="collapse {{ request()->is('auth/newsletter/*') ? 'show' : '' }}" id="newsletter">
+                        <ul class="nav ">
+
+                            @can('newsletter-list')
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->is('auth/newsletter/newsletter/*') ? 'active' : '' }}"
+                                        href="{{ route('admin.newsletters.index') }}">
+                                        <span class="sidenav-mini-icon"> - </span>
+                                        <span class="sidenav-normal"> {{ __('newsletter::newsletter.newsletter.names') }} </span>
+                                    </a>
+                                </li>
+                            @endcan
+
+                            @can('newslettercategory-list')
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->is('auth/newsletter/category/*') ? 'active' : '' }}"
+                                        href="{{ route('admin.newslettercategories.index') }}">
+                                        <span class="sidenav-mini-icon"> - </span>
+                                        <span class="sidenav-normal"> {{ __('newsletter::newsletter.category.names') }} </span>
+                                    </a>
+                                </li>
+                            @endcan
+
+                        </ul>
+                    </div>
+                </li>
+                {{-- <hr class="horizontal light"> --}}
+            @endif
+
+            @if (Gate::check('post-list') || Gate::check('postcategory-list') || Gate::check('postsubcategory-list'))
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#blog" class="nav-link fw-normal {{ request()->is('auth/blog/*') ? 'active' : '' }}" aria-controls="blog" role="button" aria-expanded="{{ request()->is('auth/blog/*') ? 'true' : 'false' }}">
                         <i class="fi fi-ss-blog-text"></i>
@@ -120,6 +164,16 @@
                                         href="{{ route('admin.postcategories.index') }}">
                                         <span class="sidenav-mini-icon"> - </span>
                                         <span class="sidenav-normal"> {{ __('blog::blog.category.names') }} </span>
+                                    </a>
+                                </li>
+                            @endcan
+
+                            @can('postsubcategory-list')
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->is('auth/blog/subcategory/*') ? 'active' : '' }}"
+                                        href="{{ route('admin.postsubcategories.index') }}">
+                                        <span class="sidenav-mini-icon"> - </span>
+                                        <span class="sidenav-normal"> {{ __('blog::blog.subcategory.names') }} </span>
                                     </a>
                                 </li>
                             @endcan

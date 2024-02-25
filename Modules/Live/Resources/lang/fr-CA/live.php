@@ -5,6 +5,9 @@ return [
         'name' => 'En direct',
 
         'form' => [
+            'content_type' => 'Type de contenu',
+            'live_information' => 'Informations en direct',
+            'created_at' => 'Date de publication',
             'title' => 'Titre',
             'description' => 'Description',
             'embed_html' => 'Code d\'intégration HTML',

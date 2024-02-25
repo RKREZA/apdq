@@ -42,6 +42,17 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="input-group input-group-outline my-2 is-filled @if(old('serial')) is-valid @endif @error('serial') is-invalid @enderror">
+                            <label class="form-label"><span class="">{{ __('blog::blog.category.form.serial') }}</span></label>
+                            <input type="number" name="serial" class="form-control" value="{{ old('serial') }}">
+                            @error('serial')
+                                <em class="error invalid-post" style="display: inline-block;">{{ $message }}</em>
+                            @enderror
+                        </div>
+                    </div>
+
                     <div class="col-md-12">
                         <div class="input-group input-group-outline my-2 is-filled @if(old('name')) is-valid @endif @error('name') is-invalid @enderror">
                             <label class="form-label"><span class="required">{{ __('blog::blog.category.form.name') }}</span></label>

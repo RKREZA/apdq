@@ -30,15 +30,22 @@ class Kernel extends ConsoleKernel
         // Remove password reset tokens in every 15 minutes
         $schedule->command('auth:clear-resets')->everyFifteenMinutes();
 
+        // backup regularly
         $schedule->command('backup:clean')->daily()->at('01:00');
         $schedule->command('backup:run')->daily()->at('01:30');
         $schedule->command('backup:monitor')->daily()->at('03:00');
 
-        // Send Email Of last unsent email
-        $schedule->call('Modules\Email\Http\Controllers\EmailController@send_unsent_email')->everyMinute();
+        // send email Of last unsent email
+        // $schedule->call('Modules\Email\Http\Controllers\EmailController@send_unsent_email')->everyMinute();
 
         // delete soft deleted data
-        // $schedule->command('model:prune')->daily()->at('04:00');
+        $schedule->command('model:prune')->daily()->at('04:00');
+
+        // publish scheduled
+        $schedule->command('videos:publish-scheduled')->everyMinute(); // or another frequency
+        $schedule->command('lives:publish-scheduled')->everyMinute(); // or another frequency
+        $schedule->command('posts:publish-scheduled')->everyMinute(); // or another frequency
+        $schedule->command('lives:send-notifications')->everyMinute();
 
 
     }

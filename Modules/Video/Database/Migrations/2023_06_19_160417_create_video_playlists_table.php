@@ -16,7 +16,7 @@ class CreateVideoPlaylistsTable extends Migration
         if (!Schema::hasTable('video_playlists')) {
             Schema::create('video_playlists', function (Blueprint $table) {
                 $table->id();
-                $table->string('name');
+                $table->string('name')->nullable();
                 $table->enum('status', ['Inactive', 'Active'])->default('Active');
                 $table->timestamps();
                 $table->softDeletes();

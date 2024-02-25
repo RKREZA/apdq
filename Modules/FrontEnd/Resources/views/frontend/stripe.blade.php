@@ -101,8 +101,8 @@ Payment
     <div class="container-fluid py-2">
 
         <div class="row">
-            <div class="col-md-12">
-                <h4><a href="{{ route('frontend.checkout') }}?subscription_id={{ $subscription->id }}" class="back_button"><i class="fi fi-sr-angle-small-left"></i></a> Payment</h4>
+            <div class="col-md-10 mb-4">
+                <h5 class="m-0 mt-2 text-light"><a href="{{ route('frontend.checkout') }}?subscription_id={{ $subscription->id }}" class="back_button"><i class="fi fi-sr-angle-small-left"></i></a> Payment</h5>
             </div>
         </div>
 
@@ -208,22 +208,22 @@ Payment
                                             <div class='row mb-3'>
                                                 <div class='col-xs-12 form-group required'>
                                                     <label class='control-label text-light'>Card Number</label>
-                                                    <input autocomplete='off' class='form-control card-number' maxlength='20' size='20' type='text'>
+                                                    <input autocomplete='off' class='form-control card-number' maxlength='20' size='20' type='number'>
                                                 </div>
                                             </div>
 
                                             <div class='row mb-4'>
                                                 <div class='col-xs-12 col-md-4 form-group cvc required'>
                                                     <label class='control-label text-light'>CVC</label>
-                                                    <input autocomplete='off' class='form-control card-cvc' placeholder='ex. 311' minlength='3' maxlength='4' size='4' type='text'>
+                                                    <input autocomplete='off' class='form-control card-cvc' placeholder='ex. 311' minlength='3' maxlength='4' size='4' type='number'>
                                                 </div>
                                                 <div class='col-xs-12 col-md-4 form-group expiration required'>
                                                     <label class='control-label text-light'>Expiration Month</label>
-                                                    <input class='form-control card-expiry-month' placeholder='MM' minlength='2' maxlength='2' size='2' type='text'>
+                                                    <input class='form-control card-expiry-month' placeholder='MM' minlength='2' maxlength='2' size='2' type='number'>
                                                 </div>
                                                 <div class='col-xs-12 col-md-4 form-group expiration required'>
                                                     <label class='control-label text-light'>Expiration Year</label>
-                                                    <input class='form-control card-expiry-year' placeholder='YYYY' minlength='4' maxlength='4' size='4' type='text'>
+                                                    <input class='form-control card-expiry-year' placeholder='YYYY' minlength='4' maxlength='4' size='4' type='number'>
                                                 </div>
                                             </div>
 

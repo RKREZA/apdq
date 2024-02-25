@@ -1,6 +1,3 @@
-@php
-    $frontend_setting   = \Modules\FrontEndManager\Entities\FrontendSetting::find(1);
-@endphp
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,12 +23,17 @@
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-straight/css/uicons-regular-straight.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.1.0/uicons-solid-straight/css/uicons-solid-straight.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.1.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+
     <link href="{{ asset('assets/backend/css/sweetalert.min.css') }}" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/animatecss/3.5.2/animate.min.css">
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/owl.carousel.min.css') }}">
+
+    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/style.css') }}">
 
     <style>
@@ -54,6 +56,10 @@
             </div>
         </div>
     </div>
+
+
+    @include('frontend::frontend.subscription_popup')
+    @include('frontend::frontend.cookie')
 
     <!-- Jquery -->
 
@@ -300,6 +306,47 @@
                 return new bootstrap.Tooltip(tooltipTriggerEl)
             });
         });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var subscriptionModal = new bootstrap.Modal(document.getElementById('subscriptionModal'), {
+                keyboard: true
+            });
+            subscriptionModal.show();
+        });
+
+        $('#subscriptionModal').on('hidden.bs.modal', function () {
+            $.post("{{ route('frontend.set.cookie') }}", {_token: "{{ csrf_token() }}"}, function(data) {
+                console.log(data.message); // Just for confirmation
+            });
+        });
+    </script>
+
+    <script>
+        const cookieBox = document.querySelector(".wrapper"),
+            buttons = document.querySelectorAll(".button");
+
+            const executeCodes = () => {
+            //if cookie contains codinglab it will be returned and below of this code will not run
+            if (document.cookie.includes("codinglab")) return;
+            cookieBox.classList.add("show");
+
+            buttons.forEach((button) => {
+                button.addEventListener("click", () => {
+                cookieBox.classList.remove("show");
+
+                //if button has acceptBtn id
+                if (button.id == "acceptBtn") {
+                    //set cookies for 1 month. 60 = 1 min, 60 = 1 hours, 24 = 1 day, 30 = 30 days
+                    document.cookie = "cookieBy= codinglab; max-age=" + 60 * 60 * 24 * 30;
+                }
+                });
+            });
+            };
+
+            //executeCodes function will be called on webpage load
+            window.addEventListener("load", executeCodes);
     </script>
 
     @stack('js')

@@ -30,10 +30,14 @@
                         @csrf()
                         @include('live::live.form')
                         <input type="text" name="files" id="files" hidden>
-                        <button type="submit" class="create-button btn btn-dark btn-rounded">
-                            <i class="fi fi-ss-disk"></i>
-                            {{ __('core::core.save') }}
-                        </button>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button type="submit" class="create-button btn btn-dark btn-rounded">
+                                    <i class="fi fi-ss-disk"></i>
+                                    {{ __('core::core.save') }}
+                                </button>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -63,11 +67,17 @@
         var validation_id               = "#live_create_form";
         var errorElement                = "em";
         var rules                       = {
+            publish_type: {
+                required: true,
+            },
+            content_type: {
+                required: true,
+            },
             title: {
                 required: true,
             },
             description: {
-                required: true
+                required: false
             },
             youtube_link: {
                 required: true
@@ -75,6 +85,12 @@
 
         };
         var messages                    = {
+            publish_type: {
+                required: "{{ __('core::core.form.validation.required') }}",
+            },
+            content_type: {
+                required: "{{ __('core::core.form.validation.required') }}",
+            },
             title: {
                 required: "{{ __('core::core.form.validation.required') }}",
             },

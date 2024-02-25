@@ -16,24 +16,28 @@ class VideoCategoryTableSeeder extends Seeder
     public function run()
     {
         VideoCategory::create([
+            'serial'  => '1',
             'name'  => 'Entrevues',
             'code'  => 'entrevues',
             'icon'  => '<i class="fi fi-ss-podium-star"></i>',
             'description' => 'Des entretiens instructifs avec des leaders, experts et personnalités influentes.'
         ]);
         VideoCategory::create([
+            'serial'  => '2',
             'name'  => 'Points de presse',
             'code'  => 'points-de-presse',
             'icon'  => '<i class="fi fi-ss-memo-pad"></i>',
             'description' => 'Nouvelles mises à jour et annonces officielles décryptées.'
         ]);
         VideoCategory::create([
+            'serial'  => '3',
             'name'  => 'Période de questions',
             'code'  => 'période-de-questions',
             'icon'  => '<i class="fi fi-ss-shield-interrogation"></i>',
             'description' => 'Perspectives issues des séances de questions-réponses avec des acteurs clés'
         ]);
         VideoCategory::create([
+            'serial'  => '4',
             'name'  => 'Projets de loi',
             'code'  => 'projets-de-loi',
             'icon'  => '<i class="fi fi-ss-gavel"></i>',

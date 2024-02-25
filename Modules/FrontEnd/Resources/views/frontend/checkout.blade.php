@@ -77,7 +77,7 @@ Check-out
         .imgbgchk:checked + label>.tick_container{
             opacity: 1;
         }
-/*         aNIMATION */
+
         .imgbgchk:checked + label>img{
             opacity: 0.7;
             border: 3px solid #9fcaf9;
@@ -117,129 +117,127 @@ Check-out
 
 @section('content')
 
-{{-- <section id="page_header" class="video_page_header">
-    <img src="/assets/frontend/img/checkout.webp" alt="">
-    <div class="content">
-        <h1>Check-out</h1>
-    </div>
-</section> --}}
 <section id="checkout_page" class="pb-5">
     <div class="container-fluid py-2">
 
         <div class="row">
-            <div class="col-md-12">
-                <h4>Check-out</h4>
+            <div class="col-md-10 mb-4">
+                <h5 class="m-0 mt-2 text-light"><a href="{{ route('frontend.subscription') }}" class="back_button"><i class="fi fi-sr-angle-small-left"></i></a> Check-out</h5>
             </div>
         </div>
 
-        <div class="description">
-            <div class="row justify-content-center">
-                <div class="col-md-4">
-                    <div class="card mb-3">
-                        <div class="card-body text-center p-0 mt-3">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="description">
+                    <div class="row justify-content-center">
+                        <div class="col-md-4">
+                            <div class="card mb-3">
+                                <div class="card-body text-center p-0 mt-3">
 
-                            <div class="top mt-5">
-                                <div class="top_content">
-                                    <h2 class="my-0 fw-bold text-center my-3">{{ $subscription->title }}</h2>
-                                    <h3>
-                                        <span class="display-6">{{ $subscription->price }}</span>$
-                                        <small class="fw-light"> / {{ $subscription->duration }} {{ $subscription->duration_type }}</small></h3>
+                                    <div class="top mt-5">
+                                        <div class="top_content">
+                                            <h2 class="my-0 fw-bold text-center my-3">{{ $subscription->title }}</h2>
+                                            <h3>
+                                                <span class="display-6">{{ $subscription->price }}</span>$
+                                                <small class="fw-light"> / {{ $subscription->duration }} {{ $subscription->duration_type }}</small></h3>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-5 pt-5 pb-4 text-start px-5 text-white">
+                                        <ul>
+                                            <li>
+                                                @if($subscription->option_ad_free == 'Active')
+                                                <i class="fi fi-ss-check text-success"></i>
+                                                @else
+                                                <i class="fi fi-ss-cross-small text-danger"></i>
+                                                @endif
+                                                {{ __('subscription::subscription.subscription.form.option_ad_free') }}
+                                            </li>
+                                            <li>
+                                                @if($subscription->option_live_content == 'Active')
+                                                <i class="fi fi-ss-check text-success"></i>
+                                                @else
+                                                <i class="fi fi-ss-cross-small text-danger"></i>
+                                                @endif
+                                                {{ __('subscription::subscription.subscription.form.option_live_content') }}
+                                            </li>
+                                            <li>
+                                                @if($subscription->option_premium_content == 'Active')
+                                                <i class="fi fi-ss-check text-success"></i>
+                                                @else
+                                                <i class="fi fi-ss-cross-small text-danger"></i>
+                                                @endif
+                                                {{ __('subscription::subscription.subscription.form.option_premium_content') }}
+                                            </li>
+                                            <li>
+                                                <i class="fi fi-ss-check text-success"></i>
+                                                {{ $subscription->trial_days }}
+                                                {{ __('subscription::subscription.subscription.form.trial_days') }}
+                                            </li>
+                                        </ul>
+                                    </div>
+
                                 </div>
                             </div>
-
-                            <div class="mt-5 pt-5 pb-4 text-start px-5 text-white">
-                                <ul>
-                                    <li>
-                                        @if($subscription->option_ad_free == 'Active')
-                                        <i class="fi fi-ss-check text-success"></i>
-                                        @else
-                                        <i class="fi fi-ss-cross-small text-danger"></i>
-                                        @endif
-                                        {{ __('subscription::subscription.subscription.form.option_ad_free') }}
-                                    </li>
-                                    <li>
-                                        @if($subscription->option_live_content == 'Active')
-                                        <i class="fi fi-ss-check text-success"></i>
-                                        @else
-                                        <i class="fi fi-ss-cross-small text-danger"></i>
-                                        @endif
-                                        {{ __('subscription::subscription.subscription.form.option_live_content') }}
-                                    </li>
-                                    <li>
-                                        @if($subscription->option_premium_content == 'Active')
-                                        <i class="fi fi-ss-check text-success"></i>
-                                        @else
-                                        <i class="fi fi-ss-cross-small text-danger"></i>
-                                        @endif
-                                        {{ __('subscription::subscription.subscription.form.option_premium_content') }}
-                                    </li>
-                                    <li>
-                                        <i class="fi fi-ss-check text-success"></i>
-                                        {{ $subscription->trial_days }}
-                                        {{ __('subscription::subscription.subscription.form.trial_days') }}
-                                    </li>
-                                </ul>
-                            </div>
-
                         </div>
-                    </div>
-                </div>
 
-                <div class="col-md-8">
-                    <div class="card mb-3">
-                        <div class="card-body mt-3 p-0">
+                        <div class="col-md-8">
+                            <div class="card mb-3">
+                                <div class="card-body mt-3 p-0">
 
-                            <div class="header mt-5">
-                                <h4>Paiement avec</h4>
-                            </div>
+                                    <div class="header mt-5">
+                                        <h4>Paiement avec</h4>
+                                    </div>
 
-                            <div class="row m-4">
-                                @foreach ($payment_gateways as $payment_gateway)
+                                    <div class="row m-4">
+                                        @foreach ($payment_gateways as $payment_gateway)
 
-                                @if ($payment_gateway->code == 'paypal')
-                                    <div class='col-md-4 text-center'>
-                                        <input type="radio" name="payment_gateway" id="paypal" class="d-none imgbgchk" value="{{ $payment_gateway->code }}">
-                                        <label for="paypal" class="p-3">
-                                            <img src="{{ asset('assets/frontend/img/paypal.png') }}" alt="Image 1" class="img-thumbnail p-4">
-                                            <div class="tick_container">
-                                                <div class="tick"><i class="fi fi-ss-check"></i></div>
+                                        @if ($payment_gateway->code == 'paypal')
+                                            <div class='col-md-4 text-center'>
+                                                <input type="radio" name="payment_gateway" id="paypal" class="d-none imgbgchk" value="{{ $payment_gateway->code }}">
+                                                <label for="paypal" class="p-3">
+                                                    <img src="{{ asset('assets/frontend/img/paypal.png') }}" alt="Image 1" class="img-thumbnail p-4">
+                                                    <div class="tick_container">
+                                                        <div class="tick"><i class="fi fi-ss-check"></i></div>
+                                                    </div>
+                                                </label>
                                             </div>
-                                        </label>
-                                    </div>
-                                @endif
+                                        @endif
 
-                                @if ($payment_gateway->code == 'stripe')
-                                    <div class='col-md-4 text-center'>
-                                        <input type="radio" name="payment_gateway" id="stripe" class="d-none imgbgchk" value="{{ $payment_gateway->code }}">
-                                        <label for="stripe" class="p-3">
-                                            <img src="{{ asset('assets/frontend/img/card.png') }}" alt="Image 1" class="img-thumbnail p-4">
-                                            <div class="tick_container">
-                                                <div class="tick"><i class="fi fi-ss-check"></i></div>
+                                        @if ($payment_gateway->code == 'stripe')
+                                            <div class='col-md-4 text-center'>
+                                                <input type="radio" name="payment_gateway" id="stripe" class="d-none imgbgchk" value="{{ $payment_gateway->code }}">
+                                                <label for="stripe" class="p-3">
+                                                    <img src="{{ asset('assets/frontend/img/card.png') }}" alt="Image 1" class="img-thumbnail p-4">
+                                                    <div class="tick_container">
+                                                        <div class="tick"><i class="fi fi-ss-check"></i></div>
+                                                    </div>
+                                                </label>
                                             </div>
-                                        </label>
-                                    </div>
-                                @endif
-                                @endforeach
-                            </div>
-
-                            <div class="footer">
-                                <form action="" method="post" id="checkout_form">
-                                    @csrf
-                                    <input type="hidden" name="subscription_id" value="{{ $subscription->id }}">
-
-                                    <div class="form-check mb-3 mx-4">
-                                        <input class="form-check-input" type="checkbox" name="i_agree" id="i_agree" required>
-                                        <label class="form-check-label ms-2 text-white" for="i_agree">{{ __('admin::auth.form.i_agree') }} <a href="#" target="_blank">{{ $page->title }}</a></label>
+                                        @endif
+                                        @endforeach
                                     </div>
 
-                                    <button type="submit" class="w-100 btn btn-lg btn-outline-primary py-4 mt-4 custom_button" id="checkout_button" disabled>
-                                        <i class="fi fi-ss-money-bill-wave"></i>
-                                        Go to Payment Page
-                                        {{-- ({{ $subscription->price }}$) --}}
-                                    </a>
-                                </form>
-                            </div>
+                                    <div class="footer">
+                                        <form action="" method="post" id="checkout_form">
+                                            @csrf
+                                            <input type="hidden" name="subscription_id" value="{{ $subscription->id }}">
 
+                                            <div class="form-check mb-3 mx-4">
+                                                <input class="form-check-input" type="checkbox" name="i_agree" id="i_agree" required>
+                                                <label class="form-check-label ms-2 text-white" for="i_agree">{{ __('admin::auth.form.i_agree') }} <a href="{{ route('frontend.page.single',$page->slug) }}" target="_blank">{{ $page->title }}</a></label>
+                                            </div>
+
+                                            <button type="submit" class="w-100 btn btn-lg btn-outline-primary py-4 mt-4 custom_button" id="checkout_button" disabled>
+                                                <i class="fi fi-ss-money-bill-wave"></i>
+                                                Go to Payment Page
+                                                {{-- ({{ $subscription->price }}$) --}}
+                                            </a>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -262,7 +260,7 @@ Check-out
             } else if (selectedGateway == 'stripe') {
                 $('#checkout_form').attr('action', "{{ route('frontend.stripe') }}");
             }
-            
+
             $('#checkout_button').removeAttr('disabled');
             // Add more conditions for other payment gateways if needed
         });

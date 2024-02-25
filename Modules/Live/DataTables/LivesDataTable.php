@@ -57,6 +57,13 @@ class LivesDataTable extends DataTable
 
             ->addColumn('title', function($row){
                 $title = wordwrap($row->title, 100, "<br>\n", true);
+                $title.='&nbsp;';
+                if($row->content_type == 'free'){
+                    $title.='<span class="badge badge-success">'.$row->content_type.'</span>';
+                }else{
+                    $title.='<span class="badge badge-warning">'.$row->content_type.'</span>';
+                }
+
                 return mb_convert_encoding($title, 'UTF-8', 'UTF-8');
             })
 
@@ -79,6 +86,20 @@ class LivesDataTable extends DataTable
                 return $status;
             })
 
+            ->addColumn('archive', function($row){
+
+                if ($row->archive == "Active") {
+                    $current_archive = 'Checked';
+                }else{
+                    $current_archive = '';
+                }
+
+                $archive = "<input type='checkbox' id='archive_$row->id' id='user-$row->id' class='check' onclick='changeArchive(event.target, $row->id);' " .$current_archive. ">
+                        <label for='archive_$row->id' class='checktoggle'>checkbox</label>";
+
+                return $archive;
+            })
+
             ->addColumn('thumbnail_url', function ($row) {
                 if (!empty($row->thumbnail_url)) {
                     // Check if the URL is already absolute
@@ -86,17 +107,31 @@ class LivesDataTable extends DataTable
 
                     $thumbnail_url = '<img src="' . ($isAbsoluteUrl ? $row->thumbnail_url : '/' . $row->thumbnail_url) . '" class="img-fluid img-thumbnail" style="width: 50px; height:50px">';
                 } else {
-                    $thumbnail_url = '<img src="/assets/backend/img/no-image.png" class="rounded-circle img-fluid img-thumbnail" style="width: 50px; height:50px">';
+                    $thumbnail_url = '<img src="/assets/backend/img/no-thumbnail.webp" class="rounded-circle img-fluid img-thumbnail" style="width: 50px; height:50px">';
                 }
 
                 return $thumbnail_url;
             })
 
-            ->editColumn('created_at', '{{date("jS M Y", strtotime($created_at))}}')
+
+            ->addColumn('created_at', function ($row) {
+
+                if($row->publish_type == 'publish'){
+                    $data = '<span class="badge badge-success">'.$row->publish_type.'</span>';
+                }else{
+                    $data = '<span class="badge badge-warning">'.$row->publish_type.'</span>';
+                }
+                $data.="<br>";
+                $data.= date("jS M Y", strtotime($row->created_at));
+                $data.="<br>";
+                $data.= date("H:i:A", strtotime($row->created_at));
+                return $data;
+            })
+
 	        ->editColumn('updated_at', '{{date("jS M Y", strtotime($updated_at))}}')
 
             ->setRowId('id')
-            ->rawColumns(['title','thumbnail_url','action','checkbox','status']);
+            ->rawColumns(['title','thumbnail_url','action','checkbox','status','archive','created_at']);
     }
 
     /**

@@ -19,6 +19,8 @@ class Live extends Model
     protected $table = 'lives';
 
     protected $fillable = [
+        'content_type',
+        'publish_type',
         'title',
         'description',
         'embed_html',
@@ -27,6 +29,7 @@ class Live extends Model
         'live_url',
         'category_id',
         'status',
+        'archive',
         'seo_title',
         'seo_description',
         'seo_keyword',

@@ -45,7 +45,7 @@
                     <div class="col-md-12">
                         <div class="input-group input-group-outline my-2 is-filled @if(old('serial')) is-valid @endif @error('serial') is-invalid @enderror">
                             <label class="form-label"><span class="">{{ __('video::video.category.form.serial') }}</span></label>
-                            <input type="text" name="serial" class="form-control" value="{{ $videocategory->serial }}">
+                            <input type="number" name="serial" class="form-control" value="{{ $videocategory->serial }}">
                             @error('serial')
                                 <em class="error invalid-video" style="display: inline-block;">{{ $message }}</em>
                             @enderror

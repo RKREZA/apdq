@@ -24,12 +24,15 @@ class CoreDatabaseSeeder extends Seeder
         $this->call(FrontendSettingTableSeeder::class);
         $this->call(FaqCategoryTableSeeder::class);
         $this->call(VideoCategoryTableSeeder::class);
+        $this->call(VideoSubcategoryTableSeeder::class);
+        $this->call(VideoPlaylistTableSeeder::class);
         $this->call(VideoTableSeeder::class);
         $this->call(PostCategoryTableSeeder::class);
+        $this->call(PostSubcategoryTableSeeder::class);
         $this->call(PostTableSeeder::class);
         $this->call(PaymentGatewayTableSeeder::class);
         $this->call(PageTableSeeder::class);
         $this->call(SubscriptionTableSeeder::class);
-        // $this->call(SliderCategoryTableSeeder::class);
+        $this->call(NewsletterCategoryTableSeeder::class);
     }
 }

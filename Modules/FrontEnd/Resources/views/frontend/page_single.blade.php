@@ -30,29 +30,16 @@
 
 @section('content')
 
-{{-- <section id="page_header" class="video_page_header">
-    <img src="/assets/frontend/img/video.webp" alt="">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="content">
-                    <h6 class="text-danger">Page</h6>
-                    <h2>{{ $page->title }}</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> --}}
-
 <section id="video" class="pb-5 mx-3">
     <div class="container-fluid py-2">
+
         <div class="row">
-
-            <div class="col-md-12">
-                {{-- <h6 class="text-danger">Page</h6> --}}
-                <h4>{{ $page->title }}</h4>
+            <div class="col-md-10 mb-4">
+                <h5 class="m-0 mt-2 text-light">{{ $page->title }}</h5>
             </div>
+        </div>
 
+        <div class="row">
             <div class="col-md-12 mt-4">
                 <div class="description">
                     {!! $page->description !!}

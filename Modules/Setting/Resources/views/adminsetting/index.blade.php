@@ -323,7 +323,7 @@
                                 <div class="custom-file-container">
                                     <img src="{{ $setting->logo_dark }}" alt="..." id="logo_dark_output"
                                             class="img-thumbnail rounded"
-                                            onerror="this.src='{{ asset('assets/backend/img/no-image.png') }}';">
+                                            onerror="this.src='{{ asset('assets/backend/img/no-image.webp') }}';">
                                     <label class="custom-file">
                                         {{ __('admin::profile.form.change_image') }}<input type="file" style="display: none;" name="logo_dark" id="logo_dark">
                                     </label>
@@ -337,7 +337,7 @@
                                 <div class="custom-file-container">
                                     <img src="{{ $setting->logo_light }}" alt="..." id="logo_light_output"
                                             class="img-thumbnail rounded"
-                                            onerror="this.src='{{ asset('assets/backend/img/no-image.png') }}';">
+                                            onerror="this.src='{{ asset('assets/backend/img/no-image.webp') }}';">
                                     <label class="custom-file">
                                         {{ __('admin::profile.form.change_image') }}<input type="file" style="display: none;" name="logo_light" id="logo_light">
                                     </label>
@@ -352,7 +352,7 @@
                                 <div class="custom-file-container">
                                     <img src="{{ $setting->favicon }}" alt="..." id="favicon_output"
                                             class="img-thumbnail rounded"
-                                            onerror="this.src='{{ asset('assets/backend/img/no-image.png') }}';">
+                                            onerror="this.src='{{ asset('assets/backend/img/no-image.webp') }}';">
                                     <label class="custom-file">
                                         {{ __('admin::profile.form.change_image') }}<input type="file" style="display: none;" name="favicon" id="favicon">
                                     </label>
@@ -376,7 +376,7 @@
                                 <div class="custom-file-container">
                                     <img src="{{ $setting->meta_image }}" alt="..." id="meta_image_output"
                                             class="img-thumbnail rounded"
-                                            onerror="this.src='{{ asset('assets/backend/img/no-image.png') }}';">
+                                            onerror="this.src='{{ asset('assets/backend/img/no-image.webp') }}';">
                                     <label class="custom-file">
                                         {{ __('admin::profile.form.change_image') }}<input type="file" style="display: none;" name="meta_image" id="meta_image">
                                     </label>

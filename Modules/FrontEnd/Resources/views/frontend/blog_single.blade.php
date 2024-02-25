@@ -136,6 +136,26 @@
                     </div>
 
 
+                    @if(auth()->user() && auth()->user()->subscriptionStatus()['status'] != 'no_subscription' && auth()->user()->subscriptionStatus()['optionAdFree'] == 'Active' && auth()->user()->hasRole('User'))
+
+                    @else
+
+                        <div class="col">
+                            <div class="row justify-content-center mb-3" id="ad_banner_2">
+                                <div class="col" style="min-width: 260px;">
+                                    <!-- Mods Center Responsive -->
+                                    {{-- <ins class="adsbygoogle"
+                                        style="display:block"
+                                        data-ad-client="ca-pub-7301992079721298"
+                                        data-ad-slot="4688267585"
+                                        data-ad-format="auto"
+                                        data-full-width-responsive="true"></ins> --}}
+
+                                        <img src="{{ asset('assets/frontend/img/ad-placeholder.png') }}" alt="" style="width: 100%; border-radius: 15px;">
+                                </div>
+                            </div>
+                        </div>
+                    @endif
 
                     <div class="mt-3">
                         {{-- <i class="fi fi-ss-label text-info" style="transform: rotate(90deg); display:inline-block;"></i> --}}
@@ -179,7 +199,7 @@
                                             @if (!empty($recent_post->files[0]['path']))
                                                 <img src="/{{ $recent_post->files[0]['path'] }}" style="height: 80px; width: 80px;" alt="">
                                             @else
-                                                <img src="{{ asset('assets/frontend/img/no-image.png') }}" style="height: 80px; width: 80px;" alt="">
+                                                <img src="{{ asset('assets/frontend/img/no-image.webp') }}" style="height: 80px; width: 80px;" alt="">
                                             @endif
                                         </div>
                                         <div class="col-9">

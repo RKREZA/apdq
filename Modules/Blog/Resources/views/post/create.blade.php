@@ -30,23 +30,35 @@
                         @csrf()
                         @include('blog::post.form')
                         <input type="text" name="files" id="files" hidden>
-                        <button type="submit" class="create-button btn btn-dark btn-rounded">
-                            <i class="fi fi-ss-disk"></i>
-                            {{ __('core::core.save') }}
-                        </button>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <button type="submit" class="create-button btn btn-dark btn-rounded">
+                                    <i class="fi fi-ss-disk"></i>
+                                    {{ __('core::core.save') }}
+                                </button>
+                            </div>
+                        </div>
                     </form>
                 </div>
 
                 <div class="col-md-4">
-                    @include('core::layouts.file_upload',[
-                        'file_upload_format'        => 'jpeg, jpg, png',
-                        'file_upload_size'          => '1 MB',
-                        'dropzone_acceptedFiles'    => '.jpeg,.jpg,.png',
-                        'dropzone_paramName'        => 'file',
-                        'dropzone_maxFilesize'      => '1',
-                        'dropzone_maxFiles'         => '1',
-                        'file_uploaded_from'        => 'post'
-                    ])
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h6 class="mt-4 text-primary">{{ __('core::core.thumbnail') }}</h6>
+                            <hr class="mb-3">
+                        </div>
+                        <div class="col-md-12">
+                            @include('core::layouts.file_upload',[
+                                'file_upload_format'        => 'jpeg, jpg, png, webp, avif',
+                                'file_upload_size'          => '1 MB',
+                                'dropzone_acceptedFiles'    => '.jpeg,.jpg,.png, .webp, .avif',
+                                'dropzone_paramName'        => 'file',
+                                'dropzone_maxFilesize'      => '1',
+                                'dropzone_maxFiles'         => '1',
+                                'file_uploaded_from'        => 'post'
+                            ])
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -80,15 +92,24 @@
                 required: true,
             },
             description: {
-                required: true
+                required: false
             },
             category_id: {
+                required: true
+            },
+            subcategory_id: {
                 required: true
             },
             tag: {
                 required: true
             },
             created_at: {
+                required: true
+            },
+            publish_type: {
+                required: true
+            },
+            content_type: {
                 required: true
             },
 
@@ -103,10 +124,19 @@
             category_id: {
                 required: "{{ __('core::core.form.validation.required') }}",
             },
+            subcategory_id: {
+                required: "{{ __('core::core.form.validation.required') }}",
+            },
             tag: {
                 required: "{{ __('core::core.form.validation.required') }}",
             },
             created_at: {
+                required: "{{ __('core::core.form.validation.required') }}",
+            },
+            publish_type: {
+                required: "{{ __('core::core.form.validation.required') }}",
+            },
+            content_type: {
                 required: "{{ __('core::core.form.validation.required') }}",
             },
         };

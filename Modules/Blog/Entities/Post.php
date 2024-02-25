@@ -19,10 +19,13 @@ class Post extends Model
     protected $table = 'posts';
 
     protected $fillable = [
+        'publish_type',
+        'content_type',
         'title',
         'description',
         'tag',
         'category_id',
+        'subcategory_id',
         'status',
         'seo_title',
         'seo_description',
@@ -48,6 +51,11 @@ class Post extends Model
     public function category()
     {
         return $this->belongsTo('Modules\Blog\Entities\PostCategory');
+    }
+
+    public function subcategory()
+    {
+        return $this->belongsTo('Modules\Blog\Entities\PostSubcategory');
     }
 
     public function comments()

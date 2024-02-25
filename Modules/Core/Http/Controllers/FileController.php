@@ -26,7 +26,7 @@ class FileController extends Controller
     {
         if ($request->ajax() && $request->hasFile('file')) {
             $request->validate([
-                'file' => 'required|mimes:png,jpg,gif,jpeg,pdf,doc,docx,xls,xlsx',
+                'file' => 'required|mimes:png,jpg,gif,jpeg,webp,avif,pdf,doc,docx,xls,xlsx',
             ]);
 
             $input              = $request->all();
@@ -93,7 +93,7 @@ class FileController extends Controller
         if ($file) {
             $url = '/'.$file->path;
         }else{
-            $url = "/assets/backend/img/no-image.png";
+            $url = "/assets/backend/img/no-image.webp";
         }
 
         return response()->json([

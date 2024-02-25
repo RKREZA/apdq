@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Message from pim-edu.org</title>
+    <title>Message from actualitepolitiqueduquebec.com</title>
 </head>
 <body>
     <h4>{{ $data['name'] }}</h4>

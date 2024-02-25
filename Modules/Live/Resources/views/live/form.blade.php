@@ -22,7 +22,7 @@
     </style>
 @endpush
 
-<div class="row mb-4">
+{{-- <div class="row mb-4">
     <div class="col-md-10">
         <input type="text" name="youtube_link" id="youtube_link" class="form-control px-3" placeholder="Youtube Link" required>
     </div>
@@ -31,14 +31,75 @@
         <button type="button" id="fetch_youtube_data" class="btn btn-primary btn-lg w-100">Fetch</button>
     </div>
 </div>
-<hr class="horizontal dark">
+<hr class="horizontal dark"> --}}
 
 
 
 <div class="row">
 
     <div class="col-md-8">
+
         <div class="row">
+
+            <div class="col-md-12">
+                <h6 class="mt-4 text-primary">{{ __('core::core.publish_information') }}</h6>
+                <hr class="mb-1">
+            </div>
+
+            <div class="col-md-6">
+                <div class="input-group input-group-outline mt-3 is-filled @error('publish_type') is-invalid @enderror is-filled">
+                    <label class="form-label" for="publish_type"><span class="required">{{ __('core::core.publish_type') }}</span></label>
+                    <select name="publish_type" id="publish_type" class="form-control @error('publish_type') is-invalid @enderror">
+                        <option value="publish" @if (isset($live) && $live->publish_type == 'publish') selected @endif>{{ __('core::core.publish') }}</option>
+                        <option value="schedule" @if (isset($live) && $live->publish_type == 'schedule') selected @endif>{{ __('core::core.schedule') }}</option>
+                    </select>
+                    @error('publish_type')
+                        <em class="error invalid-live" style="display: inline-block;">{{ $message }}</em>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="input-group input-group-outline mt-3 is-filled @error('created_at') is-invalid @enderror">
+                    <label class="form-label"><span class="required">{{ __('live::live.live.form.created_at') }}</span></label>
+                    <input type="datetime-local" name="created_at" id="created_at" class="form-control" value="@if(isset($live)){{ $live->created_at }}@else{{ now()->format('Y-m-d\TH:i') }}@endif">
+                    @error('created_at')
+                        <em class="error invalid-live" style="display: inline-block;">{{ $message }}</em>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <h6 class="mt-4 text-primary">{{ __('live::live.live.form.live_information') }}</h6>
+                <hr class="mb-1">
+            </div>
+
+            <div class="col-md-12">
+                <div class="row mt-4 mb-3">
+                    <div class="col-md-10 ps-0">
+                        <input type="text" name="youtube_link" id="youtube_link" class="form-control px-3" placeholder="Youtube Link" required>
+                    </div>
+
+                    <div class="col-md-2 pe-0">
+                        <button type="button" id="fetch_youtube_data" class="btn btn-primary btn-lg w-100">Fetch</button>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-md-12">
+                <div class="input-group input-group-outline mt-3 is-filled @error('content_type') is-invalid @enderror is-filled">
+                    <label class="form-label" for="content_type"><span class="required">{{ __('live::live.live.form.content_type') }}</span></label>
+                    <select name="content_type" id="content_type" class="form-control @error('content_type') is-invalid @enderror">
+                        <option value="free">{{ __('core::core.free') }}</option>
+                        <option value="paid">{{ __('core::core.paid') }}</option>
+                    </select>
+                    @error('content_type')
+                        <em class="error invalid-live" style="display: inline-block;">{{ $message }}</em>
+                    @enderror
+                </div>
+            </div>
 
             <div class="col-md-12">
                 <div class="input-group input-group-outline mt-3 is-filled @error('title') is-invalid @enderror">
@@ -52,7 +113,7 @@
 
             <div class="col-md-12">
                 <div class="input-group input-group-outline mt-3 is-filled @error('description') is-invalid @enderror">
-                    <label class="form-label"><span class="required">{{ __('live::live.live.form.description') }}</span></label>
+                    <label class="form-label"><span class="">{{ __('live::live.live.form.description') }}</span></label>
                     <textarea rows="6" id="description" name="description" class="form-control tiny">@if(isset($live)){{ $live->description }}@else{{ old('description') }}@endif</textarea>
                     @error('description')
                         <em class="error invalid-live" style="display: inline-block;">{{ $message }}</em>
@@ -60,7 +121,10 @@
                 </div>
             </div>
 
-            <hr class="horizontal light my-4">
+            <div class="col-md-12">
+                <h6 class="mt-4 text-primary">{{ __('core::core.seo_information') }}</h6>
+                <hr class="mb-1">
+            </div>
 
             <div class="col-md-12">
                 <div class="input-group input-group-outline mt-3 is-filled @error('seo_title') is-invalid @enderror">
@@ -99,7 +163,18 @@
         </div>
     </div>
     <div class="col-md-4">
-        <img id="thumbnail_url" src="@if(isset($live)){{ $live->thumbnail_url }}@else{{ old('thumbnail_url') }}@endif" class="thumbnail w-100" onerror="this.onerror=null;this.src='{{ asset('assets/backend/img/no-image.png') }}';">
+
+        <div class="row">
+            <div class="col-md-12">
+                <h6 class="mt-4 text-primary">{{ __('core::core.thumbnail') }}</h6>
+                <hr class="mb-3">
+            </div>
+
+            <div class="col-md-12">
+                <img id="thumbnail_url" src="@if(isset($live)){{ $live->thumbnail_url }}@else{{ old('thumbnail_url') }}@endif" class="thumbnail w-100" onerror="this.onerror=null;this.src='{{ asset('assets/backend/img/no-thumbnail.webp') }}';">
+            </div>
+        </div>
+
     </div>
 </div>
 

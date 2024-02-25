@@ -1,7 +1,7 @@
 @extends('frontend::frontend.layouts.master')
 
 @section('title')
-Vidéo
+Vidéos
 @endsection
 @section('seo')
     <meta name="title" content="Vidéo">
@@ -118,88 +118,19 @@ Vidéo
 
 @section('content')
 
-{{-- <section id="page_header" class="video_page_header">
-    <img src="/assets/frontend/img/video.webp" alt="">
-    <div class="content">
-        <h1>Vidéos</h1>
-        <h6>Politique sans Filtre, Rires Garantis</h6>
-    </div>
-</section> --}}
-
 <section id="video_page" class="pb-5">
     <div class="container-fluid py-2">
-            @if (isset(request()->tag))
-            <div class="mb-3">
-                <span class="badge bg-dark text-light badge-sm">
-                    <i class="fi fi-ss-label" style="transform: rotate(90deg); display:inline-block;"></i> &nbsp;
-                    {{ request()->tag }}
-                </span>
-            </div>
-            @endif
-            @if (isset(request()->code))
-            <div class="mb-3">
-                <span class="badge bg-dark text-light badge-sm">
-                    <i class="fi fi-ss-label" style="transform: rotate(90deg); display:inline-block;"></i> &nbsp;
-                    {{ request()->code }}
-                </span>
-            </div>
-            @endif
-            @if (isset(request()->year))
-            <div class="mb-3">
-                <span class="badge bg-dark text-light badge-sm">
-                    <i class="fi fi-ss-label" style="transform: rotate(90deg); display:inline-block;"></i> &nbsp;
-                    {{ request()->year }}
-                </span>
-            </div>
-            @endif
 
-            @if (isset(request()->month))
-            <div class="mb-3">
-                <span class="badge bg-dark text-light badge-sm">
-                    <i class="fi fi-ss-label" style="transform: rotate(90deg); display:inline-block;"></i> &nbsp;
-                    {{ request()->month }}
-                </span>
+        <div class="row">
+            <div class="col-md-10 mb-4">
+                <h5 class="m-0 mt-2 text-light"><i class="fi fi-sr-play" style="position: relative; top: 3px"></i> Vidéos</h5>
             </div>
-            @endif
+        </div>
+
+        @include('frontend::frontend.video_filter')
 
         <div class="row">
 
-
-            {{-- <div class="col-md-3" id="filter">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h5 class="text-white fw-bold">Category</h6>
-                                    <hr class="horizontal light">
-                                <ul>
-                                    @foreach($video_categories as $category)
-                                    <li>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="category" id="category_input{{ $category->code }}" value="{{ $category->code }}" @if(request()->code == $category->code) checked @endif>
-                                            <label class="form-check-label text-white" for="category_input{{ $category->code }}">
-                                                {{ $category->name }}
-                                            </label>
-                                          </div>
-                                    </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div> --}}
-
-            <div class="col-md-10 mb-2">
-                <a href="{{ route('frontend.video.latest') }}" class="btn btn-dark m-1 ms-0 {{ request()->is('video/latest*') ? 'active' : '' }}">Les plus récentes</a>
-                <a href="{{ route('frontend.video.popular') }}" class="btn btn-dark m-1 ms-0 {{ request()->is('video/popular*') ? 'active' : '' }}">Populaires</a>
-                <a href="{{ route('frontend.video.oldest') }}" class="btn btn-dark m-1 ms-0 {{ request()->is('video/oldest*') ? 'active' : '' }}">Les plus anciennes</a>
-            </div>
-
-            <div class="col-md-2 mb-2 text-end">
-                <a href="{{ route('frontend.video.playlist') }}" class="btn btn-dark m-1 ms-0 {{ request()->is('playlist*') ? 'active' : '' }}">Playlist</a>
-            </div>
             <div class="col-md-12">
                 <div class="row">
                     @foreach ($videos as $video)
@@ -207,13 +138,42 @@ Vidéo
                         <div class="col-md-3 mb-4">
                             <div class="card border-0">
                                 <div class="card-body p-0">
-                                    <a href="{{ route('frontend.video.single', $video->slug) }}" class="">
+
+                                    @if ($video['content_type'] == 'paid')
+                                        <div class="premium" style="position: absolute; right: 10px; top: 10px;">
+                                            <img class="crown" src="{{ asset('assets/frontend/img/crown.svg') }}" style="    background: #000;
+                                            padding: 10px;
+                                            border-radius: 6px;"></img>
+                                        </div>
+                                    @endif
+
+                                    @if ($video['content_type'] == 'paid')
+                                        @if(auth()->user() && isset(auth()->user()->subscriptionStatus()['optionPremiumContent']) && auth()->user()->subscriptionStatus()['optionPremiumContent'] == 'Active' && auth()->user()->hasRole('User'))
+                                            <a href="{{ route('frontend.video.single', $video->slug) }}" class="">
+                                        @else
+                                            <a href="{{ route('frontend.subscription') }}" class="">
+                                        @endif
+                                    @else
+                                        <a href="{{ route('frontend.video.single', $video->slug) }}" class="">
+                                    @endif
                                         <div class="image-container" style="background-image:url({{ $video->thumbnail_url }});">
-                                            {{-- <img src="{{ $video->thumbnail_url }}" onerror="this.onerror=null;this.src='{{ asset('assets/frontend/img/no-video.png') }}';" alt=""> --}}
+                                            {{-- <img src="{{ $video->thumbnail_url }}" onerror="this.onerror=null;this.src='{{ asset('assets/frontend/img/no-video.webp') }}';" alt=""> --}}
                                         </div>
                                     </a>
                                     <div class="video-content p-3">
-                                        <h6><a href="{{ route('frontend.video.single', $video->slug) }}" class="text-white">{{ $video->title }}</a></h6>
+                                        <h6>
+                                            @if ($video['content_type'] == 'paid')
+                                                @if(auth()->user() && isset(auth()->user()->subscriptionStatus()['optionPremiumContent']) && auth()->user()->subscriptionStatus()['optionPremiumContent'] == 'Active' && auth()->user()->hasRole('User'))
+                                                    <a href="{{ route('frontend.video.single', $video->slug) }}" class="text-white">
+                                                @else
+                                                    <a href="{{ route('frontend.subscription') }}" class="text-white">
+                                                @endif
+                                            @else
+                                                <a href="{{ route('frontend.video.single', $video->slug) }}" class="text-white">
+                                            @endif
+                                                {{ $video->title }}
+                                            </a>
+                                        </h6>
                                         <div class="row sub-content">
                                             <div class="col-12">
                                                 @isset($video->category)
@@ -244,16 +204,57 @@ Vidéo
     </div>
 </section>
 
+@if(auth()->user() && auth()->user()->subscriptionStatus()['status'] != 'no_subscription' && auth()->user()->subscriptionStatus()['optionAdFree'] == 'Active' && auth()->user()->hasRole('User'))
+
+@else
+    <section id="ad_banner_2" class=" mb-4">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col" style="min-width: 260px;">
+                    <!-- Mods Center Responsive -->
+                    {{-- <ins class="adsbygoogle"
+                        style="display:block"
+                        data-ad-client="ca-pub-7301992079721298"
+                        data-ad-slot="4688267585"
+                        data-ad-format="auto"
+                        data-full-width-responsive="true"></ins> --}}
+
+                        <img src="{{ asset('assets/frontend/img/ad-placeholder.png') }}" alt="" style="width: 100%; border-radius: 15px;">
+                </div>
+            </div>
+        </div>
+    </section>
+@endif
+
 @endsection
 
 
 @push('js')
+{{--
 <script>
-    $(document).ready(function() {
-        $('input[type=radio][name=category]').on('change', function() {
-            var selectedCategoryCode = $('input[type=radio][name=category]:checked').val();
-            window.location.href = `{{ route('frontend.video') }}?code=` + selectedCategoryCode;
+    $(document).ready(function(){
+        $('#code').change(function(){
+            var categoryCode = $(this).val(); // Get selected category ID
+            var currentUrl = window.location.href; // Get current URL
+            var newUrl;
+
+            if(currentUrl.indexOf('?') > -1) { // Check if URL already has query parameters
+                if(currentUrl.indexOf('code=') > -1) { // Check if code is already in URL
+                    // Replace the existing code value
+                    newUrl = currentUrl.replace(/(code=)[^\&]+/, '$1' + categoryCode);
+                } else {
+                    // Add code as a new parameter
+                    newUrl = currentUrl + '&code=' + categoryCode;
+                }
+            } else {
+                // Add code as the first query parameter
+                newUrl = currentUrl + '?code=' + categoryCode;
+            }
+
+            // Redirect to the new URL
+            window.location.href = newUrl;
         });
     });
-  </script>
+</script> --}}
+
 @endpush

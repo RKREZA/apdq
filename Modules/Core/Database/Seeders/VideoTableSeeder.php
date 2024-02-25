@@ -27,6 +27,7 @@ class VideoTableSeeder extends Seeder
                     'external_id'       => 'A1fghDCV7MM', // Replace with your actual external ID
                     'tag'               => "Video Tag {$i} for Category {$category_id}",
                     'category_id'       => $category_id,
+                    'subcategory_id'    => 1,
                     'seo_title'         => "SEO Title {$i} for Category {$category_id}",
                     'seo_description'   => "SEO Description {$i} for Category {$category_id}",
                     'seo_keyword'       => "SEO Keyword {$i} for Category {$category_id}",
@@ -37,6 +38,7 @@ class VideoTableSeeder extends Seeder
                     'sad'               => rand(0, 5),
                     'angry'             => rand(0, 5),
                     'dislike'           => rand(0, 5),
+                    'featured'          => "Active",
                 ]);
             }
         }

@@ -16,8 +16,55 @@
 @endpush
 
 <div class="row">
+    <div class="col-md-12">
+        <h6 class="mt-4 text-primary">{{ __('core::core.publish_information') }}</h6>
+        <hr class="mb-1">
+    </div>
 
     <div class="col-md-6">
+        <div class="input-group input-group-outline mt-3 is-filled @error('publish_type') is-invalid @enderror is-filled">
+            <label class="form-label" for="publish_type"><span class="required">{{ __('core::core.publish_type') }}</span></label>
+            <select name="publish_type" id="publish_type" class="form-control @error('publish_type') is-invalid @enderror">
+                <option value="publish" @if (isset($post) && $post->publish_type == 'publish') selected @endif>{{ __('core::core.publish') }}</option>
+                <option value="schedule" @if (isset($post) && $post->publish_type == 'schedule') selected @endif>{{ __('core::core.schedule') }}</option>
+            </select>
+            @error('publish_type')
+                <em class="error invalid-post" style="display: inline-block;">{{ $message }}</em>
+            @enderror
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="input-group input-group-outline mt-3 is-filled @error('created_at') is-invalid @enderror">
+            <label class="form-label"><span class="required">{{ __('blog::blog.post.form.created_at') }}</span></label>
+            <input type="datetime-local" name="created_at" id="created_at" class="form-control" value="@if(isset($post)){{ $post->created_at }}@else{{ now()->format('Y-m-d\TH:i') }}@endif">
+            @error('created_at')
+                <em class="error invalid-post" style="display: inline-block;">{{ $message }}</em>
+            @enderror
+        </div>
+    </div>
+
+
+
+    <div class="col-md-12">
+        <h6 class="mt-4 text-primary">{{ __('blog::blog.post.form.post_information') }}</h6>
+        <hr class="mb-1">
+    </div>
+
+    <div class="col-md-4">
+        <div class="input-group input-group-outline mt-3 is-filled @error('content_type') is-invalid @enderror is-filled">
+            <label class="form-label" for="content_type"><span class="required">{{ __('blog::blog.post.form.content_type') }}</span></label>
+            <select name="content_type" id="content_type" class="form-control @error('content_type') is-invalid @enderror">
+                <option value="free" @if (isset($post) && $post->content_type == 'free') selected @endif>{{ __('core::core.free') }}</option>
+                <option value="paid" @if (isset($post) && $post->content_type == 'paid') selected @endif>{{ __('core::core.paid') }}</option>
+            </select>
+            @error('content_type')
+                <em class="error invalid-video" style="display: inline-block;">{{ $message }}</em>
+            @enderror
+        </div>
+    </div>
+
+    <div class="col-md-4">
         <div class="input-group input-group-outline mt-3 is-filled @error('category_id') is-invalid @enderror is-filled">
             <label class="form-label" for="category_id"><span class="required">{{ __('blog::blog.post.form.category_id') }}</span></label>
             <select name="category_id" id="category_id" class="form-control @error('category_id') is-invalid @enderror">
@@ -32,13 +79,17 @@
         </div>
     </div>
 
-    <div class="col-md-6 pe-0">
-        <div class="input-group input-group-outline mt-3 is-filled @error('created_at') is-invalid @enderror">
-            <label class="form-label"><span class="required">{{ __('blog::blog.post.form.created_at') }}</span></label>
-            <input type="datetime-local" name="created_at" id="created_at" class="form-control" value="@if(isset($post)){{ $post->created_at }}@else{{ old('created_at') }}@endif">
-
-            @error('created_at')
-                <em class="error invalid-video" style="display: inline-block;">{{ $message }}</em>
+    <div class="col-md-4">
+        <div class="input-group input-group-outline mt-3 is-filled @error('subcategory_id') is-invalid @enderror is-filled">
+            <label class="form-label" for="subcategory_id"><span class="required">{{ __('blog::blog.post.form.subcategory_id') }}</span></label>
+            <select name="subcategory_id" id="subcategory_id" class="form-control @error('subcategory_id') is-invalid @enderror">
+                <option value="" disabled readonly selected>{{ __('blog::blog.post.form.select_subcategory') }}</option>
+                @foreach (\Modules\Blog\Entities\PostSubcategory::where('status','Active')->get() as $subcategory)
+                    <option value="{{ $subcategory->id }}" @if(isset($post) && $post->subcategory_id == $subcategory->id) selected @else{{ old('subcategory_id') }}@endif>{{ $subcategory->name }}</option>
+                @endforeach
+            </select>
+            @error('category_id')
+                <em class="error invalid-post" style="display: inline-block;">{{ $message }}</em>
             @enderror
         </div>
     </div>
@@ -55,7 +106,7 @@
 
     <div class="col-md-12">
         <div class="input-group input-group-outline mt-3 is-filled @error('description') is-invalid @enderror">
-            <label class="form-label"><span class="required">{{ __('blog::blog.post.form.description') }}</span></label>
+            <label class="form-label"><span class="">{{ __('blog::blog.post.form.description') }}</span></label>
             <textarea rows="6" id="description" name="description" class="form-control tiny">@if(isset($post)){{ $post->description }}@else{{ old('description') }}@endif</textarea>
             @error('description')
                 <em class="error invalid-post" style="display: inline-block;">{{ $message }}</em>
@@ -74,7 +125,10 @@
 
         <div id="tagsContainer" class="mb-3"></div>
 
-        <hr class="horizontal light my-4">
+        <div class="col-md-12">
+            <h6 class="mt-4 text-primary">{{ __('core::core.seo_information') }}</h6>
+            <hr class="mb-1">
+        </div>
 
         <div class="col-md-12">
             <div class="input-group input-group-outline mt-3 is-filled @error('seo_title') is-invalid @enderror">

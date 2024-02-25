@@ -1,4 +1,5 @@
-<table class="trash_data_table table table-hover table-center mb-0" style="width: 99%;">
+{{-- <table class="trash_data_table table table-hover table-center mb-0" style="width: 99%;"> --}}
+<table class="trash_data_table table table-bordered table-hover table-center mb-0" id="table">
     <thead>
         <tr>
             <th class="massActionWrapper" style="width: 30px;">

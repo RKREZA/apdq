@@ -19,7 +19,13 @@ class Newsletter extends Model
 
     protected $fillable = [
         'email',
+        'category_id',
 
     ];
+
+    public function category()
+    {
+        return $this->belongsTo('Modules\Newsletter\Entities\NewsletterCategory');
+    }
 
 }

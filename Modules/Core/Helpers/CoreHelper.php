@@ -1,6 +1,7 @@
 <?php
 namespace Modules\Core\Helpers;
 
+use Illuminate\Support\Facades\Schema;
 use Carbon\Carbon;
 
 class CoreHelper
@@ -12,7 +13,12 @@ class CoreHelper
 
     public static function filter_data($request, $data)
     {
-        $data->orderBy('id', 'DESC');
+        // Check if 'serial' column exists and then apply orderBy
+        if (Schema::hasColumn($data->getModel()->getTable(), 'serial')) {
+            $data->orderByRaw('ISNULL(serial), serial ASC');
+        }else{
+            $data->orderBy('id', 'DESC');
+        }
 
         if($request->date != null){
             $data->where('date', $request->date);
@@ -20,6 +26,7 @@ class CoreHelper
         if($request->status != null){
             $data->where('status','like',"%$request->status%" );
         }
+
         return $data;
     }
 

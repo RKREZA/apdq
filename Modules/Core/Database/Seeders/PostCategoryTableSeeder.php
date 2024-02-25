@@ -16,22 +16,27 @@ class PostCategoryTableSeeder extends Seeder
     public function run()
     {
         PostCategory::create([
+            'serial'  => '1',
             'name'  => 'Blogue',
             'code'  => 'blogue',
         ]);
         PostCategory::create([
+            'serial'  => '2',
             'name'  => 'Commissions',
             'code'  => 'commissions',
         ]);
         PostCategory::create([
+            'serial'  => '3',
             'name'  => 'Entrevues',
             'code'  => 'entrevues',
         ]);
         PostCategory::create([
+            'serial'  => '4',
             'name'  => 'Points de presse',
             'code'  => 'points-de-presse',
         ]);
         PostCategory::create([
+            'serial'  => '5',
             'name'  => 'Projets de loi',
             'code'  => 'projets-de-loi',
         ]);

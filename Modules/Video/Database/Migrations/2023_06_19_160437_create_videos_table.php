@@ -17,6 +17,9 @@ class CreateVideosTable extends Migration
             Schema::create('videos', function (Blueprint $table) {
                 $table->id();
                 $table->enum('video_type', ['youtube', 'manual'])->default('manual');
+                $table->enum('publish_type', ['publish', 'schedule'])->default('publish');
+                $table->enum('content_type', ['paid', 'free'])->default('free');
+
                 $table->string('title');
                 $table->string('slug')->unique();
                 $table->text('description')->nullable();
@@ -41,9 +44,13 @@ class CreateVideosTable extends Migration
                 $table->bigInteger('category_id')->unsigned()->nullable();
                 $table->foreign('category_id')->references('id')->on('video_categories')->onDelete('set null');
 
+                $table->bigInteger('subcategory_id')->unsigned()->nullable();
+                $table->foreign('subcategory_id')->references('id')->on('video_subcategories')->onDelete('set null');
+
                 $table->bigInteger('playlist_id')->unsigned()->nullable();
                 $table->foreign('playlist_id')->references('id')->on('video_playlists')->onDelete('set null');
                 $table->enum('status', ['Inactive', 'Active'])->default('Active');
+                $table->enum('featured', ['Inactive', 'Active'])->default('Inactive');
                 $table->timestamps();
                 $table->softDeletes();
             });

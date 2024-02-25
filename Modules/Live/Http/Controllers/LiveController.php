@@ -44,8 +44,10 @@ class LiveController extends Controller
     {
         // dd($request->all());
         $rules = [
+            'publish_type' 			    => 'required',
+            'content_type' 			    => 'required',
             'title' 					=> 'required',
-			'description' 			    => 'required|string',
+			'description' 			    => 'nullable|string',
 			'youtube_link' 			    => 'required|string',
 			'embed_html' 			    => 'required|string',
 			'thumbnail_url' 			=> 'required|string',
@@ -56,6 +58,8 @@ class LiveController extends Controller
         ];
 
         $messages = [
+            'publish_type.required'    	=> __('core::core.form.validation.required'),
+            'content_type.required'    	=> __('core::core.form.validation.required'),
             'title.required'    		=> __('core::core.form.validation.required'),
             'description.required'      => __('core::core.form.validation.required'),
             'youtube_link.required'     => __('core::core.form.validation.required'),
@@ -68,9 +72,11 @@ class LiveController extends Controller
         ];
 
         $validate = $this->validate($request, $rules, $messages);
-        // dd($request->all());
+
 		try {
 			Live::create([
+                'publish_type'         => $request->input('publish_type'),
+                'content_type'         => $request->input('content_type'),
                 'title'         => $request->input('title'),
                 'description'   => $request->input('description'),
                 'live_url'      => $request->input('youtube_link'),
@@ -100,13 +106,17 @@ class LiveController extends Controller
     public function update(Request $request, $id)
     {
         $rules = [
+            'content_type' 			    => 'required',
+            'content_type' 			    => 'required',
             'title' 					=> 'required',
 			'description' 	            => 'required|string',
         ];
 
         $messages = [
-            'title.required'    	=> __('core::core.form.validation.required'),
-            'description.required'  => __('core::core.form.validation.required'),
+            'publish_type.required'    	=> __('core::core.form.validation.required'),
+            'content_type.required'    	=> __('core::core.form.validation.required'),
+            'title.required'    	    => __('core::core.form.validation.required'),
+            'description.required'      => __('core::core.form.validation.required'),
         ];
 
         $validate = $this->validate($request, $rules, $messages);
@@ -140,6 +150,22 @@ class LiveController extends Controller
         DB::beginTransaction();
         try {
 		    Live::find($request->id)->update(['status' => $request->status]);
+        } catch (Exception $e) {
+            DB::rollBack();
+            $error_msg  = __('core::core.message.error');
+            return response()->json(['error'=>$error_msg]);
+        }
+        DB::commit();
+        $success_msg        = __('core::core.message.success.update');
+        return response()->json(['success'=> $success_msg]);
+
+	}
+
+	public function archive_update(Request $request)
+	{
+        DB::beginTransaction();
+        try {
+		    Live::find($request->id)->update(['archive' => $request->archive]);
         } catch (Exception $e) {
             DB::rollBack();
             $error_msg  = __('core::core.message.error');

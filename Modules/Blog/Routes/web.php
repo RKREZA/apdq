@@ -44,6 +44,24 @@ Route::group(['middleware'=>'language'],function (){
 					Route::post('/restore/all',         'PostCategoryController@restore_all')->name('admin.postcategories.restore_all');
 					Route::get('/status_update', 	    'PostCategoryController@status_update')->name('admin.postcategories.status_update');
                 });
+
+
+				// Video Sub Category
+                Route::prefix('subcategory')->group(function () {
+					Route::get('/trashes', 			    'PostSubcategoryController@trashes')->name('admin.postsubcategories.trashes');
+					Route::get('/index', 			    'PostSubcategoryController@index')->name('admin.postsubcategories.index');
+					Route::get('/create', 			    'PostSubcategoryController@create')->name('admin.postsubcategories.create');
+					Route::post('/store', 			    'PostSubcategoryController@store')->name('admin.postsubcategories.store');
+					Route::get('/edit/{id}', 		    'PostSubcategoryController@edit')->name('admin.postsubcategories.edit');
+					Route::post('/update/{id}', 	    'PostSubcategoryController@update')->name('admin.postsubcategories.update');
+					Route::delete('/trash', 		    'PostSubcategoryController@trash')->name('admin.postsubcategories.trash');
+                    Route::delete('/trash/all', 	    'PostSubcategoryController@trash_all')->name('admin.postsubcategories.trash_all');
+					Route::delete('/force_destroy',     'PostSubcategoryController@force_destroy')->name('admin.postsubcategories.force_destroy');
+                    Route::delete('/force_destroy/all', 'PostSubcategoryController@force_destroy_all')->name('admin.postsubcategories.force_destroy_all');
+					Route::post('/restore',             'PostSubcategoryController@restore')->name('admin.postsubcategories.restore');
+					Route::post('/restore/all',         'PostSubcategoryController@restore_all')->name('admin.postsubcategories.restore_all');
+					Route::get('/status_update', 	    'PostSubcategoryController@status_update')->name('admin.postsubcategories.status_update');
+                });
             });
 
 		});

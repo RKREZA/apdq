@@ -78,6 +78,16 @@ return [
     'total'             => 'Total',
     'amount'            => 'Montant',
     'emails'            => 'Emails',
+    'seo_information'   => 'Informations SEO',
+    'thumbnail'         => 'Thumbnail',
+    'video'             => 'Vidéo',
+
+    'publish_information' => 'Publier des informations',
+    'publish_type'      => 'Type de publication',
+    'publish'           => 'Publier',
+    'schedule'          => 'Programme',
+    'free'              => 'Gratuit',
+    'paid'              => 'Payé',
 
     'notice'              => 'Tableau d\'affichage',
 
@@ -96,6 +106,8 @@ return [
         'files'                     => 'Fichiers',
         'date'                      => 'Date',
         'status'                    => 'Statut',
+        'archive'                   => 'En direct/Archive',
+        'featured'                  => 'En vedette',
         'action'                    => 'Action',
         'view-button'               => 'Voir',
         'edit-button'               => 'Modifier',
@@ -173,6 +185,7 @@ return [
         ],
         'error'                     => 'Quelque chose s\'est mal passé!',
         'update_profile'            => 'Votre profil n\'est pas mis à jour. Veuillez contacter le bureau du projet',
+        'already_exist'             => 'Existe déjà!',
     ],
 
 ];

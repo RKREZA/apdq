@@ -5,6 +5,9 @@ return [
         'name' => 'Live',
 
         'form' => [
+            'content_type' => 'Content Type',
+            'live_information' => 'Live Information',
+            'created_at' => 'Publish Date',
             'title' => 'Title',
             'description' => 'Description',
             'embed_html' => 'Embed HTML',

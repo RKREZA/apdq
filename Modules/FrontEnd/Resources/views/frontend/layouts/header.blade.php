@@ -27,7 +27,10 @@
                     <a class="nav-link {{ request()->is('video*') ? 'active' : '' }}" aria-current="page" href="{{ route('frontend.video') }}">Vidéos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('live') ? 'active' : '' }}" aria-current="page" href="{{ route('frontend.live') }}">@if(isset($live) && $live)<i class="fi fi-ss-signal-stream animated"></i>@endif En direct</a>
+                    @php
+                        $live = \Modules\Live\Entities\Live::where('status','Active')->where('archive','Inactive')->first();
+                    @endphp
+                    <a class="nav-link {{ request()->is('live*') ? 'active' : '' }}" aria-current="page" href="{{ route('frontend.live') }}">@if(isset($live) && $live)<i class="fi fi-ss-signal-stream animated live_icon"></i>@endif En direct</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('blog*') ? 'active' : '' }}" aria-current="page" href="{{ route('frontend.blog') }}">Blog</a>
@@ -92,7 +95,7 @@
                             @if (count(auth()->user()->files)>0)
                                 <img src="{{ auth()->user()->files[0]->path }}" class="profile_img rounded-circle img-fluid img-thumbnail">
                             @else
-                                <img src="/assets/backend/img/no-image.png" class="profile_img rounded-circle img-fluid img-thumbnail">
+                                <img src="/assets/backend/img/no-image.webp" class="profile_img rounded-circle img-fluid img-thumbnail">
                             @endif
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">

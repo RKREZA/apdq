@@ -29,10 +29,14 @@
                     <form id="newsletter_edit_form" action="{{ route('admin.newsletters.update', $newsletter->id) }}" method="POST" role="form" autocomplete="off">
                         @csrf()
                         @include('newsletter::newsletter.form')
-                        <button type="submit" class="create-button btn btn-dark btn-rounded">
-                            <i class="fi fi-ss-disk"></i>
-                            {{ __('core::core.update') }}
-                        </button>
+                        <div class="row ms-1">
+                            <div class="col-md-12">
+                                <button type="submit" class="create-button btn btn-dark btn-rounded">
+                                    <i class="fi fi-ss-disk"></i>
+                                    {{ __('core::core.update') }}
+                                </button>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

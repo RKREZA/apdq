@@ -25,27 +25,262 @@
 @if(auth()->user() && auth()->user()->subscriptionStatus()['status'] != 'no_subscription' && auth()->user()->subscriptionStatus()['optionAdFree'] == 'Active' && auth()->user()->hasRole('User'))
 
 @else
-    <section id="ad_banner" class=" mb-4 mx-3">
+    <section id="ad_banner" class=" mb-4 mx-2">
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col" style="width: 260px;" id="Adscode">
                     <!-- banner ads -->
-                    <ins class="adsbygoogle"
+                    {{-- <ins class="adsbygoogle"
                         style="display:block"
                         data-ad-client="ca-pub-7301992079721298"
                         data-ad-slot="4688267585"
                         data-ad-format="auto"
-                        data-full-width-responsive="true"></ins>
-                    {{-- <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script> --}}
+                        data-full-width-responsive="true"></ins> --}}
+
+                    <img src="{{ asset('assets/frontend/img/ad-placeholder.png') }}" alt="" style="width: 100%; border-radius: 15px;">
                 </div>
             </div>
         </div>
     </section>
 @endif
 
-<section id="video" class="mx-3">
+
+
+<section id="video" class="mx-2">
+    <div class="container-fluid pb-3">
+        <div class="row mb-2">
+            <div class="col-11 text-start">
+                <a href="{{ route('frontend.video') }}">
+                    <h5 class="fw-normal text-white custom_heading_5"><i class="fi fi-ss-features"></i> Vidéo en vedette</h5>
+                </a>
+            </div>
+            <div class="col-1 text-end">
+                <a href="{{ route('frontend.video') }}">
+                    <h5 class="fw-normal text-white"><i class="fi fi-br-angle-double-small-right"></i></h5>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 px-2 mb-3">
+                <div class="owl-carousel owl-theme" id="featured_carousel">
+
+                    @php
+                        $featured_videos = $videos->where('featured', 'Active')->take(8)->toArray(); // Take the first 8 videos
+                        $adIndex = rand(0, 8); // Randomly select an index to insert the ad
+
+                        array_splice($featured_videos, $adIndex, 0, [[
+                            'is_ad' => true, // Marking this as an ad item
+                        ]]);
+                    @endphp
+
+                    @foreach ($featured_videos as $video)
+                        @if (isset($video['is_ad']) && $video['is_ad'])
+                            {{-- Insert the ad section --}}
+
+                            @if(auth()->user() && auth()->user()->subscriptionStatus()['status'] != 'no_subscription' && auth()->user()->subscriptionStatus()['optionAdFree'] == 'Active' && auth()->user()->hasRole('User'))
+
+                            @else
+                                <div class="item">
+                                    <div class="card border-0">
+                                        <div class="card-body p-0" style="min-width: 260px;">
+                                            <!-- Mods Center Responsive -->
+                                            {{-- <ins class="adsbygoogle"
+                                                style="display:block"
+                                                data-ad-format="fluid"
+                                                data-ad-layout-key="-79+ew-1a-28+94"
+                                                data-ad-client="ca-pub-7301992079721298"
+                                                data-full-width-responsive="true"
+                                                data-ad-slot="5618205875"></ins> --}}
+
+                                            <img src="{{ asset('assets/frontend/img/ad-placeholder-square.png') }}" alt="" style="width: 100%; height:210px; border-radius: 7px;">
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+
+                        @else
+                            {{-- Regular video item --}}
+                            <div class="item">
+                                @if ($video['content_type'] == 'paid')
+                                    @if(auth()->user() && isset(auth()->user()->subscriptionStatus()['optionPremiumContent']) && auth()->user()->subscriptionStatus()['optionPremiumContent'] == 'Active' && auth()->user()->hasRole('User'))
+                                        <a href="{{ route('frontend.video.single', $video['slug']) }}" class="">
+                                    @else
+                                        <a href="{{ route('frontend.subscription') }}" class="">
+                                    @endif
+                                @else
+                                    <a href="{{ route('frontend.video.single', $video['slug']) }}" class="">
+                                @endif
+
+                                    <div class="card border-0">
+                                        <div class="card-body p-0">
+                                            @if ($video['content_type'] == 'paid')
+                                                <div class="premium" style="position: absolute; right: 10px; top: 10px;">
+                                                    <img class="crown" src="{{ asset('assets/frontend/img/crown.svg') }}" style="    background: #000;
+                                                    padding: 10px;
+                                                    border-radius: 6px;"></img>
+                                                </div>
+                                            @endif
+
+                                            <div class="image-container" style="background-image:url({{ $video['thumbnail_url'] }});"></div>
+                                            <div class="video-content-wrapper">
+                                                <div class="video-content">
+                                                    <h6 class="text-white">{{ $video['title'] }}</h6>
+                                                    <div class="row sub-content">
+                                                        <div class="col-12">
+                                                            @isset($video->category)
+                                                            <small class="text-white"><i class="fi fi-ss-clipboard-list-check"></i> {{ optional($video->category)->name }}</small>
+                                                            @endisset
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        @endif
+                    @endforeach
+
+
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+{{-- <section id="video" class="mb-5 mx-3 live">
+    <div class="container-fluid pb-3">
+
+        <div class="row mb-2">
+            <div class="col-11 text-start">
+                <a href="{{ route('frontend.video') }}">
+                    <h5 class="fw-normal text-white custom_heading_5"><i class="fi fi-sr-live-alt"></i> À venir en direct</h5>
+                </a>
+            </div>
+            <div class="col-1 text-end">
+                <a href="{{ route('frontend.video') }}">
+                    <h5 class="fw-normal text-white"><i class="fi fi-br-angle-double-small-right"></i></h5>
+                </a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 px-2 mb-3">
+                <div class="owl-carousel owl-theme" id="live_carousel">
+
+                    @php
+                        $live_videos = $lives->take(2)->toArray(); // Take the first 8 videos
+                        $adIndex = rand(0, 8); // Randomly select an index to insert the ad
+
+                        array_splice($live_videos, $adIndex, 0, [[
+                            'is_ad' => true, // Marking this as an ad item
+                        ]]);
+                    @endphp
+
+                    @foreach ($live_videos as $video)
+                        @if (isset($video['is_ad']) && $video['is_ad'])
+
+                            @if(auth()->user() && auth()->user()->subscriptionStatus()['status'] != 'no_subscription' && auth()->user()->subscriptionStatus()['optionAdFree'] == 'Active' && auth()->user()->hasRole('User'))
+
+                            @else
+                                <div class="item">
+                                    <div class="card border-0">
+                                        <div class="card-body" style="min-width: 260px;">
+                                            <!-- Mods Center Responsive -->
+                                            <ins class="adsbygoogle"
+                                                style="display:block"
+                                                data-ad-format="fluid"
+                                                data-ad-layout-key="-79+ew-1a-28+94"
+                                                data-ad-client="ca-pub-7301992079721298"
+                                                data-full-width-responsive="true"
+                                                data-ad-slot="5618205875"></ins>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+
+                        @else
+                            <div class="item">
+                                <a href="{{ route('frontend.video.single', $video['slug']) }}" class="">
+                                    <div class="card border-0">
+                                        <div class="card-body p-0">
+
+                                            @if (!empty($video['thumbnail_url']))
+                                                <div class="image-container" style="background-image:url({{ $video['thumbnail_url'] }});"></div>
+                                            @else
+                                                <div class="image-container" style="background-image:url(assets/frontend/img/no-image.webp);"></div>
+                                            @endif
+
+
+                                            <div class="video-content-wrapper">
+                                                <div class="video-content">
+                                                    <h6 class="text-white">{{ $video['title'] }}</h6>
+                                                    <div class="row sub-content">
+                                                        <div class="col-12">
+                                                            @isset($video->category)
+                                                            <small class="text-white"><i class="fi fi-ss-clipboard-list-check"></i> {{ optional($video->category)->name }}</small>
+                                                            @endisset
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        @endif
+                    @endforeach
+
+
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section> --}}
+
+<section id="newsletter" class="mb-5 mx-0" style="background: linear-gradient(109.6deg, rgba(0, 0, 0, 0.93) 11.2%, rgb(23 23 23) 78.9%);">
+    <div class="container-fluid py-4">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-5 p-5" style="overflow: hidden">
+                @php
+                    $live = $lives->first();
+                @endphp
+                @if ($live)
+                    <a href="{{ route('frontend.live') }}" style="display: block;
+                    border-radius: 15px;
+                    overflow: hidden;">
+                        <img class="newsletter-img" src="{{ $live->thumbnail_url }}" alt="" style="margin-bottom: -60px;margin-top: -60px; border-radius: 15px;">
+                    </a>
+                @else
+                    <a href="{{ route('frontend.subscription') }}" style="display: block;
+                    border-radius: 15px;
+                    overflow: hidden;">
+                        <img class="newsletter-img" src="{{ asset('assets/frontend/img/no-video.webp') }}" alt="" style="margin-bottom: -60px;margin-top: -60px; border-radius: 15px;">
+                    </a>
+                @endif
+            </div>
+            <div class="col-md-5 mb-3 text-center">
+                <h1 class="fw-bold text-white">Ne manquez jamais un flux en direct</h1>
+                <h5 class="text-white">Abonnez-vous pour recevoir uniquement une notification vidéo en direct</h5>
+                <form action="{{ route('frontend.newsletter.live') }}" method="post" class="mt-4" id="newsletterFormLive">
+                    @csrf
+                    <input type="email" class="form-control newsletter-input" name="email" placeholder="E-mail" required>
+                    <button type="submit" class="btn btn-lg btn-default newsletter-button mt-3 mb-4 w-100">S'abonner</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="video" class="mx-2">
     <div class="container-fluid pb-3">
         <div class="row mb-2">
             <div class="col-11 text-start">
@@ -64,46 +299,59 @@
                 <div class="owl-carousel owl-theme">
 
                     @php
-                        $videos = $videos->take(8)->toArray(); // Take the first 8 videos
+                        $recent_videos = $videos->take(8)->toArray(); // Take the first 8 videos
                         $adIndex = rand(0, 8); // Randomly select an index to insert the ad
 
-                        array_splice($videos, $adIndex, 0, [[
+                        array_splice($recent_videos, $adIndex, 0, [[
                             'is_ad' => true, // Marking this as an ad item
                         ]]);
                     @endphp
 
-                    @foreach ($videos as $video)
+                    @foreach ($recent_videos as $video)
                         @if (isset($video['is_ad']) && $video['is_ad'])
-                            {{-- Insert the ad section --}}
 
                             @if(auth()->user() && auth()->user()->subscriptionStatus()['status'] != 'no_subscription' && auth()->user()->subscriptionStatus()['optionAdFree'] == 'Active' && auth()->user()->hasRole('User'))
 
                             @else
                                 <div class="item">
                                     <div class="card border-0">
-                                        <div class="card-body" style="min-width: 260px;">
+                                        <div class="card-body p-0" style="min-width: 260px;">
                                             <!-- Mods Center Responsive -->
-                                            <ins class="adsbygoogle"
+                                            {{-- <ins class="adsbygoogle"
                                                 style="display:block"
                                                 data-ad-format="fluid"
                                                 data-ad-layout-key="-79+ew-1a-28+94"
                                                 data-ad-client="ca-pub-7301992079721298"
                                                 data-full-width-responsive="true"
-                                                data-ad-slot="5618205875"></ins>
-                                            {{-- <script>
-                                                (adsbygoogle = window.adsbygoogle || []).push({});
-                                            </script> --}}
+                                                data-ad-slot="5618205875"></ins> --}}
+
+                                            <img src="{{ asset('assets/frontend/img/ad-placeholder-square.png') }}" alt="" style="width: 100%; height:210px; border-radius: 7px;">
                                         </div>
                                     </div>
                                 </div>
                             @endif
 
                         @else
-                            {{-- Regular video item --}}
                             <div class="item">
-                                <a href="{{ route('frontend.video.single', $video['slug']) }}" class="">
+                                @if ($video['content_type'] == 'paid')
+                                    @if(auth()->user() && isset(auth()->user()->subscriptionStatus()['optionPremiumContent']) && auth()->user()->subscriptionStatus()['optionPremiumContent'] == 'Active' && auth()->user()->hasRole('User'))
+                                        <a href="{{ route('frontend.video.single', $video['slug']) }}" class="">
+                                    @else
+                                        <a href="{{ route('frontend.subscription') }}" class="">
+                                    @endif
+                                @else
+                                    <a href="{{ route('frontend.video.single', $video['slug']) }}" class="">
+                                @endif
                                     <div class="card border-0">
                                         <div class="card-body p-0">
+
+                                            @if ($video['content_type'] == 'paid')
+                                                <div class="premium" style="position: absolute; right: 10px; top: 10px;">
+                                                    <img class="crown" src="{{ asset('assets/frontend/img/crown.svg') }}" style="    background: #000;
+                                                    padding: 10px;
+                                                    border-radius: 6px;"></img>
+                                                </div>
+                                            @endif
                                             <div class="image-container" style="background-image:url({{ $video['thumbnail_url'] }});"></div>
                                             <div class="video-content-wrapper">
                                                 <div class="video-content">
@@ -136,7 +384,7 @@
 
 @foreach($video_categories as $video_category)
     @if(count($video_category->videos)>0)
-        <section id="video" class="mx-3">
+        <section id="video" class="mx-2">
             <div class="container-fluid pb-3">
                 <div class="row mb-2">
                     <div class="col-11 text-start">
@@ -156,57 +404,70 @@
 
 
                             @php
-                                $videos = $video_category->videos->take(8)->toArray(); // Take the first 8 videos
+                                $category_videos = $video_category->videos->take(8)->toArray(); // Take the first 8 videos
                                 $adIndex = rand(0, 8); // Randomly select an index to insert the ad
 
-                                array_splice($videos, $adIndex, 0, [[
+                                array_splice($category_videos, $adIndex, 0, [[
                                     'is_ad' => true, // Marking this as an ad item
                                 ]]);
                             @endphp
 
-                            @foreach ($videos as $video)
+                            @foreach ($category_videos as $video)
                                 @if (isset($video['is_ad']) && $video['is_ad'])
-                                    {{-- Insert the ad section --}}
 
                                     @if(auth()->user() && auth()->user()->subscriptionStatus()['status'] != 'no_subscription' && auth()->user()->subscriptionStatus()['optionAdFree'] == 'Active' && auth()->user()->hasRole('User'))
 
                                     @else
                                     <div class="item">
                                         <div class="card border-0">
-                                            <div class="card-body" style="min-width: 260px;">
+                                            <div class="card-body p-0" style="min-width: 260px;">
                                                 <!-- Adsense Ad Code -->
                                                 <!-- Mods Center Responsive -->
-                                                    <ins class="adsbygoogle"
+                                                    {{-- <ins class="adsbygoogle"
                                                     style="display:block"
                                                     data-ad-format="fluid"
                                                     data-ad-layout-key="-79+ew-1a-28+94"
                                                     data-ad-client="ca-pub-7301992079721298"
                                                     data-full-width-responsive="true"
-                                                    data-ad-slot="5618205875"></ins>
-                                                {{-- <script>
-                                                    (adsbygoogle = window.adsbygoogle || []).push({});
-                                                </script> --}}
+                                                    data-ad-slot="5618205875"></ins> --}}
+
+                                                <img src="{{ asset('assets/frontend/img/ad-placeholder-square.png') }}" alt="" style="width: 100%; height:210px; border-radius: 7px;">
                                             </div>
                                         </div>
                                     </div>
                                     @endif
 
                                 @else
-                                    {{-- Regular video item --}}
                                     <div class="item">
-                                        <a href="{{ route('frontend.video.single', $video['slug']) }}" class="">
+                                        @if ($video['content_type'] == 'paid')
+                                            @if(auth()->user() && isset(auth()->user()->subscriptionStatus()['optionPremiumContent']) && auth()->user()->subscriptionStatus()['optionPremiumContent'] == 'Active' && auth()->user()->hasRole('User'))
+                                                <a href="{{ route('frontend.video.single', $video['slug']) }}" class="">
+                                            @else
+                                                <a href="{{ route('frontend.subscription') }}" class="">
+                                            @endif
+                                        @else
+                                            <a href="{{ route('frontend.video.single', $video['slug']) }}" class="">
+                                        @endif
                                             <div class="card border-0">
                                                 <div class="card-body p-0">
+
+                                                    @if ($video['content_type'] == 'paid')
+                                                        <div class="premium" style="position: absolute; right: 10px; top: 10px;">
+                                                            <img class="crown" src="{{ asset('assets/frontend/img/crown.svg') }}" style="    background: #000;
+                                                            padding: 10px;
+                                                            border-radius: 6px;"></img>
+                                                        </div>
+                                                    @endif
                                                     <div class="image-container" style="background-image:url({{ $video['thumbnail_url'] }});"></div>
                                                     <div class="video-content-wrapper">
                                                         <div class="video-content">
                                                             <h6 class="text-white">{{ $video['title'] }}</h6>
-                                                            <div class="row sub-content">
+                                                            {{-- <div class="row sub-content">
                                                                 <div class="col-12">
                                                                     <small class="text-white"><i class="fi fi-ss-clipboard-list-check"></i> {{ $video_category->name }}</small>
 
                                                                 </div>
-                                                            </div>
+                                                            </div> --}}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -232,27 +493,26 @@
 @if(auth()->user() && auth()->user()->subscriptionStatus()['status'] != 'no_subscription' && auth()->user()->subscriptionStatus()['optionAdFree'] == 'Active' && auth()->user()->hasRole('User'))
 
 @else
-    <section id="ad_banner_2" class=" mb-4 mx-3">
+    <section id="ad_banner_2" class=" mb-4 mx-2">
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col" style="min-width: 260px;">
                     <!-- Mods Center Responsive -->
-                    <ins class="adsbygoogle"
+                    {{-- <ins class="adsbygoogle"
                         style="display:block"
                         data-ad-client="ca-pub-7301992079721298"
                         data-ad-slot="4688267585"
                         data-ad-format="auto"
-                        data-full-width-responsive="true"></ins>
-                    {{-- <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script> --}}
+                        data-full-width-responsive="true"></ins> --}}
+
+                        <img src="{{ asset('assets/frontend/img/ad-placeholder.png') }}" alt="" style="width: 100%; border-radius: 15px;">
                 </div>
             </div>
         </div>
     </section>
 @endif
 
-<section id="blog" class="mx-3">
+<section id="blog" class="mx-2">
     {{-- <div class="overlay"></div> --}}
     <div class="container-fluid py-0">
         <div class="row mb-3">
@@ -279,7 +539,7 @@
                                 @if (!empty($post->files[0]['path']))
                                     <div class="image-container" style="background-image:url({{ $post->files[0]['path'] }});"></div>
                                 @else
-                                    <div class="image-container" style="background-image:url(assets/frontend/img/no-image.png);"></div>
+                                    <div class="image-container" style="background-image:url(assets/frontend/img/no-image.webp);"></div>
                                 @endif
                             </a>
 
@@ -310,7 +570,7 @@
     </div>
 </section>
 
-<section id="donation" class="mx-3">
+<section id="donation" class="mx-2">
     {{-- <div class="overlay"></div> --}}
     <div class="container-fluid py-4 pb-5">
         <div class="row">
@@ -351,13 +611,13 @@
     </div>
 </section>
 
-<section id="newsletter" class="mb-5 mx-3">
+<section id="newsletter" class="mb-5s" style="background: linear-gradient(280.6deg, rgba(0, 0, 0, 0.93) 11.2%, rgb(23 23 23) 78.9%);">
     <div class="container-fluid py-4">
         <div class="row justify-content-center align-items-center">
             <div class="col-md-4 mb-3 text-center">
                 <h1 class="fw-bold text-white">S'abonner</h1>
                 <h5 class="text-white">Vers notre newsletter</h5>
-                <form action="{{ route('frontend.newsletter') }}" method="post" class="mt-4" id="newsletterForm">
+                <form action="{{ route('frontend.newsletter.general') }}" method="post" class="mt-4" id="newsletterFormGeneral">
                     @csrf
                     <input type="email" class="form-control newsletter-input" name="email" placeholder="E-mail" required>
                     <button type="submit" class="btn btn-lg btn-default newsletter-button mt-3 w-100">S'abonner</button>
@@ -394,8 +654,42 @@
     </script>
 
     <script>
+        $('#featured_carousel').owlCarousel({
+            margin: 15,
+            loop: false,
+            items: 4,
+            dots: true,
+            nav: true,
+            navigationText: ["<img src='{{ asset('assets/frontend/img/arrow.svg') }}'>","<img src='{{ asset('assets/frontend/img/arrow.svg') }}'>"],
+            smartSpeed: 1500,
+            autoplay: false,
+            autoplayTimeout: 7000,
+            mouseDrag: true,
+            animateIn: 'fadeIn',
+            animateOut: 'fadeOut'
+        });
+    </script>
+
+    <script>
+        $('#live_carousel').owlCarousel({
+            margin: 15,
+            loop: false,
+            items: 2,
+            dots: true,
+            nav: true,
+            navigationText: ["<img src='{{ asset('assets/frontend/img/arrow.svg') }}'>","<img src='{{ asset('assets/frontend/img/arrow.svg') }}'>"],
+            smartSpeed: 1500,
+            autoplay: false,
+            autoplayTimeout: 7000,
+            mouseDrag: true,
+            animateIn: 'fadeIn',
+            animateOut: 'fadeOut'
+        });
+    </script>
+
+    <script>
         $(document).ready(function () {
-            $('#newsletterForm').submit(function (e) {
+            $('#newsletterFormGeneral').submit(function (e) {
                 e.preventDefault();
 
                 var form = $(this);
@@ -406,7 +700,61 @@
                     data: form.serialize(),
                     dataType: 'json',
                     success: function (data) {
-                        swal(data.success);
+                        if (data.success) {
+                            swal({
+                                title: data.success,
+                                type: "success",
+                                showCancelButton: false,
+                                successMode: true,
+                            });
+                            $("#newsletterFormGeneral")[0].reset();
+                        } else {
+                            swal({
+                                title: data.error,
+                                type: "error",
+                                showCancelButton: false,
+                                dangerMode: true,
+                            });
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        swal(xhr.responseJSON.error);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#newsletterFormLive').submit(function (e) {
+                e.preventDefault();
+
+                var form = $(this);
+
+                $.ajax({
+                    type: form.attr('method'),
+                    url: form.attr('action'),
+                    data: form.serialize(),
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.success) {
+
+                            swal({
+                                title: data.success,
+                                type: "success",
+                                showCancelButton: false,
+                                dangerMode: false,
+                            });
+                            $("#newsletterFormLive")[0].reset();
+                        } else {
+                            swal({
+                                title: data.error,
+                                type: "error",
+                                showCancelButton: false,
+                                dangerMode: true,
+                            });
+                        }
                     },
                     error: function (xhr, status, error) {
                         swal(xhr.responseJSON.error);

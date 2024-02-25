@@ -46,13 +46,17 @@ class PostController extends Controller
     {
         $rules = [
             'title' 					=> 'required',
-			'description' 			    => 'required|string',
+			'description' 			    => 'nullable|string',
 			'tag' 			            => 'required|string',
 			'category_id' 			    => 'required',
+			'subcategory_id' 			=> 'required',
 			'seo_title' 			    => 'nullable|string',
 			'seo_description' 		    => 'nullable|string',
 			'seo_keyword' 			    => 'nullable|string',
 			'created_at' 			    => 'required',
+
+            'publish_type'              => 'required',
+            'content_type'              => 'required',
         ];
 
         $messages = [
@@ -60,10 +64,14 @@ class PostController extends Controller
             'description.required'      => __('core::core.form.validation.required'),
             'tag.required'              => __('core::core.form.validation.required'),
             'category_id.required'      => __('core::core.form.validation.required'),
+            'subcategory_id.required'   => __('core::core.form.validation.required'),
             'seo_title.required'        => __('core::core.form.validation.required'),
             'seo_description.required'  => __('core::core.form.validation.required'),
             'seo_keyword.required'      => __('core::core.form.validation.required'),
             'created_at.required'       => __('core::core.form.validation.required'),
+
+            'publish_type.required'     => __('core::core.form.validation.required'),
+            'content_type.required'     => __('core::core.form.validation.required'),
         ];
 
         $validate = $this->validate($request, $rules, $messages);
@@ -71,14 +79,16 @@ class PostController extends Controller
 		try {
 			$post = Post::create([
                 'title'         => $request->input('title'),
-                'category_id'   => $request->input('category_id'),
                 'description'   => $request->input('description'),
                 'tag'           => $request->input('tag'),
                 'category_id'   => $request->input('category_id'),
+                'subcategory_id'=> $request->input('subcategory_id'),
                 'seo_title'     => $request->input('seo_title'),
                 'seo_description'=> $request->input('seo_description'),
                 'seo_keyword'   => $request->input('seo_keyword'),
-                'created_at'    => $request->input('created_at')
+                'created_at'    => $request->input('created_at'),
+                'publish_type'    => $request->input('publish_type'),
+                'content_type'    => $request->input('content_type')
             ]);
 
             if (!empty($request->input('files'))) {
@@ -116,7 +126,7 @@ class PostController extends Controller
     {
         $rules = [
             'title' 					=> 'required',
-			'description' 	            => 'required|string',
+			'description' 	            => 'nullable|string',
 			'created_at' 			    => 'required',
         ];
 

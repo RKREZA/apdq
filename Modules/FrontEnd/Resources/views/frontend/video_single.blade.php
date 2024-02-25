@@ -148,6 +148,8 @@
 
 <section id="video_page" class="pb-5 mx-3">
     <div class="container-fluid py-2">
+
+
         <div class="row">
 
             <div class="col-md-8 pe-md-4 pe-0">
@@ -269,6 +271,25 @@
                     ])
 
                 </div>
+
+                @if(auth()->user() && auth()->user()->subscriptionStatus()['status'] != 'no_subscription' && auth()->user()->subscriptionStatus()['optionAdFree'] == 'Active' && auth()->user()->hasRole('User'))
+
+                @else
+
+                    <div class="row justify-content-center" id="ad_banner_2">
+                        <div class="col" style="min-width: 260px;">
+                            <!-- Mods Center Responsive -->
+                            {{-- <ins class="adsbygoogle"
+                                style="display:block"
+                                data-ad-client="ca-pub-7301992079721298"
+                                data-ad-slot="4688267585"
+                                data-ad-format="auto"
+                                data-full-width-responsive="true"></ins> --}}
+
+                                <img src="{{ asset('assets/frontend/img/ad-placeholder.png') }}" alt="" style="width: 100%; border-radius: 15px;">
+                        </div>
+                    </div>
+                @endif
             </div>
 
             <div class="col-md-4">
@@ -320,34 +341,37 @@
 
 <script src="{{ asset('js/share.js') }}"></script>
 
-<script>
+{{-- <script>
     $(document).ready(function() {
         $('.reaction-button').click(function() {
             var button = $(this);
             var badge = button.next('.badge');
-            // var previousValue = parseInt(button.next('.previous_value').val());
             var videoId = button.data('video-id');
             var reactionType = button.data('reaction-type');
 
-            var previousValue = parseInt(button.closest('.emoji').find('.previous_value').val());
-
+            // Fetch the current value directly from the badge each time the button is clicked
+            var previousValue = parseInt(badge.text()) || 0; // Use the badge's text as the source of truth
 
             $.ajax({
-                url: `{{ route('frontend.video.react') }}`,
+                url: `{{ route('frontend.video.react') }}`, // Make sure this URL is correct
                 type: 'POST',
                 data: {
                     video_id: videoId,
                     reaction_type: reactionType,
-                    _token: '{{ csrf_token() }}'
+                    _token: '{{ csrf_token() }}' // Ensure CSRF token is correctly passed
                 },
                 success: function(response) {
                     if (response.success) {
                         button.find('.fi').addClass('fi-active');
 
-                        // Increment the numeric value and update the UI
-                        var newValue = previousValue+1;
-                        badge.html(newValue);
-                        button.next('.previous_value').val(previousValue + 1);
+                        // Increment the numeric value and update the UI based on the response
+                        var newValue = previousValue + 1;
+                        badge.html(newValue); // Update the badge with the new value
+
+                        // Optionally, you can update the badge based on the response if it contains the new count
+                        // badge.html(response.newCount);
+
+                        // No need to update .previous_value input value, if you are not using it elsewhere
 
                         // Add shake effect to the emoji
                         button.closest('.emoji').find('img').addClass('shake');
@@ -356,8 +380,6 @@
                         setTimeout(function() {
                             button.closest('.emoji').find('img').removeClass('shake');
                         }, 1000); // Adjust the duration (in milliseconds) as needed
-
-
                     } else {
                         console.error('Failed to submit reaction');
                     }
@@ -368,9 +390,80 @@
             });
         });
     });
+</script> --}}
 
 
+<script>
+    $(document).ready(function() {
+        $('.reaction-button').click(function() {
+            var button = $(this);
+            var reactionType = button.data('reaction-type');
+            var videoId = button.data('video-id');
+
+            $.ajax({
+                url: '{{ route("frontend.video.react") }}',
+                type: 'POST',
+                data: {
+                    video_id: videoId,
+                    reaction_type: reactionType,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    if (response.success && response.video) {
+                        // Update the badge and input value for the reacted type
+                        var newCount = response.video[reactionType];
+                        button.siblings('.reaction-counter').text(newCount);
+                        button.find('.previous_value').val(newCount);
+
+                        // Add shake effect to the emoji
+                        button.closest('.emoji').find('img').addClass('shake');
+
+                        // Remove shake effect after a delay
+                        setTimeout(function() {
+                            button.closest('.emoji').find('img').removeClass('shake');
+                        }, 1000); // Adjust the duration (in milliseconds) as needed
+
+                    } else {
+                        console.error('Failed to submit reaction');
+                    }
+                },
+                error: function(error) {
+                    console.error('AJAX request failed', error);
+                }
+            });
+        });
+
+        function fetchAndUpdateReactions() {
+            var videoId = '{{ $video->id }}';
+
+            $.ajax({
+                url: '{{ route("frontend.video.get.reactions") }}',
+                type: 'GET',
+                data: { video_id: videoId },
+                success: function(response) {
+                    if (response.success && response.reactions) {
+                        $('.reaction-button').each(function() {
+                            var button = $(this);
+                            var reactionType = button.data('reaction-type');
+                            var newCount = response.reactions[reactionType];
+
+                            button.siblings('.reaction-counter').text(newCount);
+                            button.find('.previous_value').val(newCount);
+                        });
+                    }
+                },
+                error: function(error) {
+                    console.error('Failed to fetch reactions', error);
+                }
+            });
+        }
+
+        // Initial fetch and setup periodic update
+        setInterval(fetchAndUpdateReactions, 5000);
+    });
 </script>
+
+
 
 <script>
     $(document).ready(function () {

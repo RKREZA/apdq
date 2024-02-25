@@ -63,9 +63,11 @@
                                 'thumbnail_url'     => __('video::video.video.form.thumbnail_url'),
                                 'title'             => __('video::video.video.form.title'),
                                 'category_id'       => __('video::video.video.form.category_id'),
+                                'subcategory_id'    => __('video::video.video.form.subcategory_id'),
                                 'playlist_id'       => __('video::video.video.form.playlist_id'),
                                 'reaction'          => __('video::video.video.form.reaction'),
-                                'created_at'            => __('video::video.video.form.created_at'),
+                                'created_at'        => __('video::video.video.form.created_at'),
+                                'featured'          => __('core::core.form.featured'),
                                 'status'            => __('core::core.form.status'),
                                 'action'            => __('core::core.form.action'),
                             ],
@@ -87,5 +89,25 @@
 
     // Change Status
     var include_change_status_route = "{{ route('admin.videos.status_update') }}";
+</script>
+
+<script type="text/javascript">
+    function changeFeatured(_this, id) {
+        var featured = $(_this).prop('checked') == true ? 'Active' : 'Inactive';
+        let _token = $('meta[name="csrf-token"]').attr('content');
+
+        $.ajax({
+            url: `{{ route('admin.videos.featured_update') }}`,
+            type: 'get',
+            data: {
+                _token: _token,
+                id: id,
+                featured: featured
+            },
+            success: function(result) {
+                @include('admin::layouts.includes.js.json_response')
+            },
+        });
+    }
 </script>
 @endpush

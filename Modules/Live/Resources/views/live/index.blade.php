@@ -50,6 +50,7 @@
                             'include_table_rows'                => [
                                 'thumbnail_url'     => __('live::live.live.form.thumbnail_url'),
                                 'title'             => __('live::live.live.form.title'),
+                                'archive'           => __('core::core.form.archive'),
                                 'status'            => __('core::core.form.status'),
                                 'created_at'        => __('core::core.form.created_at'),
                                 'action'            => __('core::core.form.action'),
@@ -72,5 +73,25 @@
 
     // Change Status
     var include_change_status_route = "{{ route('admin.lives.status_update') }}";
+</script>
+
+<script type="text/javascript">
+    function changeArchive(_this, id) {
+        var archive = $(_this).prop('checked') == true ? 'Active' : 'Inactive';
+        let _token = $('meta[name="csrf-token"]').attr('content');
+
+        $.ajax({
+            url: `{{ route('admin.lives.archive_update') }}`,
+            type: 'get',
+            data: {
+                _token: _token,
+                id: id,
+                archive: archive
+            },
+            success: function(result) {
+                @include('admin::layouts.includes.js.json_response')
+            },
+        });
+    }
 </script>
 @endpush

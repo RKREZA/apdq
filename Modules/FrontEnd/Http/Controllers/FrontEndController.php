@@ -22,22 +22,29 @@ use Modules\Blog\Entities\PostComment;
 use Modules\Cms\Entities\PageCategory;
 use Modules\Cms\Entities\Page;
 use Modules\Live\Entities\Live;
-// use Modules\Slider\Entities\Slider;
 use Modules\Subscription\Entities\Subscription;
 use Modules\PaymentGateway\Entities\PaymentGateway;
 use Modules\Newsletter\Entities\Newsletter;
+use Modules\Newsletter\Entities\NewsletterCategory;
+use Modules\FrontEnd\Http\Mail\SendSubscriberConfirmationMail;
 use Illuminate\Support\Facades\Validator;
 use App\Mail\Http\SendMail;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Cookie;
+
+use Google\Client;
+use Google\Service\YouTube;
+
 
 class FrontEndController extends Controller
 {
     function __construct()
 	{
         $frontend_setting   = FrontendSetting::first();
-        $this->yearsMonths = $this->getYearsMonths();
+        $this->yearsMonths  = $this->getYearsMonths();
         View::share('yearsMonths', $this->yearsMonths);
+        View::share('frontend_setting', $frontend_setting);
 	}
 
     private function getYearsMonths()
@@ -63,28 +70,31 @@ class FrontEndController extends Controller
         return $yearsMonths;
     }
 
+    public function setCookie(Request $request)
+    {
+        $cookie = cookie('subscriptionModalClosed', 'true', 60 * 24 * 30); // Create cookie
+        return response()->json(['message' => 'Cookie set'])->withCookie($cookie); // Attach cookie to response
+    }
+
     public function home()
     {
-        $frontend_setting   = FrontendSetting::first();
         $video_categories   = VideoCategory::where('status','Active')->orderByRaw('ISNULL(serial), serial ASC')->get();
-        $videos             = Video::where('status','Active')->get();
+        $videos             = Video::where('status','Active')->orderBy('id','DESC')->get();
         $posts              = Post::where('status','Active')->get();
-        $live               = Live::where('status','Active')->first();
+        $lives              = Live::where('status','Active')->get();
         // $sliders            = Slider::where('status','Active')->get();
 
-        return view('frontend::frontend.home', compact('frontend_setting','video_categories','videos','posts','live'));
+        return view('frontend::frontend.home', compact('video_categories','videos','posts','lives'));
     }
 
     public function about()
     {
-        $frontend_setting   = FrontendSetting::first();
-        return view('frontend::frontend.about', compact('frontend_setting'));
+        return view('frontend::frontend.about');
     }
 
     public function video()
     {
         try {
-            $frontend_setting   = FrontendSetting::first();
             $video_categories    = VideoCategory::where('status','Active')->orderByRaw('ISNULL(serial), serial ASC')->get();
             if (request()->has('year') && request()->has('month')) {
                 $year = request()->input('year');
@@ -92,14 +102,12 @@ class FrontEndController extends Controller
 
                 $videos = Video::where('status', 'Active')
                     ->whereYear('created_at', $year)
-                    ->whereMonth('created_at', Carbon::parse($month)->format('m'))
-                    ->paginate(20);
+                    ->whereMonth('created_at', Carbon::parse($month)->format('m'));
             } elseif (request()->has('code') && !empty(request()->code)) {
                 $videos = Video::where('status', 'Active')
                     ->whereHas('category', function ($query) {
                         $query->where('code', request()->code);
-                    })
-                    ->paginate(20);
+                    });
             } elseif (request()->has('tag') && !empty(request()->tag)) {
                 $tag = request()->tag;
 
@@ -110,8 +118,7 @@ class FrontEndController extends Controller
                             ->orWhere('tag', 'like', "%,{$tag}%")
                             ->orWhere('tag', 'like', "{$tag},%")
                             ->orWhere('tag', 'like', "%,{$tag}");
-                    })
-                    ->paginate(20);
+                    });
             } elseif (request()->has('filter') && !empty(request()->filter)) {
                 $videosQuery = Video::query();
                 $videosQuery = $videosQuery->where('status', 'Active');
@@ -137,12 +144,22 @@ class FrontEndController extends Controller
                 }
 
                 // Paginate the results
-                $videos = $videosQuery->paginate(20);
+                $videos = $videosQuery;
             } else {
-                $videos = Video::where('status', 'Active')->paginate(20);
+                $videos = Video::where('status', 'Active');
             }
 
-            return view('frontend::frontend.video', compact('frontend_setting','video_categories','videos'));
+            if (request()->has('code')) {
+                $videos = Video::where('status', 'Active')
+                    ->whereHas('category', function ($query) {
+                        $query->where('code', request()->code);
+                    })
+                    ->paginate(20);
+            }else{
+                $videos = $videos->paginate(20);
+            }
+
+            return view('frontend::frontend.video', compact('video_categories','videos'));
         } catch (\Throwable $th) {
             abort(404);
         }
@@ -150,21 +167,41 @@ class FrontEndController extends Controller
 
     public function video_oldest()
     {
-        // try {
-            $frontend_setting   = FrontendSetting::first();
-            $videos    = Video::where('status','Active')->orderBy('id','asc')->paginate(21);
-            return view('frontend::frontend.video_oldest', compact('frontend_setting','videos'));
-        // } catch (\Throwable $th) {
-        //     abort(404);
-        // }
+        try {
+            $video_categories    = VideoCategory::where('status','Active')->orderByRaw('ISNULL(serial), serial ASC')->get();
+            $videos    = Video::where('status','Active')->orderBy('id','asc');
+
+            if (request()->has('code')) {
+                $videos =   $videos->whereHas('category', function ($query) {
+                                $query->where('code', request()->code);
+                            })
+                            ->paginate(20);
+            }else{
+                $videos = $videos->paginate(20);
+            }
+
+            return view('frontend::frontend.video_oldest', compact('videos','video_categories'));
+        } catch (\Throwable $th) {
+            abort(404);
+        }
     }
 
     public function video_latest()
     {
         try {
-            $frontend_setting   = FrontendSetting::first();
-            $videos    = Video::where('status','Active')->orderBy('id','desc')->paginate(21);
-            return view('frontend::frontend.video_latest', compact('frontend_setting','videos'));
+            $video_categories    = VideoCategory::where('status','Active')->orderByRaw('ISNULL(serial), serial ASC')->get();
+            $videos    = Video::where('status','Active')->orderBy('id','desc');
+
+            if (request()->has('code')) {
+                $videos =   $videos->whereHas('category', function ($query) {
+                                $query->where('code', request()->code);
+                            })
+                            ->paginate(20);
+            }else{
+                $videos = $videos->paginate(20);
+            }
+
+            return view('frontend::frontend.video_latest', compact('videos','video_categories'));
         } catch (\Throwable $th) {
             abort(404);
         }
@@ -173,9 +210,19 @@ class FrontEndController extends Controller
     public function video_popular()
     {
         try {
-            $frontend_setting   = FrontendSetting::first();
-            $videos    = Video::where('status','Active')->orderByRaw('`like` + `love` + `haha` + `wow` + `angry` + `dislike` DESC')->paginate(21);
-            return view('frontend::frontend.video_popular', compact('frontend_setting','videos'));
+            $video_categories    = VideoCategory::where('status','Active')->orderByRaw('ISNULL(serial), serial ASC')->get();
+            $videos    = Video::where('status','Active')->orderByRaw('`like` + `love` + `haha` + `wow` + `angry` + `dislike` DESC');
+
+            if (request()->has('code')) {
+                $videos =   $videos->whereHas('category', function ($query) {
+                                $query->where('code', request()->code);
+                            })
+                            ->paginate(20);
+            }else{
+                $videos = $videos->paginate(20);
+            }
+
+            return view('frontend::frontend.video_popular', compact('videos','video_categories'));
         } catch (\Throwable $th) {
             abort(404);
         }
@@ -184,9 +231,8 @@ class FrontEndController extends Controller
     public function video_playlist()
     {
         try {
-            $frontend_setting   = FrontendSetting::first();
-            $videoplaylists = VideoPlaylist::where('status', 'Active')->paginate(21);
-            return view('frontend::frontend.video_playlist', compact('frontend_setting','videoplaylists'));
+            $videoplaylists = VideoPlaylist::where('status', 'Active')->paginate(20);
+            return view('frontend::frontend.video_playlist', compact('videoplaylists'));
         } catch (\Throwable $th) {
             abort(404);
         }
@@ -195,10 +241,9 @@ class FrontEndController extends Controller
     public function video_playlist_single($id)
     {
         try {
-            $frontend_setting   = FrontendSetting::first();
             $videoplaylist = VideoPlaylist::where('status','Active')->find($id);
-            $videos = $videoplaylist->videos()->where('status', 'Active')->paginate(21);
-            return view('frontend::frontend.video_playlist_single', compact('frontend_setting','videoplaylist','videos'));
+            $videos = $videoplaylist->videos()->where('status', 'Active')->paginate(20);
+            return view('frontend::frontend.video_playlist_single', compact('videoplaylist','videos'));
         } catch (\Throwable $th) {
             abort(404);
         }
@@ -229,7 +274,7 @@ class FrontEndController extends Controller
         if(!$video){
             abort(404);
         }
-        $frontend_setting   = FrontendSetting::first();
+
         $video_categories    = VideoCategory::where('status','Active')->orderByRaw('ISNULL(serial), serial ASC')->get();
         $recent_videos       = Video::where('status', 'Active')->orderBy('id','DESC')->limit(4)->get();
         $video_comments      = VideoComment::where('video_id', $video->id)->get();
@@ -246,7 +291,7 @@ class FrontEndController extends Controller
         ->whatsapp();
 
         if($video){
-            return view('frontend::frontend.video_single', compact('frontend_setting','video_categories','video','recent_videos','share_component','video_comments'));
+            return view('frontend::frontend.video_single', compact('video_categories','video','recent_videos','share_component','video_comments'));
         }else{
             return abort(404);
         }
@@ -263,10 +308,26 @@ class FrontEndController extends Controller
         return response()->json(['success' => true,'video'=>$video]);
     }
 
+    public function get_reactions(Request $request)
+    {
+        $request->validate([
+            'video_id'      => 'required|integer|exists:videos,id',
+            // 'reaction_type' => 'required|in:like,love,haha,wow,sad,angry,dislike',
+        ]);
+
+        $videoId = $request->video_id;
+        $reactionType = $request->reaction_type;
+        $video = Video::select(['like', 'love', 'haha', 'wow', 'sad', 'angry', 'dislike'])->findOrFail($videoId);
+
+        return response()->json([
+            'success' => true,
+            'reactions' => $video->toArray()
+        ]);
+    }
+
     public function blog()
     {
         try {
-            $frontend_setting   = FrontendSetting::first();
             $post_categories    = PostCategory::where('status','Active')->get();
             if(isset(request()->code) && !empty(request()->code)){
                 $posts              = Post::where('status','Active')
@@ -290,7 +351,7 @@ class FrontEndController extends Controller
                 $posts              = Post::where('status','Active')->paginate(21);
             }
 
-            return view('frontend::frontend.blog', compact('frontend_setting','post_categories','posts'));
+            return view('frontend::frontend.blog', compact('post_categories','posts'));
         } catch (\Throwable $th) {
             abort(404);
         }
@@ -299,7 +360,6 @@ class FrontEndController extends Controller
     public function blog_single($slug)
     {
         try {
-            $frontend_setting   = FrontendSetting::first();
             $post_categories    = PostCategory::where('status','Active')->get();
             $post               = Post::where('slug',$slug)->first();
             $recent_posts       = Post::where('status', 'Active')->orderBy('id','DESC')->limit(5)->get();
@@ -317,7 +377,7 @@ class FrontEndController extends Controller
             ->whatsapp();
 
             if($post){
-                return view('frontend::frontend.blog_single', compact('frontend_setting','post_categories','post','recent_posts','post_comments','share_component'));
+                return view('frontend::frontend.blog_single', compact('post_categories','post','recent_posts','post_comments','share_component'));
             }else{
                 return abort(404);
             }
@@ -350,8 +410,6 @@ class FrontEndController extends Controller
     public function search(Request $request)
     {
         try {
-            $frontend_setting   = FrontendSetting::first();
-
             $video_categories       = VideoCategory::where('status','Active')->get();
             $videos                 = Video::where('status','Active')
                                             ->where('title','like',"%$request->keyword%")
@@ -368,7 +426,7 @@ class FrontEndController extends Controller
                                             ->orWhere('seo_description','like',"%$request->keyword%")
                                             ->paginate(20);
 
-            return view('frontend::frontend.search', compact('frontend_setting','video_categories','videos','post_categories','posts'));
+            return view('frontend::frontend.search', compact('video_categories','videos','post_categories','posts'));
         } catch (\Throwable $th) {
             abort(404);
         }
@@ -377,21 +435,115 @@ class FrontEndController extends Controller
     public function live()
     {
         try {
-            $frontend_setting   = FrontendSetting::first();
-            $live               = Live::where('status','Active')->first();
-            return view('frontend::frontend.live', compact('frontend_setting','live'));
+            $live               = Live::where('status','Active')->where('archive','Inactive')->first();
+            $messages = $this->fetchLiveChatMessagesUsingVideoId($live->external_id);
+            $archived_lives     = Live::where('status','Active')->where('archive','Active')->get();
+            // dd($messages);
+            return view('frontend::frontend.live', compact('live','messages','archived_lives'));
         } catch (\Throwable $th) {
             abort(404);
         }
     }
 
+    public function live_archive()
+    {
+        try {
+            $archived_lives     = Live::where('status','Active')->where('archive','Active')->paginate(20);
+            return view('frontend::frontend.live_archive', compact('archived_lives'));
+        } catch (\Throwable $th) {
+            abort(404);
+        }
+    }
+
+    public function live_single($slug)
+    {
+        try {
+            $live     = Live::where('status','Active')->where('archive','Active')->where('slug',$slug)->first();
+            $share_component = \Share::page(
+                route('frontend.live.single', $live->slug),
+                $live->title,
+                ['target' => '_parent']
+            )
+            ->facebook()
+            ->twitter()
+            ->linkedin()
+            ->telegram()
+            ->whatsapp();
+
+
+            $messages = $this->fetchLiveChatMessagesUsingVideoId($live->external_id);
+
+
+            // dd($messages);
+            return view('frontend::frontend.live_single', compact('live','share_component','messages'));
+        } catch (\Throwable $th) {
+            abort(404);
+        }
+    }
+
+
+
+    public function fetchLiveChatMessagesUsingVideoId($videoId)
+    {
+        $client = new Client();
+        $client->setDeveloperKey(env('YOUTUBE_API_KEY'));
+
+        $youtube = new YouTube($client);
+
+        // Step 1: Fetch the live stream details to get the liveChatId
+        $liveChatId = $this->getLiveChatIdByVideoId($youtube, $videoId);
+
+        if (!$liveChatId) {
+            return []; // Or handle the absence of a liveChatId accordingly
+        }
+
+        // Step 2: Fetch live chat messages using the liveChatId
+        $response = $youtube->liveChatMessages->listLiveChatMessages(
+            $liveChatId,
+            'snippet, authorDetails'
+        );
+
+        return $response->getItems();
+    }
+
+    private function getLiveChatIdByVideoId(YouTube $youtube, $videoId)
+    {
+        // Fetch the video details
+        $videoResponse = $youtube->videos->listVideos('liveStreamingDetails', array(
+            'id' => $videoId,
+        ));
+
+        if (empty($videoResponse->getItems())) {
+            return null; // Video not found or does not have live streaming details
+        }
+
+        $video = $videoResponse->getItems()[0];
+
+        // Check if the video has live streaming details with a valid liveChatId
+        if ($video->getLiveStreamingDetails() && $video->getLiveStreamingDetails()->getActiveLiveChatId()) {
+            return $video->getLiveStreamingDetails()->getActiveLiveChatId();
+        }
+
+        return null;
+    }
+
+    public function fetch_messages(Request $request) {
+        $messages = $this->fetchLiveChatMessagesUsingVideoId($request->external_id);
+
+        return response()->json(['messages' => $messages]);
+    }
+
+
+
+
+
+
     public function subscription()
     {
         try {
-            $frontend_setting       = FrontendSetting::first();
             $subscriptions           = Subscription::where('status','Active')->get();
 
-            return view('frontend::frontend.subscription', compact('frontend_setting','subscriptions'));
+            return view('frontend::frontend.subscription', compact('subscriptions'));
         } catch (\Throwable $th) {
             abort(404);
         }
@@ -399,7 +551,6 @@ class FrontEndController extends Controller
 
     public function checkout(Request $request)
     {
-        $frontend_setting       = FrontendSetting::first();
         $payment_gateways       = PaymentGateway::where('status','Active')->get();
         $subscription           = Subscription::find($request->subscription_id);
         $page                   = Page::where('slug','termes-et-conditions')->first();
@@ -408,19 +559,17 @@ class FrontEndController extends Controller
             abort('404');
         }
 
-        return view('frontend::frontend.checkout', compact('frontend_setting','subscription','payment_gateways','page'));
+        return view('frontend::frontend.checkout', compact('subscription','payment_gateways','page'));
     }
 
     public function donation()
     {
-        $frontend_setting   = FrontendSetting::first();
-        return view('frontend::frontend.donation', compact('frontend_setting'));
+        return view('frontend::frontend.donation');
     }
 
     public function contact()
     {
-        $frontend_setting   = FrontendSetting::first();
-        return view('frontend::frontend.contact', compact('frontend_setting'));
+        return view('frontend::frontend.contact');
     }
 
     public function contact_go(Request $request)
@@ -465,28 +614,21 @@ class FrontEndController extends Controller
 		}
     }
 
-    public function doantion()
-    {
-        $frontend_setting   = FrontendSetting::first();
-        return view('frontend::frontend.doantion', compact('frontend_setting'));
-    }
-
     public function page_single($slug)
     {
-        $frontend_setting   = FrontendSetting::first();
         $page_categories    = PageCategory::where('status','Active')->get();
         $page               = Page::where('slug',$slug)->first();
 
         if($page){
-            return view('frontend::frontend.page_single', compact('frontend_setting','page_categories','page'));
+            return view('frontend::frontend.page_single', compact('page_categories','page'));
         }else{
             return abort(404);
         }
     }
 
-    public function newsletter(Request $request) {
+    public function newsletter_general(Request $request) {
         $rules = [
-			'email' 			        => 'required|email|unique:newsletters,email',
+			'email' 			        => 'required|email',
         ];
 
         $messages = [
@@ -500,10 +642,29 @@ class FrontEndController extends Controller
             return response()->json(['error' => $validator->errors()->first()], 422);
         }
 
+        $category = NewsletterCategory::where('code','general')->first();
+        if (!$category) {
+            $error_msg              = __('core::core.message.error');
+            return response()->json(['error'=>$error_msg]);
+        }
+        $check_email = Newsletter::where('email',$request->email)->where('category_id',$category->id)->first();
+        if($check_email){
+            $error_msg              = __('core::core.message.already_exist');
+            return response()->json(['error'=>$error_msg]);
+        }
+
 		try {
 			Newsletter::create([
-                'email'              => $request->input('email')
+                'category_id'        => $category->id,
+                'email'              => $request->input('email'),
             ]);
+
+            $data = [
+                'email' => $request->email,
+                'message' => 'Préparez-vous pour du contenu exclusif ! (pour les newsletters ou les abonnements avec du contenu exclusif)',
+            ];
+
+            Mail::to($request->email)->send(new SendSubscriberConfirmationMail($data));
 
 			$success_msg            = __('core::core.message.success.subscribe');
             return response()->json(['success'=>$success_msg], 200);
@@ -514,9 +675,60 @@ class FrontEndController extends Controller
 		}
     }
 
+
+
+    public function newsletter_live(Request $request) {
+        $rules = [
+			'email' 			        => 'required|email',
+        ];
+
+        $messages = [
+            'email.required'    		=> __('core::core.form.validation.required'),
+            'email.unique'    		    => __('core::core.form.validation.unique'),
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()->first()], 422);
+        }
+
+        $category = NewsletterCategory::where('code','live')->first();
+        if (!$category) {
+            $error_msg              = __('core::core.message.error');
+            return response()->json(['error'=>$error_msg]);
+        }
+        $check_email = Newsletter::where('email',$request->email)->where('category_id',$category->id)->first();
+        if($check_email){
+            $error_msg              = __('core::core.message.already_exist');
+            return response()->json(['error'=>$error_msg]);
+        }
+
+		try {
+			Newsletter::create([
+                'category_id'        => $category->id,
+                'email'              => $request->input('email'),
+            ]);
+
+            $data = [
+                'email' => $request->email,
+                'message' => 'Vous êtes désormais inscrit(e) pour recevoir des notifications en direct.',
+            ];
+
+            Mail::to($request->email)->send(new SendSubscriberConfirmationMail($data));
+
+			$success_msg            = __('core::core.message.success.subscribe');
+            return response()->json(['success'=>$success_msg], 200);
+
+		} catch (Exception $e) {
+			$error_msg              = __('core::core.message.error');
+            return response()->json(['error'=>$error_msg]);
+		}
+    }
+
+
     public function stripe(Request $request)
     {
-        $frontend_setting       = FrontendSetting::first();
         $subscription           = Subscription::find($request->subscription_id);
 
         $payment_gateway        = PaymentGateway::where('code','stripe')->first();
@@ -530,25 +742,22 @@ class FrontEndController extends Controller
         $currency = $payment_gateway_info['currency'];
 
 
-        return view('frontend::frontend.stripe', compact('frontend_setting','subscription','payment_gateway','stripe_key','currency'));
+        return view('frontend::frontend.stripe', compact('subscription','payment_gateway','stripe_key','currency'));
     }
 
 
 
     public function delete_user()
     {
-        $frontend_setting   = FrontendSetting::first();
-        return view('frontend::frontend.home', compact('frontend_setting'));
+        return view('frontend::frontend.home');
     }
     public function privacy_policy()
     {
-        $frontend_setting   = FrontendSetting::first();
-        return view('frontend::frontend.home', compact('frontend_setting'));
+        return view('frontend::frontend.home');
     }
     public function terms_of_services()
     {
-        $frontend_setting   = FrontendSetting::first();
-        return view('frontend::frontend.home', compact('frontend_setting'));
+        return view('frontend::frontend.home');
     }
 
 }

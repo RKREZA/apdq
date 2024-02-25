@@ -16,6 +16,7 @@ class CreatePostCategoriesTable extends Migration
         if (!Schema::hasTable('post_categories')) {
             Schema::create('post_categories', function (Blueprint $table) {
                 $table->id();
+                $table->string('serial')->nullable();
                 $table->string('name');
                 $table->string('code')->unique();
                 $table->enum('status', ['Inactive', 'Active'])->default('Active');

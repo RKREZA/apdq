@@ -20,6 +20,8 @@ class Video extends Model
 
     protected $fillable = [
         'video_type',
+        'content_type',
+        'publish_type',
         'title',
         'description',
         'embed_html',
@@ -27,8 +29,10 @@ class Video extends Model
         'external_id',
         'tag',
         'category_id',
+        'subcategory_id',
         'playlist_id',
         'status',
+        'featured',
         'created_at',
         'seo_title',
         'seo_description',
@@ -56,6 +60,11 @@ class Video extends Model
     public function category()
     {
         return $this->belongsTo('Modules\Video\Entities\VideoCategory');
+    }
+
+    public function subcategory()
+    {
+        return $this->belongsTo('Modules\Video\Entities\VideoSubcategory');
     }
 
     public function playlist()

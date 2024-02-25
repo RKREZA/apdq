@@ -20,10 +20,10 @@ class SubscriptionTableSeeder extends Seeder
             'option_ad_free'            => 'Active',
             'option_live_content'       => 'Inactive',
             'option_premium_content'    => 'Inactive',
-            'trial_days'                => '14',
+            'trial_days'                => '0',
             'duration'                  => '30',
             'duration_type'             => 'Day(s)',
-            'price'                     => '10'
+            'price'                     => '4'
         ]);
 
         Subscription::create([
@@ -31,10 +31,10 @@ class SubscriptionTableSeeder extends Seeder
             'option_ad_free'            => 'Active',
             'option_live_content'       => 'Active',
             'option_premium_content'    => 'Active',
-            'trial_days'                => '14',
+            'trial_days'                => '0',
             'duration'                  => '30',
             'duration_type'             => 'Day(s)',
-            'price'                     => '50'
+            'price'                     => '12'
         ]);
 
     }

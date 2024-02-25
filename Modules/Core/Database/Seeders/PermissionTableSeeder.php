@@ -485,6 +485,29 @@ class PermissionTableSeeder extends Seeder
             ]);
         //Video Category End
 
+        //Video Subcategory
+            $group = PermissionGroup::create([
+                'name' => 'videosubcategory',
+                'display_name' => 'Video Sub Category',
+            ]);
+            Permission::create([
+                'name' => 'videosubcategory-list',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'videosubcategory-create',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'videosubcategory-edit',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'videosubcategory-delete',
+                'permissiongroup_id' => $group->id,
+            ]);
+        //Video Category End
+
         //Video Playlist
             $group = PermissionGroup::create([
                 'name' => 'videoplaylist',
@@ -554,6 +577,29 @@ class PermissionTableSeeder extends Seeder
             ]);
         //Post Category End
 
+        //Post Sub Category
+            $group = PermissionGroup::create([
+                'name' => 'postsubcategory',
+                'display_name' => 'Post Sub category',
+            ]);
+            Permission::create([
+                'name' => 'postsubcategory-list',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'postsubcategory-create',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'postsubcategory-edit',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'postsubcategory-delete',
+                'permissiongroup_id' => $group->id,
+            ]);
+        //Post Sub Category End
+
         //Live
             $group = PermissionGroup::create([
                 'name' => 'live',
@@ -619,6 +665,29 @@ class PermissionTableSeeder extends Seeder
             ]);
             Permission::create([
                 'name' => 'newsletter-delete',
+                'permissiongroup_id' => $group->id,
+            ]);
+        //Newsletter End
+
+        //Newsletter Category
+            $group = PermissionGroup::create([
+                'name' => 'newslettercategory',
+                'display_name' => 'Newsletter Category',
+            ]);
+            Permission::create([
+                'name' => 'newslettercategory-list',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'newslettercategory-create',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'newslettercategory-edit',
+                'permissiongroup_id' => $group->id,
+            ]);
+            Permission::create([
+                'name' => 'newslettercategory-delete',
                 'permissiongroup_id' => $group->id,
             ]);
         //Newsletter End

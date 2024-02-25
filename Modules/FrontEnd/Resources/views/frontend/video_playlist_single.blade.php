@@ -121,14 +121,10 @@
 
         <div class="row">
 
-            <div class="col-md-10 mb-2">
-
-                <h5 class="m-0 mt-2">Playlist vidéo > {{ $videoplaylist->name }}</h5>
+            <div class="col-md-10 mb-4">
+                <h5 class="m-0 mt-2 text-light"><i class="fi fi-rs-list-music" style="position: relative; top: 3px"></i> Playlist vidéo <i class="fi fi-sr-angle-small-right" style="position: relative; top:3px;"></i> {{ $videoplaylist->name }}</h5>
             </div>
 
-            <div class="col-md-2 mb-2 text-end">
-                <a href="{{ route('frontend.video.playlist') }}" class="btn btn-dark m-1 ms-0 {{ request()->is('playlist*') ? 'bg-light text-dark' : '' }}">Playlist</a>
-            </div>
             <div class="col-md-12">
                 <div class="row">
                     @foreach ($videos as $video)
@@ -136,13 +132,43 @@
                         <div class="col-md-3 mb-4">
                             <div class="card border-0">
                                 <div class="card-body p-0">
-                                    <a href="{{ route('frontend.video.single', $video->slug) }}" class="">
+
+
+                                    @if ($video['content_type'] == 'paid')
+                                        <div class="premium" style="position: absolute; right: 10px; top: 10px;">
+                                            <img class="crown" src="{{ asset('assets/frontend/img/crown.svg') }}" style="    background: #000;
+                                            padding: 10px;
+                                            border-radius: 6px;"></img>
+                                        </div>
+                                    @endif
+                                    @if ($video['content_type'] == 'paid')
+                                        @if(auth()->user() && isset(auth()->user()->subscriptionStatus()['optionPremiumContent']) && auth()->user()->subscriptionStatus()['optionPremiumContent'] == 'Active' && auth()->user()->hasRole('User'))
+                                            <a href="{{ route('frontend.video.single', $video->slug) }}" class="">
+                                        @else
+                                            <a href="{{ route('frontend.subscription') }}" class="">
+                                        @endif
+                                    @else
+                                        <a href="{{ route('frontend.video.single', $video->slug) }}" class="">
+                                    @endif
                                         <div class="image-container" style="background-image:url({{ $video->thumbnail_url }});">
-                                            {{-- <img src="{{ $video->thumbnail_url }}" onerror="this.onerror=null;this.src='{{ asset('assets/frontend/img/no-video.png') }}';" alt=""> --}}
+                                            {{-- <img src="{{ $video->thumbnail_url }}" onerror="this.onerror=null;this.src='{{ asset('assets/frontend/img/no-video.webp') }}';" alt=""> --}}
                                         </div>
                                     </a>
                                     <div class="video-content p-3">
-                                        <h6><a href="{{ route('frontend.video.single', $video->slug) }}" class="text-white">{{ $video->title }}</a></h6>
+                                        <h6>
+                                            <a href="{{ route('frontend.video.single', $video->slug) }}" class="text-white">
+                                            @if ($video['content_type'] == 'paid')
+                                                @if(auth()->user() && isset(auth()->user()->subscriptionStatus()['optionPremiumContent']) && auth()->user()->subscriptionStatus()['optionPremiumContent'] == 'Active' && auth()->user()->hasRole('User'))
+                                                    <a href="{{ route('frontend.video.single', $video->slug) }}" class="text-white">
+                                                @else
+                                                    <a href="{{ route('frontend.subscription') }}" class="text-white">
+                                                @endif
+                                            @else
+                                                <a href="{{ route('frontend.video.single', $video->slug) }}" class="text-white">
+                                            @endif
+                                                {{ $video->title }}
+                                            </a>
+                                        </h6>
                                         <div class="row sub-content">
                                             <div class="col-12">
                                                 @isset($video->category)

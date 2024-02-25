@@ -48,10 +48,10 @@ Contact
 </section> --}}
 <section id="contact_page" class="pb-5 mx-3">
     <div class="container-fluid py-2">
+
         <div class="row">
-            <div class="col-md-12 text-start">
-                <h4>Contact</h4>
-                {{-- <h6 class="text-muted">Partagez votre pensée</h6> --}}
+            <div class="col-md-10 mb-4">
+                <h5 class="m-0 mt-2 text-light"><i class="fi fi-ss-customer-service" style="position: relative; top: 3px"></i> Contact</h5>
             </div>
         </div>
 

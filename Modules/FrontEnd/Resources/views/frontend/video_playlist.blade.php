@@ -131,31 +131,36 @@ Playlist vidéo
 
         <div class="row">
 
-            <div class="col-md-10 mb-2">
-                <h5 class="m-0 mt-2">Playlist vidéo</h5>
+            <div class="col-md-10 mb-4">
+                <h5 class="m-0 mt-2 text-light"><i class="fi fi-rs-list-music" style="position: relative; top: 3px"></i> Playlist vidéo</h5>
             </div>
 
-            <div class="col-md-2 mb-2 text-end">
+            {{-- <div class="col-md-2 mb-2 text-end">
                 <a href="{{ route('frontend.video.playlist') }}" class="btn btn-dark m-1 ms-0 {{ request()->is('playlist*') ? 'bg-light text-dark' : '' }}">Playlist</a>
+            </div> --}}
+
+            <div class="col-md-12">
+                <img src="{{ asset('assets/frontend/img/playlist_banner.jpg') }}" style="border-radius: 15px;" class="mb-3" alt="">
             </div>
 
             <div class="col-md-12">
                 <div class="row">
                     @foreach ($videoplaylists as $videoplaylist)
 
+                        {{-- @if (count($videoplaylist->videos)>0) --}}
                         <div class="col-md-3 mb-4">
                             <div class="card border-0">
                                 <div class="card-body p-0">
                                     <a href="{{ route('frontend.video.playlist.single', $videoplaylist->id) }}" class="">
-                                        <div class="image-container" style="background-image:url({{ $videoplaylist->videos[0]->thumbnail_url }});">
-                                            {{-- <img src="{{ $video->thumbnail_url }}" onerror="this.onerror=null;this.src='{{ asset('assets/frontend/img/no-video.png') }}';" alt=""> --}}
+                                        <div class="image-container" style="background-image:url(@if (count($videoplaylist->videos)>0){{ $videoplaylist->videos[0]->thumbnail_url }} @else {{ asset('assets/frontend/img/no-image.webp') }} @endif);">
+                                            {{-- <img src="{{ $video->thumbnail_url }}" onerror="this.onerror=null;this.src='{{ asset('assets/frontend/img/no-video.webp') }}';" alt=""> --}}
                                         </div>
                                     </a>
                                     <div class="video-content p-3">
                                         <h6><a href="{{ route('frontend.video.playlist.single', $videoplaylist->id) }}" class="text-white">{{ $videoplaylist->name }}</a></h6>
                                         <div class="row sub-content">
                                             <div class="col-12">
-                                                <small>{{ count($videoplaylist->videos) }} vidéos</small>
+                                                <small><i class="fi fi-rs-list-music"></i> {{ count($videoplaylist->videos) }} vidéos</small>
                                             </div>
                                             {{-- <div class="col-6 text-end text-muted">
                                                 <small><i class="fi fi-ss-calendar-clock"></i> {{ date('d/m/Y', strtotime($video->created_at)) }}</small>
@@ -165,6 +170,10 @@ Playlist vidéo
                                 </div>
                             </div>
                         </div>
+
+                        {{-- @endif --}}
+
+
 
                     @endforeach
                 </div>
@@ -181,6 +190,27 @@ Playlist vidéo
     </div>
 </section>
 
+@if(auth()->user() && auth()->user()->subscriptionStatus()['status'] != 'no_subscription' && auth()->user()->subscriptionStatus()['optionAdFree'] == 'Active' && auth()->user()->hasRole('User'))
+
+@else
+    <section id="ad_banner_2" class=" mb-4">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col" style="min-width: 260px;">
+                    <!-- Mods Center Responsive -->
+                    {{-- <ins class="adsbygoogle"
+                        style="display:block"
+                        data-ad-client="ca-pub-7301992079721298"
+                        data-ad-slot="4688267585"
+                        data-ad-format="auto"
+                        data-full-width-responsive="true"></ins> --}}
+
+                        <img src="{{ asset('assets/frontend/img/ad-placeholder.png') }}" alt="" style="width: 100%; border-radius: 15px;">
+                </div>
+            </div>
+        </div>
+    </section>
+@endif
 @endsection
 
 

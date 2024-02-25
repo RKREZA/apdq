@@ -58,6 +58,7 @@ class PostCategoryController extends Controller
 
 		try {
 			$role = PostCategory::create([
+                'serial' => $request->input('serial'),
                 'name' => $request->input('name'),
                 'code' => $request->input('code')
             ]);

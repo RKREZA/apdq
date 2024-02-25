@@ -4,7 +4,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware'=>'language'],function (){
     Route::get('/', 		                    'FrontEndController@home')->name('frontend.home');
-    Route::post('/newsletter', 		            'FrontEndController@newsletter')->name('frontend.newsletter');
+    Route::post('/set-cookie',                  'FrontEndController@setCookie')->name('frontend.set.cookie');
+
+    Route::post('/newsletter/general',          'FrontEndController@newsletter_general')->name('frontend.newsletter.general');
+    Route::post('/newsletter/live',             'FrontEndController@newsletter_live')->name('frontend.newsletter.live');
     Route::get('/a-propos', 		            'FrontEndController@about')->name('frontend.about');
 
     Route::get('/video', 		                'FrontEndController@video')->name('frontend.video');
@@ -16,6 +19,8 @@ Route::group(['middleware'=>'language'],function (){
     Route::get('/video/{slug}', 		        'FrontEndController@video_single')->name('frontend.video.single');
     Route::post('/video/comment/store', 		'FrontEndController@video_comment_store')->name('frontend.video.comments.store');
     Route::post('/video/react',                 'FrontEndController@react')->name('frontend.video.react');
+    Route::get('/video/reactions/get',          'FrontEndController@get_reactions')->name('frontend.video.get.reactions');
+
 
 
     Route::get('/blog', 		                'FrontEndController@blog')->name('frontend.blog');
@@ -25,6 +30,9 @@ Route::group(['middleware'=>'language'],function (){
     Route::get('/search', 		                'FrontEndController@search')->name('frontend.search');
 
     Route::get('/live', 		                'FrontEndController@live')->name('frontend.live');
+    Route::get('/live/archive', 		        'FrontEndController@live_archive')->name('frontend.live.archive');
+    Route::get('/live/single/{slug}', 		    'FrontEndController@live_single')->name('frontend.live.single');
+    Route::get('/live/fetch-messages',          'FrontEndController@fetch_messages')->name('frontend.live.fetch.messages');
 
     Route::get('/subscription', 		        'FrontEndController@subscription')->name('frontend.subscription');
     Route::get('/checkout', 		            'FrontEndController@checkout')->name('frontend.checkout');

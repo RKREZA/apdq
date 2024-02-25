@@ -3,6 +3,7 @@
 namespace Modules\Newsletter\DataTables;
 
 use Modules\Newsletter\Entities\Newsletter;
+use Modules\Newsletter\Entities\NewsletterCategory;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Illuminate\Support\Facades\Gate;
@@ -53,6 +54,14 @@ class NewslettersDataTable extends DataTable
 
                 $action = $edit.' '.$delete;
                 return $action;
+            })
+
+            ->addColumn('category_id', function($row){
+                $category = NewsletterCategory::find($row->category_id);
+                if (empty($category)) {
+                    return 'NaN';
+                }
+                return $category->name;
             })
 
             ->addColumn('status', function($row){

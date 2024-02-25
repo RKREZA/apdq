@@ -26,6 +26,24 @@ Route::group(['middleware'=>'language'],function (){
 					Route::post('/restore',             'NewsletterController@restore')->name('admin.newsletters.restore');
 					Route::post('/restore/all',         'NewsletterController@restore_all')->name('admin.newsletters.restore_all');
 				});
+
+
+				// Newsletter Category
+                Route::prefix('category')->group(function () {
+					Route::get('/trashes', 			    'NewsletterCategoryController@trashes')->name('admin.newslettercategories.trashes');
+					Route::get('/index', 			    'NewsletterCategoryController@index')->name('admin.newslettercategories.index');
+					Route::get('/create', 			    'NewsletterCategoryController@create')->name('admin.newslettercategories.create');
+					Route::post('/store', 			    'NewsletterCategoryController@store')->name('admin.newslettercategories.store');
+					Route::get('/edit/{id}', 		    'NewsletterCategoryController@edit')->name('admin.newslettercategories.edit');
+					Route::post('/update/{id}', 	    'NewsletterCategoryController@update')->name('admin.newslettercategories.update');
+					Route::delete('/trash', 		    'NewsletterCategoryController@trash')->name('admin.newslettercategories.trash');
+                    Route::delete('/trash/all', 	    'NewsletterCategoryController@trash_all')->name('admin.newslettercategories.trash_all');
+					Route::delete('/force_destroy',     'NewsletterCategoryController@force_destroy')->name('admin.newslettercategories.force_destroy');
+                    Route::delete('/force_destroy/all', 'NewsletterCategoryController@force_destroy_all')->name('admin.newslettercategories.force_destroy_all');
+					Route::post('/restore',             'NewsletterCategoryController@restore')->name('admin.newslettercategories.restore');
+					Route::post('/restore/all',         'NewsletterCategoryController@restore_all')->name('admin.newslettercategories.restore_all');
+					Route::get('/status_update', 	    'NewsletterCategoryController@status_update')->name('admin.newslettercategories.status_update');
+                });
             });
 
 		});

@@ -29,10 +29,14 @@
                     <form id="live_edit_form" action="{{ route('admin.lives.update', $live->id) }}" method="POST" role="form" autocomplete="off">
                         @csrf()
                         @include('live::live.form')
-                        <button type="submit" class="create-button btn btn-dark btn-rounded">
-                            <i class="fi fi-ss-disk"></i>
-                            {{ __('core::core.update') }}
-                        </button>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button type="submit" class="create-button btn btn-dark btn-rounded">
+                                    <i class="fi fi-ss-disk"></i>
+                                    {{ __('core::core.update') }}
+                                </button>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -64,18 +68,30 @@
         var validation_id               = "#live_edit_form";
         var errorElement                = "em";
         var rules                       = {
+            publish_type: {
+                required: true,
+            },
+            content_type: {
+                required: true,
+            },
             name: {
                 required: true,
             },
             description: {
-                required: true
+                required: false
             },
             youtube_link: {
-                required: true
+                required: false
             },
 
         };
         var messages                    = {
+            publish_type: {
+                required: "{{ __('core::core.form.validation.required') }}",
+            },
+            content_type: {
+                required: "{{ __('core::core.form.validation.required') }}",
+            },
             name: {
                 required: "{{ __('core::core.form.validation.required') }}",
             },

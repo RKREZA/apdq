@@ -14,6 +14,7 @@ use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Modules\Video\Entities\VideoCategory;
+use Modules\Video\Entities\VideoSubcategory;
 use Modules\Video\Entities\VideoPlaylist;
 use Str;
 
@@ -60,6 +61,13 @@ class VideosDataTable extends DataTable
 
             ->addColumn('title', function($row){
                 $title = wordwrap($row->title, 100, "<br>\n", true);
+                $title.='&nbsp;';
+                if($row->content_type == 'free'){
+                    $title.='<span class="badge badge-success">'.$row->content_type.'</span>';
+                }else{
+                    $title.='<span class="badge badge-warning">'.$row->content_type.'</span>';
+                }
+
                 return mb_convert_encoding($title, 'UTF-8', 'UTF-8');
             })
 
@@ -74,6 +82,14 @@ class VideosDataTable extends DataTable
                     return 'NaN';
                 }
                 return $category->name;
+            })
+
+            ->addColumn('subcategory_id', function($row){
+                $subcategory = VideoSubcategory::find($row->subcategory_id);
+                if (empty($subcategory)) {
+                    return 'NaN';
+                }
+                return $subcategory->name;
             })
 
             ->addColumn('playlist_id', function($row){
@@ -98,6 +114,20 @@ class VideosDataTable extends DataTable
                 return $status;
             })
 
+            ->addColumn('featured', function($row){
+
+                if ($row->featured == "Active") {
+                    $current_featured = 'Checked';
+                }else{
+                    $current_featured = '';
+                }
+
+                $featured = "<input type='checkbox' id='featured_$row->id' id='user-$row->id' class='check' onclick='changeFeatured(event.target, $row->id);' " .$current_featured. ">
+                        <label for='featured_$row->id' class='checktoggle'>checkbox</label>";
+
+                return $featured;
+            })
+
             ->addColumn('thumbnail_url', function ($row) {
                 if (!empty($row->thumbnail_url)) {
                     // Check if the URL is already absolute
@@ -105,7 +135,7 @@ class VideosDataTable extends DataTable
 
                     $thumbnail_url = '<img src="' . ($isAbsoluteUrl ? $row->thumbnail_url : $row->thumbnail_url) . '" class="img-fluid img-thumbnail" style="width:100%; max-width: 100px !important;">';
                 } else {
-                    $thumbnail_url = '<img src="/assets/backend/img/no-image.png" class="rounded-circle img-fluid img-thumbnail" style="width:100%; max-width: 100px !important;">';
+                    $thumbnail_url = '<img src="/assets/backend/img/no-thumbnail.webp" class="rounded-circle img-fluid img-thumbnail" style="width:100%; max-width: 100px !important;">';
                 }
 
                 return $thumbnail_url;
@@ -125,11 +155,26 @@ class VideosDataTable extends DataTable
                 return $reaction;
             })
 
-            ->editColumn('created_at', '{{date("jS M Y", strtotime($created_at))}}')
+
+            ->addColumn('created_at', function ($row) {
+
+                if($row->publish_type == 'publish'){
+                    $data = '<span class="badge badge-success">'.$row->publish_type.'</span>';
+                }else{
+                    $data = '<span class="badge badge-warning">'.$row->publish_type.'</span>';
+                }
+                $data.="<br>";
+                $data.= date("jS M Y", strtotime($row->created_at));
+                $data.="<br>";
+                $data.= date("H:i:A", strtotime($row->created_at));
+                return $data;
+            })
+
+
 	        ->editColumn('updated_at', '{{date("jS M Y", strtotime($updated_at))}}')
 
             ->setRowId('id')
-            ->rawColumns(['title','reaction','thumbnail_url','action','checkbox','status']);
+            ->rawColumns(['title','reaction','thumbnail_url','action','checkbox','status','featured','created_at']);
     }
 
     /**

@@ -57,6 +57,7 @@
                                 'photo'             => __('core::core.form.photo'),
                                 'title'             => __('blog::blog.post.form.title'),
                                 'category_id'       => __('blog::blog.post.form.category_id'),
+                                'subcategory_id'    => __('blog::blog.post.form.subcategory_id'),
                                 'status'            => __('core::core.form.status'),
                                 'created_at'        => __('blog::blog.post.form.created_at'),
                                 'action'            => __('core::core.form.action'),
