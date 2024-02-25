@@ -12,10 +12,10 @@
             </div>
             <div class="modal-footer border-0">
                 <div class="row w-100">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <button type="button" class="btn btn-outline-light w-100 border-radius-round" data-bs-dismiss="modal">Fermer</button>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-8">
                         <a href="{{ route('frontend.subscription') }}" type="button" class="btn btn-primary w-100 border-radius-round">Abonnez-vous maintenant</a>
                     </div>
                 </div>
