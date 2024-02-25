@@ -107,7 +107,7 @@
             @if (Gate::check('newsletter-list') || Gate::check('newslettercategory-list'))
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#newsletter" class="nav-link fw-normal {{ request()->is('auth/newsletter/*') ? 'active' : '' }}" aria-controls="newsletter" role="button" aria-expanded="{{ request()->is('auth/newsletter/*') ? 'true' : 'false' }}">
-                        <i class="fi fi-ss-newsletter-text"></i>
+                        <i class="fi fi-ss-envelope-download"></i>
                         <span class="nav-link-text">{{ __('newsletter::newsletter.newsletter.name') }}</span>
                     </a>
                     <div class="collapse {{ request()->is('auth/newsletter/*') ? 'show' : '' }}" id="newsletter">
