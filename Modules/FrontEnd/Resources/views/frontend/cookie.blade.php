@@ -2,7 +2,7 @@
     <div class="wrapper">
         <header>
             <i class="bx bx-cookie"></i>
-            <h2>Cookies Consent</h2>
+            <h2>Consentement aux cookies</h2>
         </header>
 
         <div class="data">
