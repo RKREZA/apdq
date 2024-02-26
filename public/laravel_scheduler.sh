@@ -1,2 +1,2 @@
 #!/bin/bash
-/usr/bin/php /home/u933481031/domains/productionjasmindupaul.com/APDQ/artisan schedule:run >> /dev/null 2>&1
+/usr/bin/php /home/u933481031/domains/productionjasmindupaul.com/public_html/APDQ//artisan schedule:run >> /dev/null 2>&1
